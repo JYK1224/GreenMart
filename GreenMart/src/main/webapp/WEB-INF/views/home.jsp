@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/common.css"/>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="menu1.jsp" %>
 
 
 </body>

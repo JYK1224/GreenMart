@@ -26,7 +26,13 @@
         <property name="suffix" value=".jsp" />    
     </bean>
     
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource1" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+       <property name="url" value="jdbc:oracle:thin:@GreenMart_medium?TNS_ADMIN=D:/Wallet/Wallet_GreenMart"/>
+       <property name="username" value="admin"/>
+       <property name="password" value="GreenMart123"/>
+   </bean>
+   <bean id="dataSource2" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
        <property name="url" value="jdbc:oracle:thin:@GreenMart2_medium?TNS_ADMIN=D:/Wallet/Wallet_GreenMart2"/>
        <property name="username" value="admin"/>
@@ -39,9 +45,16 @@
          sqlSessionFactory.setDataSource (dataSource); //propery
          sqlSessionFactory.setMapperLocations (classpath:myBatis/sqlmaps/*.xml"); //propery
          -->
-    <bean  id="sqlSessionFactory"
+    <bean  id="ds1sqlSessionFactory"
            class="org.mybatis.spring.SqlSessionFactoryBean">
-       <property name="dataSource"   ref="dataSource" />
+       <property name="dataSource"   ref="dataSource1" />
+       <property name="mapperLocations"
+         value="classpath:myBatis/sqlmaps/*.xml" />    
+    </bean>
+    
+    <bean  id="ds2sqlSessionFactory"
+           class="org.mybatis.spring.SqlSessionFactoryBean">
+       <property name="dataSource"   ref="dataSource2" />
        <property name="mapperLocations"
          value="classpath:myBatis/sqlmaps/*.xml" />    
     </bean>
@@ -49,13 +62,20 @@
     <!-- SqlSessionTemplate 설정
     SqlSessionTemplate  sqlSession = new SqlSessionTemplate( sqlSessionFactory );    
      -->
-    <bean  id="sqlSession" 
+    <bean  id="jumpo" 
            class="org.mybatis.spring.SqlSessionTemplate"
            destroy-method="clearCache">
            <constructor-arg name="sqlSessionFactory"
-                            ref="sqlSessionFactory"  >          
-           </constructor-arg>
+                            ref="ds1sqlSessionFactory"  >          
+           </constructor-arg>    
+    </bean>
     
+    <bean  id="bonsa" 
+           class="org.mybatis.spring.SqlSessionTemplate"
+           destroy-method="clearCache">
+           <constructor-arg name="sqlSessionFactory"
+                            ref="ds2sqlSessionFactory"  >          
+           </constructor-arg>    
     </bean>
     
     <!-- MultipartResolver 설정 : 파일업로드 처리 -->

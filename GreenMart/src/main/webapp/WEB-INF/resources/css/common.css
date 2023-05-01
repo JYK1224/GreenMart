@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+
+*      { margin:0; padding: 0;    }
+ul, li { list-style:none; }
+body   { font-family:'Malgun Gothic'; font-size:16px;  }
+a      { text-decoration: none; }
+table  { border-collapse: collapse; border-spacing: 0; }
+
+.logo  { height:70px; padding:20px; background:#57BC9B; color:#fff;
+         font-size:40px; text-align: center;   margin-bottom: 0px;}
+.gnb   { height:40px; background:#283238; color:#fff; text-align: center; line-height: 40px;}
+
+.gnb ul         { display:inline-block;}
+.gnb li         { float:left;}
+.gnb ul::after  { content:""; display:block; clear:both; }
+
+.gnb a       { color:#fff; display:block; padding:0 40px; font-size: 17px; transition: 1s; }
+.gnb a:hover { background:#808080;  }
+

@@ -9,8 +9,28 @@
 <link rel="stylesheet" href="css/common.css"/>
 </head>
 <body>
-	<%@ include file="menu1.jsp" %>
+	<%@ include file="/WEB-INF/include/header.jsp" %>
+	<%@ include file= "/WEB-INF/include/left.jsp" %>
+	<%@ include file ="/WEB-INF/include/cal.jsp" %>
+	<div id="gd">
+	 
+	 
+	<div class="dd">
+  <table>
+    <tr>&nbsp;&nbsp;- 공지사항<tr>
+  </table>
+	</div>
+	
+	<div class="aa">
+  <table>
+    <tr>&nbsp;&nbsp;- 업무연락<tr>
+  </table>
+	</div>
+	
+	<div id="calendar"></div>
+	
+    <%@ include file="/WEB-INF/include/bottom.jsp" %>
 
-
+	</div>
 </body>
 </html>

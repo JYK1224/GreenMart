@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
  <%-- 	<%@ include file="" %> --%>
     <header id="header">
-     <h3 class="logo" >그린마트</h3>
-
+     <h3 class="logo" >그린마트
+     <div class="logid"> 박지현(코드예정) </div>
+     </h3>
+       
        <div class="gnb">
         <ul>
         	<li><a href="menu1.jsp" target="_blank">점포화면</a></li>

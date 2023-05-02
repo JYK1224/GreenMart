@@ -1,4 +1,4 @@
-package com.green.user;
+package com.green.mart;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

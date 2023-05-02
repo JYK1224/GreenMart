@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//연동할 구글캘린더가 1개인 경우 
 	events: {
-	   googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com'
+	   googleCalendarId: 'ko.south_korea.official#holiday@group.v.calendar.google.com'
+	   ,color:'red'
 	},
 	eventClick: function(info){
 	info.jsEvent.stopPropagation();
@@ -69,4 +70,50 @@ document.addEventListener('DOMContentLoaded', function() {
 	calendar.render();
 	});
 </script>
+<style>
+/* 일요일 날짜 빨간색 */
+.fc-day-sun a {
+  color: red;
+  text-decoration: none;
+}
 
+/* 토요일 날짜 파란색 */
+.fc-day-sat a {
+  color: blue;
+  text-decoration: none;
+}
+
+  /*일정시간*/
+  .fc-daygrid-event > .fc-event-time{
+	color:#000;
+  }
+  
+  /*시간제목*/
+  .fc-daygrid-dot-event > .fc-event-title{
+    color:#000 !important;
+  }
+  /*가로 줄 - 월달력 종일 or 복수일자*/
+  .fc-h-event{
+	
+  }
+  /*세로 줄 - 주달력, 일달력*/
+  .fc-v-event{
+	
+  }
+  /*title 옆에 점*/
+  .fc-daygrid-event-dot{
+	
+  }
+  /*month/week/day*/
+  .fc-button-active{
+	border-color: #ffc107 		!important;
+	background-color: #ffc107 	!important;
+	color: #000 				!important;
+	font-weight: bold 			!important;
+  }
+  /*노란버튼*/
+  .btn-warning{
+  	font-weight: bold;
+  }
+
+</style>

@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	//연동할 구글캘린더가 1개인 경우 
 	events: {
-	   googleCalendarId: 'ko.south_korea.official#holiday@group.v.calendar.google.com'
-	   ,color:'red'
+	   googleCalendarId: 'ko.south_korea.official#holiday@group.v.calendar.google.com',
+	   color: 'red'
 	},
 	eventClick: function(info){
 	info.jsEvent.stopPropagation();
@@ -60,13 +60,30 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 
 	});
-
-	calendar.addEvent({
-		title: '따이.....',
-        start: '2023-05-03',
-        constraint: 'businessHours'
-    })
-    
+     
+	$.ajax({
+		url: "/service",
+		type: "POST", 
+				
+		success : function(data){
+			console.log(data);
+			var now = new Date();
+			var year = now.getFullYear();
+			
+			data.forEach(function(data, index) {
+				calendar.addEvent({
+					title: data.ann_name,
+			        start: year+'-'+data.ann_date
+			    })
+			});
+			},
+		error :function(xhr){
+			console.log(xhr);
+			alert('에러:' + xhr.status + '' + xhr.textStatus )
+			}
+		
+	}); 
+	
 	calendar.render();
 	});
 </script>

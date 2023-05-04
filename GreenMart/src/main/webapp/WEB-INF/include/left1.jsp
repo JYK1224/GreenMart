@@ -5,7 +5,7 @@
         <ul class="menu">
         	<li></li><br>
         	<li>&lt;주문&gt;</li>
-        	<li><a href="">상품주문업무</a></li>
+        	<li><a href="" id="order">상품주문업무</a>></li>
         	<li>&lt;입고&gt;</li>
         	<li><a href="">상품입고업무</a></li>
         	<li>&lt;조회&gt;</li>

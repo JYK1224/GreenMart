@@ -8,10 +8,10 @@
        
        <div class="gnb">
         <ul>
-        	<li><a href="menu1.jsp" target="_blank">점포화면</a></li>
-        	<li><a href="menu2.jsp" target="_blank">본사화면</a></li>
-        	<li><a href="menu3.jsp">커뮤니티</a></li>
-        	<li><a href="menu4.jsp">고객관리</a></li>
+        	<li><a href="/Jumpo">점포화면</a></li>
+        	<li><a href="/Bonsa">본사화면</a></li>
+        	<li><a href="/Cummunity">커뮤니티</a></li>
+        	<li><a href="/Customer">고객관리</a></li>
         	<li><a href="">즐겨찾기</a></li>
         </ul>
        </div>

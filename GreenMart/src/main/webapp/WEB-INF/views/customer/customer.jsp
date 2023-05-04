@@ -7,6 +7,36 @@
 <meta charset="UTF-8">
 <title>그린마트</title>
 <link rel="stylesheet" href="css/common.css"/>
+<script>
+window.onload = function() {
+	  let customeraddEl = document.getElementById('customeradd');
+	  customeraddEl.addEventListener('click',  function(e) {
+		  e.preventDefault();
+	      //e.stopPropagation();
+		  let  html       = '/Customeradd'  ;
+		  let  name       = 'Customeradd';  // '' 값이 없으면 창이 여러번 뜬다
+		  let  features   = 'height=700, width=1050, top=200, left=600'; 
+		  window.open(html, name, features);
+		  //alert('ok');
+		  // document.forms[0].action = 'aaa.jsp';
+		  // document.forms[0].submit(); 
+	  });
+
+	  let customerlistEl = document.getElementById('customerlist');
+	  customerlistEl.addEventListener('click',  function(e) {
+		  e.preventDefault();
+	      //e.stopPropagation();
+		  let  html       = '/Customerlist'  ;
+		  let  name       = 'Customerlist';  // '' 값이 없으면 창이 여러번 뜬다
+		  let  features   = 'height=700, width=1050, top=200, left=600'; 
+		  window.open(html, name, features);
+		  //alert('ok');
+		  // document.forms[0].action = 'aaa.jsp';
+		  // document.forms[0].submit(); 
+	  });
+}
+
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/include/header.jsp" %>

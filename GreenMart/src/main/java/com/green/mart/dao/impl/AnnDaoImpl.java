@@ -23,6 +23,7 @@ public class AnnDaoImpl implements AnnDao {
 	@Override
 	public List<AnniversaryVo> getAnniversaryVoList() {
 		List<AnniversaryVo> list =  sqlSession.selectList("Ann.GetAnniversaryList");
+		//아이왜 안돼
 		return list;
 	}
 

@@ -39,6 +39,16 @@
 	    <version>21.5.0.0</version>
 	</dependency>
    
+    <!-- lombok -->
+	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+	<dependency>
+	    <groupId>org.projectlombok</groupId>
+	    <artifactId>lombok</artifactId>
+	    <version>1.18.26</version>
+	    <scope>provided</scope>
+	</dependency>
+
+
 
 	
 	<!-- spring-jdbc  -->

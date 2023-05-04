@@ -18,12 +18,11 @@ public class AnnDaoImpl implements AnnDao {
 	
 	
 	@Autowired
-	@Resource(name = "jumpo")
-	private SqlSession jumpo;
+	private SqlSession sqlSession;
 
 	@Override
 	public List<AnniversaryVo> getAnniversaryVoList() {
-		List<AnniversaryVo> list =  jumpo.selectList("Ann.GetAnniversaryList");
+		List<AnniversaryVo> list =  sqlSession.selectList("Ann.GetAnniversaryList");
 		return list;
 	}
 

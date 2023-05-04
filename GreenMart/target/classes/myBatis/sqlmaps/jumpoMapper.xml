@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Jumpo">  
+
+
+<select id="SearchDeptList"
+resultType="com.green.mart.vo.work.SearchDeptVo">
+SELECT D.D_NAME ,  P.P_SEQ, P.P_ID, P.P_NAME, P.P_IPRICE , NVL(S.ST_NUM, 0) ST_NUM 
+FROM DEPT D , PRODUCT P , STOCK S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND P.J_ID = '12020'
+ORDER BY D.D_NAME ASC
+</select>
+
+ 
+</mapper>
+
+
+
+
+
+   

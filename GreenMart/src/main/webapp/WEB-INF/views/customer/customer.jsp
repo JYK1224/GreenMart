@@ -17,9 +17,6 @@ window.onload = function() {
 		  let  name       = 'Customeradd';  // '' 값이 없으면 창이 여러번 뜬다
 		  let  features   = 'height=700, width=1050, top=200, left=600'; 
 		  window.open(html, name, features);
-		  //alert('ok');
-		  // document.forms[0].action = 'aaa.jsp';
-		  // document.forms[0].submit(); 
 	  });
 
 	  let customerlistEl = document.getElementById('customerlist');
@@ -30,9 +27,6 @@ window.onload = function() {
 		  let  name       = 'Customerlist';  // '' 값이 없으면 창이 여러번 뜬다
 		  let  features   = 'height=700, width=1050, top=200, left=600'; 
 		  window.open(html, name, features);
-		  //alert('ok');
-		  // document.forms[0].action = 'aaa.jsp';
-		  // document.forms[0].submit(); 
 	  });
 }
 

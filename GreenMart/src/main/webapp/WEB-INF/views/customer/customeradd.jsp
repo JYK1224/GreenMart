@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<title>그린마트</title>
+<link rel="stylesheet" href="css/common.css"/>
+
+    <%@ include file="/WEB-INF/include/subheader.jsp" %>
+    </head>
 <body>
-	<%@ include file="/WEB-INF/include/header.jsp" %>
+	<div id="gd">
 	<div class="container">
 		<div class="content">
 			<h2> 사원 등록 </h2>
@@ -62,6 +66,8 @@
 			</table>
 			</form>
 		</div>
+	</div>
+	 <%@ include file="/WEB-INF/include/bottom.jsp" %>
 	</div>
 </body>
 </html>

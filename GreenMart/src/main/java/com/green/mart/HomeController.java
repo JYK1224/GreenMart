@@ -16,25 +16,25 @@ public class HomeController {
 		@RequestMapping("/Jumpo")
 		public  ModelAndView   jumpo(  ) {
 			ModelAndView  mv  =  new ModelAndView(); 
-			mv.setViewName("jumpo"); 
+			mv.setViewName("jumpo/jumpo"); 
 			return  mv;
 		}
 		@RequestMapping("/Bonsa")
 		public  ModelAndView   bonsa(  ) {
 			ModelAndView  mv  =  new ModelAndView(); 
-			mv.setViewName("bonsa"); 
+			mv.setViewName("bonsa/bonsa"); 
 			return  mv;
 		}
 		@RequestMapping("/Community")
 		public  ModelAndView   community(  ) {
 			ModelAndView  mv  =  new ModelAndView(); 
-			mv.setViewName("community"); 
+			mv.setViewName("community/community"); 
 			return  mv;
 		}
 		@RequestMapping("/Customer")
 		public  ModelAndView   customer(  ) {
 			ModelAndView  mv  =  new ModelAndView(); 
-			mv.setViewName("customer"); 
+			mv.setViewName("customer/customer"); 
 			return  mv;
 		}
 		//--------------------------------------

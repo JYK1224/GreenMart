@@ -38,7 +38,7 @@ nav{width:160px; background:#545765;  position:fixed; height:80%; margin:0px 0px
 div #gd {  width: 100%;
       min-height: 100vh;
       padding: 10px; margin: 100px;}
-         footer { width: 100%; height: 20px; bottom: 0px; position: absolute;
+         footer { width: 100%; height: 20px; bottom: 0px;  position: fixed;;
      color:#fff; background:#666; text-align: center; padding : 20px 0; text-transform: uppercase; font-size:11px;
    }
 .dd {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 0; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555;}

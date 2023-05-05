@@ -7,11 +7,14 @@ body   { font-family:'Malgun Gothic'; font-size:16px;  }
 a      { text-decoration: none; }
 table  { border-collapse: collapse; border-spacing: 0; }
 
-.logo  { height:50px; padding:20px; /* background:#57BC9B; color:#fff ;*/
-background: #E1E3E8; text-align: center;  color: #27627A;
-         font-size:35px;    margin-bottom: 0px;}
-         .head {font-size:14px; background: #34343C; height: 20px; color: white;}
-		 .ver{font-size:14px;  color: white; display: inline;  float: right;}
+
+         .logo { font-size:35px; height: 50px; padding: 20px; 
+         
+background: linear-gradient(to right, #E1E3E8, #D1D3D8);
+ text-align: center; color: #27627A;}
+ 
+         .head {font-size:13px; background: #34343C; height: 20px; color: white;}
+		 .ver{font-size:13px;  color: white; display: inline;  float: right;}
          .logid { font-size: 12px; text-align: right; color: #868690;}
 
 

@@ -4,8 +4,8 @@
     <nav>
           <ul class="menu">
           <li></li><br>
-        	<li><a href="" id="customeradd">고객신규등록</a></li>
-        	<li><a href="" id="customerlist">고객정보조회</a></li>
+        	<li><a href="" id="customeradd">&nbsp;고객신규등록</a></li>
+        	<li><a href="" id="customerlist">&nbsp;고객정보조회</a></li>
         </ul>
         </nav>
        

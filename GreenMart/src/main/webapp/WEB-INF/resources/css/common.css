@@ -7,11 +7,14 @@ body   { font-family:'Malgun Gothic'; font-size:16px;  }
 a      { text-decoration: none; }
 table  { border-collapse: collapse; border-spacing: 0; }
 
-.logo  { height:50px; padding:20px; /* background:#57BC9B; color:#fff ;*/
-background: #E1E3E8; text-align: center;  color: #27627A;
-         font-size:35px;    margin-bottom: 0px;}
-         .head {font-size:14px; background: #34343C; height: 20px; color: white;}
-		 .ver{font-size:14px;  color: white; display: inline;  float: right;}
+
+         .logo { font-size:35px; height: 50px; padding: 20px; 
+         
+background: linear-gradient(to right, #E1E3E8, #D1D3D8);
+ text-align: center; color: #27627A;}
+ 
+         .head {font-size:13px; background: #34343C; height: 20px; color: #e4e4e4;}
+		 .ver{font-size:13px;  color: #e4e4e4; display: inline;  float: right;}
          .logid { font-size: 12px; text-align: right; color: #868690;}
 
 
@@ -35,7 +38,7 @@ nav{width:160px; background:#545765;  position:fixed; height:80%; margin:0px 0px
 div #gd {  width: 100%;
       min-height: 100vh;
       padding: 10px; margin: 100px;}
-         footer { width: 100%; height: 20px; bottom: 0px; position: absolute;
+         footer { width: 100%; height: 20px; bottom: 0px;  position: fixed;;
      color:#fff; background:#666; text-align: center; padding : 20px 0; text-transform: uppercase; font-size:11px;
    }
 .dd {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 0; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555;}

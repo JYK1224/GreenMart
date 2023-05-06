@@ -1,6 +1,7 @@
 package com.green.mart.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,12 @@ public class JumpoDaoImpl implements JumpoDao {
 		String d_name = search.toUpperCase().trim();
 		List<SearchDeptVo> list = sqlSession.selectList("Jumpo.SearchDeptList",d_name);
 		return list;
+	}
+
+	@Override
+	public int insertOrder(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Jumpo.InsertOrder",map);
+		return aftcnt;
 	}
 
 }

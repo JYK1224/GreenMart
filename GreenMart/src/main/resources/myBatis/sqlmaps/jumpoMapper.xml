@@ -17,6 +17,24 @@ AND P.J_ID = '12020'
 ORDER BY D.D_NAME ASC
 </select>
 
+<insert id="InsertOrder">
+INSERT INTO ordering (
+        O_ID,
+        O_NUM,
+        O_DATE,
+        E_ID,
+        P_SEQ,
+        D_ID
+) VALUES (
+(SELECT NVL(MAX(O_ID), 0) + 1 FROM ordering),
+#{o_num} ,
+TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
+'0001',
+(SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020),
+(SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
+)
+</insert>
+
  
 </mapper>
 

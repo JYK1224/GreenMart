@@ -20,13 +20,10 @@ td{ padding: 10px; margin: 30px; width: 200px;}
     
 <script>
 window.onload = function () {
-
-
 	  const radio1 = document.getElementById("radio1");
 	  const radio2 = document.getElementById("radio2");
 	  const text = document.getElementById("text");
 	  const button = document.querySelector("input[type='button']");
-
 	  radio1.addEventListener("click", function() {
 	    text.addEventListener("input", function() {
 	      const inputVal = text.value.trim();
@@ -36,7 +33,6 @@ window.onload = function () {
 	      }
 	    });
 	  });
-
 	  button.addEventListener("click", function() {
 	    const inputVal = text.value.trim();
 	    if (radio1.checked && inputVal !== "" && !/^\d+$/.test(inputVal)) {
@@ -46,7 +42,6 @@ window.onload = function () {
 	    }
 	    if (radio2.checked && inputVal !== "") {}
 	  }); 
-
 }
 		</script>
     

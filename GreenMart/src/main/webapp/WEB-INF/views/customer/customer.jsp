@@ -13,7 +13,7 @@ window.onload = function() {
 	  customeraddEl.addEventListener('click',  function(e) {
 		  e.preventDefault();
 	      //e.stopPropagation();
-		  let  html       = '/Customeradd'  ;
+		  let  html       = '/CustomeraddForm'  ;
 		  let  name       = 'Customeradd';  // '' 값이 없으면 창이 여러번 뜬다
 		  let  features   = 'height=700, width=1050, top=200, left=600'; 
 		  window.open(html, name, features);

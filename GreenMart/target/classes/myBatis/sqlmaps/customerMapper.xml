@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cus">  
+
+ 
+  <select id="CustomerList"
+      resultType="com.green.mart.vo.CustomerVo">
+      SELECT c_id, c_name, c_phone, c_mile
+        FROM customer
+       ORDER BY c_id ASC
+   </select>
+   
+   <select id="GetCid"
+   		resultType="com.green.mart.vo.CustomerVo">
+   		SELECT count(c_id) +1
+   		  FROM customer
+   		
+   		
+   </select>
+   
+   
+    
+  <insert id="CustomerInsert">
+   
+       INSERT INTO customer (
+		    c_id,
+		    c_name,
+		    c_phone, 
+		    c_mile
+		) VALUES (
+		    (SELECT NVL(max(c_id), 0  ) + 1 
+		       FROM customer ),
+		    #{ c_name  },
+		    #{ c_phone  },
+		    #{ c_mile  }
+		)       
+   
+   </insert> 
+ 
+ 
+   
+   <!-- <delete id="UserDelete">
+   
+      DELETE  FROM   TUSER
+        WHERE  USERID = #{ userid }  
+           
+   </delete>  -->
+ 
+ 
+</mapper>
+
+
+
+
+
+   

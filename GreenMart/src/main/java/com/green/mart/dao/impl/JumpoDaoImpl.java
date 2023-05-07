@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 @Repository
 public class JumpoDaoImpl implements JumpoDao {
@@ -28,5 +29,11 @@ public class JumpoDaoImpl implements JumpoDao {
 		int aftcnt = sqlSession.insert("Jumpo.InsertOrder",map);
 		return aftcnt;
 	}
-
+	
+	@Override
+	public List<SearchProductVo> searchProductList(String text) {
+		String p_id = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.SearchProductList",p_id);
+		return list;
+	}
 }

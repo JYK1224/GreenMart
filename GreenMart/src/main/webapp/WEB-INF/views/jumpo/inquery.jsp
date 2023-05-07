@@ -19,6 +19,8 @@ td{ padding: 10px; margin: 30px; width: 200px;}
     <%@ include file="/WEB-INF/include/subheader.jsp" %>
     
 <script>
+
+/* 
 window.onload = function () {
 	  const radio1 = document.getElementById("radio1");
 	  const radio2 = document.getElementById("radio2");
@@ -43,6 +45,46 @@ window.onload = function () {
 	    if (radio2.checked && inputVal !== "") {}
 	  }); 
 }
+ */
+window.onload = function () {
+	
+//상품검색 검색
+$(document).ready(function() {
+	  $('#text').keypress(function(e) {
+	    if (e.keyCode == 13) { 
+	      e.preventDefault(); 
+	      $('#productbutton').click(); 
+	    }
+	  });
+	});
+	let productbuttonEl = document.getElementById('productbutton')
+	productbuttonEl.onclick = function (e) {
+		$.ajax({
+			url: "/JWork/Inquery1",
+			data : {text: $('#text').val() },
+			type: "POST",
+			success : function(data) {
+				console.log(data);
+				console.dir(data);
+			
+				$('#inquired1').text(data[0].p_id);
+			    $('#inquired2').text(data[0].p_name);
+			    $('#inquired3').text(data[0].p_iprice);
+			    $('#inquired4').text(data[0].p_sprice);
+			    $('#inquired6').text(data[0].d_id);
+			    $('#inquired7').text(data[0].d_name);
+			    $('#inquired8').text(data[0].st_num);
+			    $('#inquired9').text(data[0].a_name);
+			  //  $('#inquired10').text(data.j_name);
+			},
+			error :function(xhr) {
+				console.log(xhr);
+				arlet('잘못된 상품코드,상품명 입니다 : ' + xhr.status + '' + xhr.textStatus)
+			}
+		});
+		
+	};
+};
 		</script>
     
 </head>
@@ -55,60 +97,55 @@ window.onload = function () {
 	 <input type="radio" name="radio"  id="radio1" value="상품코드" checked>상품코드<br>
 	 <input type="radio" name="radio"  id="radio2" value="상품명">상품명 
 	 <input type="text" id="text" >
-	 <input type="button" value="조회" >
+	 <input type="button" id="productbutton" value="조회" >
 	 
 	 </td>
 
 	 </tr>
 	 <tr>
 	 <td>상품코드</td>
-	 <td colspan="2">111</td>
+	 <td colspan="2" id="inquired1"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>상품명</td>
-	 <td>111</td>
+	 <td id="inquired2"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>입고가격</td>
-	 <td>111</td>
+	 <td id="inquired3"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>판매가격</td>
-	 <td>111</td>
+	 <td id="inquired4"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>이익률</td>
-	 <td>1</td>
+	 <td id="inquired5"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>거래처코드</td>
-	 <td>1</td>
+	 <td id="inquired6"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>거래처명</td>
-	 <td>1</td>
+	 <td id="inquired7"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>VAT</td>
 	 <td>10%</td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>재고</td>
-	 <td>1</td>
+	 <td id="inquired8"></td>
 	 </tr>
-	 	 </tr>
 	 <tr>
 	 <td>상품분류</td>
-	 <td>1</td>
+	 <td id="inquired9"></td>
 	 </tr>
+	 <tr>
+<%-- 	 <td>점포명</td>
+	 <td id="inquired10">${data.j_name}</td>
+	 </tr> --%>
 	 </table>
 	
 

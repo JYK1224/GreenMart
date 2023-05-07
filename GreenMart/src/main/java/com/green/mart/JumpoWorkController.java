@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.JumpoService;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 @Controller
 @RequestMapping("/JWork")
@@ -68,4 +69,12 @@ public class JumpoWorkController {
 
 		return aftcnt;
 	}
+	@RequestMapping("/Inquery1")
+	@ResponseBody
+	public List<SearchProductVo> ListVo(String text) throws Exception {
+
+		List<SearchProductVo> list = jumpoService.searchProductList(text);
+		return list;
+	}
+	
 }

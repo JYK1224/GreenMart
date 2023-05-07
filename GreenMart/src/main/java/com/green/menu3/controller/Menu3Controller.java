@@ -172,6 +172,30 @@ public class Menu3Controller {
 		return mv;
 
 	}
+	
+	@RequestMapping("/Delete")
+	public ModelAndView delete(
+		@RequestParam HashMap<String, Object> map	
+			) {
+		
+		// 자료실 자료삭제
+		// 1. Files idx 가진 파일정보 삭제 : child
+		// 2. Board idx 번 글 삭제         : parent
+		// 3. D:\\upload\\ 에 있는 파일 삭제
+		
+		menu3Service.setDelete(map);
+		
+		String fmt = "redirect:/Menu3/Pds?m_id=%s&nowpage=%s";
+		String loc = String.format(fmt,  map.get("m_id"), map.get("nowpage"));
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( loc );
+		mv.addObject("map", map);
+		return mv;
+		
+	}
+	
+	
 
 	// 수정
 	@RequestMapping("/UpdateForm")

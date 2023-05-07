@@ -23,5 +23,7 @@ public interface Menu3Dao {
 
 	void deleteUploadFile(HashMap<String, Object> map);
 
+	void setDelete(HashMap<String, Object> map);
+
 
 }

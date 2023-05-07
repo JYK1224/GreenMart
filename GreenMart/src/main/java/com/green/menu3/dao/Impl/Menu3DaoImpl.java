@@ -40,13 +40,7 @@ public class Menu3DaoImpl implements Menu3Dao {
 		return pdsVo;
 	}
 
-	@Override
-	public List<FilesVo> getFileList(HashMap<String, Object> map) {
-
-		List<FilesVo> fileList = sqlSession.selectList("Pds.FileList", map); 
-
-		return fileList;
-	}
+	
 
 	// 게시판이름 가져오기
 	@Override
@@ -93,6 +87,36 @@ public class Menu3DaoImpl implements Menu3Dao {
 
 		sqlSession.delete("Pds.DeleteUploadFile", map);
 		
+	}
+
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+		
+		// del을 1로 변경
+		sqlSession.delete("Pds.BoardDelete", map);
+		// 자식글이 있는지 확인(있다면 1, 없다면 0)
+		int childCnt = sqlSession.selectOne("Pds.childCnt", map);
+		System.out.println("childCnt : " + childCnt);
+		// 자식글이 없다면 삭제
+		if( childCnt == 0 ) {
+			sqlSession.delete("Pds.BoardDelete2", map);
+		}
+
+		// file 삭제
+		List<FilesVo> fileList = getFileList(map);
+		map.put("fileList", fileList);
+		
+		sqlSession.delete("Pds.FileDelete", map);
+		
+	}
+	
+	// file삭제를 위해 게시글에 해당되는 fileList를 가져온다
+	@Override
+	public List<FilesVo> getFileList(HashMap<String, Object> map) {
+
+		List<FilesVo> fileList = sqlSession.selectList("Pds.FileList", map); 
+
+		return fileList;
 	}
 
 

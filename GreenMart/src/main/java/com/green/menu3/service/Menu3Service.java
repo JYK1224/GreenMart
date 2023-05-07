@@ -25,4 +25,6 @@ public interface Menu3Service {
 
 	void deleteUploadFile(HashMap<String, Object> map);
 
+	void setDelete(HashMap<String, Object> map);
+
 }

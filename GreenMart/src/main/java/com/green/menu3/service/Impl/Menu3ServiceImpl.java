@@ -95,6 +95,18 @@ public class Menu3ServiceImpl implements Menu3Service {
 		menu3Dao.setUpdate( map );
 
 	}
+	
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+
+		// db 정보제거 : Files, Board
+		menu3Dao.setDelete( map );
+		
+		// 파일 삭제 map 에 삭제할 파일정보가 와야함
+		List<FilesVo> fileList = (List<FilesVo>) map.get("fileList");
+		PdsFile.delete( fileList );
+		
+	}
 
 	@Override
 	public void deleteUploadFile(HashMap<String, Object> map) {
@@ -112,6 +124,8 @@ public class Menu3ServiceImpl implements Menu3Service {
 		menu3Dao.deleteUploadFile( map );
 
 	}
+
+
 
 
 }

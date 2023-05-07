@@ -240,7 +240,37 @@
    
    </delete>
    
+   <!-- 게시글 삭제 : del = 1 -->
    <delete id="BoardDelete">
+   
+   		UPDATE  BOARD
+   		  SET   DEL = 1
+   		 WHERE IDX = #{ idx }
+   
+   </delete>
+   
+   <!-- 자식이 있는지 확인 -->
+   <select id="childCnt"
+           resultType="int">
+           
+       	SELECT
+       	  CASE
+       	    WHEN
+       	      EXISTS (
+       	      	SELECT PNUM
+       	      	  FROM BOARD
+       	      	 WHERE PNUM = #{ idx }
+       	      )
+       	     THEN 1
+       	     ELSE 0
+       	   END
+       	 FROM DUAL
+   
+   </select>
+   
+   
+   <!-- 게시글삭제 : 자식이 없으면 삭제 -->
+   <delete id="BoardDelete2">
    
    		DELETE  FROM BOARD
    		 WHERE  IDX = #{ idx }

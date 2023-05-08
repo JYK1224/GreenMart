@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.service.JumpoService;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 @Service
@@ -49,6 +50,24 @@ public class JumpoServiceImpl implements JumpoService {
 	@Override
 	public int insertBonsaOrder(Map<String, Object> map) {
 		int aftcnt = jumpoDao.insertBonsaOrder(map);
+		return aftcnt;
+	}
+
+	@Override
+	public List<SearchOrderVo> searchOrderDeptList(Map<String, Object> map) {
+		List<SearchOrderVo> list = jumpoDao.searchOrderDeptList(map);
+		return list;
+	}
+
+	@Override
+	public int updateStock(Map<String, Object> map) {
+		int aftcnt = jumpoDao.insertInput(map);
+		return aftcnt;
+	}
+
+	@Override
+	public int insertInput(Map<String, Object> map) {
+		int aftcnt = jumpoDao.updateStock(map);
 		return aftcnt;
 	}
 

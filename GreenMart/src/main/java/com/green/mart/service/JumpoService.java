@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 public interface JumpoService {
@@ -19,5 +20,11 @@ public interface JumpoService {
 	List<SearchDeptVo> searchBonsaDeptList(String search);
 
 	int insertBonsaOrder(Map<String, Object> map);
+
+	List<SearchOrderVo> searchOrderDeptList(Map<String, Object> map);
+
+	int updateStock(Map<String, Object> map);
+
+	int insertInput(Map<String, Object> map);
 
 }

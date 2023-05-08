@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 @Repository
@@ -53,6 +54,24 @@ public class JumpoDaoImpl implements JumpoDao {
 	@Override
 	public int insertBonsaOrder(Map<String, Object> map) {
 		int aftcnt = sqlSession.insert("Jumpo.InsertBonsaOrder",map);
+		return aftcnt;
+	}
+
+	@Override
+	public List<SearchOrderVo> searchOrderDeptList(Map<String, Object> map) {
+		List<SearchOrderVo> list = sqlSession.selectList("Jumpo.searchOrderDeptList" , map);
+		return list;
+	}
+
+	@Override
+	public int insertInput(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Jumpo.InsertInput",map);
+		return aftcnt;
+	}
+
+	@Override
+	public int updateStock(Map<String, Object> map) {
+		int aftcnt = sqlSession.update("Jumpo.UpdateInputStock",map);
 		return aftcnt;
 	}
 }

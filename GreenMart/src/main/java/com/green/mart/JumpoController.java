@@ -82,4 +82,10 @@ public class JumpoController {
 		mv.setViewName("jumpo/inputlist"); 
 		return  mv;
 	}
+	@RequestMapping("/Bonsaorder")
+	public  ModelAndView   bonsaorder() {
+		ModelAndView  mv  =  new ModelAndView(); 
+		mv.setViewName("jumpo/bonsaorder"); 
+		return  mv;
+	}
 }

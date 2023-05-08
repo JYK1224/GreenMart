@@ -7,6 +7,7 @@
         	<li style="font-size: 20px; margin: 0px 0px 5px 0px;">&nbsp;점포화면</li>
         	<li>&nbsp;&lt;주문&gt;</li>
         	<li><a href="" id="order">상품주문업무</a></li>
+        	<li><a href="" id="bonsaorder">본사주문업무</a></li>
         	<li>&nbsp;&lt;입고&gt;</li>
         	<li><a href="" id="input">상품입고업무</a></li>
         	<li>&nbsp;&lt;조회&gt;</li>

@@ -129,6 +129,15 @@ window.onload = function() {
 		  let  features   = 'height=750, width=1050, top=200, left=300'; 
 		  window.open(html, name, features);
 	  });  
+	  let btnBonsaorderEl = document.getElementById('bonsaorder');
+	  btnBonsaorderEl.addEventListener('click',  function(e) {
+		  e.preventDefault();
+	    //  e.stopPropagation();
+		  let  html       = '/Bonsaorder'  ;
+		  let  name       = 'Bonsaorder';  // '' 값이 없으면 창이 여러번 뜬다
+		  let  features   = 'height=750, width=1050, top=200, left=300'; 
+		  window.open(html, name, features);
+	  });  
 }
 
 

@@ -20,35 +20,6 @@ td{ padding: 10px; margin: 30px; width: 200px;}
     
 <script>
 
-/* 
-window.onload = function () {
-	  const radio1 = document.getElementById("radio1");
-	  const radio2 = document.getElementById("radio2");
-	  const text = document.getElementById("text");
-	  const button = document.querySelector("input[type='button']");
-	  radio1.addEventListener("click", function() {
-	    text.addEventListener("input", function() {
-	      const inputVal = text.value.trim();
-	      if (inputVal !== "" && !/^\d+$/.test(inputVal)) {
-	        alert("숫자를 입력하세요.");
-	        text.value = "";
-	      }
-	    });
-	  });
-	  button.addEventListener("click", function() {
-	    const inputVal = text.value.trim();
-	    if (radio1.checked && inputVal !== "" && !/^\d+$/.test(inputVal)) {
-	      alert("숫자를 입력하세요.");
-	      text.value = "";
-	      return;
-	    }
-	    if (radio2.checked && inputVal !== "") {}
-	  }); 
-}
- */
-window.onload = function () {
-	
-//상품검색 검색
 $(document).ready(function() {
 	  $('#text').keypress(function(e) {
 	    if (e.keyCode == 13) { 
@@ -57,36 +28,90 @@ $(document).ready(function() {
 	    }
 	  });
 	});
-	let productbuttonEl = document.getElementById('productbutton')
-	productbuttonEl.onclick = function (e) {
-		$.ajax({
-			url: "/JWork/Inquery1",
-			data : {text: $('#text').val() },
-			type: "POST",
-			success : function(data) {
-				console.log(data);
-				console.dir(data);
-			
-				$('#inquired1').text(data[0].p_id);
-			    $('#inquired2').text(data[0].p_name);
-			    $('#inquired3').text(data[0].p_iprice);
-			    $('#inquired4').text(data[0].p_sprice);
-			    var result = 100-(data[0].p_iprice*1.1/data[0].p_sprice*100)
-			    var formattedResult = result.toFixed(2);
-			    $('#inquired5').text(formattedResult + ' %');
-			    $('#inquired6').text(data[0].d_id);
-			    $('#inquired7').text(data[0].d_name);
-			    $('#inquired8').text(data[0].st_num);
-			    $('#inquired9').text(data[0].a_name);
-			  //  $('#inquired10').text(data.j_name);
-			},
-			error :function(xhr) {
-				console.log(xhr);
-				arlet('잘못된 상품코드,상품명 입니다 : ' + xhr.status + '' + xhr.textStatus)
-			}
-		});
-		
-	};
+
+window.onload = function () {
+	  // 라디오버튼선택
+	  
+	  
+	  const radio1 = document.getElementById("radio1");
+	  const radio2 = document.getElementById("radio2");
+	  const text = document.getElementById("text");
+	  const button = document.querySelector("input[type='button']");
+
+	  radio1.addEventListener("click", function () {
+	    text.addEventListener("input", function () {
+	      const inputVal = text.value.trim();
+
+	    });
+	  });
+
+	  button.addEventListener("click", function () {
+	    const inputVal = text.value.trim();
+	    if (radio1.checked && inputVal !== "" && !/^\d+$/.test(inputVal)) {
+	      alert("숫자를 입력하세요.");
+	      text.value = "";
+	      return;
+	    }
+	    if (radio2.checked && inputVal !== "") {
+	      inquery2(); 
+	    } else {
+	      inquery1(); 
+	    }
+	  });
+
+	  function inquery1() {
+	    $.ajax({
+	      url: "/JWork/Inquery1",
+	      data: { text: $('#text').val() },
+	      type: "POST",
+	      success: function (data) {
+	        console.log(data);
+	        console.dir(data);
+
+	        $('#inquired1').text(data[0].p_id);
+	        $('#inquired2').text(data[0].p_name);
+	        $('#inquired3').text(data[0].p_iprice);
+	        $('#inquired4').text(data[0].p_sprice);
+	        var result = 100 - (data[0].p_iprice * 1.1 / data[0].p_sprice * 100)
+	        var formattedResult = result.toFixed(2);
+	        $('#inquired5').text(formattedResult + ' %');
+	        $('#inquired6').text(data[0].d_id);
+	        $('#inquired7').text(data[0].d_name);
+	        $('#inquired8').text(data[0].st_num);
+	        $('#inquired9').text(data[0].a_name);
+	        //  $('#inquired10').text(data.j_name);
+	      },
+	      error: function (xhr) {
+	        console.log(xhr);
+	        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
+	      }
+	    });
+	  }
+
+	  function inquery2() {
+	    $.ajax({
+	      url: "/JWork/Inquery2",
+	      data: { text: $('#text').val() },
+	      type: "POST",
+	      success: function (data) {
+	        console.log(data);
+	        console.dir(data);
+
+	        $('#inquired1').text(data[0].p_id);
+	        $('#inquired2').text(data[0].p_name);
+	        $('#inquired3').text(data[0].p_iprice);
+	        $('#inquired4').text(data[0].p_sprice);
+	        var result = 100 - (data[0].p_iprice * 1.1 / data[0].p_sprice * 100)
+	        var formattedResult = result.toFixed(2);
+	        $('#inquired5').text(formattedResult + ' %');
+	        $('#inquired6').text(data[0].d_id);
+	        $('#inquired7').text(data[0].d_name);
+	        $('#inquired8').text(data[0].st_num);
+	        $('#inquired9').text(data[0].a_name);
+	      }
+	    });
+	  };
+	
 };
 		</script>
     

@@ -14,4 +14,6 @@ public interface JumpoDao {
 	
 	List<SearchProductVo> searchProductList(String text);
 
+	List<SearchProductVo> searchProductList1(String text);
+
 }

@@ -36,4 +36,11 @@ public class JumpoDaoImpl implements JumpoDao {
 		List<SearchProductVo> list = sqlSession.selectList("Jumpo.SearchProductList",p_id);
 		return list;
 	}
+
+	@Override
+	public List<SearchProductVo> searchProductList1(String text) {
+		String p_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.SearchProductList1",p_name);
+		return list;
+	}
 }

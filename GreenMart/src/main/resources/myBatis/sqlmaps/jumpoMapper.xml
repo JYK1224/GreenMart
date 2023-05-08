@@ -50,7 +50,19 @@ AND J.J_ID = P.J_ID(+)
 AND J.J_ID = 12010
 AND P.P_ID = #{p_id}
 </select>
- 
+ <select id="SearchProductList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME,
+NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK S, DEPT D, ASSORTMENT A, JUMPO J
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND J.J_ID = 12010
+AND P.P_NAME like '%'||#{p_name}||'%'
+</select>
+
 </mapper>
 
 

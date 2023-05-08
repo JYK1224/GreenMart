@@ -34,4 +34,10 @@ public class JumpoServiceImpl implements JumpoService {
 		return list;
 	}
 
+	@Override
+	public List<SearchProductVo> searchProductList1(String text) {
+		List<SearchProductVo> list = jumpoDao.searchProductList1(text);
+		return list;
+	}
+
 }

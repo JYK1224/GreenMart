@@ -69,6 +69,7 @@ public class JumpoWorkController {
 
 		return aftcnt;
 	}
+	//상품 상세조회 -------------------------------
 	@RequestMapping("/Inquery1")
 	@ResponseBody
 	public List<SearchProductVo> ListVo(String text) throws Exception {
@@ -76,5 +77,13 @@ public class JumpoWorkController {
 		List<SearchProductVo> list = jumpoService.searchProductList(text);
 		return list;
 	}
+	@RequestMapping("/Inquery2")
+	@ResponseBody
+	public List<SearchProductVo> ListVo1(String text) throws Exception {
+		
+		List<SearchProductVo> list = jumpoService.searchProductList1(text);
+		return list;
+	}
+	//------------------------------------------------
 	
 }

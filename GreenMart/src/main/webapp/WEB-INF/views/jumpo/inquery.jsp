@@ -71,6 +71,9 @@ $(document).ready(function() {
 			    $('#inquired2').text(data[0].p_name);
 			    $('#inquired3').text(data[0].p_iprice);
 			    $('#inquired4').text(data[0].p_sprice);
+			    var result = 100-(data[0].p_iprice*1.1/data[0].p_sprice*100)
+			    var formattedResult = result.toFixed(2);
+			    $('#inquired5').text(formattedResult + ' %');
 			    $('#inquired6').text(data[0].d_id);
 			    $('#inquired7').text(data[0].d_name);
 			    $('#inquired8').text(data[0].st_num);

@@ -243,10 +243,55 @@ window.onload = function() {
 				}
 			
 		}); 
+		
+	function dkdlTLqkf(e) {
+	    var table = document.getElementById("myTable");
+	    var rows = table.getElementsByTagName("tr");
+	    
+	    console.log(rows)
+
+	    for (var i = 0; i < rows.length; i++) {
+	        var cells = rows[i].getElementsByTagName("td");
+			
+	        console.log(cells)
+	        if (cells.length > 5) {
+	        	var input = cells[5].getElementsByTagName("input")[0];
+	        	var cellValue = cells[4].innerText;
+
+	            console.log(input)
+	            if (input.valueAsNumber > cellValue ) {
+	               alert('본사재고보다 주문량이 높아질수없습니다.')
+	               e.preventDefault();
+	            }
+	        }
+	    }
+	}
 	
 	
 	//주문 버튼 클릭시 주문
 	orderEl.onclick = function(e) {
+		
+	    var table = document.getElementById("myTable");
+	    var rows = table.getElementsByTagName("tr");
+	    
+	    console.log(rows)
+
+	    for (var i = 0; i < rows.length; i++) {
+	        var cells = rows[i].getElementsByTagName("td");
+			
+	        console.log(cells)
+	        if (cells.length > 5) {
+	        	var input = cells[5].getElementsByTagName("input")[0];
+	        	var cellValue = cells[4].innerText;
+
+	            console.log(input)
+	            if (input.valueAsNumber > cellValue ) {
+	               alert('본사재고보다 주문량이 높아질수없습니다.')
+	               return false;
+	            }
+	        }
+	    }
+	    
 		let ordernum   = saveOrderNum(5);
 		let orderdate  = saveOrderDate();
 		let orderdname = saveOrderD_name(0);

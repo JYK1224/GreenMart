@@ -40,4 +40,16 @@ public class JumpoServiceImpl implements JumpoService {
 		return list;
 	}
 
+	@Override
+	public List<SearchDeptVo> searchBonsaDeptList(String search) {
+		List<SearchDeptVo> list = jumpoDao.searchBonsaDeptList(search);
+		return list;
+	}
+
+	@Override
+	public int insertBonsaOrder(Map<String, Object> map) {
+		int aftcnt = jumpoDao.insertBonsaOrder(map);
+		return aftcnt;
+	}
+
 }

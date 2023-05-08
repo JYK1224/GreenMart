@@ -17,6 +17,17 @@ AND P.J_ID = '12020'
 ORDER BY D.D_NAME ASC
 </select>
 
+<select id="SearchBonsaDeptList"
+resultType="com.green.mart.vo.work.SearchDeptVo">
+SELECT D.D_NAME ,  P.P_SEQ, P.P_ID, P.P_NAME, P.P_IPRICE , NVL(S.ST_NUM, 0) ST_NUM 
+FROM DEPT D , PRODUCT P , STOCK S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND P.J_ID = '12010'
+AND S.ST_NUM != 0
+ORDER BY D.D_NAME ASC
+</select>
+
 <insert id="InsertOrder">
 INSERT INTO ordering (
         O_ID,
@@ -32,6 +43,22 @@ TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
 '0001',
 (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020),
 (SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
+)
+</insert>
+
+<insert id="InsertBonsaOrder">
+INSERT INTO BONSAORDER (
+        B_ID,
+        B_NUM,
+        B_DATE,
+        E_ID,
+        P_SEQ
+) VALUES (
+(SELECT NVL(MAX(B_ID), 0) + 1 FROM BONSAORDER),
+#{o_num} ,
+TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
+'0001',
+(SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020)
 )
 </insert>
 

@@ -30,6 +30,14 @@ public class JumpoWorkController {
 		List<SearchDeptVo> list = jumpoService.searchDeptList(search);
 		return list;
 	}
+	
+	@RequestMapping("/SearchBonsaDept")
+	@ResponseBody
+	public List<SearchDeptVo> returnBonsaListVO(String search) throws Exception {
+		
+		List<SearchDeptVo> list = jumpoService.searchBonsaDeptList(search);
+		return list;
+	}
 
 	@RequestMapping("/Order")
 	@ResponseBody
@@ -69,6 +77,43 @@ public class JumpoWorkController {
 
 		return aftcnt;
 	}
+	@RequestMapping("/BonsaOrder")
+	@ResponseBody
+	public int bonsaorder(@RequestParam(value = "ordernum[]") String[] ordernum,
+			@RequestParam(value = "orderdate[]") String[] orderdate,
+			@RequestParam(value = "orderpname[]") String[] orderpname) {
+		
+		
+		  System.out.println("ordernum[] :" + Arrays.toString(ordernum));
+		  System.out.println("orderdate[] :" + Arrays.toString(orderdate));
+		  System.out.println("orderpname[] :" + Arrays.toString(orderpname));
+		
+		
+		int aftcnt = 0 ;
+		
+		int j = ordernum.length;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		for (int i = 0; i < j; i++) {
+			if(ordernum[i].equals("NaN")) {	
+			}else {
+				if(ordernum[i].equals("0")) {
+				}else {
+					map.put("o_num",  ordernum[i]);
+					map.put("o_date", orderdate[i]);
+					map.put("p_name",  orderpname[i]);					
+					aftcnt = jumpoService.insertBonsaOrder(map);
+					map.clear();
+				}
+			}
+		}
+		
+		
+		
+		return aftcnt;
+	}
+	
+	
 	//상품 상세조회 -------------------------------
 	@RequestMapping("/Inquery1")
 	@ResponseBody

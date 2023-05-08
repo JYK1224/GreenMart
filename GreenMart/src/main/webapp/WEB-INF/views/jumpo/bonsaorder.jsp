@@ -64,7 +64,7 @@ function data_display(data) {
 	html += '<th>상품코드</th>';
 	html += '<th>상품명</th>';
 	html += '<th>입고가격</th>';
-	html += '<th>현재재고</th>';
+	html += '<th>본사재고</th>';
 	html += '<th>주문수량</th>';
 	html += '<th>사원번호</th>';
 	html += '</tr>';
@@ -224,11 +224,9 @@ window.onload = function() {
 	}
 	
 	
-	//거래처 검색 후 테이블 생성
-	let deptsearchEl = document.getElementById('deptsearch')
-	deptsearchEl.onclick = function(e) {
+
 		$.ajax({
-			url: "/JWork/SearchDept",
+			url: "/JWork/SearchBonsaDept",
 			data : { search: $('#search').val()  },
 			type: "POST", 
 					
@@ -245,7 +243,7 @@ window.onload = function() {
 				}
 			
 		}); 
-	}
+	
 	
 	//주문 버튼 클릭시 주문
 	orderEl.onclick = function(e) {
@@ -259,10 +257,9 @@ window.onload = function() {
 		console.log(orderpname);
 		
 		$.ajax({
-			url: "/JWork/Order",
+			url: "/JWork/BonsaOrder",
 			data : { ordernum  : ordernum,
 			     	orderdate  : orderdate,
-			     	orderdname : orderdname,
 			     	orderpname : orderpname
 				     },
 			type: "POST", 
@@ -314,12 +311,11 @@ tr:hover {
 
 
 <div id="gd">	
-<h2>상품 주문 업무</h2>
+<h2>본사 상품 주문 업무</h2>
 <div id="date">
 주문일자 지정: <input type="date" id="jumun1"/>  <br />
 주문일자:      <input type="date" id="jumun2" readonly="readonly"/>  <br />
 지정일자:      <input type="date" id="jumun3" readonly="readonly"/>  <br />
-거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
 <input type="button" id= "order" style="float: right;" value= "주문"/>
 </div>

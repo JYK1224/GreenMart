@@ -16,4 +16,8 @@ public interface JumpoDao {
 
 	List<SearchProductVo> searchProductList1(String text);
 
+	List<SearchDeptVo> searchBonsaDeptList(String search);
+
+	int insertBonsaOrder(Map<String, Object> map);
+
 }

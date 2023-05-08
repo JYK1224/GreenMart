@@ -271,6 +271,13 @@ window.onload = function() {
 	//주문 버튼 클릭시 주문
 	orderEl.onclick = function(e) {
 		
+		var jumun1Input = document.querySelector('#jumun1[type=date]');
+
+		if(!jumun1Input.value){
+		  alert("날짜를 지정해주세요");
+		  return false
+		}
+		
 	    var table = document.getElementById("myTable");
 	    var rows = table.getElementsByTagName("tr");
 	    

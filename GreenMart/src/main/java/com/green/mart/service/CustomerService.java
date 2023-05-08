@@ -12,4 +12,12 @@ public interface CustomerService {
 
 	CustomerVo getCid(String cId);
 
+	CustomerVo viewCustomer(String c_id);
+
+	void deleteCus(CustomerVo vo);
+
+	void updateCustomer(CustomerVo vo);
+
+	int getCustomerCount();
+
 }

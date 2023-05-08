@@ -35,22 +35,8 @@ th {
 tr:hover {
   background-color: #f5f5f5;
 }
+
 </style>
-<script type="text/javascript">
-  $(document).ready(function() {
-    $.ajax({
-      url: '/getCustomerCount',
-      type: 'GET',
-      success: function(data) {
-        // data는 Controller 함수가 반환한 결과값입니다.
-        console.log('고객 수:', data);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log('Error:', textStatus, errorThrown);
-      }
-    });
-  });
-</script>
 <script>
 
 	function oninputPhone(target) {
@@ -59,75 +45,55 @@ tr:hover {
 	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
 	
-	function submitMessage () {
-	 	let name = document.forms["form"]["c_name"].value;
-	  	let phone = document.forms["form"]["c_phone"].value;
-		if(name == "" || phone == ""){
-			alert("이름과 전화번호를 모두 입력해주세요.") 
-			return false;
-		}else{
-		  	alert("회원등록에 성공했습니다.")
-		}
-	
-	}
-
-
-	window.onload = function() {
-		
-		let btnListEl = document.getElementById("btnList");
-		btnListEl.addEventListener('click' , function(e){
-			  e.preventDefault();
-		      //e.stopPropagation();
-			  let  html       = '/Customerlist'  ;
-			  let  name       = 'Customerlist'; 
-			  let  features   = 'height=700, width=1050, top=200, left=600'; 
-			  window.open(html, name, features);
-		})
-	
-	}
-
+		/* let btnAddEl = document.querySelector("[type=submit]");
+		btnAddEl.addEventListener('click', function(e){
+			e.preventDefault();
+			alert('등록 성공');
+			
+		}) */
 
 </script>
+
+
 </head>
 <body>
 	<div id="gd">
 	<div id="main">
 		<div>
-			<h2> 회원 등록 </h2>
+			<h2> 회원 수정 </h2>
 			<!-- 입력받은 정보를 서버로 전송한다 -->
-			<form name="form" action="/Customeradd" method="POST" onsubmit="return submitMessage()">
+			<form action="/CustomerUpdate" method="POST">
 			<table>
 			  <tr>
 			  	<td>회원번호</td>
 			  	<td>
 	    			<input type="text" name="c_id"  
-	    			readonly="readonly" > 
+	    			readonly="readonly" value="${vo.c_id }"> 
 			  	
 			  	</td>
 			  </tr>
 			  <tr>
 			    <td>회원이름</td>
 		    	<td>
-			   	 	<input type="text" name="c_name"  />
+			   	 	<input type="text" name="c_name" value="${vo.c_name }" />
 		    	</td>
 			  </tr>
 			  <tr>
 			    <td>회원전화</td>
 			    <td>
 			    	<input type="text" name="c_phone" maxlength="13" 
-			    	 oninput="oninputPhone(this)" />
+			    	 oninput="oninputPhone(this)" value="${vo.c_phone }" />
 			    </td>
 			  </tr>
 			  <tr>
 			    <td>마일리지</td>
 			    <td>
-			    	<input type="text" name="c_mile" value="0"/>
+			    	<input type="text" name="c_mile" value="${vo.c_mile }"/>
 		    	</td>
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-			  	  <input  type="submit" value="등록">
-			  	  <input  type="button" value="조회" id="btnList">
+			  	  <input  type="submit" value="수정">
 			  	</td>
 			  </tr>
 			</table>

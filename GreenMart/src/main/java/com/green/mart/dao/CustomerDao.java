@@ -14,4 +14,16 @@ public interface CustomerDao {
 
 	CustomerVo geCid(String c_id);
 
+
+	CustomerVo viewCustomer(String c_id);
+
+
+	void delete(CustomerVo vo);
+
+
+	void updateCustomer(CustomerVo vo);
+
+
+	int getCustomerCoun();
+
 }

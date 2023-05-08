@@ -15,10 +15,20 @@
    
    <select id="GetCid"
    		resultType="com.green.mart.vo.CustomerVo">
-   		SELECT count(c_id) +1
+   		SELECT nvl(count(c_id),0) +1
    		  FROM customer
    		
    		
+   </select>
+   
+   <select id="ViewCid"
+   		resultType="com.green.mart.vo.CustomerVo">
+   		
+   		SELECT c_id, c_name, c_phone, c_mile
+   		  FROM customer
+   		 WHERE c_id= #{c_id} 
+   
+   
    </select>
    
    
@@ -40,14 +50,27 @@
    
    </insert> 
  
- 
-   
-   <!-- <delete id="UserDelete">
-   
-      DELETE  FROM   TUSER
-        WHERE  USERID = #{ userid }  
-           
-   </delete>  -->
+ 	
+ 	<delete id="DeleteCid">
+ 		
+ 		DELETE FROM customer
+ 		WHERE c_id = #{c_id}
+ 	
+ 	
+ 	</delete>
+ 	
+ 	<update id="UpdateCid">
+ 		
+ 		UPDATE customer
+ 		   SET c_name  = #{c_name},
+ 		       c_phone = #{c_phone},
+ 		       c_mile  = #{c_mile}
+ 		 WHERE c_id = #{c_id}      
+ 		   
+ 		
+ 	
+ 	</update>
+ 	
  
  
 </mapper>

@@ -40,4 +40,44 @@ public class CustomerDaoImpl implements CustomerDao {
 		return vo;
 	}
 
+
+
+	@Override
+	public CustomerVo viewCustomer(String c_id) {
+		
+		CustomerVo cusVo = sqlSession.selectOne("Cus.ViewCid", c_id);
+		
+		System.out.println("cusvodao : : " + cusVo);
+		
+		return cusVo;
+	}
+
+
+
+	@Override
+	public void delete(CustomerVo vo) {
+		
+		sqlSession.delete("Cus.DeleteCid", vo);
+	
+	}
+
+
+
+	@Override
+	public void updateCustomer(CustomerVo vo) {
+		
+		sqlSession.update("Cus.UpdateCid",vo);
+		
+	}
+
+
+
+	@Override
+	public int getCustomerCoun() {
+
+		int getCustomerCoun = sqlSession.selectOne("Cus.GetCid");
+		
+		return getCustomerCoun;
+	}
+
 }

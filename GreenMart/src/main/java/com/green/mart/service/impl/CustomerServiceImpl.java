@@ -21,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		List<CustomerVo> cutomerList = customerDao.getCustomerList(); 
 		
+	
 		
 		return cutomerList;
 	}
@@ -42,6 +43,39 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerVo vo = customerDao.geCid(c_id);
 		
 		return vo;
+	}
+
+
+	public CustomerVo viewCustomer(String c_id) {
+		
+		CustomerVo cusVo = customerDao.viewCustomer(c_id);
+		
+		
+		return cusVo;
+	}
+
+
+	@Override
+	public void deleteCus(CustomerVo vo) {
+		
+		customerDao.delete(vo);
+	}
+
+
+	@Override
+	public void updateCustomer(CustomerVo vo) {
+		
+		customerDao.updateCustomer(vo);
+		
+	}
+
+
+	@Override
+	public int getCustomerCount() {
+		
+		int getCustomerCoun = customerDao.getCustomerCoun();
+		
+		return getCustomerCoun;
 	}
 	 
 

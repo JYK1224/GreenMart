@@ -13,7 +13,47 @@
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
 </head>
 <script>
+function saveExcel() {
+	
+	var table = document.getElementById("deptTable");
+    var rows = table.getElementsByTagName("tr");
+    var rowValues = [];
+    //th 삽입
+    var thcells = rows[0].getElementsByTagName("th");
+    var throwData = [];
+    for (var j = 0; j < thcells.length; j++) {
+    	throwData.push(thcells[j].textContent);
+    }
+    rowValues.push(throwData);
+	//td삽입
+    for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var rowData = [];
 
+                for (var j = 0; j < cells.length; j++) {
+                    var cellValue = cells[j].querySelector('input[type="number"]') ? cells[j].querySelector('input[type="number"]').value : cells[j].textContent;
+                    rowData.push(cellValue);
+             }
+
+           rowValues.push(rowData);
+     }
+    
+	/* 배열을 워크북 객체로 변환 */
+	var wb = XLSX.utils.book_new();
+	var ws = XLSX.utils.aoa_to_sheet(rowValues);
+	XLSX.utils.book_append_sheet(wb, ws, 'Dept');
+	
+	let today = new Date();
+	let day = today.getDate();
+	let month = today.getMonth() + 1; // January is 0
+	let year = today.getFullYear();
+
+	// Format the date as desired
+	let formattedDate = year + '-' + month + '-' + day;
+	
+	
+	XLSX.writeFile(wb, ('DeptTable_'+formattedDate +'.xlsx'));
+}
 
 // 엔터키로 거래처 검색
 $(document).ready(function() {
@@ -142,7 +182,7 @@ tr:hover {
 	<div id="gd">
 	<h2>거래처 조회</h2><br>
 거래처명:      <input type="text" id="search"/> <input type="button" id="alldeptsearch" value="검색"/>
-<!-- <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/> -->
+<input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
 <!-- <input type="button" id= "regist" style="float: right;" value= "거래처 등록"/> -->
 <!-- <input type="button" id= "refresh" style="float: right;" value= "새로고침"/> -->
 <div id="table">

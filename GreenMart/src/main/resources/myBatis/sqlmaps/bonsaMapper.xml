@@ -13,6 +13,45 @@ FROM DEPT D
 WHERE D.D_NAME LIKE '%'||#{d_name}||'%'
 ORDER BY D.D_NAME ASC
 </select>
+<!-- 사용자관리 --> 
+<select id="EmpList"
+    resultType="com.green.mart.vo.EmployeeVo">
+SELECT e_id, e_name, e_phone, e_intro, e_indate, j_name 
+FROM employee e join jumpo j 
+ON e.j_id = j.j_id 
+ORDER BY e_id asc 
+</select>
 
+<select id="EmpView"
+	resultType="com.green.mart.vo.EmployeeVo">
+SELECT e_id, e_name, e_passwd, e_phone, e_intro, j_name, e_indate
+FROM employee e join jumpo j 
+on e.j_id = j.j_id
+WHERE e_id = #{e_id}
+</select>
+
+<insert id="EmpInsert">
+INSERT INTO employee
+(e_id, e_name, e_passwd, e_intro,e_phone, j_id)
+VALUES
+(#{e_id},#{e_name},#{e_passwd},#{e_intro},#{e_phone},#{j_id})
+</insert>  
+
+<delete id="EmpDelete">
+	DELETE FROM employee
+	WHERE e_id = #{e_id}
+</delete>   
+
+<update id="EmpUpdate">
+	UPDATE employee
+	   SET e_name=#{e_name},
+	       e_passwd= #{e_passwd},
+	       e_intro = #{e_intro},
+	       e_phone = #{e_phone},
+	       j_id = #{j_id}
+	 WHERE e_id = #{e_id} 
+
+</update>
+ <!-- ============================================ -->
  
 </mapper>

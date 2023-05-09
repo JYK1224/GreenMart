@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -36,5 +37,7 @@ public interface JumpoService {
 	int insertDisuse(Map<String, Object> map);
 
 	int updateStockMinus(Map<String, Object> map);
+	
+	List<DeptVo> searchAllDeptList(String search);
 
 }

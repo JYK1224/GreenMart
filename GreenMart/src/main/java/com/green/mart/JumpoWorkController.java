@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.JumpoService;
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -240,5 +241,14 @@ public class JumpoWorkController {
 		return list;
 	}
 	//------------------------------------------------
+	
+	// 거래처 조회
+		@RequestMapping("/SearchAllDept")
+		@ResponseBody
+		public List<DeptVo> returnDeptListVO(String search) throws Exception {
+
+			List<DeptVo> list = jumpoService.searchAllDeptList(search);
+			return list;
+		}
 	
 }

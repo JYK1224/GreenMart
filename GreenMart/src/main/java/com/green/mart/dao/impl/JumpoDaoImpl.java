@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -99,6 +100,13 @@ public class JumpoDaoImpl implements JumpoDao {
 	@Override
 	public List<AssortmentVo> getDisuseSelect() {
 		List<AssortmentVo> list = sqlSession.selectList("Jumpo.GetDisuseSelect" );
+		return list;
+	}
+	
+	@Override
+	public List<DeptVo> searchAllDeptList(String search) {
+		String d_name = search.toUpperCase().trim();
+		List<DeptVo> list = sqlSession.selectList("Jumpo.SearchAllDeptList",d_name);
 		return list;
 	}
 }

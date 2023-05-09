@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bonsa">
+
+<!-- 거래처 조회 -->
+<select id="SearchAllDeptList"
+resultType="com.green.mart.vo.DeptVo">
+SELECT D.D_ID, D.D_NAME , D.D_DAM, D.D_PHONE 
+FROM DEPT D 
+WHERE D.D_NAME LIKE '%'||#{d_name}||'%'
+ORDER BY D.D_NAME ASC
+</select>
+
+ 
+</mapper>

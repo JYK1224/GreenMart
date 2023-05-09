@@ -13,7 +13,7 @@
         	<li><a href="" id="deptadd1">신규거래처등록</a></li>
         	<li><a href="" id="jumpoadd1">신규점포등록</a></li>
         	<li><a href="" id="productadd1">신규상품등록</a></li>
-        	<li><a href="" id="useradd1">사용자관리</a></li>
+        	<li><a href="" id="userlist">사용자관리</a></li>
         	<li>&nbsp;&lt;조회&gt;</li>
         	<li><a href="" id="deptlist1">거래처조회</a></li>
         	<li><a href="" id="jumpolist1">점포전체조회</a></li>

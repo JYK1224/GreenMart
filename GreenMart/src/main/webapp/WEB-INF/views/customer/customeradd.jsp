@@ -37,7 +37,7 @@ tr:hover {
 }
 </style>
 <script type="text/javascript">
-  $(document).ready(function() {
+ /*  $(document).ready(function() {
     $.ajax({
       url: '/getCustomerCount',
       type: 'GET',
@@ -49,7 +49,7 @@ tr:hover {
         console.log('Error:', textStatus, errorThrown);
       }
     });
-  });
+  }); */  // 등록시 회원번호 자동증가 가져오기(미완)
 </script>
 <script>
 

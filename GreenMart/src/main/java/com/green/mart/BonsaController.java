@@ -1,12 +1,21 @@
 package com.green.mart;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.mart.service.BonsaService;
+import com.green.mart.vo.EmployeeVo;
+
 @Controller
 public class BonsaController {
 
+	@Autowired
+	private BonsaService bonsService;
+	
 	@RequestMapping("/Deptlist1")
 	public  ModelAndView   deptlist1() {
 		ModelAndView  mv  =  new ModelAndView(); 
@@ -95,10 +104,15 @@ public class BonsaController {
 		mv.setViewName("bonsa/productadd"); 
 		return  mv;
 	}
-	@RequestMapping("/Useradd1")
-	public  ModelAndView   useradd1() {
+	@RequestMapping("/Userlist")
+	public  ModelAndView   userlist() {
+		
+		List<EmployeeVo> empList = bonsService.getEmpList(); 	
 		ModelAndView  mv  =  new ModelAndView(); 
-		mv.setViewName("bonsa/useradd"); 
+		
+		mv.setViewName("bonsa/userlist"); 
+		mv.addObject("empList", empList);
+		
 		return  mv;
 	}
 	

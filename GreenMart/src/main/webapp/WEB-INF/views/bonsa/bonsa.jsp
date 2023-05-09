@@ -147,12 +147,12 @@ window.onload = function() {
 		  let  features   = 'height=750, width=1050, top=200, left=300'; 
 		  window.open(html, name, features);
 	  }); 
-	  let btnUseradd1El = document.getElementById('useradd1');
+	  let btnUseradd1El = document.getElementById('userlist');
 	  btnUseradd1El.addEventListener('click',  function(e) {
 		  e.preventDefault();
 	  //    e.stopPropagation();
-		  let  html       = '/Useradd1'  ;
-		  let  name       = 'Useradd1';  // '' 값이 없으면 창이 여러번 뜬다
+		  let  html       = '/Userlist'  ;
+		  let  name       = 'Userlist';  // '' 값이 없으면 창이 여러번 뜬다
 		  let  features   = 'height=750, width=1050, top=200, left=300'; 
 		  window.open(html, name, features);
 	  }); 

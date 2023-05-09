@@ -15,12 +15,13 @@ public class BonsaServiceImpl implements BonsaService {
 
 	@Autowired
 	private BonsaDao bonsaDao;
-
+	// 거래처조회
 	@Override
 	public List<DeptVo> searchAllDeptList(String search) {
 		List<DeptVo> list = bonsaDao.searchAllDeptList(search);
 		return list;
 	}
+	// 사원관리 - 조회
 	@Override
 	public List<EmployeeVo> getEmpList() {
 		
@@ -28,11 +29,13 @@ public class BonsaServiceImpl implements BonsaService {
 		
 		return empList;
 	}
+	// 사원관리 - 추가
 	@Override
 	public void insertEmployee(EmployeeVo vo) {
 		
 		bonsaDao.insertEmp(vo);
 	}
+	// 사원관리 - 뷰
 	@Override
 	public EmployeeVo viewEmp(String e_id) {
 		
@@ -40,12 +43,14 @@ public class BonsaServiceImpl implements BonsaService {
 		
 		return empVo;
 	}
+	//사원관리 - 삭제
 	@Override
 	public void deleteEmp(EmployeeVo vo) {
 		
 		bonsaDao.deleteEmp(vo);
 		
 	}
+	// 사원관리 - 수정(뷰)
 	@Override
 	public EmployeeVo getEmp(String e_id) {
 		
@@ -53,6 +58,7 @@ public class BonsaServiceImpl implements BonsaService {
 		
 		return empVo;
 	}
+	// 사원관리 - 수정
 	@Override
 	public void updateEmp(EmployeeVo vo) {
 		

@@ -30,6 +30,7 @@ public class BonsaWorkController {
 		}
 		
 	// 사원관리
+		// 사원등록
 		@RequestMapping("/userAddForm")
 		public ModelAndView customeraddForm (EmployeeVo vo) {
 			
@@ -42,7 +43,7 @@ public class BonsaWorkController {
 			
 			return mv;
 		}
-		
+		// 사원등록
 		@RequestMapping("/userAdd")
 		public ModelAndView popadd(EmployeeVo vo) {
 			
@@ -54,6 +55,7 @@ public class BonsaWorkController {
 			return mv;
 			
 		}
+		// 사원 상세보기
 		@RequestMapping("/userView")
 		public ModelAndView viewUser(String e_id) {
 			
@@ -67,6 +69,7 @@ public class BonsaWorkController {
 			
 			return mv;
 		}
+		// 사원삭제
 		@RequestMapping("/empDelete")
 		public ModelAndView delete(EmployeeVo vo) {
 			
@@ -78,6 +81,7 @@ public class BonsaWorkController {
 			
 			return mv;
 		}
+		// 사원수정 
 		@RequestMapping("/empUpdateForm")
 		public ModelAndView updateForm (EmployeeVo vo) {
 			
@@ -89,7 +93,7 @@ public class BonsaWorkController {
 			
 			return mv;
 		}
-		
+		// 사원수정
 		@RequestMapping("/userUpdate")
 		public ModelAndView empUpdate (EmployeeVo vo) {
 			

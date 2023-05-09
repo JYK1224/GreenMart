@@ -15,14 +15,14 @@ public class BonsaDaoImpl implements BonsaDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+	// 거래처 조회
 	@Override
 	public List<DeptVo> searchAllDeptList(String search) {
 		String d_name = search.toUpperCase().trim();
 		List<DeptVo> list = sqlSession.selectList("Bonsa.SearchAllDeptList",d_name);
 		return list;
 	}
-	
+	// 사원관리 - 조회
 	@Override
 	public List<EmployeeVo> getEmpList() {
 
@@ -30,12 +30,14 @@ public class BonsaDaoImpl implements BonsaDao {
 		
 		return empList;
 	}
+	//사원관리 - 등록
 	@Override
 	public void insertEmp(EmployeeVo vo) {
 		
 		sqlSession.insert("Bonsa.EmpInsert",vo);
 		
 	}
+	//사원관리 - 뷰
 	@Override
 	public EmployeeVo viewEmp(String e_id) {
 		
@@ -43,13 +45,14 @@ public class BonsaDaoImpl implements BonsaDao {
 		
 		return empVo;
 	}
+	//사원관리 - 삭제
 	@Override
 	public void deleteEmp(EmployeeVo vo) {
 		
 		sqlSession.delete("Bonsa.EmpDelete", vo);
 		
 	}
-
+	//사원관리 - 수정(뷰)
 	@Override
 	public EmployeeVo getEmp(String e_id) {
 
@@ -57,6 +60,7 @@ public class BonsaDaoImpl implements BonsaDao {
 		
 		return empVo;
 	}
+	//사원관리 - 수정
 	@Override
 	public void updateEmp(EmployeeVo vo) {
 		

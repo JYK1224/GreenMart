@@ -6,9 +6,11 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 
 public interface BonsaDao {
-
+	
+	//거래처 조회
 	List<DeptVo> searchAllDeptList(String search);
 	
+	//사원관리
 	List<EmployeeVo> getEmpList();
 
 	void insertEmp(EmployeeVo vo);

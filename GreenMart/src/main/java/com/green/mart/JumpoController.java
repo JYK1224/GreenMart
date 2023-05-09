@@ -1,7 +1,10 @@
 package com.green.mart;
 
+import java.util.HashMap;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -69,6 +72,34 @@ public class JumpoController {
 		ModelAndView  mv  =  new ModelAndView(); 
 		mv.setViewName("jumpo/sales"); 
 		return  mv;
+	}
+	@RequestMapping("/Mileage")
+	public  ModelAndView   mileage( 
+		@RequestParam HashMap<String, Object> map
+			) {
+		ModelAndView  mv  =  new ModelAndView(); 
+		mv.setViewName("jumpo/mileage"); 
+		mv.addObject("map", map);
+		return  mv;
+	}
+	@RequestMapping("/Pay")
+	public  ModelAndView   pay(
+		@RequestParam HashMap<String, Object> map
+			) {
+		ModelAndView  mv  =  new ModelAndView(); 
+		mv.setViewName("jumpo/pay"); 
+		mv.addObject("map", map);
+		return  mv;
+	}
+	@RequestMapping("/MilageApply")
+	public ModelAndView mailageApply(
+		@RequestParam HashMap<String, Object> map	
+			) {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("map", map);
+		
+		return mv;
 	}
 	@RequestMapping("/Saleslist")
 	public  ModelAndView   saleslist() {

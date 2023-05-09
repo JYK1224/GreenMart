@@ -191,7 +191,85 @@ ORDER BY D.D_NAME ASC
 	WHERE C_PHONE = #{ p_phone } 
 
 </select>
+<!-- 상품 전체조회 -->
+ <select id="FullProductList3"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND J.J_ID = 12010
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+ <select id="FullProductList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
 
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+  <select id="FullProductList5"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND J.J_ID = 12020
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+  <select id="FullProductList2"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND A.A_NAME = #{a_name}
+
+ </select>
+  <select id="FullProductList4"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND J.J_ID = 12010
+AND A.A_NAME = #{a_name}
+ </select>
+  <select id="FullProductList6"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND J.J_ID = 12020
+AND A.A_NAME = #{a_name}
+ </select>
 </mapper>
 
 

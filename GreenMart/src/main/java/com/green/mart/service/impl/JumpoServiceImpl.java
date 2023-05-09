@@ -117,5 +117,40 @@ public class JumpoServiceImpl implements JumpoService {
 		CustomerVo vo = jumpoDao.custSearch( c_phone );
 		return vo;
 	}
+	@Override
+	public List<SearchProductVo> FullProductList3(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList3(text);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList1(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList1(text);
+		return list;
+	}
+	
+	
+	
+	@Override
+	public List<SearchProductVo> FullProductList4(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList4(text);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> FullProductList5(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList5(text);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> FullProductList6(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList6(text);
+		return list;
+	}
+
+	@Override
+	public List<SearchProductVo> FullProductList2(String text) {
+		List<SearchProductVo> list = jumpoDao.FullProductList2(text);
+		return list;
+	}
 
 }

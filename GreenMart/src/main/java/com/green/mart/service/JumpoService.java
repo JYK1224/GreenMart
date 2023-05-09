@@ -45,5 +45,17 @@ public interface JumpoService {
 	ProductVo prodSearch(String p_seq);
 	// 적립시 고객정보조회
 	CustomerVo custSearch(String c_phone);
+	
+	List<SearchProductVo> FullProductList3(String text);
+	
+	List<SearchProductVo> FullProductList1(String text);
+	
+	List<SearchProductVo> FullProductList4(String text);
+	
+	List<SearchProductVo> FullProductList5(String text);
+	
+	List<SearchProductVo> FullProductList6(String text);
+
+	List<SearchProductVo> FullProductList2(String text);
 
 }

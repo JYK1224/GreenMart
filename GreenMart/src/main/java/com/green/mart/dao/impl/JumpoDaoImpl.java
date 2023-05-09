@@ -11,6 +11,7 @@ import com.green.mart.dao.JumpoDao;
 import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -169,6 +170,18 @@ public class JumpoDaoImpl implements JumpoDao {
 	public List<SearchProductVo> FullProductList2(String text) {
 		String a_name = text.trim();
 		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList2",a_name);
+		return list;
+	}
+	@Override
+	public List<JumpoVo> searchJumpoList(String search) {
+		String j_id = search.toUpperCase().trim();
+		List<JumpoVo> list = sqlSession.selectList("Jumpo.SearchJumpoList",j_id);
+		return list;
+	}
+
+	@Override
+	public List<JumpoVo> getSearchSaleJumpo() {
+		List<JumpoVo> list = sqlSession.selectList("Jump.SearchJumpoList");
 		return list;
 	}
 

@@ -270,6 +270,19 @@ AND P.P_SEQ = S.S_ID(+)
 AND J.J_ID = 12020
 AND A.A_NAME = #{a_name}
  </select>
+  <!-- 점포 조회 -->
+<select id="SearchJumpoList"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_ID, J_NAME
+FROM JUMPO
+WHERE J_NAME LIKE '%'||#{j_name}||'%'
+ORDER BY J_NAME ASC
+</select>
+ <select id="SearchSaleJumpo"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+ORDER BY A_ID ASC
+</select>
 </mapper>
 
 

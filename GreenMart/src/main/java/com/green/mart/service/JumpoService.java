@@ -6,6 +6,7 @@ import java.util.Map;
 import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -57,5 +58,10 @@ public interface JumpoService {
 	List<SearchProductVo> FullProductList6(String text);
 
 	List<SearchProductVo> FullProductList2(String text);
+	
+	List<JumpoVo> searchJumpoList(String search);
+
+	List<JumpoVo> getSearchSaleJumpo();
+
 
 }

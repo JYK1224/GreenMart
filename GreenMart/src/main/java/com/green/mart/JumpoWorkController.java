@@ -16,6 +16,7 @@ import com.green.mart.service.JumpoService;
 import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -313,4 +314,21 @@ public class JumpoWorkController {
 		System.out.println("aaa:" + text);
 		return list;
 }
+	// 점포조회
+	@RequestMapping("/SearchJumpo")
+	@ResponseBody
+	public List<JumpoVo> returnJumpoVO(String search) throws Exception {
+
+		List<JumpoVo> list = jumpoService.searchJumpoList(search);
+		return list;
+	}
+	//상품매출조회 점포 리스트 조회
+		@RequestMapping("/SearchSaleslistSelect")
+		@ResponseBody
+		public List<JumpoVo> returnSearchSaleslist() throws Exception {
+			
+			
+			List<JumpoVo> list = jumpoService.getSearchSaleJumpo();
+			return list;
+		}
 }

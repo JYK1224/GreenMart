@@ -11,6 +11,7 @@ import com.green.mart.service.JumpoService;
 import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -152,5 +153,15 @@ public class JumpoServiceImpl implements JumpoService {
 		List<SearchProductVo> list = jumpoDao.FullProductList2(text);
 		return list;
 	}
+	@Override
+	public List<JumpoVo> searchJumpoList(String search) {
+		List<JumpoVo> list = jumpoDao.searchJumpoList(search);
+		return list;
+	}
 
+	@Override
+	public List<JumpoVo> getSearchSaleJumpo() {
+		List<JumpoVo> list = jumpoDao.getSearchSaleJumpo();
+		return list;
+	}
 }

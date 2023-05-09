@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -39,5 +41,8 @@ public interface JumpoDao {
 	List<AssortmentVo> getDisuseSelect();
 	
 	List<DeptVo> searchAllDeptList(String search);
-
+	// 결제시 상품정보조회
+	ProductVo prodSearch(String p_seq);
+	// 마일리지 창에서 고객정보 조회
+	CustomerVo custSearch(String c_phone);
 }

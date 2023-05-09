@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.service.JumpoService;
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -102,6 +104,18 @@ public class JumpoServiceImpl implements JumpoService {
 	public List<DeptVo> searchAllDeptList(String search) {
 		List<DeptVo> list = jumpoDao.searchAllDeptList(search);
 		return list;
+	}
+	// 결제시 상품정보조회
+	@Override
+	public ProductVo prodSearch(String p_seq) {
+		ProductVo vo = jumpoDao.prodSearch( p_seq );
+		return vo;
+	}
+	// 마일리지 창에서 고객정보 조회
+	@Override
+	public CustomerVo custSearch(String c_phone) {
+		CustomerVo vo = jumpoDao.custSearch( c_phone );
+		return vo;
 	}
 
 }

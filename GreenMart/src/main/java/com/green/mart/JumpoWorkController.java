@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.JumpoService;
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -250,5 +252,27 @@ public class JumpoWorkController {
 			List<DeptVo> list = jumpoService.searchAllDeptList(search);
 			return list;
 		}
+		
+	// 결제시 상품정보조회
+	@RequestMapping("/ProdSearch")
+	@ResponseBody
+	public ProductVo prodSearch( String p_seq ) {
+		
+		ProductVo vo = jumpoService.prodSearch( p_seq );
+		
+		return vo;
+		
+	}
+	
+	// 마일리지 창에서 고객정보 조회
+	@RequestMapping("/CustSearch")
+	@ResponseBody
+	public CustomerVo custSearch( String c_phone ) {
+		
+		CustomerVo vo = jumpoService.custSearch( c_phone );
+		
+		return vo;
+		
+	}	
 	
 }

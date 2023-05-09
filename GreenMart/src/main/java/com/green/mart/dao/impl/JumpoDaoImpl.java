@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.CustomerVo;
 import com.green.mart.vo.DeptVo;
+import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -108,5 +110,18 @@ public class JumpoDaoImpl implements JumpoDao {
 		String d_name = search.toUpperCase().trim();
 		List<DeptVo> list = sqlSession.selectList("Jumpo.SearchAllDeptList",d_name);
 		return list;
+	}
+	// 결제시 상품정보조회
+	@Override
+	public ProductVo prodSearch(String p_seq) {
+		ProductVo vo = sqlSession.selectOne("Jumpo.ProdSearch", p_seq);
+		return vo;
+	}
+
+	// 마일리지 창에서 고객정보 조회
+	@Override
+	public CustomerVo custSearch(String c_phone) {
+		CustomerVo vo = sqlSession.selectOne("Jumpo.CustSearch", c_phone);
+		return vo;
 	}
 }

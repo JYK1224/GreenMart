@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -36,5 +37,7 @@ public interface JumpoDao {
 	List<SearchDisuseVo> searchDisUseList(String search);
 
 	List<AssortmentVo> getDisuseSelect();
+	
+	List<DeptVo> searchAllDeptList(String search);
 
 }

@@ -158,6 +158,15 @@ WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12
  WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12020)
 </update>
 
+<!-- 거래처 조회 -->
+<select id="SearchAllDeptList"
+resultType="com.green.mart.vo.DeptVo">
+SELECT D.D_ID, D.D_NAME , D.D_DAM, D.D_PHONE 
+FROM DEPT D 
+WHERE D.D_NAME LIKE '%'||#{d_name}||'%'
+ORDER BY D.D_NAME ASC
+</select>
+
 </mapper>
 
 

@@ -274,5 +274,43 @@ public class JumpoWorkController {
 		return vo;
 		
 	}	
-	
+	// 상품전체조회
+	@RequestMapping("/Fullquery3")
+	@ResponseBody
+	public List<SearchProductVo> FullList3(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList3(text);
+		return list;
+}
+	@RequestMapping("/Fullquery1")
+	@ResponseBody
+	public List<SearchProductVo> FullList1(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList1(text);
+		return list;
+}
+	@RequestMapping("/Fullquery2")
+	@ResponseBody
+	public List<SearchProductVo> FullList2(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList2(text);
+		System.out.println("aaa: " + list);
+		return list;
+}
+	@RequestMapping("/Fullquery4")
+	@ResponseBody
+	public List<SearchProductVo> FullList4(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList4(text);
+		return list;
+}
+	@RequestMapping("/Fullquery5")
+	@ResponseBody
+	public List<SearchProductVo> FullList5(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList5(text);
+		return list;
+}
+	@RequestMapping("/Fullquery6")
+	@ResponseBody
+	public List<SearchProductVo> FullList6(String text) throws Exception {
+		List<SearchProductVo> list = jumpoService.FullProductList6(text);
+		System.out.println("aaa:" + text);
+		return list;
+}
 }

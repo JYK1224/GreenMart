@@ -45,4 +45,16 @@ public interface JumpoDao {
 	ProductVo prodSearch(String p_seq);
 	// 마일리지 창에서 고객정보 조회
 	CustomerVo custSearch(String c_phone);
+	
+	List<SearchProductVo> FullProductList3(String text);
+	
+	List<SearchProductVo> FullProductList1(String text);
+	
+	List<SearchProductVo> FullProductList4(String text);
+	
+	List<SearchProductVo> FullProductList5(String text);
+	
+	List<SearchProductVo> FullProductList6(String text);
+
+	List<SearchProductVo> FullProductList2(String text);
 }

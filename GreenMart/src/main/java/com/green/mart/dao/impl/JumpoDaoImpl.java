@@ -124,4 +124,53 @@ public class JumpoDaoImpl implements JumpoDao {
 		CustomerVo vo = sqlSession.selectOne("Jumpo.CustSearch", c_phone);
 		return vo;
 	}
+	@Override
+	public List<SearchProductVo> FullProductList3(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList3",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList1(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList1",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	
+	@Override
+	public List<SearchProductVo> FullProductList4(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList4",a_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList5(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList5",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList6(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList6",a_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+
+	@Override
+	public List<SearchProductVo> FullProductList2(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList2",a_name);
+		return list;
+	}
+
+
 }

@@ -17,7 +17,7 @@ public interface BonsaDao {
 
 	EmployeeVo viewEmp(String e_id);
 
-	void deleteEmp(EmployeeVo vo);
+	void deleteEmp(String e_id);
 
 	EmployeeVo getEmp(String e_id);
 

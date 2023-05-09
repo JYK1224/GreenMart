@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -71,15 +72,11 @@ public class BonsaWorkController {
 		}
 		// 사원삭제
 		@RequestMapping("/empDelete")
-		public ModelAndView delete(EmployeeVo vo) {
+		public void delete(@RequestParam("e_id") String e_id) {
 			
-			bonsaService.deleteEmp(vo);
-			
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("redirect:/UserList");
+			bonsaService.deleteEmp(e_id);
 			
 			
-			return mv;
 		}
 		// 사원수정 
 		@RequestMapping("/empUpdateForm")

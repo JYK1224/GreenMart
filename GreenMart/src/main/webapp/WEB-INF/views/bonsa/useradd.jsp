@@ -80,7 +80,7 @@ tr:hover {
 	}
 	
 	window.onload = function() {
-		let btnListEl = document.getElementById("btnList");
+		let btnListEl = document.getElementById("btnlist");
 		btnListEl.addEventListener('click' , function(e){
 			  e.preventDefault();
 		      //e.stopPropagation();

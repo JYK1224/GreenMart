@@ -47,9 +47,9 @@ public class BonsaDaoImpl implements BonsaDao {
 	}
 	//사원관리 - 삭제
 	@Override
-	public void deleteEmp(EmployeeVo vo) {
+	public void deleteEmp(String e_id) {
 		
-		sqlSession.delete("Bonsa.EmpDelete", vo);
+		sqlSession.delete("Bonsa.EmpDelete", e_id);
 		
 	}
 	//사원관리 - 수정(뷰)

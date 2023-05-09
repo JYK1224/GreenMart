@@ -45,9 +45,9 @@ public class BonsaServiceImpl implements BonsaService {
 	}
 	//사원관리 - 삭제
 	@Override
-	public void deleteEmp(EmployeeVo vo) {
+	public void deleteEmp(String e_id) {
 		
-		bonsaDao.deleteEmp(vo);
+		bonsaDao.deleteEmp(e_id);
 		
 	}
 	// 사원관리 - 수정(뷰)

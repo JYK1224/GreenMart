@@ -44,7 +44,30 @@ tr:hover {
 	        .replace(/[^0-9]/g, '')
 	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
-
+	function delEmp(){
+		 if(confirm('삭제하시겠습니까?')) {
+			 
+		 $.ajax({
+		        url: "/BWork/empDelete",
+		        type: "POST",
+		        data: { e_id:'${vo.e_id}' },
+		        success: function() {
+		        	console.log(data);
+		            alert('삭제되었습니다.');
+		            //location.href='/Userlist';
+					window.opener.location.reload();		
+		            window.close();
+		
+		        },
+		        error: function(xhr, status, error) {
+					console.error(error);
+		        	alert('삭제에 실패했습니다.');
+		        }
+		    });
+		 }
+	}
+	
+	
 
 </script>
 
@@ -88,9 +111,11 @@ tr:hover {
 			  <tr>
 			  	<td colspan="2">
 				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" >[수정]</a>
-				  <a href="/BWork/empDelete?e_id=${vo.e_id }" >[삭제]</a>
+				  <!--  <a href=""  onclick="delEmp(event)" >[삭제]</a> --> 
+				  <a href="#"  onclick="delEmp();">[삭제]</a> 
 			  	</td>
 			  </tr>
+			  
 			</table>
 		</div>
 	</div>

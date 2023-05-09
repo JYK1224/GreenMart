@@ -174,7 +174,7 @@ tr:hover {
 <body>
 	<div id="gd">
 	<h2>점포 조회</h2><br>
-거래처명:      <input type="text" id="search"/> <input type="button" id="jumposearch" value="검색"/>
+점포명:      <input type="text" id="search"/> <input type="button" id="jumposearch" value="검색"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
 <!-- <input type="button" id= "regist" style="float: right;" value= "거래처 등록"/> -->
 <!-- <input type="button" id= "refresh" style="float: right;" value= "새로고침"/> -->

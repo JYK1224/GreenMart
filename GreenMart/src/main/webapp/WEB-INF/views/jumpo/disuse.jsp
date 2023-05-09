@@ -12,6 +12,48 @@
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
 <script>
 
+function saveExcel() {
+	
+	var table = document.getElementById("myTable");
+    var rows = table.getElementsByTagName("tr");
+    var rowValues = [];
+    //th 삽입
+    var thcells = rows[0].getElementsByTagName("th");
+    var throwData = [];
+    for (var j = 0; j < thcells.length; j++) {
+    	throwData.push(thcells[j].textContent);
+    }
+    rowValues.push(throwData);
+	//td삽입
+    for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var rowData = [];
+
+                for (var j = 0; j < cells.length; j++) {
+                    var cellValue = cells[j].querySelector('input[type="number"]') ? cells[j].querySelector('input[type="number"]').value : cells[j].textContent;
+                    rowData.push(cellValue);
+             }
+
+           rowValues.push(rowData);
+     }
+    
+	/* 배열을 워크북 객체로 변환 */
+	var wb = XLSX.utils.book_new();
+	var ws = XLSX.utils.aoa_to_sheet(rowValues);
+	XLSX.utils.book_append_sheet(wb, ws, 'DisUse');
+	
+	let today = new Date();
+	let day = today.getDate();
+	let month = today.getMonth() + 1; // January is 0
+	let year = today.getFullYear();
+
+	// Format the date as desired
+	let formattedDate = year + '-' + month + '-' + day;
+	
+	
+	XLSX.writeFile(wb, ('DisUsetable_'+formattedDate +'.xlsx'));
+}
+
 //폐기수량 배열
 function saveDisusNum(columnIndex) {
 	
@@ -179,7 +221,7 @@ window.onload = function() {
 					
 			success : function(data){
 				if(data == 1){
-				alert("주문이 완료되었습니다.");
+				alert("폐기가 완료되었습니다.");
 				}
 				},
 			error :function(xhr){
@@ -190,6 +232,11 @@ window.onload = function() {
 		}); 
 	}
 	
+	
+	//excel로 표 저장
+	excelEl.onclick = function() {
+		saveExcel()
+	}
 	
 	
 }

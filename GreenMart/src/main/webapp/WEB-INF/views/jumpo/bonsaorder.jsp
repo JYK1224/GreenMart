@@ -51,7 +51,7 @@ function saveExcel() {
 	let formattedDate = year + '-' + month + '-' + day;
 	
 	
-	XLSX.writeFile(wb, ('Ordertable_'+formattedDate +'.xlsx'));
+	XLSX.writeFile(wb, ('BonsaOrdertable_'+formattedDate +'.xlsx'));
 }
 
 // 테이블 생성

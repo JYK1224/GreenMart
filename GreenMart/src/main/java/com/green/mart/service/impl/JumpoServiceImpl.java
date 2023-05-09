@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.green.mart.dao.JumpoDao;
 import com.green.mart.service.JumpoService;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
@@ -68,6 +70,30 @@ public class JumpoServiceImpl implements JumpoService {
 	@Override
 	public int insertInput(Map<String, Object> map) {
 		int aftcnt = jumpoDao.updateStock(map);
+		return aftcnt;
+	}
+
+	@Override
+	public List<AssortmentVo> getDisuseSelect() {
+		List<AssortmentVo> list = jumpoDao.getDisuseSelect();
+		return list;
+	}
+
+	@Override
+	public List<SearchDisuseVo> searchDisUseList(String search) {
+		List<SearchDisuseVo> list = jumpoDao.searchDisUseList(search);
+		return list;
+	}
+
+	@Override
+	public int insertDisuse(Map<String, Object> map) {
+		int aftcnt = jumpoDao.insertDisuse(map);
+		return aftcnt;
+	}
+
+	@Override
+	public int updateStockMinus(Map<String, Object> map) {
+		int aftcnt = jumpoDao.updateStockMinus(map);
 		return aftcnt;
 	}
 

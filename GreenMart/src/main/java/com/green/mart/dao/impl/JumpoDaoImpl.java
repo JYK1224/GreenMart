@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.JumpoDao;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
@@ -73,5 +75,30 @@ public class JumpoDaoImpl implements JumpoDao {
 	public int updateStock(Map<String, Object> map) {
 		int aftcnt = sqlSession.update("Jumpo.UpdateInputStock",map);
 		return aftcnt;
+	}
+
+	@Override
+	public int updateStockMinus(Map<String, Object> map) {
+		int aftcnt = sqlSession.update("Jumpo.UpdateStockMinus",map);
+		return aftcnt;
+	}
+
+	@Override
+	public int insertDisuse(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Jumpo.InsertDisuse",map);
+		return aftcnt;
+	}
+
+	@Override
+	public List<SearchDisuseVo> searchDisUseList(String search) {
+		System.out.println("search" +search );
+		List<SearchDisuseVo> list = sqlSession.selectList("Jumpo.SearchDisUseList",search);
+		return list;
+	}
+
+	@Override
+	public List<AssortmentVo> getDisuseSelect() {
+		List<AssortmentVo> list = sqlSession.selectList("Jumpo.GetDisuseSelect" );
+		return list;
 	}
 }

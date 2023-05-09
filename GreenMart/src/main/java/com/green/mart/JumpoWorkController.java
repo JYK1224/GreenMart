@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.JumpoService;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
@@ -165,6 +167,61 @@ public class JumpoWorkController {
 		List<SearchOrderVo> list = jumpoService.searchOrderDeptList(map);
 		return list;
 	}
+	
+	//폐기 checkbox 리스트 조회
+	@RequestMapping("/SearchDisuseSelect")
+	@ResponseBody
+	public List<AssortmentVo> returnDisuseSelect() throws Exception {
+		
+		
+		List<AssortmentVo> list = jumpoService.getDisuseSelect();
+		return list;
+	}
+	
+	//폐기 리스트 조회
+	@RequestMapping("/SearchDisUse")
+	@ResponseBody
+	public List<SearchDisuseVo> returnSearchDisUseListVO(String search) throws Exception {
+
+		List<SearchDisuseVo> list = jumpoService.searchDisUseList(search);
+		return list;
+	}
+	
+	//거래처 폐기
+	@RequestMapping("/Disuse")
+	@ResponseBody
+	public int disuse(@RequestParam(value = "disusenum[]") String[] disusenum,
+			@RequestParam(value = "disusepname[]") String[] disusepname) {
+		
+		
+		  System.out.println("disusenum[] :" + Arrays.toString(disusenum));
+		  System.out.println("disusepname[] :" + Arrays.toString(disusepname));
+		
+		
+		int aftcnt = 0 ;
+		
+		int j = disusenum.length;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		for (int i = 0; i < j; i++) {
+			if(disusenum[i].equals("NaN")) {	
+			}else {
+				if(disusenum[i].equals("0")) {
+				}else {
+					map.put("dis_num",  Integer.parseInt(disusenum[i]));
+					map.put("p_name", disusepname[i]);
+					aftcnt = jumpoService.insertDisuse(map);
+					aftcnt = jumpoService.updateStockMinus(map);
+					map.clear();
+				}
+			}
+		}
+		
+		
+		
+		return aftcnt;
+	}
+
 	
 	
 	//상품 상세조회 -------------------------------

@@ -164,4 +164,11 @@ public class JumpoServiceImpl implements JumpoService {
 		List<JumpoVo> list = jumpoDao.getSearchSaleJumpo();
 		return list;
 	}
+
+	@Override
+	public List<SearchProductVo> searchSalesList(Map<String, Object> map) {
+		List<SearchProductVo> list = jumpoDao.searchSalesList(map);
+		return list;
+	}
+
 }

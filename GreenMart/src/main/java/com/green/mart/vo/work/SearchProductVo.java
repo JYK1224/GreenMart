@@ -15,11 +15,14 @@ public class SearchProductVo {
 	private String d_name;
 	private int st_num;
 	private String a_name;
- 
+	private String startdate;
+	private String enddate;
+	
  public SearchProductVo() {}
 
 public SearchProductVo(int p_seq, String p_id, String p_name, int p_iprice, int p_sprice, int p_del, String d_id,
-		String a_id, String j_id, String s_id, int s_num, String d_name, int st_num, String a_name) {
+		String a_id, String j_id, String s_id, int s_num, String d_name, int st_num, String a_name, String startdate,
+		String enddate) {
 	super();
 	this.p_seq = p_seq;
 	this.p_id = p_id;
@@ -35,6 +38,8 @@ public SearchProductVo(int p_seq, String p_id, String p_name, int p_iprice, int 
 	this.d_name = d_name;
 	this.st_num = st_num;
 	this.a_name = a_name;
+	this.startdate = startdate;
+	this.enddate = enddate;
 }
 
 public int getP_seq() {
@@ -149,12 +154,29 @@ public void setA_name(String a_name) {
 	this.a_name = a_name;
 }
 
+public String getStartdate() {
+	return startdate;
+}
+
+public void setStartdate(String startdate) {
+	this.startdate = startdate;
+}
+
+public String getEnddate() {
+	return enddate;
+}
+
+public void setEnddate(String enddate) {
+	this.enddate = enddate;
+}
+
 @Override
 public String toString() {
 	return "SearchProductVo [p_seq=" + p_seq + ", p_id=" + p_id + ", p_name=" + p_name + ", p_iprice=" + p_iprice
 			+ ", p_sprice=" + p_sprice + ", p_del=" + p_del + ", d_id=" + d_id + ", a_id=" + a_id + ", j_id=" + j_id
 			+ ", s_id=" + s_id + ", s_num=" + s_num + ", d_name=" + d_name + ", st_num=" + st_num + ", a_name=" + a_name
-			+ "]";
+			+ ", startdate=" + startdate + ", enddate=" + enddate + "]";
 }
+
  
 }

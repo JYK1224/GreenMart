@@ -10,6 +10,29 @@
     <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
+<style>
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+</style>
+
+
 <script>
 
 
@@ -85,9 +108,8 @@ function data_display(data) {
 	html += '<td>'+data.p_sprice+'</td>';
 	html += '<td>'+data.s_num+'</td>';
 	html += '<td>'+data.s_num*data.p_sprice+'</td>';
-	html += '<td>'+	100 - (item.p_iprice * 1.1 / item.p_sprice * 100).toFixed(2) +'%'+'</td>';
+	html += '<td>'+(100 - (data.p_iprice * 1.1 / data.p_sprice * 100)).toFixed(2) +'%'+'</td>';
 	html += '<td>'+data.d_name+'</td>';
-	html += '<td><input id="disusenum" type="number" style="width: 70px;"/></td>';
 	html += '<td></td>';
 	html += '</tr>';
 	})
@@ -101,7 +123,8 @@ function checkbox_display(data) {
 	let html = '';
 	let num  = 1;
 	html += '<select id="myCheckBox">';
-	html += '<option value= "" selected>전체보기</option>';
+	html += '<option value= "" selected>선택</option>';
+	html += '<option value= "" >전체</option>';
 	
 	data.forEach(function(data, index) { 	
 	html += '<option value= "'+ data.j_name +'">'+data.j_name+'</option>';
@@ -120,61 +143,75 @@ window.onload = function () {
 	
 	const searchEl = document.getElementById("search");
 	const excelEl  = document.getElementById("excelsave");
-	const dayEl = document.getElementById("day");
-	const monthEl = document.getElementById("month");
+	const startdateEl = document.getElementById("startdate");
+	const enddateEl = document.getElementById("enddate");
 	const jumpoEl   = document.getElementById("jumpo");
     
-	jumpoEl.disabled = true;
 	searchEl.disabled = true;
-	excelEl.disabled = true;
 	
-	dayEl.onchange = function () {
-		jumpoEl.disabled = false;
-		monthEl.disabled = true;
-		let day = new Date(datEl.value);
-		daydate= day.toISOString().slice(0,10);
+	startdateEl.onchange = function () {
+
+		let stday = new Date(startdateEl.value);
+		startdate = stday.toISOString().slice(0,10);
 		
-	
+	enddateEl.onchange = function () {
+		let enday = new Date(enddateEl.value);
+		enddate = enday.toISOString().slice(0,10);
 	}
-	
-	monthEl.onchange = function () {
-		jumpoEl.disabled = false;
-		dayEl.disabled = true;
-		let month = new Date(datEl.value);
-		monthdate= month.toISOString().slice(0,10);
-		
-	
 	}
 	
 	
 	$.ajax({
 		url: "/JWork/SearchSaleslistSelect",
+		
 		type: "POST", 
 				
 		success : function(data){
 			console.log(data);
 			//alert(data);
-			let tableEl = document.getElementById('checkbox');
+			let tableEl = document.getElementById('jumpo');
 			let html = checkbox_display(data);
-			$('#checkbox').html(html);
+			$('#jumpo').html(html);
 
 			let selectedOption;
 
 			const selectElement = document.querySelector('#myCheckBox');
 			selectElement.addEventListener('change', function(e) {
+				searchEl.disabled = false;
 				selectedOption = e.target.value;
 			    console.log(selectedOption)
 			    			searchEl.onclick = function(e) {
 				$.ajax({
 					url: "/JWork/SearchSaleslist",
-					data : { search: selectedOption  },
+					data : { search: selectedOption, 
+							startdate : startdate,
+							enddate : enddate
+					},
 					type: "POST", 
 							
 					success : function(data){
 						console.log(data);
 						//alert(data);
 						let tableEl = document.getElementById('table');
+						const allsalesEl = document.getElementById('x1');
+						const alliicEl = document.getElementById('x2');
+		                var totalsPrice = 0;
+		                var iic1=0;
+		                var iic2=0;
+		                
+						data.forEach(function (item) {
+							
+							totalsPrice += parseFloat(item.p_sprice*item.s_num);
+			                 iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
+			                 iic2 += parseFloat(item.p_sprice*item.s_num);
+						});
 						let html = data_display(data);
+							
+						let totaliic1 = (100-(iic1/iic2)*100);
+						
+						allsalesEl.textContent = totalsPrice + '원';
+						alliicEl.textContent = totaliic1.toFixed(2) + '%';
+
 						$('#table').html(html); 
 						},
 					error :function(xhr){
@@ -194,6 +231,10 @@ window.onload = function () {
 		
 	});
 	
+
+	
+	
+	
 	excelEl.onclick = function() {
 		saveExcel()
 	}
@@ -208,13 +249,19 @@ window.onload = function () {
 </head>
 <body>
 	<div id="gd">
+	<table>
 	 <h2>상품매출조회</h2>
 	<div id="salelist">
-	일매출조회 : <input type="date" id="day"><br>
-	월매출조회 : <input type="month" id="month"><br>
+	일매출조회 : <input type="date" id="startdate"><br>
+	월매출조회 : <input type="date" id="enddate"><br>
 	점포 : <div id="jumpo"></div><input type="button" id="search" value="검색"/>
 	<input type="button" id="excelsave" value ="엑셀로저장" style="float: right; margin: 0 25px;"/>
 	</div>
+		<tr>
+		<td>총 판매금액 : </td><td id="x1" ></td>
+		<td>총 이익률 : </td><td id="x2"></td>
+		</tr>
+	</table>
 	<div id="table">
 	</div>
     <%@ include file="/WEB-INF/include/bottom.jsp" %>

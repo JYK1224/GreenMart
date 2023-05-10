@@ -181,9 +181,22 @@ public class JumpoDaoImpl implements JumpoDao {
 
 	@Override
 	public List<JumpoVo> getSearchSaleJumpo() {
-		List<JumpoVo> list = sqlSession.selectList("Jump.SearchJumpoList");
+		List<JumpoVo> list = sqlSession.selectList("Jumpo.SearchSale");
 		return list;
 	}
 
+	@Override
+	public List<SearchProductVo> searchSalesList(Map<String, Object> map) {
+	    List<SearchProductVo> list = null;
+	    String j_name = (String) map.get("j_name"); // Retrieve the value from the map
+
+	    if (j_name != "" && !j_name.isEmpty()) {
+	        list = sqlSession.selectList("Jumpo.SearchSalesList", map);
+	    } else {
+	        list = sqlSession.selectList("Jumpo.SearchSalesList1", map);
+	    }
+
+	    return list;
+	}
 
 }

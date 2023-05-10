@@ -331,4 +331,20 @@ public class JumpoWorkController {
 			List<JumpoVo> list = jumpoService.getSearchSaleJumpo();
 			return list;
 		}
+		// 날짜지정해서 점포선택후 판매내역조회
+	@RequestMapping("/SearchSaleslist")
+	@ResponseBody
+		public List<SearchProductVo> returnSalesListVO(String search, String startdate, String enddate) throws Exception {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String j_name = search;
+		
+				map.put("j_name", j_name);
+				map.put("startdate", startdate);
+				map.put("enddate", enddate);
+				System.out.println("map =" + map);
+				List<SearchProductVo> list = jumpoService.searchSalesList(map);
+				return list;
+			}
+		
 }

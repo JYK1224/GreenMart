@@ -263,11 +263,35 @@ FROM JUMPO
 WHERE J_NAME LIKE '%'||#{j_name}||'%'
 ORDER BY J_NAME ASC
 </select>
- <select id="SearchSaleJumpo"
+ <select id="SearchSale"
 resultType="com.green.mart.vo.JumpoVo">
 SELECT J_NAME FROM JUMPO
-ORDER BY A_ID ASC
+
 </select>
+<!-- 상품매출조회 -->
+<select id="SearchSalesList"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, P.A_ID, S.S_DATE , (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME , (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME
+FROM PRODUCT P , STOCK T, DEPT D, SALE S
+WHERE D.D_ID = T.D_ID
+AND T.P_SEQ  = P.P_SEQ
+AND P.P_SEQ  = S.P_SEQ
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND S_DATE BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate}) 
+</select>
+<select id="SearchSalesList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, P.A_ID, S.S_DATE , (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME , (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME
+FROM PRODUCT P , STOCK T, DEPT D, SALE S
+WHERE D.D_ID = T.D_ID
+AND T.P_SEQ  = P.P_SEQ
+AND P.P_SEQ  = S.P_SEQ
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND S_DATE BETWEEN TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+</select>
+
 </mapper>
 
 

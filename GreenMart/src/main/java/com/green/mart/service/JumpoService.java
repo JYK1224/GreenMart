@@ -62,6 +62,8 @@ public interface JumpoService {
 	List<JumpoVo> searchJumpoList(String search);
 
 	List<JumpoVo> getSearchSaleJumpo();
+	
+	List<SearchProductVo> searchSalesList(Map<String, Object> map);
 
 
 }

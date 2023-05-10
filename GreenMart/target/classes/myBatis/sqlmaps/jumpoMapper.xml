@@ -17,6 +17,22 @@ AND P.J_ID = '12020'
 ORDER BY D.D_NAME ASC
 </select>
 
+<select id="GetSaleId"
+resultType="Integer">
+select NVL(MAX(S_ID)+1,0) 
+FROM SALE
+</select>
+
+
+<insert id="InsertSale">
+INSERT INTO sale (
+    s_id,    s_date,    s_num,    c_id,   e_id,    p_seq
+) VALUES (
+    (select nvl(max(s_id)+1,0) from sale),    sysdate,   #{su},    (select c_id from customer where c_name = #{c_name} ),    #{e_id},    #{item}
+)
+
+</insert>
+
 <select id="GetDisuseSelect"
 resultType="com.green.mart.vo.AssortmentVo">
 SELECT A_NAME FROM ASSORTMENT
@@ -93,6 +109,8 @@ e_id
    '0001'  
 )
 </insert>
+
+
 
 <insert id="InsertBonsaOrder">
 INSERT INTO BONSAORDER (

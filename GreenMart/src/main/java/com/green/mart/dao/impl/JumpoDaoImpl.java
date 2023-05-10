@@ -128,6 +128,17 @@ public class JumpoDaoImpl implements JumpoDao {
 		return vo;
 	}
 	@Override
+	public int getSaleId() {
+		int merchant_uid = sqlSession.selectOne("Jumpo.GetSaleId");
+		return merchant_uid;
+	}
+
+	@Override
+	public void insertSale(Map<String, Object> map2) {
+		sqlSession.insert("Jumpo.InsertSale",map2);
+		
+	}
+	@Override
 	public List<SearchProductVo> FullProductList3(String text) {
 		String d_name = text.toUpperCase().trim();
 		List<SearchProductVo> list = sqlSession.selectList("Jumpo.FullProductList3",d_name);

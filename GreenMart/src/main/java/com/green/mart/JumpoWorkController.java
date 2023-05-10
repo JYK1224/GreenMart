@@ -276,7 +276,66 @@ public class JumpoWorkController {
 		
 		return vo;
 		
-	}	
+	}
+	
+	@RequestMapping("/PayWork")
+	public ModelAndView paywork(@RequestParam HashMap<String, Object> map) {
+		System.out.println(map);
+		System.out.println(map.get("itemList"));
+	
+		
+		List<String> itemList = null;
+		List<String> suList = null;
+
+		Object itemListobj = map.get("itemList");
+		if (itemListobj instanceof String) {
+		    String itemListStr = String.valueOf( itemListobj);
+		    
+		    if (itemListStr.startsWith("[") && itemListStr.endsWith("]")) {
+		        itemListStr = itemListStr.substring(1, itemListStr.length() - 1);
+		    }
+		    
+		     itemList = Arrays.asList(itemListStr.split(", "));
+		    
+		    System.out.println(itemList.get(0));
+		}
+		
+		Object suListobj = map.get("suList");
+		if (suListobj instanceof String) {
+			String suListStr = String.valueOf( suListobj);			
+			if (suListStr.startsWith("[") && suListStr.endsWith("]")) {
+				suListStr = suListStr.substring(1, suListStr.length() - 1);
+			}
+			
+			suList = Arrays.asList(suListStr.split(", "));			
+			System.out.println(suList.get(0));
+		}
+		
+		
+		
+		int j = itemList.size();
+		System.out.println(j);
+	
+		
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		
+		for (int i = 0; i < j; i++) {			
+			map2.put("item", Integer.parseInt(itemList.get(i))  );
+			map2.put("su", Integer.parseInt(suList.get(i)));
+			map2.put("c_name",String.valueOf( map.get("c_name")));
+			map2.put("e_id", String.valueOf( map.get("e_id") ));			
+			jumpoService.insertSale(map2);
+			System.out.println(map2);
+			map2.clear();		
+		}
+		
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/jumpo/paysuccess");
+		return mv;
+	}
+	
 	// 상품전체조회
 	@RequestMapping("/Fullquery3")
 	@ResponseBody

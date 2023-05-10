@@ -49,6 +49,10 @@ public interface JumpoDao {
 	// 마일리지 창에서 고객정보 조회
 	CustomerVo custSearch(String c_phone);
 	
+	int getSaleId();
+
+	void insertSale(Map<String, Object> map2);
+	
 	List<SearchProductVo> FullProductList3(String text);
 	
 	List<SearchProductVo> FullProductList1(String text);

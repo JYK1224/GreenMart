@@ -1,15 +1,22 @@
 package com.green.mart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.mart.service.JumpoService;
+
 @Controller
 public class JumpoController {
 
+	@Autowired
+	private JumpoService jumpoService;
 
 	@RequestMapping("/Deptlist")
 	public  ModelAndView   deptlist() {
@@ -86,9 +93,40 @@ public class JumpoController {
 	public  ModelAndView   pay(
 		@RequestParam HashMap<String, Object> map
 			) {
+		
+		int num = 1;
+		int j= Integer.parseInt((String) map.get("rowCount"));
+		List<String> itemList = new ArrayList<String>();
+		for (int i = 0; i < j; i++) {
+			itemList.add((String) map.get("p_seq" + num));
+			num++;
+		}
+		
+		int k = 1;
+		List<String> suList = new ArrayList<String>();
+		for (int i = 0; i < j; i++) {
+			suList.add((String) map.get("su" + k));
+			k++;
+		}
+		
+		int merchant_uid = jumpoService.getSaleId();
+		
+		//회원 전화번호, 이름
+		
+		System.out.println("merchant_uid" + merchant_uid);
+		System.out.println("itemList "+ itemList);
+		System.out.println("suList" + suList);
+		System.out.println(map);
+		System.out.println(map.get("finalPrice"));
+		
 		ModelAndView  mv  =  new ModelAndView(); 
-		mv.setViewName("jumpo/pay"); 
+		mv.addObject("itemList", itemList);
+		mv.addObject("suList", suList);
+		mv.addObject("finalPrice", map.get("finalPrice"));
+		mv.addObject("s_id", merchant_uid);
 		mv.addObject("map", map);
+		mv.setViewName("jumpo/pay"); 
+		
 		return  mv;
 	}
 	@RequestMapping("/MilageApply")

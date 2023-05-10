@@ -121,6 +121,17 @@ public class JumpoServiceImpl implements JumpoService {
 		return vo;
 	}
 	@Override
+	public int getSaleId() {
+		int merchant_uid = jumpoDao.getSaleId();
+		return merchant_uid;
+	}
+
+	@Override
+	public void insertSale(Map<String, Object> map2) {
+		jumpoDao.insertSale(map2);
+		
+	}
+	@Override
 	public List<SearchProductVo> FullProductList3(String text) {
 		List<SearchProductVo> list = jumpoDao.FullProductList3(text);
 		return list;

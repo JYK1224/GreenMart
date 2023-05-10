@@ -49,7 +49,18 @@ table {
 	  
 	  return totKum;
 	}
+	
+	// rowCount 계산용
+	function getTableRowCount(tableId) { 
+	  const table = document.getElementById(tableId);
+	  if (!table) {
+	    console.error(`Table with id ${tableId} not found`);
+	    return 0;
+	  }
 
+	  return table.rows.length;
+	}
+	
 	
 	// 함수 끝
 	//======================================================
@@ -72,61 +83,11 @@ table {
 			window.open(html, name, features);
 		});
 
-		// 결제화면 새창띄우기
-		let btnPayEl = document.getElementById('pay');
-		btnPayEl.addEventListener('click', function(e) {
-			e.preventDefault();
-			// e.stopPropagation();
-			
-			// 배열로 담아 넘겨야 할 값 : p_seq, su, p_name, p_sprice, kum 
-// 			let pay_p_seq    = savePay_p_seq(1);
-// 			let pay_su       = savePay_pay_su(2);
-// 			let pay_p_name   = savePay_p_name(4);
-// 			let pay_p_sprice = savePay_p_sprice(5);
-// 			let pay_kum      = savePay_kum(6);
-			
-			// $.ajax() : DB를 갖다와야할때 쓰는 것
-// 			$.ajax({
-// 				url: "/JWork/Pay",
-// 				data : { pay_p_seq    : pay_p_seq,
-// 					     pay_su       : pay_su,
-// 					     pay_p_name   : pay_p_name,
-// 					     pay_p_sprice : pay_p_sprice,
-// 					     pay_kum      : pay_kum
-// 					     },
-// 				type: "POST", 
-						
-// 				success : function(data){
-// 					if(data == 1){
-						
-// 					// 결제창으로 이동
-// 					alert("결제화면으로 이동합니다.");
-					
-// 					}
-// 					},
-// 				error :function(xhr){
-// 					console.log(xhr);
-// 					alert('에러:' + xhr.status + '' + xhr.textStatus )
-// 					}
-				
-// 			}); 
-			
-//         		    let params = 'p_seq=3';
-//           			  params += '&p_name=a';
-//           			  params += '&su=5';
-//           			  params += '&p_seq2=4';
-//           			  params += '&p_name2=b';
-//           			  params += '&su2=6';
-					
-					let html = '/Pay?' + params;
-					let name = 'Pay'; // '' 값이 없으면 창이 여러번 뜬다
-					let features = 'height=750, width=1050, top=200, left=300';
-					window.open(html, name, features);
-		});
+
 		
 		// (+) 눌렀을때
 		let btnAddItemEl = document.querySelector('.btnAddItem')
-		let num = 1;
+		let num = 2;
 		btnAddItemEl.onclick = function(e) {
 
 			let tag = '';
@@ -182,6 +143,12 @@ table {
 					}
 					// 적립마일리지 계산
 					$('#earnMiles').val( Math.round( parseInt($('#finalPrice').val()) * 0.01 ) );
+					
+					// rowCount 반영
+					let rowCount = getTableRowCount("myTable")
+					realRowCount = parseInt(rowCount) - 4; // 제목과 하단의 4줄빼야함
+					$('#rowCount').val( realRowCount ); 
+					
 				},
 				error : function(xhr) {
 					console.log(xhr);
@@ -223,8 +190,12 @@ table {
 					// 적립마일리지 계산
 					$('#earnMiles').val( Math.round( parseInt($('#finalPrice').val()) * 0.01 ) );
 					
-					
 					$(btnDelItem).parent().parent().remove();	// 화면에서 항목 삭제
+					
+					// rowCount 반영
+					
+					
+					
 				})
 				.fail(function( error ) {
 					console.log(error);
@@ -244,17 +215,17 @@ table {
 			$.ajax({
 				url : "/JWork/ProdSearch",
 				data : {
-					p_seq : $('#p_seq').val()
+					p_seq : $('#p_seq1').val()
 				},
 				type : "POST",
 
 				success : function(data) {
 					
-					let totKum = $('#su').val() * data.p_sprice; // 합계금액 초기화
+					let totKum = $('#su1').val() * data.p_sprice; // 합계금액 초기화
 
-					$('#p_name').val(data.p_name);
-					$('#p_sprice').val(data.p_sprice);
-					$('#kum').val(data.p_sprice * $('#su').val());
+					$('#p_name1').val(data.p_name);
+					$('#p_sprice1').val(data.p_sprice);
+					$('#kum1').val(data.p_sprice * $('#su1').val());
 					// 합계금액 계산
 // 					totKum = totKum + parseInt( $('#su').val() * data.p_sprice );
 					$('#totalPrice').val( totKum );
@@ -267,8 +238,6 @@ table {
 					// 적립마일리지 계산
 					$('#earnMiles').val( Math.round( parseInt($('#finalPrice').val()) * 0.01 ) );	// 1퍼센트 적립
 					
-// 					$('#totalPrice').val( $('#su').val() * data.p_sprice );
-// 					$('#finalPrice').val( parseInt($('#totalPrice').val()) - parseInt($('#milePay').val()) );
 				},
 				error : function(xhr) {
 					console.log(xhr);
@@ -294,6 +263,9 @@ table {
 				
 				<!-- 입력받은 정보를 서버로 전송한다 -->
 				<form action="/Pay" method="POST">
+					<input type="hidden" name="rowCount" id="rowCount" value="1" />
+					<input type="hidden" name="e_id" id="e_id" value="0001"/>
+					<input type="hidden" name="c_phone" id="c_phone" />
 					<table id="myTable">
 						<thead>
 						<tr>
@@ -308,12 +280,12 @@ table {
 						<tbody id="table_body">
 						<tr>
 							<td><button id="btnDelItem" type="button" >➖</button></td>
-							<td><input type="text"   name="p_seq" id="p_seq" placeholder="상품코드입력"/></td>
-							<td><input type="number" name="su" id="su" value="1"/></td>
+							<td><input type="text"   name="p_seq1" id="p_seq1" placeholder="상품코드입력"/></td>
+							<td><input type="number" name="su1" id="su1" value="1"/></td>
 							<td><input type="button" value="조회" id="prodSearch" /></td>
-							<td><input type="text"   name="p_name" id="p_name" readonly/></td>
-							<td><input type="text"   name="p_sprice" id="p_sprice" readonly/></td>
-							<td><input type="number"   name="kum" id="kum" readonly/></td>
+							<td><input type="text"   name="p_name1" id="p_name1" readonly/></td>
+							<td><input type="text"   name="p_sprice1" id="p_sprice1" readonly/></td>
+							<td><input type="number"   name="kum1" id="kum1" readonly/></td>
 						</tr>
 						</tbody>
 						<tfoot id="table_foot">
@@ -338,10 +310,10 @@ table {
 							<input type="submit" value="결제" id="pay"/>
 							</td>
 							<td colspan="2">
-							결제할금액 : <input type="text" id="finalPrice" readonly/>
+							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>
 							</td>
 							<td colspan="2">
-							적립마일리지 : <input type="text" id="earnMiles" readonly/>
+							적립마일리지 : <input type="text" id="earnMiles" name="earnMiles" readonly/>
 							</td>
 						</tr>
 						</tfoot>

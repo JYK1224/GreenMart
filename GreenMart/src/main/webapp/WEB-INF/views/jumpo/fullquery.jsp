@@ -77,7 +77,10 @@ productButton.addEventListener("click", function() {
 	
 	    
 	productButton.disabled = true;
-	excelEl.disabled = false;     
+	excelEl.disabled = false;   
+	radio1.disabled = true;
+	radio2.disabled = true;
+	jumpoSelect.disabled = true;
 	switch (jumpoSelect.value) {
 	    case "all":
 	      if (radio1.checked) {
@@ -128,10 +131,8 @@ function fullquery1(inputVal) {
         var mergedData = mergeAndSumData(data);
         
         var totaliPrice = 0;
-        var totaliic = 0;
-        var totalsPrice = 0;
-        var iic1=0;
-        var iic2=0;
+    
+         
         $.each(mergedData, function(index, item) {
     	 if (index === 0) {
             tableRow = $('#tr2');
@@ -145,8 +146,7 @@ function fullquery1(inputVal) {
         tableRow.find('#inquired2').text(item.p_name);
         tableRow.find('#inquired3').text(item.p_iprice);
         tableRow.find('#inquired4').text(item.p_sprice);
-        tableRow.find('#inquired5').text(item.s_num);
-        tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
+       
         var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
         var formattedResult = result.toFixed(2);
         tableRow.find('#inquired7').text(formattedResult + ' %');
@@ -156,15 +156,11 @@ function fullquery1(inputVal) {
         //  $('#inquired10').text(data.j_name);
        
        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-       totalsPrice += parseFloat(item.p_sprice*item.s_num);
-       iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-       iic2 += parseFloat(item.p_sprice*item.s_num);
-       totaliic = parseFloat(100-(iic1)/(iic2)*100);
+      
         $('#ta1').append(tableRow);
         });
     	$('#x1').text(totaliPrice + '원');
-    	$('#x2').text(totaliic.toFixed(2) + '%');
-    	$('#x3').text(totalsPrice + '원');
+    
       },
       error: function (xhr) {
         console.log(xhr);
@@ -190,10 +186,8 @@ function fullquery2(inputVal) {
         var mergedData = mergeAndSumData(data);
         
         var totaliPrice = 0;
-        var totaliic = 0;
-        var totalsPrice = 0;
-        var iic1=0;
-        var iic2=0;
+    
+         
         $.each(mergedData, function(index, item) {
     	 if (index === 0) {
             tableRow = $('#tr2');
@@ -207,8 +201,7 @@ function fullquery2(inputVal) {
         tableRow.find('#inquired2').text(item.p_name);
         tableRow.find('#inquired3').text(item.p_iprice);
         tableRow.find('#inquired4').text(item.p_sprice);
-        tableRow.find('#inquired5').text(item.s_num);
-        tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
+       
         var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
         var formattedResult = result.toFixed(2);
         tableRow.find('#inquired7').text(formattedResult + ' %');
@@ -218,15 +211,11 @@ function fullquery2(inputVal) {
         //  $('#inquired10').text(data.j_name);
        
        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-       totalsPrice += parseFloat(item.p_sprice*item.s_num);
-       iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-       iic2 += parseFloat(item.p_sprice*item.s_num);
-       totaliic = parseFloat(100-(iic1)/(iic2)*100);
+      
         $('#ta1').append(tableRow);
         });
     	$('#x1').text(totaliPrice + '원');
-    	$('#x2').text(totaliic.toFixed(2) + '%');
-    	$('#x3').text(totalsPrice + '원');
+    
       },
       error: function (xhr) {
         console.log(xhr);
@@ -236,229 +225,228 @@ function fullquery2(inputVal) {
   }
 
   
+  
 			  //본사
 		
 
-			  function fullquery3(inputVal) {
-			    $.ajax({
-			      url: "/JWork/Fullquery3",
-			      data: { text: inputVal },
-			      type: "POST",
-			      success: function (data) {
-			        console.log(data);
-			        console.dir(data);
-			        
-			        var totaliPrice = 0;
-			        var totaliic = 0;
-			        var totalsPrice = 0;
-			        var iic1=0;
-			        var iic2=0;
-			        $.each(data, function(index, item) {
-    	        	 if (index === 0) {
-		                tableRow = $('#tr2');
-		              } else {
-			           var tableRow = $('#tr2').clone();
-			           tableRow.removeClass('hidden');
-		               $('#tr2').before(tableRow);
-			             }	
-			        tableRow.find('#inquired1').text(item.p_id);
-			        tableRow.find('#inquired2').text(item.p_name);
-			        tableRow.find('#inquired3').text(item.p_iprice);
-			        tableRow.find('#inquired4').text(item.p_sprice);
-			        tableRow.find('#inquired5').text(item.s_num);
-			        tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
-			        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
-			        var formattedResult = result.toFixed(2);
-			        tableRow.find('#inquired7').text(formattedResult + ' %');
-			        tableRow.find('#inquired8').text(item.d_name);
-			        tableRow.find('#inquired9').text(item.st_num);
-			        tableRow.find('#inquired10').text(item.a_name);
-			        //  $('#inquired10').text(data.j_name);
-			       
-			        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-			        totalsPrice += parseFloat(item.p_sprice*item.s_num);
-			        iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-			        iic2 += parseFloat(item.p_sprice*item.s_num);
-			        totaliic = parseFloat(100-(iic1)/(iic2)*100);
-			         $('#ta1').append(tableRow);
-			         });
-			     	$('#x1').text(totaliPrice + '원');
-			     	$('#x2').text(totaliic.toFixed(2) + '%');
-			     	$('#x3').text(totalsPrice + '원');
-			      },
-			      error: function (xhr) {
-			        console.log(xhr);
-			        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
-			      }
-			    });
-			  }
+function fullquery3(inputVal) {
 
-  function fullquery4(inputVal) {
-	    $.ajax({
-	      url: "/JWork/Fullquery4",
-	      data: { text: inputVal },
-	      type: "POST",
-	      success: function (data) {
-	        console.log(data);
-	        console.dir(data);
-	        
-	        var totaliPrice = 0;
-	        var totaliic = 0;
-	        var totalsPrice = 0;
-	        var iic1=0;
-	        var iic2=0;
-	        $.each(data, function(index, item) {
-  	        	 if (index === 0) {
-                tableRow = $('#tr2');
-              } else {
-	           var tableRow = $('#tr2').clone();
-	           tableRow.removeClass('hidden');
-               $('#tr2').before(tableRow);
-	             }	
-	        tableRow.find('#inquired1').text(item.p_id);
-	        tableRow.find('#inquired2').text(item.p_name);
-	        tableRow.find('#inquired3').text(item.p_iprice);
-	        tableRow.find('#inquired4').text(item.p_sprice);
-	        tableRow.find('#inquired5').text(item.s_num);
-	        tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
-	        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
-	        var formattedResult = result.toFixed(2);
-	        tableRow.find('#inquired7').text(formattedResult + ' %');
-	        tableRow.find('#inquired8').text(item.d_name);
-	        tableRow.find('#inquired9').text(item.st_num);
-	        tableRow.find('#inquired10').text(item.a_name);
-	        //  $('#inquired10').text(data.j_name);
-	       
-	        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-	        totalsPrice += parseFloat(item.p_sprice*item.s_num);
-	        iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-	        iic2 += parseFloat(item.p_sprice*item.s_num);
-	        totaliic = parseFloat(100-(iic1)/(iic2)*100);
-	         $('#ta1').append(tableRow);
-	         });
-	     	$('#x1').text(totaliPrice + '원');
-	     	$('#x2').text(totaliic.toFixed(2) + '%');
-	     	$('#x3').text(totalsPrice + '원');
-	      },
-	      error: function (xhr) {
-	        console.log(xhr);
-	        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
-	      }
-	    });
-	  }
+	$.ajax({
+      url: "/JWork/Fullquery3",
+      data: { 
+      text : inputVal
+      },
+      type: "POST",
+      success: function (data) {
+        console.log(data);
+        console.dir(data);
+        
+        var mergedData = mergeAndSumData(data);
+        
+        var totaliPrice = 0;
+    
+         
+        $.each(mergedData, function(index, item) {
+    	 if (index === 0) {
+            tableRow = $('#tr2');
+          
+          } else {
+           var tableRow = $('#tr2').clone();
+           tableRow.removeClass('hidden');
+           $('#tr2').before(tableRow);
+             }	
+        tableRow.find('#inquired1').text(item.p_id);
+        tableRow.find('#inquired2').text(item.p_name);
+        tableRow.find('#inquired3').text(item.p_iprice);
+        tableRow.find('#inquired4').text(item.p_sprice);
+       
+        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
+        var formattedResult = result.toFixed(2);
+        tableRow.find('#inquired7').text(formattedResult + ' %');
+        tableRow.find('#inquired8').text(item.d_name);
+        tableRow.find('#inquired9').text(item.st_num);
+        tableRow.find('#inquired10').text(item.a_name);
+        //  $('#inquired10').text(data.j_name);
+       
+       totaliPrice += parseFloat(item.p_iprice*item.st_num);
+      
+        $('#ta1').append(tableRow);
+        });
+    	$('#x1').text(totaliPrice + '원');
+    
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
+      }
+    });
+  }
 
+function fullquery4(inputVal) {
 
+	$.ajax({
+      url: "/JWork/Fullquery4",
+      data: { 
+      text : inputVal
+      },
+      type: "POST",
+      success: function (data) {
+        console.log(data);
+        console.dir(data);
+        
+        var mergedData = mergeAndSumData(data);
+        
+        var totaliPrice = 0;
+    
+         
+        $.each(mergedData, function(index, item) {
+    	 if (index === 0) {
+            tableRow = $('#tr2');
+          
+          } else {
+           var tableRow = $('#tr2').clone();
+           tableRow.removeClass('hidden');
+           $('#tr2').before(tableRow);
+             }	
+        tableRow.find('#inquired1').text(item.p_id);
+        tableRow.find('#inquired2').text(item.p_name);
+        tableRow.find('#inquired3').text(item.p_iprice);
+        tableRow.find('#inquired4').text(item.p_sprice);
+       
+        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
+        var formattedResult = result.toFixed(2);
+        tableRow.find('#inquired7').text(formattedResult + ' %');
+        tableRow.find('#inquired8').text(item.d_name);
+        tableRow.find('#inquired9').text(item.st_num);
+        tableRow.find('#inquired10').text(item.a_name);
+        //  $('#inquired10').text(data.j_name);
+       
+       totaliPrice += parseFloat(item.p_iprice*item.st_num);
+      
+        $('#ta1').append(tableRow);
+        });
+    	$('#x1').text(totaliPrice + '원');
+    
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
+      }
+    });
+  }
+
+  
 
 		
 			//점포
 		
+function fullquery5(inputVal) {
 
- function fullquery5(inputVal) {
-   $.ajax({
-     url: "/JWork/Fullquery5",
-     data: { text: inputVal },
-     type: "POST",
-     success: function (data) {
-       console.log(data);
-       console.dir(data);
-       var totaliPrice = 0;
-       var totaliic = 0;
-       var totalsPrice = 0;
-       var iic1=0;
-       var iic2=0;
-       $.each(data, function(index, item) {
-	        	 if (index === 0) {
-              tableRow = $('#tr2');
-            } else {
-          var tableRow = $('#tr2').clone();
-          tableRow.removeClass('hidden');
-             $('#tr2').before(tableRow);
-            }	
-       tableRow.find('#inquired1').text(item.p_id);
-       tableRow.find('#inquired2').text(item.p_name);
-       tableRow.find('#inquired3').text(item.p_iprice);
-       tableRow.find('#inquired4').text(item.p_sprice);
-       tableRow.find('#inquired5').text(item.s_num);
-       tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
-       var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
-       var formattedResult = result.toFixed(2);
-       tableRow.find('#inquired7').text(formattedResult + ' %');
-       tableRow.find('#inquired8').text(item.d_name);
-       tableRow.find('#inquired9').text(item.st_num);
-       tableRow.find('#inquired10').text(item.a_name);
-       //  $('#inquired10').text(data.j_name);
-      
+	$.ajax({
+      url: "/JWork/Fullquery5",
+      data: { 
+      text : inputVal
+      },
+      type: "POST",
+      success: function (data) {
+        console.log(data);
+        console.dir(data);
+        
+        var mergedData = mergeAndSumData(data);
+        
+        var totaliPrice = 0;
+    
+         
+        $.each(mergedData, function(index, item) {
+    	 if (index === 0) {
+            tableRow = $('#tr2');
+          
+          } else {
+           var tableRow = $('#tr2').clone();
+           tableRow.removeClass('hidden');
+           $('#tr2').before(tableRow);
+             }	
+        tableRow.find('#inquired1').text(item.p_id);
+        tableRow.find('#inquired2').text(item.p_name);
+        tableRow.find('#inquired3').text(item.p_iprice);
+        tableRow.find('#inquired4').text(item.p_sprice);
+       
+        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
+        var formattedResult = result.toFixed(2);
+        tableRow.find('#inquired7').text(formattedResult + ' %');
+        tableRow.find('#inquired8').text(item.d_name);
+        tableRow.find('#inquired9').text(item.st_num);
+        tableRow.find('#inquired10').text(item.a_name);
+        //  $('#inquired10').text(data.j_name);
+       
        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-       totalsPrice += parseFloat(item.p_sprice*item.s_num);
-       iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-       iic2 += parseFloat(item.p_sprice*item.s_num);
-       totaliic = parseFloat(100-(iic1)/(iic2)*100);
+      
         $('#ta1').append(tableRow);
         });
     	$('#x1').text(totaliPrice + '원');
-    	$('#x2').text(totaliic.toFixed(2) + '%');
-    	$('#x3').text(totalsPrice + '원');
-     },
-     error: function (xhr) {
-       console.log(xhr);
-       alert('에러 : ' + xhr.status + '' + xhr.textStatus)
-     }
-   });
- }
+    
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
+      }
+    });
+  }
 
-	  function fullquery6(inputVal) {
-		    $.ajax({
-		      url: "/JWork/Fullquery6",
-		      data: { text: inputVal },
-		      type: "POST",
-		      success: function (data) {
-		        console.log(data);
-		        console.dir(data);
-		        var totaliPrice = 0;
-		        var totaliic = 0;
-		        var totalsPrice = 0;
-		        var iic1=0;
-		        var iic2=0;
-		        $.each(data, function(index, item) {
-   	        	 if (index === 0) {
-	                tableRow = $('#tr2');
-	              } else {
-		           var tableRow = $('#tr2').clone();
-		           tableRow.removeClass('hidden');
-	               $('#tr2').before(tableRow);
-		             }	
-		        tableRow.find('#inquired1').text(item.p_id);
-		        tableRow.find('#inquired2').text(item.p_name);
-		        tableRow.find('#inquired3').text(item.p_iprice);
-		        tableRow.find('#inquired4').text(item.p_sprice);
-		        tableRow.find('#inquired5').text(item.s_num);
-		        tableRow.find('#inquired6').text(item.s_num*item.p_sprice);
-		        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
-		        var formattedResult = result.toFixed(2);
-		        tableRow.find('#inquired7').text(formattedResult + ' %');
-		        tableRow.find('#inquired8').text(item.d_name);
-		        tableRow.find('#inquired9').text(item.st_num);
-		        tableRow.find('#inquired10').text(item.a_name);
-		        //  $('#inquired10').text(data.j_name);
-		       
-		        totaliPrice += parseFloat(item.p_iprice*item.st_num);
-		        totalsPrice += parseFloat(item.p_sprice*item.s_num);
-		        iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-		        iic2 += parseFloat(item.p_sprice*item.s_num);
-		        totaliic = parseFloat(100-(iic1)/(iic2)*100);
-		         $('#ta1').append(tableRow);
-		         });
-		     	$('#x1').text(totaliPrice + '원');
-		     	$('#x2').text(totaliic.toFixed(2) + '%');
-		     	$('#x3').text(totalsPrice + '원');
-		      },
-		      error: function (xhr) {
-		        console.log(xhr);
-		        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
-		      }
-		    });
-		  }
+function fullquery6(inputVal) {
 
+	$.ajax({
+      url: "/JWork/Fullquery6",
+      data: { 
+      text : inputVal
+      },
+      type: "POST",
+      success: function (data) {
+        console.log(data);
+        console.dir(data);
+        
+        var mergedData = mergeAndSumData(data);
+        
+        var totaliPrice = 0;
+    
+         
+        $.each(mergedData, function(index, item) {
+    	 if (index === 0) {
+            tableRow = $('#tr2');
+          
+          } else {
+           var tableRow = $('#tr2').clone();
+           tableRow.removeClass('hidden');
+           $('#tr2').before(tableRow);
+             }	
+        tableRow.find('#inquired1').text(item.p_id);
+        tableRow.find('#inquired2').text(item.p_name);
+        tableRow.find('#inquired3').text(item.p_iprice);
+        tableRow.find('#inquired4').text(item.p_sprice);
+       
+        var result = 100 - (item.p_iprice * 1.1 / item.p_sprice * 100)
+        var formattedResult = result.toFixed(2);
+        tableRow.find('#inquired7').text(formattedResult + ' %');
+        tableRow.find('#inquired8').text(item.d_name);
+        tableRow.find('#inquired9').text(item.st_num);
+        tableRow.find('#inquired10').text(item.a_name);
+        //  $('#inquired10').text(data.j_name);
+       
+       totaliPrice += parseFloat(item.p_iprice*item.st_num);
+      
+        $('#ta1').append(tableRow);
+        });
+    	$('#x1').text(totaliPrice + '원');
+    
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        alert('에러 : ' + xhr.status + '' + xhr.textStatus)
+      }
+    });
+  }
+
+  
 
 
 
@@ -536,17 +524,13 @@ function fullquery2(inputVal) {
 	 </table>
 	 <table id="ta1">
 	 	<tr>
-	<td>재고금액</td><td  colspan="2" id="x1"></td>
-	<td>판매이익률</td><td  colspan="2" id="x2"></td>
-	<td>총판매금액</td><td  colspan="3" id="x3"></td>
+	<td colspan="4">재고금액</td><td  colspan="4" id="x1"></td>
 	</tr>
 	 <tr>
 	 <td>상품코드</td>
 	 <td>상품명</td>
 	 <td>입고가격</td>
 	 <td>판매가격</td>
-	 <td>판매갯수</td>
-	 <td>총판매금액</td>
 	 <td>이익률</td>
 	 <td>거래처명</td>
 	 <td>재고</td>
@@ -557,8 +541,6 @@ function fullquery2(inputVal) {
 	 <td id="inquired2"></td>
 	 <td id="inquired3"></td>
 	 <td id="inquired4"></td>
-	 <td id="inquired5"></td>
-	 <td id="inquired6"></td>
 	 <td id="inquired7"></td>
 	 <td id="inquired8"></td>
 	 <td id="inquired9"></td>

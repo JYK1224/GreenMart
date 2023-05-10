@@ -20,6 +20,8 @@ import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
+import com.green.mart.vo.work.SearchInputListVo;
+import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
@@ -346,5 +348,35 @@ public class JumpoWorkController {
 				List<SearchProductVo> list = jumpoService.searchSalesList(map);
 				return list;
 			}
+	// 주문내역 조회
+				@RequestMapping("/SearchOrderList")
+				@ResponseBody
+				public List<SearchOrderListVo> returnOListVO(String search, String startdate, String enddate) throws Exception {
+
+					Map<String, Object> map = new HashMap<String, Object>();
+					String d_name = search.toUpperCase();
+					map.put("d_name", d_name);
+					map.put("startdate", startdate);
+					map.put("enddate", enddate);
+					System.out.println("map = "+ map);
+					
+					List<SearchOrderListVo> list = jumpoService.searchOrderList(map);
+					System.out.println(list);
+					return list;
+				}
+				// 입고내역 조회
+				@RequestMapping("/SearchInputList")
+				@ResponseBody
+				public List<SearchInputListVo> returnIListVO(String search, String startdate, String enddate) throws Exception {
+
+					Map<String, Object> map = new HashMap<String, Object>();
+					String d_name = search.toUpperCase();
+					map.put("d_name", d_name);
+					map.put("startdate", startdate);
+					map.put("enddate", enddate);
+					
+					List<SearchInputListVo> list = jumpoService.searchInputList(map);
+					return list;
+				}
 		
 }

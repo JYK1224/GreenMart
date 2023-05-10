@@ -294,6 +294,37 @@ AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본
 AND S_DATE BETWEEN TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
 </select>
 
+<!-- 주문내역 조회 -->
+<select id="SearchOrderList"
+resultType="com.green.mart.vo.work.SearchOrderListVo">
+SELECT TO_CHAR(O.O_DATE, 'YYYY-MM-DD')AS O_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.O_NUM, 0) O_NUM,  E.E_ID 
+FROM EMPLOYEE E, ORDERING O, PRODUCT  P, STOCK S, DEPT D 
+WHERE O.D_ID = D.D_ID (+)
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(O_DATE) BETWEEN  TO_DATE(#{startdate},'YYYY-MM-DD') AND TO_DATE(#{enddate},'YYYY-MM-DD')
+AND P.J_ID = '12020'
+ORDER BY D.D_NAME, O.O_DATE ASC
+</select>
+
+<!-- 입고내역 조회 -->
+<select id="SearchInputList"
+resultType="com.green.mart.vo.work.SearchInputListVo">
+SELECT TO_CHAR(I.IN_DATE, 'YYYY-MM-DD')AS IN_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(I.IN_NUM, 0) IN_NUM,  E.E_ID 
+FROM EMPLOYEE E, INPUT I, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND I.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND I.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(IN_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+AND P.J_ID = '12020'
+ORDER BY D.D_NAME, I.IN_DATE ASC
+</select>
 </mapper>
 
 

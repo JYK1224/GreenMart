@@ -15,6 +15,8 @@ import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
+import com.green.mart.vo.work.SearchInputListVo;
+import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
@@ -199,4 +201,15 @@ public class JumpoDaoImpl implements JumpoDao {
 	    return list;
 	}
 
+	@Override
+	public List<SearchOrderListVo> searchOrderList(Map<String, Object> map) {
+		List<SearchOrderListVo> list = sqlSession.selectList("Jumpo.SearchOrderList" , map);
+		return list;
+	}
+
+	@Override
+	public List<SearchInputListVo> searchInputList(Map<String, Object> map) {
+		List<SearchInputListVo> list = sqlSession.selectList("Jumpo.SearchInputList" , map);
+		return list;
+	}
 }

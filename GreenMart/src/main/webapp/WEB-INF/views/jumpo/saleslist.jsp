@@ -88,7 +88,7 @@ function saveExcel() {
 
 //테이블 생성
 function data_display(data) {
-	
+	 var mergedData = mergeAndSumData(data);
 	let html = '';
 	html += '<table id="myTable">';
 	html += '<tr>';
@@ -101,15 +101,15 @@ function data_display(data) {
 	html += '<th>거래처명</th>';
 	html += '</tr>';
 	
-	data.forEach(function(data, index) { 	
+	mergedData.forEach(function(item) { 	
 	html += '<tr>';
-	html += '<td>'+data.p_id+'</td>';
-	html += '<td>'+data.p_name+'</td>';
-	html += '<td>'+data.p_sprice+'</td>';
-	html += '<td>'+data.s_num+'</td>';
-	html += '<td>'+data.s_num*data.p_sprice+'</td>';
-	html += '<td>'+(100 - (data.p_iprice * 1.1 / data.p_sprice * 100)).toFixed(2) +'%'+'</td>';
-	html += '<td>'+data.d_name+'</td>';
+	html += '<td>'+item.p_id+'</td>';
+	html += '<td>'+item.p_name+'</td>';
+	html += '<td>'+item.p_sprice+'</td>';
+	html += '<td>'+item.s_num+'</td>';
+	html += '<td>'+item.s_num*item.p_sprice+'</td>';
+	html += '<td>'+(100 - (item.p_iprice * 1.1 / item.p_sprice * 100)).toFixed(2) +'%'+'</td>';
+	html += '<td>'+item.d_name+'</td>';
 	html += '<td></td>';
 	html += '</tr>';
 	})
@@ -136,7 +136,23 @@ function checkbox_display(data) {
 	
 }
 
+function mergeAndSumData(data) {
+	  var mergedData = [];
 
+	  data.forEach(function (item) {
+	    var existingItem = mergedData.find(function (mergedItem) {
+	      return mergedItem.p_id === item.p_id;
+	    });
+
+	    if (existingItem) {
+	      existingItem.s_num += item.s_num;
+	    } else {
+	      mergedData.push(item);
+	    }
+	  });
+
+	  return mergedData;
+	}
 
 
 window.onload = function () {
@@ -198,8 +214,9 @@ window.onload = function () {
 		                var totalsPrice = 0;
 		                var iic1=0;
 		                var iic2=0;
-		                
-						data.forEach(function (item) {
+		                var mergedData = mergeAndSumData(data);
+		             
+		                mergedData.forEach(function (item) {
 							
 							totalsPrice += parseFloat(item.p_sprice*item.s_num);
 			                 iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
@@ -213,6 +230,7 @@ window.onload = function () {
 						alliicEl.textContent = totaliic1.toFixed(2) + '%';
 
 						$('#table').html(html); 
+		
 						},
 					error :function(xhr){
 						console.log(xhr);
@@ -249,7 +267,6 @@ window.onload = function () {
 </head>
 <body>
 	<div id="gd">
-	<table>
 	 <h2>상품매출조회</h2>
 	<div id="salelist">
 	일매출조회 : <input type="date" id="startdate"><br>
@@ -257,6 +274,7 @@ window.onload = function () {
 	점포 : <div id="jumpo"></div><input type="button" id="search" value="검색"/>
 	<input type="button" id="excelsave" value ="엑셀로저장" style="float: right; margin: 0 25px;"/>
 	</div>
+	<table>
 		<tr>
 		<td>총 판매금액 : </td><td id="x1" ></td>
 		<td>총 이익률 : </td><td id="x2"></td>

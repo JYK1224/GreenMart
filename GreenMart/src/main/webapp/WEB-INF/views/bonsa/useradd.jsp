@@ -51,7 +51,7 @@ tr:hover {
 
 		const checkboxes 
 		      = document.getElementsByName("j_id");
-		  checkboxes.forEach((cb) => {
+		  checkboxes.forEach((cb) =>  {
 		    cb.checked = false;
 		  })
 		  e.checked = true;

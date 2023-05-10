@@ -72,15 +72,14 @@ tr:hover {
 			  <tr>
 			  	<td>사원 번호</td>
 			  	<td>
-	    			<input type="text" name="e_id"  
+	    			<input type="text" name="e_id" 
 	    			readonly="readonly" value="${vo.e_id }"> 
-			  	
 			  	</td>
 			  </tr>
 			  <tr>
 			    <td>이름</td>
 		    	<td>
-			   	 	<input type="text" name="c_name" value="${vo.e_name }" />
+			   	 	<input type="text" name="e_name" value="${vo.e_name }" />
 		    	</td>
 			  </tr>
 			  <tr>

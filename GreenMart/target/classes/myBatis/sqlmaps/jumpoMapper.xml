@@ -51,10 +51,12 @@ ORDER BY D.D_NAME ASC
 
 <select id="SearchDisUseList" resultType="com.green.mart.vo.work.SearchDisuseVo">
 SELECT A.A_NAME,(select d_name from dept where d_id = p.d_id) as d_name, P.P_ID, P.P_NAME, NVL(P.P_IPRICE, 0) P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM
-FROM  ASSORTMENT A, PRODUCT P, STOCK S 
+FROM  ASSORTMENT A, PRODUCT P, STOCK S , JUMPO J
 WHERE S.P_SEQ = P.P_SEQ (+)
 AND P.A_ID = A.A_ID (+)
+AND J.J_ID = P.J_ID (+)
 AND ST_NUM != 0
+AND J.J_ID = '12020'
 AND A.A_NAME LIKE '%'||#{search}||'%'
 </select>
 

@@ -295,4 +295,34 @@ AND P.J_ID = '12010'
 ORDER BY D.D_NAME, I.IN_DATE ASC
 </select>
 
+<!-- 폐기업무 -->
+<select id="GetDisuseSelect"
+resultType="com.green.mart.vo.AssortmentVo">
+SELECT A_NAME FROM ASSORTMENT
+ORDER BY A_ID ASC
+</select>
+<select id="SearchDisUseList" resultType="com.green.mart.vo.work.SearchDisuseVo">
+SELECT A.A_NAME,(select d_name from dept where d_id = p.d_id) as d_name, P.P_ID, P.P_NAME, NVL(P.P_IPRICE, 0) P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM
+FROM  ASSORTMENT A, PRODUCT P, STOCK S , JUMPO J
+WHERE S.P_SEQ = P.P_SEQ (+)
+AND P.A_ID = A.A_ID (+)
+AND J.J_ID = P.J_ID (+)
+AND ST_NUM != 0
+AND J.J_ID = '12010'
+AND A.A_NAME LIKE '%'||#{search}||'%'
+</select>
+<insert id="InsertDisuse">
+INSERT INTO DISUSE (  dis_id,    dis_date,    dis_num,   p_seq,   e_id  ) 
+VALUES ( (SELECT NVL(MAX(dis_id), 0) + 1 FROM disuse),
+sysdate,
+ #{dis_num} ,
+ (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010),
+'0001')
+</insert>
+<update id="UpdateStockMinus">
+ UPDATE STOCK 
+ SET ST_NUM =  NVL(ST_NUM,0) - #{dis_num} 
+ WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010)
+</update>
+
 </mapper>

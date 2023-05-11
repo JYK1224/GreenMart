@@ -3,10 +3,12 @@ package com.green.mart.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -71,5 +73,13 @@ public interface BonsaDao {
 	List<SearchOrderListVo> searchOrderList(Map<String, Object> map);
 
 	List<SearchInputListVo> searchInputList(Map<String, Object> map);
+
+	List<AssortmentVo> getDisuseSelect();
+
+	List<SearchDisuseVo> searchDisUseList(String search);
+
+	int insertDisuse(Map<String, Object> map);
+
+	int updateStockMinus(Map<String, Object> map);
 
 }

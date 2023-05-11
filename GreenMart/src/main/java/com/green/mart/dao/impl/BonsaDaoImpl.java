@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.mart.dao.BonsaDao;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -215,4 +217,25 @@ public class BonsaDaoImpl implements BonsaDao {
 		List<SearchInputListVo> list = sqlSession.selectList("Bonsa.SearchInputList" , map);
 		return list;
 	}
+	@Override
+	public List<AssortmentVo> getDisuseSelect() {
+		List<AssortmentVo> list = sqlSession.selectList("Bonsa.GetDisuseSelect" );
+		return list;
+	}
+	@Override
+	public List<SearchDisuseVo> searchDisUseList(String search) {
+		List<SearchDisuseVo> list = sqlSession.selectList("Bonsa.SearchDisUseList",search);
+		return list;
+	}
+	@Override
+	public int insertDisuse(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Bonsa.InsertDisuse",map);
+		return aftcnt;
+	}
+	@Override
+	public int updateStockMinus(Map<String, Object> map) {
+		int aftcnt = sqlSession.update("Bonsa.UpdateStockMinus",map);
+		return aftcnt;
+	}
+	
 }

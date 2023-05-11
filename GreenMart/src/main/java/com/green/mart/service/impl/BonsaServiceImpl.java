@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.green.mart.dao.BonsaDao;
 import com.green.mart.service.BonsaService;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -190,5 +192,25 @@ public class BonsaServiceImpl implements BonsaService {
 	public List<SearchInputListVo> searchInputList(Map<String, Object> map) {
 		List<SearchInputListVo> list = bonsaDao.searchInputList(map);
 		return list;
+	}
+	@Override
+	public List<AssortmentVo> getDisuseSelect() {
+		List<AssortmentVo> list = bonsaDao.getDisuseSelect();
+		return list;
+	}
+	@Override
+	public List<SearchDisuseVo> searchDisUseList(String search) {
+		List<SearchDisuseVo> list = bonsaDao.searchDisUseList(search);
+		return list;
+	}
+	@Override
+	public int insertDisuse(Map<String, Object> map) {
+		int aftcnt = bonsaDao.insertDisuse(map);
+		return aftcnt;
+	}
+	@Override
+	public int updateStockMinus(Map<String, Object> map) {
+		int aftcnt = bonsaDao.updateStockMinus(map);
+		return aftcnt;
 	}
 }

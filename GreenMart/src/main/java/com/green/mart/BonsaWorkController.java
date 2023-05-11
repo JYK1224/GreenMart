@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.BonsaService;
+import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
@@ -365,5 +367,57 @@ public class BonsaWorkController {
 			List<SearchInputListVo> list = bonsaService.searchInputList(map);
 			return list;
 		}
+		//폐기 checkbox 리스트 조회
+		@RequestMapping("/SearchDisuseSelect")
+		@ResponseBody
+		public List<AssortmentVo> returnDisuseSelect() throws Exception {
+			
+			
+			List<AssortmentVo> list = bonsaService.getDisuseSelect();
+			return list;
+		}
+		//폐기 리스트 조회
+		@RequestMapping("/SearchDisUse")
+		@ResponseBody
+		public List<SearchDisuseVo> returnSearchDisUseListVO(String search) throws Exception {
+
+			List<SearchDisuseVo> list = bonsaService.searchDisUseList(search);
+			return list;
+		}
+		//거래처 폐기
+		@RequestMapping("/Disuse")
+		@ResponseBody
+		public int disuse(@RequestParam(value = "disusenum[]") String[] disusenum,
+				@RequestParam(value = "disusepname[]") String[] disusepname) {
+			
+			
+			  System.out.println("disusenum[] :" + Arrays.toString(disusenum));
+			  System.out.println("disusepname[] :" + Arrays.toString(disusepname));
+			
+			
+			int aftcnt = 0 ;
+			
+			int j = disusenum.length;
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			for (int i = 0; i < j; i++) {
+				if(disusenum[i].equals("NaN")) {	
+				}else {
+					if(disusenum[i].equals("0")) {
+					}else {
+						map.put("dis_num",  Integer.parseInt(disusenum[i]));
+						map.put("p_name", disusepname[i]);
+						aftcnt = bonsaService.insertDisuse(map);
+						aftcnt = bonsaService.updateStockMinus(map);
+						map.clear();
+					}
+				}
+			}
+			
+			
+			
+			return aftcnt;
+		}
+
 		
 }

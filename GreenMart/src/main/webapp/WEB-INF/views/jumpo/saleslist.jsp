@@ -39,8 +39,17 @@ tr:hover {
 function saveExcel() {
 	
 	var table = document.getElementById("myTable");
+	var table1 = document.getElementById("myTable1");
     var rows = table.getElementsByTagName("tr");
+    var table1rows = table1.getElementsByTagName("tr");
     var rowValues = [];
+    //table1 td 
+     var table1cells = table1rows[0].getElementsByTagName("td");
+     var table1throwData = [];
+     for (var k = 0; k < table1cells.length; k++) {
+    	 table1throwData.push(table1cells[k].textContent);
+     }
+     rowValues.push(table1throwData);
     //th 삽입
     var thcells = rows[0].getElementsByTagName("th");
     var throwData = [];
@@ -274,7 +283,7 @@ window.onload = function () {
 	점포 : <div id="jumpo"></div><input type="button" id="search" value="검색"/>
 	<input type="button" id="excelsave" value ="엑셀로저장" style="float: right; margin: 0 25px;"/>
 	</div>
-	<table>
+	<table id ="myTable1">
 		<tr>
 		<td>총 판매금액 : </td><td id="x1" ></td>
 		<td>총 이익률 : </td><td id="x2"></td>

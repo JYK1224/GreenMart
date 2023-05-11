@@ -309,4 +309,12 @@ public class BonsaWorkController {
 			
 			return aftcnt;
 		}
+		// 점포조회
+		@RequestMapping("/SearchJumpo")
+		@ResponseBody
+		public List<JumpoVo> returnJumpoVO(String search) throws Exception {
+
+			List<JumpoVo> list = bonsaService.searchJumpoList(search);
+			return list;
+		}
 }

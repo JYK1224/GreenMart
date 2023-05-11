@@ -185,4 +185,10 @@ public class BonsaDaoImpl implements BonsaDao {
 		int aftcnt = sqlSession.update("Bonsa.UpdateInputStock",map);
 		return aftcnt;
 	}
+	@Override
+	public List<JumpoVo> searchJumpoList(String search) {
+		String j_id = search.toUpperCase().trim();
+		List<JumpoVo> list = sqlSession.selectList("Bonsa.SearchJumpoList",j_id);
+		return list;
+	}
 }

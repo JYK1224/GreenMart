@@ -229,4 +229,13 @@ SET ST_NUM = NVL(ST_NUM , 0) + #{in_num}
 WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010 )
 
 </update>
+<!-- 점포 조회 -->
+<select id="SearchJumpoList"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_ID, J_NAME
+FROM JUMPO
+WHERE J_NAME LIKE '%'||#{j_name}||'%'
+ORDER BY J_NAME ASC
+</select>
+
 </mapper>

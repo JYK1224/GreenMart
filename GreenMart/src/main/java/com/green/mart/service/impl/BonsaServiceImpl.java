@@ -164,4 +164,9 @@ public class BonsaServiceImpl implements BonsaService {
 		int aftcnt = bonsaDao.updateStock(map);
 		return aftcnt;
 	}
+	@Override
+	public List<JumpoVo> searchJumpoList(String search) {
+		List<JumpoVo> list = bonsaDao.searchJumpoList(search);
+		return list;
+	}
 }

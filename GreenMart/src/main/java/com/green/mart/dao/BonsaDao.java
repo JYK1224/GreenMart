@@ -60,4 +60,6 @@ public interface BonsaDao {
 
 	int updateStock(Map<String, Object> map);
 
+	List<JumpoVo> searchJumpoList(String search);
+
 }

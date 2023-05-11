@@ -36,4 +36,18 @@ public interface BonsaService {
 
 	List<JumpoVo> getSearchSaleJumpo();
 
+	List<SearchProductVo> FullProductList3(String text);
+
+	List<SearchProductVo> FullProductList1(String text);
+
+	List<SearchProductVo> FullProductList2(String text);
+
+	List<SearchProductVo> FullProductList4(String text);
+
+	List<SearchProductVo> FullProductList5(String text);
+
+	List<SearchProductVo> FullProductList6(String text);
+
+
+
 }

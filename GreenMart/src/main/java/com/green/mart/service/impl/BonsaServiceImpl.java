@@ -102,5 +102,39 @@ public class BonsaServiceImpl implements BonsaService {
 		List<SearchProductVo> list = bonsaDao.searchSalesList(map);
 		return list;
 	}
+	@Override
+	public List<SearchProductVo> FullProductList3(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList3(text);
+		return list;
+	}
 	
+	@Override
+	public List<SearchProductVo> FullProductList1(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList1(text);
+		return list;
+	}
+	
+	
+	
+	@Override
+	public List<SearchProductVo> FullProductList4(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList4(text);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> FullProductList5(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList5(text);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> FullProductList6(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList6(text);
+		return list;
+	}
+
+	@Override
+	public List<SearchProductVo> FullProductList2(String text) {
+		List<SearchProductVo> list = bonsaDao.FullProductList2(text);
+		return list;
+	}
 }

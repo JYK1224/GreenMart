@@ -110,5 +110,51 @@ public class BonsaDaoImpl implements BonsaDao {
 
 	    return list;
 	}
+	@Override
+	public List<SearchProductVo> FullProductList3(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList3",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList1(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList1",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	
+	@Override
+	public List<SearchProductVo> FullProductList4(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList4",a_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList5(String text) {
+		String d_name = text.toUpperCase().trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList5",d_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
+	
+	@Override
+	public List<SearchProductVo> FullProductList6(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList6",a_name);
+		System.out.println("dddd : " + list);
+		return list;
+	}
 
+	@Override
+	public List<SearchProductVo> FullProductList2(String text) {
+		String a_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList2",a_name);
+		return list;
+	}
 }

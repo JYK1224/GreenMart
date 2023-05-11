@@ -191,4 +191,16 @@ public class BonsaDaoImpl implements BonsaDao {
 		List<JumpoVo> list = sqlSession.selectList("Bonsa.SearchJumpoList",j_id);
 		return list;
 	}
+	@Override
+	public List<SearchProductVo> searchProductList(String text) {
+		String p_id = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.SearchProductList",p_id);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> searchProductList1(String text) {
+		String p_name = text.trim();
+		List<SearchProductVo> list = sqlSession.selectList("Bonsa.SearchProductList1",p_name);
+		return list;
+	}
 }

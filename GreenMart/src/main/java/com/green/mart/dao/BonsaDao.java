@@ -62,4 +62,8 @@ public interface BonsaDao {
 
 	List<JumpoVo> searchJumpoList(String search);
 
+	List<SearchProductVo> searchProductList(String text);
+
+	List<SearchProductVo> searchProductList1(String text);
+
 }

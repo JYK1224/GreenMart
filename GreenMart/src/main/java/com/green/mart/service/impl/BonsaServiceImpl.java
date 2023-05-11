@@ -169,4 +169,14 @@ public class BonsaServiceImpl implements BonsaService {
 		List<JumpoVo> list = bonsaDao.searchJumpoList(search);
 		return list;
 	}
+	@Override
+	public List<SearchProductVo> searchProductList(String text) {
+		List<SearchProductVo> list = bonsaDao.searchProductList(text);
+		return list;
+	}
+	@Override
+	public List<SearchProductVo> searchProductList1(String text) {
+		List<SearchProductVo> list = bonsaDao.searchProductList1(text);
+		return list;
+	}
 }

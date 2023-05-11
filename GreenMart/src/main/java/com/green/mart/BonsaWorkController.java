@@ -317,4 +317,21 @@ public class BonsaWorkController {
 			List<JumpoVo> list = bonsaService.searchJumpoList(search);
 			return list;
 		}
+		//상품 상세조회 -------------------------------
+		@RequestMapping("/Inquery1")
+		@ResponseBody
+		public List<SearchProductVo> ListVo(String text) throws Exception {
+
+			List<SearchProductVo> list = bonsaService.searchProductList(text);
+			return list;
+		}
+		@RequestMapping("/Inquery2")
+		@ResponseBody
+		public List<SearchProductVo> ListVo1(String text) throws Exception {
+			
+			List<SearchProductVo> list = bonsaService.searchProductList1(text);
+			return list;
+		}
+		//------------------------------------------------
+		
 }

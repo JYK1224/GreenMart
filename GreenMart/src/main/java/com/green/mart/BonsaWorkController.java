@@ -1,5 +1,6 @@
 package com.green.mart;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 
@@ -256,4 +258,55 @@ public class BonsaWorkController {
 		List<SearchDeptVo> list = bonsaService.searchDeptList(search);
 		return list;
 	}
+	
+	//거래처로 주문일 조회
+		@RequestMapping("/SearchOrder")
+		@ResponseBody
+		public List<SearchOrderVo> returnOrderListVO(String search, String orderdate) throws Exception {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String d_name = search.toUpperCase();
+			map.put("d_name", d_name);
+			map.put("orderdate", orderdate);
+			
+			List<SearchOrderVo> list = bonsaService.searchOrderDeptList(map);
+			return list;
+		}
+	//거래처 입고
+		@RequestMapping("/Input")
+		@ResponseBody
+		public int input(@RequestParam(value = "inputnum[]") String[] inputnum,
+				@RequestParam(value = "inputdate[]") String[] inputdate,
+				@RequestParam(value = "inputpname[]") String[] inputpname) {
+			
+			
+			  System.out.println("ordernum[] :" + Arrays.toString(inputnum));
+			  System.out.println("orderdate[] :" + Arrays.toString(inputdate));
+			  System.out.println("orderpname[] :" + Arrays.toString(inputpname));
+			
+			
+			int aftcnt = 0 ;
+			
+			int j = inputnum.length;
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			for (int i = 0; i < j; i++) {
+				if(inputnum[i].equals("NaN")) {	
+				}else {
+					if(inputnum[i].equals("0")) {
+					}else {
+						map.put("in_num",  Integer.parseInt(inputnum[i]));
+						map.put("in_date", inputdate[i]);
+						map.put("p_name",  inputpname[i]);					
+						aftcnt = bonsaService.insertInput(map);
+						aftcnt = bonsaService.updateStock(map);
+						map.clear();
+					}
+				}
+			}
+			
+			
+			
+			return aftcnt;
+		}
 }

@@ -106,7 +106,7 @@ e_id
    sysdate,
     #{in_num},
    (SELECT P_SEQ FROM PRODUCT WHERE P_NAME = #{p_name} and j_id = 12020  ),
-   '0001'  
+   '0002'  
 )
 </insert>
 

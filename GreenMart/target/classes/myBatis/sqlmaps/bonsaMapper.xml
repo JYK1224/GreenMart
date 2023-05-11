@@ -193,7 +193,40 @@ TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
 (SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
 )
 </insert>
- 
- 
- 
+ <!-- 입고 -->
+ <select id="searchOrderDeptList"
+resultType="com.green.mart.vo.work.SearchOrderVo">
+SELECT D.D_NAME, TO_CHAR(O.O_DATE, 'YYYY-MM-DD')AS O_DATE,TO_CHAR(O.O_DATE+1, 'YYYY-MM-DD')AS IN_DATE ,P.P_ID, P.P_NAME, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.O_NUM, 0) O_NUM,  E.E_ID 
+FROM EMPLOYEE E, ORDERING O, PRODUCT  P, STOCK S, DEPT D 
+WHERE O.D_ID = D.D_ID (+)
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(O_DATE) BETWEEN  TO_DATE(#{orderdate})-1 AND TO_DATE(#{orderdate})
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME, O.O_DATE ASC
+</select>
+ <insert id="InsertInput">
+INSERT INTO input (
+in_id,
+in_date,
+in_num,
+p_seq,
+e_id
+) VALUES (
+   (SELECT NVL(MAX(in_id), 0) + 1 FROM input),
+   sysdate,
+    #{in_num},
+   (SELECT P_SEQ FROM PRODUCT WHERE P_NAME = #{p_name} and j_id = 12010  ),
+   '0001'  
+)
+</insert>
+<update id="UpdateInputStock">
+UPDATE STOCK 
+SET ST_NUM = NVL(ST_NUM , 0) + #{in_num} 
+WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010 )
+
+</update>
 </mapper>

@@ -7,6 +7,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 public interface BonsaDao {
@@ -52,5 +53,11 @@ public interface BonsaDao {
 	int insertOrder(Map<String, Object> map);
 
 	List<SearchDeptVo> searchDeptList(String search);
+
+	List<SearchOrderVo> searchOrderDeptList(Map<String, Object> map);
+
+	int insertInput(Map<String, Object> map);
+
+	int updateStock(Map<String, Object> map);
 
 }

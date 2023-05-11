@@ -67,6 +67,7 @@ function data_display(data) {
 	html += '<th>입고가격</th>';
 	html += '<th>현재재고</th>';
 	html += '<th>주문수량</th>';
+	html += '<th>총주문금액</th>';
 	html += '<th>사원번호</th>';
 	html += '</tr>';
 	
@@ -79,6 +80,7 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td>'+data.o_num+'</td>';
+	html += '<td>'+data.o_num*data.p_iprice+'</td>';
 	html += '<td>'+data.e_id+'</td>';
 	html += '<td></td>';
 	html += '</tr>';
@@ -157,7 +159,17 @@ window.onload = function() {
 				console.log(data);
 				//alert(data);
 				let tableEl = document.getElementById('table');
+				const allsalesEl = document.getElementById('total');
+                var totalsPrice = 0;
+               
+                
+				data.forEach(function (item) {
+					
+					totalsPrice += parseFloat(item.p_iprice*item.o_num);
+	              
+				});
 				let html = data_display(data);
+				allsalesEl.textContent = totalsPrice + '원';
 				$('#table').html(html); 
 				},
 			error :function(xhr){
@@ -198,6 +210,7 @@ tr:hover {
 </head>
 <body>
 	<div id="gd">
+	<table>
 	<h2>주문내역 조회</h2>
 <div id="date">
 시작일자 지정: <input type="date" id="startdate"/>  <br />
@@ -205,6 +218,10 @@ tr:hover {
 거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
 </div>
+		<tr>
+		<td>총 주문금액 : </td><td id="total" ></td>
+		</tr>
+		</table>
 <div id="table">
 
 </div>

@@ -14,6 +14,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.ProductVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseListVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
@@ -192,6 +193,18 @@ public class JumpoServiceImpl implements JumpoService {
 	@Override
 	public List<SearchInputListVo> searchInputList(Map<String, Object> map) {
 		List<SearchInputListVo> list = jumpoDao.searchInputList(map);
+		return list;
+	}
+
+	@Override
+	public List<SearchDisuseListVo> searchDisList(Map<String, Object> map) {
+		List<SearchDisuseListVo> list = jumpoDao.searchDisList(map);
+		return list;
+	}
+
+	@Override
+	public List<JumpoVo> getSearchDisJumpo() {
+		List<JumpoVo> list = jumpoDao.getSearchDisJumpo();
 		return list;
 	}
 

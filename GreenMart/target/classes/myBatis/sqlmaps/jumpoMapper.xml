@@ -343,6 +343,39 @@ AND TO_DATE(IN_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
 AND P.J_ID = '12020'
 ORDER BY D.D_NAME, I.IN_DATE ASC
 </select>
+
+<!-- 폐기내역 조회 -->
+<select id="SearchDisList"
+resultType="com.green.mart.vo.work.SearchDisuseListVo">
+SELECT TO_CHAR(DIS.DIS_DATE, 'YYYY-MM-DD')AS DIS_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(DIS.DIS_NUM, 0) DIS_NUM,  E.E_ID 
+FROM EMPLOYEE E, DISUSE DIS, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND DIS.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND DIS.E_ID = E.E_ID (+)
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND TO_DATE(DIS_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, DIS.DIS_DATE ASC 
+</select>
+<select id="SearchDisList1"
+resultType="com.green.mart.vo.work.SearchDisuseListVo">
+SELECT TO_CHAR(DIS.DIS_DATE, 'YYYY-MM-DD')AS DIS_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(DIS.DIS_NUM, 0) DIS_NUM,  E.E_ID 
+FROM EMPLOYEE E, DISUSE DIS, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND DIS.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND DIS.E_ID = E.E_ID (+)
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND TO_DATE(DIS_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, DIS.DIS_DATE ASC
+</select>
+<select id="SearchDis"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+
+</select>
 </mapper>
 
 

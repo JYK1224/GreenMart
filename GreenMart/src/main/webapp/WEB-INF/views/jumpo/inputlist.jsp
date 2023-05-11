@@ -40,7 +40,7 @@ function saveExcel() {
 	/* 배열을 워크북 객체로 변환 */
 	var wb = XLSX.utils.book_new();
 	var ws = XLSX.utils.aoa_to_sheet(rowValues);
-	XLSX.utils.book_append_sheet(wb, ws, 'Order');
+	XLSX.utils.book_append_sheet(wb, ws, 'Input');
 	
 	let today = new Date();
 	let day = today.getDate();
@@ -51,7 +51,7 @@ function saveExcel() {
 	let formattedDate = year + '-' + month + '-' + day;
 	
 	
-	XLSX.writeFile(wb, ('Ordertable_'+formattedDate +'.xlsx'));
+	XLSX.writeFile(wb, ('Inputtable_'+formattedDate +'.xlsx'));
 }
 //테이블 생성
 function data_display(data) {
@@ -66,6 +66,7 @@ function data_display(data) {
 	html += '<th>입고가격</th>';
 	html += '<th>현재재고</th>';
 	html += '<th>입고수량</th>';
+	html += '<th>총입고금액</th>';
 	html += '<th>사원번호</th>';
 	html += '</tr>';
 	
@@ -78,6 +79,7 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td>'+data.in_num+'</td>';
+	html += '<td>'+data.in_num*data.p_iprice+'</td>';
 	html += '<td>'+data.e_id+'</td>';
 	html += '<td></td>';
 	html += '</tr>';
@@ -156,7 +158,17 @@ window.onload = function() {
 				console.log(data);
 				//alert(data);
 				let tableEl = document.getElementById('table');
+				const allsalesEl = document.getElementById('total');
+                var totalsPrice = 0;
+               
+                
+				data.forEach(function (item) {
+					
+					totalsPrice += parseFloat(item.p_iprice*item.in_num);
+	              
+				});
 				let html = data_display(data);
+				allsalesEl.textContent = totalsPrice + '원';
 				$('#table').html(html); 
 				},
 			error :function(xhr){
@@ -193,6 +205,7 @@ tr:hover {
 </head>
 <body>
 	<div id="gd">
+	<table>
 	<h2>입고내역 조회</h2>
 <div id="date">
 시작일자 지정: <input type="date" id="startdate"/>  <br />
@@ -200,6 +213,10 @@ tr:hover {
 거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
 </div>
+<tr>
+		<td>총 입고금액 : </td><td id="total" ></td>
+		</tr>
+	</table>
 <div id="table">
 
 </div>

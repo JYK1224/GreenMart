@@ -12,6 +12,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
@@ -183,6 +184,11 @@ public class BonsaServiceImpl implements BonsaService {
 	@Override
 	public List<SearchOrderListVo> searchOrderList(Map<String, Object> map) {
 		List<SearchOrderListVo> list = bonsaDao.searchOrderList(map);
+		return list;
+	}
+	@Override
+	public List<SearchInputListVo> searchInputList(Map<String, Object> map) {
+		List<SearchInputListVo> list = bonsaDao.searchInputList(map);
 		return list;
 	}
 }

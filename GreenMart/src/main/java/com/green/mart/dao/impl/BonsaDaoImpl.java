@@ -1,6 +1,7 @@
 package com.green.mart.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.green.mart.dao.BonsaDao;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
+import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 @Repository
 public class BonsaDaoImpl implements BonsaDao {
@@ -88,4 +91,24 @@ public class BonsaDaoImpl implements BonsaDao {
 		sqlSession.update("Bonsa.EmpUpdate", vo);
 		
 	}
+	@Override
+	public List<JumpoVo> getSearchSaleJumpo() {
+		List<JumpoVo> list = sqlSession.selectList("Bonsa.SearchSale");
+		return list;
+	}
+
+	@Override
+	public List<SearchProductVo> searchSalesList(Map<String, Object> map) {
+	    List<SearchProductVo> list = null;
+	    String j_name = (String) map.get("j_name"); // Retrieve the value from the map
+
+	    if (j_name != "" && !j_name.isEmpty()) {
+	        list = sqlSession.selectList("Bonsa.SearchSalesList", map);
+	    } else {
+	        list = sqlSession.selectList("Bonsa.SearchSalesList1", map);
+	    }
+
+	    return list;
+	}
+
 }

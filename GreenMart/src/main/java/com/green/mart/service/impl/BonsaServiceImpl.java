@@ -1,6 +1,7 @@
 package com.green.mart.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import com.green.mart.dao.BonsaDao;
 import com.green.mart.service.BonsaService;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
+import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 @Service
 public class BonsaServiceImpl implements BonsaService {
@@ -88,6 +91,16 @@ public class BonsaServiceImpl implements BonsaService {
 		bonsaDao.updateEmp(vo);
 		
 	}
-	
+	@Override
+	public List<JumpoVo> getSearchSaleJumpo() {
+		List<JumpoVo> list = bonsaDao.getSearchSaleJumpo();
+		return list;
+	}
+
+	@Override
+	public List<SearchProductVo> searchSalesList(Map<String, Object> map) {
+		List<SearchProductVo> list = bonsaDao.searchSalesList(map);
+		return list;
+	}
 	
 }

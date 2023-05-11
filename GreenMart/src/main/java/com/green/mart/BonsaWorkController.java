@@ -1,6 +1,8 @@
 package com.green.mart;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.green.mart.service.BonsaService;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
+import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 
 @Controller
@@ -140,5 +144,30 @@ public class BonsaWorkController {
 			
 			return mv;
 		}	
+		//상품매출조회 점포 리스트 조회
+		@RequestMapping("/SearchSaleslistSelect")
+		@ResponseBody
+		public List<JumpoVo> returnSearchSaleslist() throws Exception {
+			
+			
+			List<JumpoVo> list = bonsaService.getSearchSaleJumpo();
+			return list;
+		}
+		// 날짜지정해서 점포선택후 판매내역조회
+	@RequestMapping("/SearchSaleslist")
+	@ResponseBody
+		public List<SearchProductVo> returnSalesListVO(String search, String startdate, String enddate) throws Exception {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			String j_name = search;
+		
+				map.put("j_name", j_name);
+				map.put("startdate", startdate);
+				map.put("enddate", enddate);
+				System.out.println("map =" + map);
+				List<SearchProductVo> list = bonsaService.searchSalesList(map);
+				return list;
+			}
+		
 
 }

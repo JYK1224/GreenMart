@@ -1,9 +1,12 @@
 package com.green.mart.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
+import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchProductVo;
 
 public interface BonsaService {
 	
@@ -28,5 +31,9 @@ public interface BonsaService {
 	void updateEmp(EmployeeVo vo);
 	
 	List<EmployeeVo> getEmpList();
+
+	List<SearchProductVo> searchSalesList(Map<String, Object> map);
+
+	List<JumpoVo> getSearchSaleJumpo();
 
 }

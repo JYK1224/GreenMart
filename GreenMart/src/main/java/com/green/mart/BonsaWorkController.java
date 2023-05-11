@@ -3,8 +3,10 @@ package com.green.mart;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +31,47 @@ public class BonsaWorkController {
 			List<DeptVo> list = bonsaService.searchAllDeptList(search);
 			return list;
 		}
+
+		// 거래처 등록
+		@RequestMapping("/deptForm")
+		public ModelAndView deftaddForm(DeptVo vo) {
+		
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("bonsa/deptadd");
+		
+			return mv;
+		}
+		@RequestMapping("/deptAdd")
+		public ModelAndView deftAdd(DeptVo vo) {
+		
+			bonsaService.insertDept(vo);
+		
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/Deptadd1");
+		
+			return mv;
+		}
+		// 거래처 상세보기
+		@RequestMapping("/deptView")
+		public ModelAndView deptView(String d_id) {
+		
+			DeptVo dVo = bonsaService.deptView(d_id);
+		
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/bonsa/deptview");
+			mv.addObject("vo", dVo);
+		
+			return mv;
+		}
+		// 거래처 삭제 
+		@RequestMapping(value = "/deptDelete", method = RequestMethod.POST)
+		public ResponseEntity<String> deptDel(@RequestParam("d_id") String d_id) {
+			
+			bonsaService.deptDel(d_id);
+			
+			return ResponseEntity.ok("삭제되었습니다.");
+			
+		}
 		
 	// 사원관리
 		// 사원등록
@@ -44,7 +87,6 @@ public class BonsaWorkController {
 			
 			return mv;
 		}
-		// 사원등록
 		@RequestMapping("/userAdd")
 		public ModelAndView popadd(EmployeeVo vo) {
 			
@@ -66,8 +108,6 @@ public class BonsaWorkController {
 			mv.setViewName("/bonsa/userview");
 			mv.addObject("vo", empVo);
 			
-			System.out.println("ddfdfa :   " + mv);
-			
 			return mv;
 		}
 		// 사원삭제
@@ -75,7 +115,6 @@ public class BonsaWorkController {
 		public void delete(@RequestParam("e_id") String e_id) {
 			
 			bonsaService.deleteEmp(e_id);
-			
 			
 		}
 		// 사원수정 

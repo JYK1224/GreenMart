@@ -129,15 +129,6 @@ window.onload = function() {
 		  let  features   = 'height=750, width=1050, top=200, left=300'; 
 		  window.open(html, name, features);
 	  }); 
-	  let btnJumpoadd1El = document.getElementById('jumpoadd1');
-	  btnJumpoadd1El.addEventListener('click',  function(e) {
-		  e.preventDefault();
-	  //    e.stopPropagation();
-		  let  html       = '/Jumpoadd1'  ;
-		  let  name       = 'Jumpoadd1';  // '' 값이 없으면 창이 여러번 뜬다
-		  let  features   = 'height=750, width=1050, top=200, left=300'; 
-		  window.open(html, name, features);
-	  }); 
 	  let btnProductadd1El = document.getElementById('productadd1');
 	  btnProductadd1El.addEventListener('click',  function(e) {
 		  e.preventDefault();

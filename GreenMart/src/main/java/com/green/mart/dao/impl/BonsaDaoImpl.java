@@ -22,6 +22,27 @@ public class BonsaDaoImpl implements BonsaDao {
 		List<DeptVo> list = sqlSession.selectList("Bonsa.SearchAllDeptList",d_name);
 		return list;
 	}
+	// 거래처 등록
+	@Override
+	public void insertDept(DeptVo vo) {
+		
+		sqlSession.insert("Bonsa.DeptInset", vo);
+	}
+	// 거래처 뷰
+	@Override
+	public DeptVo deptView(String d_id) {
+		
+		DeptVo dVo = sqlSession.selectOne("Bonsa.DeptView", d_id);
+		
+		return dVo;
+	}
+	// 거래처 삭제
+	@Override
+	public void deptDel(String d_id) {
+		
+		sqlSession.delete("Bonsa.DeptDel", d_id);
+		
+	}
 	// 사원관리 - 조회
 	@Override
 	public List<EmployeeVo> getEmpList() {

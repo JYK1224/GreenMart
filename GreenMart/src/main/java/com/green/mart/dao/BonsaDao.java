@@ -10,6 +10,12 @@ public interface BonsaDao {
 	//거래처 조회
 	List<DeptVo> searchAllDeptList(String search);
 	
+	void insertDept(DeptVo vo);
+	
+	void deptDel(String d_id);
+	
+	DeptVo deptView(String d_id);
+	
 	//사원관리
 	List<EmployeeVo> getEmpList();
 

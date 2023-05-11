@@ -21,6 +21,29 @@ public class BonsaServiceImpl implements BonsaService {
 		List<DeptVo> list = bonsaDao.searchAllDeptList(search);
 		return list;
 	}
+	// 거래처 등록
+	@Override
+	public void insertDept(DeptVo vo) {
+		
+		bonsaDao.insertDept(vo);
+		
+	}
+	// 거래처 뷰
+	@Override
+	public DeptVo deptView(String d_id) {
+		
+		DeptVo dVo = bonsaDao.deptView(d_id);
+		
+		return dVo;
+	}
+	// 거래처 삭제
+	@Override
+	public void deptDel(String d_id) {
+		
+		bonsaDao.deptDel(d_id);
+	}
+	
+	
 	// 사원관리 - 조회
 	@Override
 	public List<EmployeeVo> getEmpList() {

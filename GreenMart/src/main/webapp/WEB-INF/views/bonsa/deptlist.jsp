@@ -99,7 +99,7 @@ function data_display(data) {
 	data.forEach(function(data, index) { 	
 	html += '<tr>';
 	html += '<td>'+data.d_id+'</td>';
-	html += '<td>'+data.d_name+'</td>';
+	html += '<td><a href="/BWork/deptView?d_id='+data.d_id+'" id="btnView" >'+data.d_name+'</a></td>';
 	html += '<td>'+data.d_dam+'</td>';
 	html += '<td>'+data.d_phone+'</td>';
 	html += '<td></td>';

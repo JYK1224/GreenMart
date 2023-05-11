@@ -10,6 +10,12 @@ public interface BonsaService {
 	//거래처 조회
 	List<DeptVo> searchAllDeptList(String search);
 	
+	void insertDept(DeptVo vo);
+	
+	DeptVo deptView(String d_id);
+	
+	void deptDel(String d_id);
+	
 	//사원관리
 	void insertEmployee(EmployeeVo vo);
 

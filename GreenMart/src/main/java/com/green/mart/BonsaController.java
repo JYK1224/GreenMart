@@ -91,13 +91,6 @@ public class BonsaController {
 		mv.setViewName("bonsa/deptadd"); 
 		return  mv;
 	}
-	@RequestMapping("/Jumpoadd1")
-	public  ModelAndView   jumpoadd1() {
-		ModelAndView  mv  =  new ModelAndView(); 
-		mv.setViewName("bonsa/jumpoadd"); 
-		return  mv;
-	}
-	
 	@RequestMapping("/Productadd1")
 	public  ModelAndView   productadd1() {
 		ModelAndView  mv  =  new ModelAndView(); 

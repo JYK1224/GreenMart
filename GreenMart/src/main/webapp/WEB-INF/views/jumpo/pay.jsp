@@ -32,9 +32,6 @@ window.onload = function() {
 		let recieved = parseInt( $('#recieved').val() );
 		let finalPrice = parseInt( $('#finalPrice').val() );
 		
-		alert('finalPrice ' + finalPrice);
-		alert('recieved ' + recieved);
-		
 		$('#change').val( recieved - finalPrice );
 		
 	}
@@ -61,8 +58,8 @@ window.onload = function() {
 		}, function(rsp) {
 		    if ( rsp.success ) {
 		    	$('#card').val(rsp.paid_amount);
-		    	alert(rsp.merchant_uid);
-		    	alert('결제 완료');
+// 		    	alert(rsp.merchant_uid);
+		    	alert('카드결제 완료');
 		    	let cashPayEl = document.getElementById("cashPay");
 		    	cashPayEl.click();
 		    } else {
@@ -98,25 +95,25 @@ window.onload = function() {
 				
 					<table>
 						<tr>
-							<td colspan="3">받을금액:<input type="text" name="receive" id="finalPrice" value="${finalPrice}" /></td>
+							<td colspan="3">받을금액:<input type="text" name="receive" id="finalPrice" value="${finalPrice}" readonly/></td>
 						</tr>
 						<tr>
 							<td>현금:</td>
-							<td><input type="text" name="cash" id="cash" value="0"/></td>
+							<td><input type="text" name="cash" id="cash" value="0" placeholder = "현금 수령액"/></td>
 							<td><input type="button" value="입력" id="cashPay"/></td>
 						</tr>
 						<tr>
 							<td>카드:</td>
-							<td><input type="text" name="card" id="card" value="0"/></td>
+							<td><input type="text" name="card" id="card" value="0" readonly/></td>
 							<td><input type="button" value="카드결제" id="cardPay"/></td>
 						</tr>
 						<tr>
 							<td>받은금액:</td>
-							<td colspan="2"><input type="text" name="received" id="recieved" value="0" /></td>
+							<td colspan="2"><input type="text" name="received" id="recieved" value="0" readonly /></td>
 						</tr>
 						<tr>
 							<td>거스름돈:</td>
-							<td colspan="2"><input type="text" name="change" id="change" value="0" /></td>
+							<td colspan="2"><input type="text" name="change" id="change" value="0" readonly /></td>
 						</tr>
 						<tr>
 							<td colspan="3"><input type="submit" value="계산완료"/></td>

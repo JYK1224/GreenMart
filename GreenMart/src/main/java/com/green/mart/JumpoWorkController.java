@@ -281,13 +281,14 @@ public class JumpoWorkController {
 	
 	@RequestMapping("/PayWork")
 	public ModelAndView paywork(@RequestParam HashMap<String, Object> map) {
-		System.out.println(map);
-		System.out.println(map.get("itemList"));
-	
+		
+		// 가져온 map 찍어보자
+		System.out.println("PayWork 직전 map "+ map);
 		
 		List<String> itemList = null;
 		List<String> suList = null;
-
+		
+		// 상품코드 List
 		Object itemListobj = map.get("itemList");
 		if (itemListobj instanceof String) {
 		    String itemListStr = String.valueOf( itemListobj);
@@ -298,39 +299,45 @@ public class JumpoWorkController {
 		    
 		     itemList = Arrays.asList(itemListStr.split(", "));
 		    
-		    System.out.println(itemList.get(0));
 		}
 		
+		// 판매수량 List
 		Object suListobj = map.get("suList");
 		if (suListobj instanceof String) {
 			String suListStr = String.valueOf( suListobj);			
 			if (suListStr.startsWith("[") && suListStr.endsWith("]")) {
 				suListStr = suListStr.substring(1, suListStr.length() - 1);
 			}
-			
-			suList = Arrays.asList(suListStr.split(", "));			
-			System.out.println(suList.get(0));
+
+			suList = Arrays.asList(suListStr.split(", "));
 		}
 		
-		
-		
 		int j = itemList.size();
-		System.out.println(j);
-	
 		
+		// 새로운 map 생성하여 SALE 테이블에 반영
 		Map<String, Object> map2 = new HashMap<String, Object>();
-		
-		for (int i = 0; i < j; i++) {			
+		for (int i = 0; i < j; i++) {
 			map2.put("item", Integer.parseInt(itemList.get(i))  );
 			map2.put("su", Integer.parseInt(suList.get(i)));
 			map2.put("c_name",String.valueOf( map.get("c_name")));
 			map2.put("e_id", String.valueOf( map.get("e_id") ));			
 			jumpoService.insertSale(map2);
-			System.out.println(map2);
 			map2.clear();		
 		}
 		
+		// CUSTOMER 테이블에 반영
+		jumpoService.updateMileage(map);
 		
+		
+		// 새로운 map 생성하여 STOCK 테이블에 반영
+		Map<String, Object> map3 = new HashMap<String, Object>();
+		
+		for (int i = 0; i < j; i++) {
+			map3.put("item", Integer.parseInt(itemList.get(i))  );
+			map3.put("su", Integer.parseInt(suList.get(i)));
+			jumpoService.saleUpdateStock(map3);
+			map3.clear();
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/jumpo/paysuccess");

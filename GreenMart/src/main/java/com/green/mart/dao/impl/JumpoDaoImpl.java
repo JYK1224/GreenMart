@@ -1,5 +1,6 @@
 package com.green.mart.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -127,6 +128,18 @@ public class JumpoDaoImpl implements JumpoDao {
 	public CustomerVo custSearch(String c_phone) {
 		CustomerVo vo = sqlSession.selectOne("Jumpo.CustSearch", c_phone);
 		return vo;
+	}
+	// 판매후 CUSTOMER 테이블에 마일리지 반영 
+	@Override
+	public void updateMileage(HashMap<String, Object> map) {
+		sqlSession.update("Jumpo.UpdateMileage", map);
+		
+	}
+	// 판매후 STOCK 테이블에 재고 반영 
+	@Override
+	public void saleUpdateStock(Map<String, Object> map3) {
+		sqlSession.update("Jumpo.SaleUpdateStock", map3);
+		
 	}
 	@Override
 	public int getSaleId() {

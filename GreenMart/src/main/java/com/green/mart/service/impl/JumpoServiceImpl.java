@@ -1,5 +1,6 @@
 package com.green.mart.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -206,6 +207,18 @@ public class JumpoServiceImpl implements JumpoService {
 	public List<JumpoVo> getSearchDisJumpo() {
 		List<JumpoVo> list = jumpoDao.getSearchDisJumpo();
 		return list;
+	}
+	// 판매후 CUSTOMER 테이블에 마일리지 반영 
+	@Override
+	public void updateMileage(HashMap<String, Object> map) {
+		jumpoDao.updateMileage( map );
+		
+	}
+
+	@Override
+	public void saleUpdateStock(Map<String, Object> map3) {
+		jumpoDao.saleUpdateStock( map3 );
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.green.mart.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +50,10 @@ public interface JumpoDao {
 	ProductVo prodSearch(String p_seq);
 	// 마일리지 창에서 고객정보 조회
 	CustomerVo custSearch(String c_phone);
+	// 판매후 CUSTOMER 테이블에 마일리지 반영 
+	void updateMileage(HashMap<String, Object> map);
+	// 판매후 STOCK 테이블에 재고 반영 
+	void saleUpdateStock(Map<String, Object> map3);
 	
 	int getSaleId();
 

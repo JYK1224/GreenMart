@@ -61,28 +61,33 @@ table {
 		// submit(마일리지 적용) 버튼 클릭시
 		let btnApplyEl = document.querySelector('[type=submit]');
 		
-		
 		btnApplyEl.onclick = function(e) {
 			
 		const c_nameEl = window.document.getElementsByName('c_name')[0];	// 고객명 보내자 
-		const milePayEl = window.document.getElementsByName('milePay')[0];	// 고객전화번호 보내자 
-		const c_phoneEl = window.document.getElementsByName('c_phone')[0];	// 마일리지사용액 보내자  
+		const milePayEl = window.document.getElementsByName('milePay')[0];	// 마일리지사용액 보내자 
+		const c_phoneEl = window.document.getElementsByName('c_phone')[0];	// 고객전화번호 보내자  
 		const parentC_nameEl = window.opener.document.getElementById('c_name'); // 부모창의 고객명 정하자
 		const parentMilePayEl = window.opener.document.getElementById('milePay'); // 부모창의 마일리지사용액 정하자
 		const parentTotalPrice = window.opener.document.getElementById('totalPrice'); // 총금액 불러와서
 		const parentFinalPrice = window.opener.document.getElementById('finalPrice'); // 결제할 금액도 바꿔줘야지
 		const parentEarnMiles = window.opener.document.getElementById('earnMiles'); // 적립 금액도 바꿔주고
 		const parentC_phoneEl = window.opener.document.getElementById('c_phone'); // 고객전화번호도 넘겨주자
-			
-			parentC_nameEl.value = c_nameEl.value;	// 고객명 값을 넘겨주자
-			parentMilePayEl.value = milePayEl.value;	// 마일리지사용액 값을 넘겨주자
-			parentFinalPrice.value = parentTotalPrice.value - milePayEl.value;	// 결제할 금액 = 총금액 - 마일리지사용
-			parentEarnMiles.value = Math.round( parentFinalPrice.value * 0.01 ) // 적립 = 결제할금액 * 1퍼센트
-			parentC_phoneEl.value = c_phoneEl.value;
-			
-			alert('등록 성공');
-			
-			window.close();	// 창 닫자
+		
+		const c_mileEl = window.document.getElementsByName('c_mile')[0];	// 마일리지보유액 가져와서  
+		if( parseInt( milePayEl.value ) <= parseInt( c_mileEl.value ) ) {	// 마일리지 사용액이 보유액보다 크지 않다면
+				parentC_nameEl.value = c_nameEl.value;	// 고객명 값을 넘겨주자
+				parentMilePayEl.value = milePayEl.value;	// 마일리지사용액 값을 넘겨주자
+				parentC_phoneEl.value = c_phoneEl.value;	// 고객연락처 값을 넘겨주자
+				parentFinalPrice.value = parentTotalPrice.value - milePayEl.value;	// 결제할 금액 = 총금액 - 마일리지사용
+				parentEarnMiles.value = Math.round( parentFinalPrice.value * 0.01 ) // 적립 = 결제할금액 * 1퍼센트
+				
+				alert('등록 성공');
+				
+				window.close();	// 창 닫자
+			} else { // 마일리지 사용액이 보유액보다 크다면
+				alert('마일리지사용액이 보유마일리지보다 큽니다.');
+				event.preventDefault();
+			}
 		}
 		
 	}
@@ -115,7 +120,7 @@ table {
 						</tr>
 						<tr>
 							<td>마일리지 사용:</td>
-							<td colspan="2"><input type="text" name="milePay" placeholder="사용 마일리지 입력"/></td>
+							<td colspan="2"><input type="text" name="milePay" value="0"/></td>
 						</tr>
 						<tr>
 							<td colspan="3"><input type="submit" value="마일리지 적용" /></td>

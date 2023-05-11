@@ -302,7 +302,7 @@ table {
 							고객명 : <input type="text" name="c_name" id="c_name" readonly/>
 							</td>
 							<td colspan="2">
-							사용마일리지 : <input type="text" name="milePay" id="milePay" readonly/>
+							사용마일리지 : <input type="text" name="milePay" id="milePay" value="0" readonly/>
 							</td>
 						</tr>
 						<tr id="right">

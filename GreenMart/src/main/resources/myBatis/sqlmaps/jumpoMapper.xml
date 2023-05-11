@@ -376,6 +376,29 @@ resultType="com.green.mart.vo.JumpoVo">
 SELECT J_NAME FROM JUMPO
 
 </select>
+
+<!-- 결제 후 고객마일리지 업데이트 -->
+<update id="UpdateMileage">
+
+	UPDATE CUSTOMER
+       SET
+           C_MILE = C_MILE - #{milePay} + #{earnMiles}
+     WHERE
+           C_NAME = #{c_name} 
+
+</update>
+
+<!-- 결제 후 재고 업데이트 -->
+<update id="SaleUpdateStock">
+	
+	UPDATE STOCK
+	   SET
+	       ST_NUM = ST_NUM - #{ su }
+	 WHERE
+	       P_SEQ = #{ item }	
+
+</update>
+
 </mapper>
 
 

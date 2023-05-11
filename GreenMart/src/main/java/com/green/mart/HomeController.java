@@ -38,4 +38,10 @@ public class HomeController {
 			return  mv;
 		}
 		//--------------------------------------
+		@RequestMapping("/Mobile")
+		public  ModelAndView   mobile( ) {
+			ModelAndView  mv  =  new ModelAndView(); 
+			mv.setViewName("mobile/mhome"); 
+			return  mv;
+		}
 }

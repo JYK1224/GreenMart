@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="/css/common.css"/>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

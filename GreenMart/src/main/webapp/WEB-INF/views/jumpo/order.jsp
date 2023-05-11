@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>그린마트</title>
-<link rel="stylesheet" href="css/common.css"/>
+<link rel="stylesheet" href="/css/common.css"/>
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
@@ -308,6 +308,9 @@ th {
 tr:hover {
   background-color: #f5f5f5;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -316,18 +319,18 @@ tr:hover {
 <div id="gd">	
 <h2>상품 주문 업무</h2>
 <div id="date">
-주문일자 지정: <input type="date" id="jumun1"/>  <br />
-주문일자:      <input type="date" id="jumun2" readonly="readonly"/>  <br />
-지정일자:      <input type="date" id="jumun3" readonly="readonly"/>  <br />
-거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색"/>
+주문일자 지정: &nbsp;<input type="date" id="jumun1"/>  <br />
+주문일자: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <input type="date" id="jumun2" readonly="readonly"/>  <br />
+지정일자:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <input type="date" id="jumun3" readonly="readonly"/>  <br />
+거래처명:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
-<input type="button" id= "order" style="float: right;" value= "주문"/>
+<input type="button" id= "order" style="float: right;" value= "주문"/><br>
 </div>
 <div id="table">
 
 </div>
-<%@ include file="/WEB-INF/include/bottom.jsp" %>
 </div>
+<%@ include file="/WEB-INF/include/bottom.jsp" %>
 	
 </body>
 </html>

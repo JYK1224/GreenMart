@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>그린마트</title>
-<link rel="stylesheet" href="css/common.css"/>
+<link rel="stylesheet" href="/css/common.css"/>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }

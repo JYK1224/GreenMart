@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>그린마트</title>
-<link rel="stylesheet" href="css/common.css" />
+<link rel="stylesheet" href="/css/common.css" />
 
 <%@ include file="/WEB-INF/include/subheader.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

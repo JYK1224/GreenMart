@@ -26,5 +26,10 @@ public interface Menu3Service {
 	void deleteUploadFile(HashMap<String, Object> map);
 
 	void setDelete(HashMap<String, Object> map);
+	// 공지사항 띄우기 : 홈
+	List<Menu3PagingVo> homeNoticeList(HashMap<String, Object> map);
+	// 업무연락 띄우기 : 홈
+	List<Menu3PagingVo> homeContactList(HashMap<String, Object> map2);
+
 
 }

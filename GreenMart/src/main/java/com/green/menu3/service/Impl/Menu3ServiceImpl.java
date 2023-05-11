@@ -124,7 +124,22 @@ public class Menu3ServiceImpl implements Menu3Service {
 		menu3Dao.deleteUploadFile( map );
 
 	}
-
+	// 공지사항 띄우기 : 홈
+	@Override
+	public List<Menu3PagingVo> homeNoticeList(HashMap<String, Object> map) {
+		
+		List<Menu3PagingVo> noticeList = menu3Dao.homeNoticeList( map );
+		
+		return noticeList;
+	}
+	// 업무연락 띄우기 : 홈
+	@Override
+	public List<Menu3PagingVo> homeContactList(HashMap<String, Object> map2) {
+		
+		List<Menu3PagingVo> contactList = menu3Dao.homeContactList( map2 );
+		
+		return contactList;
+	}
 
 
 

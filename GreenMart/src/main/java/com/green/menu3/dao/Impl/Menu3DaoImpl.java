@@ -118,6 +118,23 @@ public class Menu3DaoImpl implements Menu3Dao {
 
 		return fileList;
 	}
+	// 공지사항 띄우기 : 홈
+	@Override
+	public List<Menu3PagingVo> homeNoticeList(HashMap<String, Object> map) {
+		
+		List<Menu3PagingVo> noticeList = sqlSession.selectList("Pds.HomeNoticeList", map );
+		
+		return noticeList;
+		
+	}
+	// 업무연락 띄우기 : 홈
+	@Override
+	public List<Menu3PagingVo> homeContactList(HashMap<String, Object> map2) {
+		
+		List<Menu3PagingVo> contactList = sqlSession.selectList("Pds.HomeContactList", map2 );
+		
+		return contactList;
+	}
 
 
 }

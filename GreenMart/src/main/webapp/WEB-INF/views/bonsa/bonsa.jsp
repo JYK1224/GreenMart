@@ -186,17 +186,8 @@ window.onload = function() {
 	<div id="gd">
 	 
 	 
-	<div class="dd">
-  <table>
-    <tr>&nbsp;&nbsp;- 공지사항<tr>
-  </table>
-	</div>
-	
-	<div class="aa">
-  <table>
-    <tr>&nbsp;&nbsp;- 업무연락<tr>
-  </table>
-	</div>
+	<!-- 공지사항, 업무연락 -->
+    <%@ include file="/WEB-INF/include/homeBoard.jsp" %>
 	
 	<div id="calendar"></div>
 	

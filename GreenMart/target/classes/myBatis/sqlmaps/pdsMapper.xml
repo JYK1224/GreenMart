@@ -294,6 +294,74 @@
    		
    </update>
    
+      <select id="HomeNoticeList"
+           resultType="com.green.menu3.vo.Menu3PagingVo">
+   
+   SELECT * FROM 
+     (
+   		SELECT	ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC) RNUM,
+   		        IDX,
+      			M_ID,
+      			-- DECODE(LVL, 0, '', '[Re]' ) || TITLE AS TITLE,
+      			TITLE,
+      			E_ID,
+      			CONT,
+      			READCOUNT,
+      			( 
+      			   SELECT COUNT( F_SEQ )
+      			     FROM  FILES F
+      			     WHERE F.IDX = B.IDX
+      			)  FILESCOUNT,
+      			TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') REGDATE,
+      			BNUM,
+      			LVL,
+      			STEP,
+      			NREF,
+      			DEL,
+      			PNUM
+      	FROM	BOARD B
+      	WHERE M_ID = #{ m_id }
+      	  AND LVL = 0
+     ) T
+     WHERE   T.RNUM 
+           BETWEEN #{startnum} AND #{endnum}
+   
+   </select>
+   
+   <select id="HomeContactList"
+           resultType="com.green.menu3.vo.Menu3PagingVo">
+   
+   SELECT * FROM 
+     (
+   		SELECT	ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC) RNUM,
+   		        IDX,
+      			M_ID,
+      			-- DECODE(LVL, 0, '', '[Re]' ) || TITLE AS TITLE,
+      			TITLE,
+      			E_ID,
+      			CONT,
+      			READCOUNT,
+      			( 
+      			   SELECT COUNT( F_SEQ )
+      			     FROM  FILES F
+      			     WHERE F.IDX = B.IDX
+      			)  FILESCOUNT,
+      			TO_CHAR(REGDATE, 'YYYY-MM-DD HH24:MI:SS') REGDATE,
+      			BNUM,
+      			LVL,
+      			STEP,
+      			NREF,
+      			DEL,
+      			PNUM
+      	FROM	BOARD B
+      	WHERE M_ID = #{ m_id2 }
+      	  AND LVL = 0
+     ) T
+     WHERE   T.RNUM 
+           BETWEEN #{startnum2} AND #{endnum2}
+   
+   </select>
+   
     
 </mapper>
 

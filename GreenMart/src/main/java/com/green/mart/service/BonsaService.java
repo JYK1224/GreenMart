@@ -25,6 +25,7 @@ public interface BonsaService {
 	
 	void deptDel(String d_id);
 	
+	void deptUp(DeptVo dVo);
 	//사원관리
 	void insertEmployee(EmployeeVo vo);
 

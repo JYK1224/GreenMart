@@ -52,6 +52,13 @@ public class BonsaDaoImpl implements BonsaDao {
 		sqlSession.delete("Bonsa.DeptDel", d_id);
 		
 	}
+	// 거래처 수정
+	@Override
+	public void deptUp(DeptVo dVo) {
+		
+		sqlSession.update("Bonsa.DeptUp", dVo);
+	
+	}
 	// 사원관리 - 조회
 	@Override
 	public List<EmployeeVo> getEmpList() {

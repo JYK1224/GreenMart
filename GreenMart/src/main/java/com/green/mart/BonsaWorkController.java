@@ -83,7 +83,27 @@ public class BonsaWorkController {
 			return ResponseEntity.ok("삭제되었습니다.");
 			
 		}
-		
+		// 거래처 수정
+		@RequestMapping(value = "/deptUpdate", method = RequestMethod.POST)
+		public ResponseEntity<DeptVo> deptUp(@RequestParam("d_id") String d_id,
+				@RequestParam("d_name") String d_name,
+				@RequestParam("d_dam") String d_dam,
+				@RequestParam("d_phone") String d_phone ){ 
+		  
+			DeptVo dVo = new DeptVo();
+			
+			dVo.setD_id(d_id);
+			dVo.setD_name(d_name);
+			dVo.setD_dam(d_dam);
+			dVo.setD_phone(d_phone);
+			
+			bonsaService.deptUp(dVo);
+			
+			System.out.println("dvo:  : " + dVo);
+			
+		    return ResponseEntity.ok(dVo);
+		}
+
 	// 사원관리
 		// 사원등록
 		@RequestMapping("/userAddForm")

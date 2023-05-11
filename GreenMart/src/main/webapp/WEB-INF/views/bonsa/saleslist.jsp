@@ -187,7 +187,7 @@ window.onload = function () {
 	
 	
 	$.ajax({
-		url: "/JWork/SearchSaleslistSelect",
+		url: "/BWork/SearchSaleslistSelect",
 		
 		type: "POST", 
 				
@@ -207,7 +207,7 @@ window.onload = function () {
 			    console.log(selectedOption)
 			    			searchEl.onclick = function(e) {
 				$.ajax({
-					url: "/JWork/SearchSaleslist",
+					url: "/BWork/SearchSaleslist",
 					data : { search: selectedOption, 
 							startdate : startdate,
 							enddate : enddate

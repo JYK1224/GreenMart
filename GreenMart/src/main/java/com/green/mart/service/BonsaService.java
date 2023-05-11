@@ -6,6 +6,7 @@ import java.util.Map;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 public interface BonsaService {
@@ -47,6 +48,10 @@ public interface BonsaService {
 	List<SearchProductVo> FullProductList5(String text);
 
 	List<SearchProductVo> FullProductList6(String text);
+
+	int insertOrder(Map<String, Object> map);
+
+	List<SearchDeptVo> searchDeptList(String search);
 
 
 

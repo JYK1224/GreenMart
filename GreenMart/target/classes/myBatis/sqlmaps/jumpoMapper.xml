@@ -88,7 +88,7 @@ INSERT INTO ordering (
 (SELECT NVL(MAX(O_ID), 0) + 1 FROM ordering),
 #{o_num} ,
 TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
-'0001',
+'0002',
 (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020),
 (SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
 )

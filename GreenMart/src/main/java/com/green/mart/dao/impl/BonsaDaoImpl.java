@@ -11,6 +11,7 @@ import com.green.mart.dao.BonsaDao;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 @Repository
@@ -155,6 +156,17 @@ public class BonsaDaoImpl implements BonsaDao {
 	public List<SearchProductVo> FullProductList2(String text) {
 		String a_name = text.trim();
 		List<SearchProductVo> list = sqlSession.selectList("Bonsa.FullProductList2",a_name);
+		return list;
+	}
+	@Override
+	public int insertOrder(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Bonsa.InsertOrder",map);
+		return aftcnt;
+	}
+	@Override
+	public List<SearchDeptVo> searchDeptList(String search) {
+		String d_name = search.toUpperCase().trim();
+		List<SearchDeptVo> list = sqlSession.selectList("Bonsa.SearchDeptList",d_name);
 		return list;
 	}
 }

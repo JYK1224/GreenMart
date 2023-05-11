@@ -167,7 +167,7 @@ excelEl.onclick = function() {
 function fullquery1(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery1",
+      url: "/BWork/Fullquery1",
       data: { 
       text : inputVal
       },
@@ -222,7 +222,7 @@ function fullquery1(inputVal) {
 function fullquery2(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery2",
+      url: "/BWork/Fullquery2",
       data: { 
       text : inputVal
       },
@@ -280,7 +280,7 @@ function fullquery2(inputVal) {
 function fullquery3(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery3",
+      url: "/BWork/Fullquery3",
       data: { 
       text : inputVal
       },
@@ -333,7 +333,7 @@ function fullquery3(inputVal) {
 function fullquery4(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery4",
+      url: "/BWork/Fullquery4",
       data: { 
       text : inputVal
       },
@@ -391,7 +391,7 @@ function fullquery4(inputVal) {
 function fullquery5(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery5",
+      url: "/BWork/Fullquery5",
       data: { 
       text : inputVal
       },
@@ -444,7 +444,7 @@ function fullquery5(inputVal) {
 function fullquery6(inputVal) {
 
 	$.ajax({
-      url: "/JWork/Fullquery6",
+      url: "/BWork/Fullquery6",
       data: { 
       text : inputVal
       },

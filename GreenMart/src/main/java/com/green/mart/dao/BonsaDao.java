@@ -25,6 +25,7 @@ public interface BonsaDao {
 	
 	DeptVo deptView(String d_id);
 	
+	void deptUp(DeptVo dVo);
 	//사원관리
 	List<EmployeeVo> getEmpList();
 

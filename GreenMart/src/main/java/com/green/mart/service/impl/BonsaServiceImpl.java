@@ -51,7 +51,12 @@ public class BonsaServiceImpl implements BonsaService {
 		
 		bonsaDao.deptDel(d_id);
 	}
-	
+	// 거래처 수정
+	@Override
+	public void deptUp(DeptVo dVo) {
+		
+		bonsaDao.deptUp(dVo);
+	}
 	
 	// 사원관리 - 조회
 	@Override

@@ -30,6 +30,14 @@ DELETE FROM dept
 WHERE d_id = #{d_id}
 </delete>
 
+<update id="DeptUp">
+UPDATE dept
+SET d_name  = #{d_name},
+    d_dam   = #{d_dam},
+    d_phone = #{d_phone}
+WHERE d_id = #{d_id}
+</update>
+
 <!-- ================================================================= -->
 <!-- 사용자관리 --> 
 <select id="EmpList"

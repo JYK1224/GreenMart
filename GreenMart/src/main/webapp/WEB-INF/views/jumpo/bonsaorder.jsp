@@ -411,7 +411,7 @@ span {font-size: 40px; position: absolute; top: 20%; left:6% }
 
 주문일자 지정: <input type="date" id="jumun1"/>  <br />
 주문일자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <input type="date" id="jumun2" readonly="readonly"/>  <br />
-지정일자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <input type="date" id="jumun3" readonly="readonly"/> 
+지정일자:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      <input type="date" id="jumun3" readonly="readonly" style="margin: 0 10px 0 0;"/> 
 <input type="button" id= "order"  value= "주문" class="btn"/>
 <input type="button" id="excelsave" value ="액셀로 저장"  style=" margin: 0 20px; width:80px;" class="btn"/>
 </div>

@@ -12,15 +12,7 @@
     <%@ include file="/WEB-INF/include/subheader.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
   
-    <style>
-h2{text-align: center; margin: 20px; font-size: 30px; }
-table {margin-left: auto; margin-right: auto;}
-table, tr, td {border-collapse: collapse;}
-tr,td{border: 1px solid black; }
-td{ padding: 10px; margin: 30px; width: 200px;}
-select { width: 175px;}
-
-</style>
+   
 <script>
 
 function saveExcel() {
@@ -533,12 +525,62 @@ function fullquery6(inputVal) {
 
     
 </script>
+<style>
+#tr2:hover {  background-color: #f5f5f5; }
+tr,td{border: 1px solid black; }
+td{ padding: 10px; margin: 30px; width: 200px;}
+#qq { border: 3px solid #666666; position: absolute; left: 42%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray;  padding: 15px; margin-top: 25px; }
+select { width: 175px;}
+#span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray; overflow: auto;}
+#ta1 {width:100%; height: 390px; }
 
+#bb {width: 90%; height: 40px;}
+#aa {width: 90%; height: 40px;}
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+</style>
 </head>
 <body>
 	<div id="gd">
-	  <h2>상품 전체 조회</h2>
-	 <table  style="width: 100%; height: 50px;">
+	   <span id="span">상품 전체 조회</span>
+	 <table id="qq">
 	 <tr>
 	 <td>
 	 <span>점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -563,18 +605,19 @@ function fullquery6(inputVal) {
 	 <option value="가정잡화">가정잡화</option>
 	 <option value="문화복식">문화복식</option>
 	 </select>
-	 <input type="button" id="productbutton" value="조회" >
-	 <button onclick="refresh()">새로고침</button>
-	 <input type="button" id="excelsave" value="엑셀로 저장" style="float: right;" />
+	 <input type="button" id="productbutton" value="조회" class="btn" style=" margin: 0 20 0 20px;">
+	 <button onclick="refresh()" class="btn" style=" margin: 0 10px; width:60px;">새로고침</button>
+	 <input type="button" id="excelsave" value="엑셀로 저장"  style="  width:80px; " class="btn" />
 	 </td>
 
 	 </tr>
 	 </table>
+	 <div id= "lay" >
 	 <table id="ta1">
-	 	<tr>
+	 	<tr id = "bb">
 	<td colspan="4">재고금액</td><td  colspan="4" id="x1"></td>
 	</tr>
-	 <tr>
+	 <tr id="aa">
 	 <td>상품코드</td>
 	 <td>상품명</td>
 	 <td>입고가격</td>
@@ -595,13 +638,9 @@ function fullquery6(inputVal) {
 	 <td id="inquired10"></td>
 	 </tr>
 		</table>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-    <%@ include file="/WEB-INF/include/bottom.jsp" %>
+	</div>
 
 	</div>
+    <%@ include file="/WEB-INF/include/bottom.jsp" %>
 </body>
 </html>

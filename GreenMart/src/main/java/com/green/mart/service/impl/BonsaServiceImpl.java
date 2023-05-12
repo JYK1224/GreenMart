@@ -15,6 +15,7 @@ import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
+import com.green.mart.vo.work.SearchJOrderListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
 import com.green.mart.vo.work.SearchProductVo;
@@ -217,5 +218,16 @@ public class BonsaServiceImpl implements BonsaService {
 	public int updateStockMinus(Map<String, Object> map) {
 		int aftcnt = bonsaDao.updateStockMinus(map);
 		return aftcnt;
+	}
+	
+	@Override
+	public List<JumpoVo> getSearchJOrderJumpo() {
+		List<JumpoVo> list = bonsaDao.getSearchJOrderJumpo();
+		return list;
+	}
+	@Override
+	public List<SearchJOrderListVo> searchJOrderList(Map<String, Object> map) {
+		List<SearchJOrderListVo> list = bonsaDao.searchJOrderList(map);
+		return list;
 	}
 }

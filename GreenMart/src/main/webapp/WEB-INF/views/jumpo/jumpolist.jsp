@@ -218,7 +218,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 
 <body>
 	<div id="gd">
-	<span>점포 조회</span>
+	<span>점포 전체 조회</span>
 	<div id="date">
 점포명:      <input type="text" id="search" style=" margin: 0 10px 0 0;"/> <input type="button" id="jumposearch" value="검색" class="btn"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px; " class="btn"/>

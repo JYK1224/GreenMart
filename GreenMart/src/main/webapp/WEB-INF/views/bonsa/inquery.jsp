@@ -12,9 +12,11 @@
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }
 table {margin-left: auto; margin-right: auto;}
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
 table, tr, td {border-collapse: collapse;}
 tr,td{border: 1px solid black; }
 td{ padding: 10px; margin: 30px; width: 200px;}
+#qq { background-color: #f2f2f2;}
 </style>
     <%@ include file="/WEB-INF/include/subheader.jsp" %>
     
@@ -119,7 +121,7 @@ window.onload = function () {
 <body>
 	<div id="gd">
 	 	 <h2>상품 상세 조회</h2>
-	 <table>
+	 <table id="lay">
 	 <tr>
 	 <td colspan="3">
 	 <input type="radio" name="radio"  id="radio1" value="상품코드" checked>상품코드<br>
@@ -131,43 +133,43 @@ window.onload = function () {
 
 	 </tr>
 	 <tr>
-	 <td>상품코드</td>
+	 <td id="qq">상품코드</td>
 	 <td colspan="2" id="inquired1"></td>
 	 </tr>
 	 <tr>
-	 <td>상품명</td>
+	 <td id="qq">상품명</td>
 	 <td id="inquired2"></td>
 	 </tr>
 	 <tr>
-	 <td>입고가격</td>
+	 <td id="qq">입고가격</td>
 	 <td id="inquired3"></td>
 	 </tr>
 	 <tr>
-	 <td>판매가격</td>
+	 <td id="qq">판매가격</td>
 	 <td id="inquired4"></td>
 	 </tr>
 	 <tr>
-	 <td>이익률</td>
+	 <td id="qq">이익률</td>
 	 <td id="inquired5"></td>
 	 </tr>
 	 <tr>
-	 <td>거래처코드</td>
+	 <td id="qq">거래처코드</td>
 	 <td id="inquired6"></td>
 	 </tr>
 	 <tr>
-	 <td>거래처명</td>
+	 <td id="qq">거래처명</td>
 	 <td id="inquired7"></td>
 	 </tr>
 	 <tr>
-	 <td>VAT</td>
+	 <td id="qq">VAT</td>
 	 <td>10%</td>
 	 </tr>
 	 <tr>
-	 <td>재고</td>
+	 <td id="qq">재고</td>
 	 <td id="inquired8"></td>
 	 </tr>
 	 <tr>
-	 <td>상품분류</td>
+	 <td id="qq">상품분류</td>
 	 <td id="inquired9"></td>
 	 </tr>
 	 <tr>

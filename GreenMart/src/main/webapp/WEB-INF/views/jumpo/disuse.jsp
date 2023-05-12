@@ -264,23 +264,68 @@ th {
 }
 
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; 
 }
+
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 100%; height: 390px;}
+span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#fegi { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 45px;}
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
 </style>
 </head>
 <body>
 <div id="gd">	
-<h2>상품 폐기 업무</h2>
+<span>상품 폐기 업무</span>
 <div id="fegi">
-상품 분류: <div id ="checkbox"></div><input type="button" id="search" value="검색"/>
-<br />
-<input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
-<input type="button" id= "disuse" style="float: right;" value= "폐기확정"/>
+상품 분류: <div id ="checkbox"></div><input type="button" id="search" value="검색" style=" margin: 0 20px 0 10px;" class="btn"/>
+<input type="button" id= "disuse"  class="btn" value= "폐기확정" class="btn" style="width: 70px;"/>
+<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px;" class="btn"/>
 </div>
+<div id= "lay" >
 <div id="table">
 
 </div>
-<%@ include file="/WEB-INF/include/bottom.jsp" %>
 </div>
+</div>
+<%@ include file="/WEB-INF/include/bottom.jsp" %>
 </body>
 </html>

@@ -13,13 +13,18 @@
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
   
     <style>
-h2{text-align: center; margin: 20px; font-size: 30px; }
-table {margin-left: auto; margin-right: auto;}
-table, tr, td {border-collapse: collapse;}
+
+#qq { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 8px;}
 tr,td{border: 1px solid black; }
 td{ padding: 10px; margin: 30px; width: 200px;}
 select { width: 175px;}
-
+#span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#ta1 {overflow: auto; width: 100%; height: 390px;}
+#tr2 {overflow: auto; width: 90%; height: 250px;}
+#bb {width: 90%; height: 40px;}
+#aa {width: 90%; height: 40px;}
 </style>
 <script>
 
@@ -537,8 +542,8 @@ function fullquery6(inputVal) {
 </head>
 <body>
 	<div id="gd">
-	  <h2>상품 전체 조회</h2>
-	 <table  style="width: 100%; height: 50px;">
+	  <span id="span">상품 전체 조회</span>
+	 <table  style="width: 100%; height: 50px;" id="qq">
 	 <tr>
 	 <td>
 	 <span>점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -570,11 +575,12 @@ function fullquery6(inputVal) {
 
 	 </tr>
 	 </table>
+	 <div id= "lay" >
 	 <table id="ta1">
-	 	<tr>
+	 	<tr id = "bb">
 	<td colspan="4">재고금액</td><td  colspan="4" id="x1"></td>
 	</tr>
-	 <tr>
+	 <tr id="aa">
 	 <td>상품코드</td>
 	 <td>상품명</td>
 	 <td>입고가격</td>
@@ -595,13 +601,12 @@ function fullquery6(inputVal) {
 	 <td id="inquired10"></td>
 	 </tr>
 		</table>
-	<br>
-	<br>
-	<br>
-	<br>
-	
-    <%@ include file="/WEB-INF/include/bottom.jsp" %>
-
 	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	</div>
+    <%@ include file="/WEB-INF/include/bottom.jsp" %>
 </body>
 </html>

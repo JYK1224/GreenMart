@@ -149,7 +149,8 @@ tr:hover {
 				<table>
 					<tr>
 						<td class="center">거래처번호 <input type="text" id="did"
-							readonly="readonly" class="center" value="${vo.d_id }" />
+							readonly="readonly" class="center" value="${vo.d_id }"
+							maxlength="6" />
 						</td>
 					</tr>
 					<tr>

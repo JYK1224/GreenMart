@@ -126,7 +126,7 @@ window.onload = function() {
 	let alldeptsearchEl = document.getElementById('alldeptsearch')
 	alldeptsearchEl.onclick = function(e) {
 		$.ajax({
-			url: "/JWork/SearchAllDept",
+			url: "/BWork/SearchAllDept",
 			data : { search: $('#search').val()  },
 			type: "POST", 
 					

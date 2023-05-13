@@ -20,6 +20,7 @@ import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
+import com.green.mart.vo.work.SearchOutputListVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 @Repository
@@ -300,5 +301,24 @@ public class BonsaDaoImpl implements BonsaDao {
 	public int outputUpdateStock(Map<String, Object> map) {
 		int aftcnt = sqlSession.update("Bonsa.OutputUpdateStock",map);
 		return aftcnt;
+	}
+	
+	@Override
+	public List<JumpoVo> getSearchOutJumpo() {
+		List<JumpoVo> list = sqlSession.selectList("Bonsa.SearchOutput");
+		return list;
+	}
+	@Override
+	public List<SearchOutputListVo> searchOutList(Map<String, Object> map) {
+		List<SearchOutputListVo> list = null;
+	    String j_name = (String) map.get("j_name"); 
+
+	    if (j_name != "" && !j_name.isEmpty()) {
+	        list = sqlSession.selectList("Bonsa.SearchOutList", map);
+	    } else {
+	        list = sqlSession.selectList("Bonsa.SearchOutList1", map);
+	    }
+
+	    return list;
 	}
 }

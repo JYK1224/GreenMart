@@ -432,5 +432,36 @@ ORDER BY D.D_NAME, DIS.DIS_DATE ASC
 	          WHERE P_ID = #{ p_id }
 	            AND J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{ e_id }))
 </update>
+<!-- 출고내역 조회 -->
+<select id="SearchOutput"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
 
+</select>
+<select id="SearchOutList"
+resultType="com.green.mart.vo.work.SearchOutputListVo">
+SELECT TO_CHAR(O.OUT_DATE, 'YYYY-MM-DD')AS OUT_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.OUT_NUM, 0) OUT_NUM,  E.E_ID 
+FROM EMPLOYEE E, OUTPUT O, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND TO_DATE(OUT_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, O.OUT_DATE ASC 
+</select>
+<select id="SearchOutList1"
+resultType="com.green.mart.vo.work.SearchOutputListVo">
+SELECT TO_CHAR(O.OUT_DATE, 'YYYY-MM-DD')AS OUT_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.OUT_NUM, 0) OUT_NUM,  E.E_ID 
+FROM EMPLOYEE E, OUTPUT O, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND TO_DATE(OUT_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, O.OUT_DATE ASC
+</select>
 </mapper>

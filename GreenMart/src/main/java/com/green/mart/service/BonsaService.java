@@ -15,6 +15,7 @@ import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
+import com.green.mart.vo.work.SearchOutputListVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 public interface BonsaService {
@@ -99,4 +100,8 @@ public interface BonsaService {
 	int insertOutput(Map<String, Object> map);
 	// 본사출고시 재고DB 반영
 	int outputUpdateStock(Map<String, Object> map);
+
+	List<JumpoVo> getSearchOutJumpo();
+
+	List<SearchOutputListVo> searchOutList(Map<String, Object> map);
 }

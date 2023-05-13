@@ -20,6 +20,7 @@ import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
+import com.green.mart.vo.work.SearchOutputListVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 @Service
@@ -262,4 +263,16 @@ public class BonsaServiceImpl implements BonsaService {
 		return aftcnt;
 		
 	}
+	
+	@Override
+	public List<JumpoVo> getSearchOutJumpo() {
+		List<JumpoVo> list = bonsaDao.getSearchOutJumpo();
+		return list;
+	}
+	@Override
+	public List<SearchOutputListVo> searchOutList(Map<String, Object> map) {
+		List<SearchOutputListVo> list = bonsaDao.searchOutList(map);
+		return list;
+	}
+	
 }

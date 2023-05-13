@@ -27,6 +27,7 @@ import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
 import com.green.mart.vo.work.SearchOrderListVo;
 import com.green.mart.vo.work.SearchOrderVo;
+import com.green.mart.vo.work.SearchOutputListVo;
 import com.green.mart.vo.work.SearchProductVo;
 
 
@@ -542,5 +543,27 @@ public class BonsaWorkController {
 			return aftcnt;
 
 		}
+		// 출고내역 조회1
+				@RequestMapping("/SearchOutListSelect")
+				@ResponseBody
+				public List<JumpoVo> returnSearchOutlist() throws Exception {
+					List<JumpoVo> list = bonsaService.getSearchOutJumpo();
+					return list;
+				}
+				// 출고내역 조회2
+			@RequestMapping("/SearchOutList")
+			@ResponseBody
+				public List<SearchOutputListVo> returnOutlistVO(String search, String startdate, String enddate) throws Exception {
 
+					Map<String, Object> map = new HashMap<String, Object>();
+					String j_name = search;
+				
+						map.put("j_name", j_name);
+						map.put("startdate", startdate);
+						map.put("enddate", enddate);
+						System.out.println("map =" + map);
+						List<SearchOutputListVo> list = bonsaService.searchOutList(map);
+						return list;
+					}	
+		
 }

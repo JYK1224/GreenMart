@@ -9,41 +9,7 @@
 <link rel="stylesheet" href="/css/common.css" />
 <%@ include file="/WEB-INF/include/subheader.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<style>
-h2 {
-	border-collapse: collapse;
-	text-align: center;
-}
 
-table {
-	width: 95%;
-	border-collapse: collapse;
-	margin: 0 0 0 30px;
-}
-
-th, td {
-	padding: 8px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
-}
-
-th {
-	background-color: #f2f2f2;
-}
-
-tr:hover {
-	background-color: #f5f5f5;
-}
-
-.btn {
-	cursor: pointer;
-}
-
-.center {
-	border-collapse: collapse;
-	text-align: center;
-}
-</style>
 <script>
 	
 
@@ -139,47 +105,88 @@ tr:hover {
 	
 
 </script>
+<style>
+h2{text-align: center; margin: 20px; font-size: 30px; }
+table {margin-left: auto; margin-right: auto;}
+#lay {width: 30%; height: 400px; border: 3px solid #666666; position: absolute; left:5%; 
+left: 360px;
+ margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
+table, tr, td {border-collapse: collapse;}
+tr,td{border: 1px solid black; }
+td{ padding: 10px; margin: 30px; width: 200px;}
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+</style>
+
 </head>
 <body>
 	<div id="gd">
-		<div id="main">
-			<div>
 				<h2>거래처 상세보기</h2>
 				<!-- 입력받은 정보를 서버로 전송한다 -->
-				<table>
+				<table id="lay">
 					<tr>
-						<td class="center">거래처번호 <input type="text" id="did"
+						<td class="center">거래처번호 :  &nbsp; &nbsp;<input type="text" id="did"
 							readonly="readonly" class="center" value="${vo.d_id }"
 							maxlength="6" />
 						</td>
 					</tr>
 					<tr>
-						<td class="center">거래처이름 <input type="text" id="dname"
+						<td class="center">거래처이름 :  &nbsp; &nbsp;<input type="text" id="dname"
 							readonly="readonly" class="center" value="${vo.d_name }" />
 						</td>
 					</tr>
 					<tr>
-						<td class="center">담당자 <input type="text" id="ddam"
+						<td class="center">담당자 :  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ddam"
 						readonly="readonly" class="center" value="${vo.d_dam }" />
 						</td>
 					</tr>
 					<tr>
-						<td class="center">담당자 번호 <input type="text" id="dphone"
+						<td class="center">담당자번호 :  &nbsp; &nbsp;<input type="text" id="dphone"
 							readonly="readonly" class="center" maxlength="13"
 							oninput="oninputPhone(this)" value="${vo.d_phone }" />
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="button" class="btn" id="upBtn"
-							value="수정"> <input type="button" class="btn" id="delBtn"
-							value="삭제" /> <input type="button" class="btn" id="backBtn"
-							value="뒤로" /> <input type="button" class="btn"
-							style="display: none" id="submitBtn" value="확인" /></td>
+						<td colspan="2"><input type="button" class="btn" id="upBtn"	value="수정" style="margin: 0 0 0 70px;">
+							 <input type="button" class="btn" id="delBtn" value="삭제" />
+							 <input type="button" class="btn" id="backBtn"	value="뒤로" /> 
+							<input type="button" class="btn" style="display: none" id="submitBtn" value="확인" /></td>
 					</tr>
 
 				</table>
-			</div>
-		</div>
 		<%@ include file="/WEB-INF/include/bottom.jsp"%>
 	</div>
 </body>

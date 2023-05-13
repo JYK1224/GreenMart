@@ -100,7 +100,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 		      //e.stopPropagation();
 			  let  html       = '/Deptlist1'  ;
 			  let  name       = 'Deptlist1'; 
-			  let  features   = 'height=700, width=1050, top=200, left=600'; 
+			  let  features   = 'height=800, width=1050, top=200, left=600'; 
 			  window.open(html, name, features);
 			  window.close();
 		})

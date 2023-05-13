@@ -74,8 +74,19 @@ window.onload = function () {
 	  const radio1 = document.getElementById("radio1");
 	  const radio2 = document.getElementById("radio2");
 	  const text = document.getElementById("text");
-	  const button = document.querySelector("input[type='button']");
-
+	  const button = document.querySelector("input[name='pbutton']");
+	  const upbtnEl = document.getElementById("upbtn");
+	  
+	  upbtnEl.addEventListener("click", function (e) {
+		  let pid = document.getElementById("inquired1").textContent;
+		  let html = 'BWork/productView?p_id=' + pid;
+		  let name = 'productView';
+		  let  features   = 'height=700, width=1050, top=200, left=600'; 
+		  window.open(html, name, features);
+		  window.close(); 
+	  });
+	
+	  
 	  radio1.addEventListener("click", function () {
 	    text.addEventListener("input", function () {
 	      const inputVal = text.value.trim();
@@ -92,8 +103,10 @@ window.onload = function () {
 	    }
 	    if (radio2.checked && inputVal !== "") {
 	      inquery2(); 
+	      document.getElementById("upbtn").style.display= 'inline-block'
 	    } else {
 	      inquery1(); 
+	      ocument.getElementById("upbtn").style.display= 'inline-block'
 	    }
 	  });
 
@@ -163,8 +176,8 @@ window.onload = function () {
 	 <input type="radio" name="radio"  id="radio1" value="상품코드" checked>상품코드<br>
 	 <input type="radio" name="radio"  id="radio2" value="상품명">상품명 
 	 <input type="text" id="text" >
-	 <input type="button" id="productbutton" value="조회" class="btn" >
-	 
+	 <input type="button" id="productbutton" value="조회" name="pbutton" class="btn" >
+	 <input type="button" id="upbtn" value="수정" style="display: none"/>
 	 </td>
 
 	 </tr>

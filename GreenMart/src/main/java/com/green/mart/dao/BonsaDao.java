@@ -104,4 +104,16 @@ public interface BonsaDao {
 	List<JumpoVo> getSearchOutJumpo();
 
 	List<SearchOutputListVo> searchOutList(Map<String, Object> map);
+	//신규 상품 등록
+	void insetProduct(SearchProductVo pVo);
+
+	List<AssortmentVo> getAstList();
+
+	List<DeptVo> getDeptList();
+	// 상품 뷰 
+	SearchProductVo productView(String p_id);
+
+	void productUp(SearchProductVo pVo);
+
+	void productDel(String p_id);
 }

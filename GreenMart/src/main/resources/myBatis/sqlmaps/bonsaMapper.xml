@@ -79,7 +79,47 @@ VALUES
 
 </update>
  <!-- ============================================ -->
+<!-- 신규상품 등록 -->
+<insert id="InsertProduct">
+INSERT INTO product
+( p_seq, p_id, p_name, p_iprice, p_sprice, p_del, d_id, a_id, j_id)
+VALUES
+( (select count(p_seq) +1 from product) , 
+#{p_id}, #{p_name}, #{p_iprice}, #{p_sprice}, 0 , #{d_id}, #{a_id}, #{j_id})
+</insert>
+<select id="GetDeptList"
+resultType="com.green.mart.vo.DeptVo">
+SELECT d_id, d_name 
+FROM dept
+</select>
+<select id="getAstList"
+resultType="com.green.mart.vo.AssortmentVo">
+SELECT a_id, a_name
+FROM assortment
+</select>
+<!-- 상품 뷰 -->
+<select id="ProductView"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT p_id, p_name, p_iprice, p_sprice, d_id, a_id, j_id 
+FROM product
+WHERE p_id=#{p_id}  
+</select>
+<update id="ProductUp">
+UPDATE product
+SET p_name=#{p_name},
+	p_iprice=#{p_iprice},
+	p_sprice=#{p_sprice},
+	d_id=#{d_id},
+	a_id=#{a_id}
+WHERE p_id = #{p_id}	
+</update>
+<update id="ProductDel">
+UPDATE product
+SET p_del=1
+WHERE p_id=#{p_id}
+</update>
 
+<!-- ===================================================================== -->
  <select id="SearchSale"
 resultType="com.green.mart.vo.JumpoVo">
 SELECT J_NAME FROM JUMPO

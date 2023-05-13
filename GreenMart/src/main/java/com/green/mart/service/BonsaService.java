@@ -104,4 +104,16 @@ public interface BonsaService {
 	List<JumpoVo> getSearchOutJumpo();
 
 	List<SearchOutputListVo> searchOutList(Map<String, Object> map);
+	// 신규 상품 등록
+	void insertProduct(SearchProductVo pVo);
+
+	List<DeptVo> getDeptList();
+	
+	List<AssortmentVo> getAstList();
+	// 수정 (뷰)
+	SearchProductVo productView(String p_id);
+
+	void productUp(SearchProductVo pVo);
+
+	void productDel(String p_id);
 }

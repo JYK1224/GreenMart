@@ -321,4 +321,39 @@ public class BonsaDaoImpl implements BonsaDao {
 
 	    return list;
 	}
+	//신규 상품등록
+	@Override
+	public void insetProduct(SearchProductVo pVo) {
+		
+		sqlSession.insert("Bonsa.InsertProduct", pVo);
+	}
+	@Override
+	public List<AssortmentVo> getAstList() {
+		
+		List<AssortmentVo> list = sqlSession.selectList("Bonsa.getAstList");
+		return list;
+	}
+	@Override
+	public List<DeptVo> getDeptList() {
+		
+		List<DeptVo> list = sqlSession.selectList("Bonsa.GetDeptList");
+		return list;
+	}
+	@Override
+	public SearchProductVo productView(String p_id) {
+
+		SearchProductVo pVo = sqlSession.selectOne("Bonsa.ProductView", p_id);
+		return pVo;
+	}
+	@Override
+	public void productUp(SearchProductVo pVo) {
+		
+		sqlSession.update("Bonsa.ProductUp", pVo);
+	}
+	@Override
+	public void productDel(String p_id) {
+		
+		sqlSession.update("Bonsa.ProductDel", p_id);
+	} 
+
 }

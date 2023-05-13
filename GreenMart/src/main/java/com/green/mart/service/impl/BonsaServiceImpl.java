@@ -274,5 +274,39 @@ public class BonsaServiceImpl implements BonsaService {
 		List<SearchOutputListVo> list = bonsaDao.searchOutList(map);
 		return list;
 	}
-	
+	// 신규상품 등록
+		@Override
+		public void insertProduct(SearchProductVo pVo) {
+			
+			bonsaDao.insetProduct(pVo);
+		}
+		@Override
+		public List<AssortmentVo> getAstList() {
+			
+			List<AssortmentVo> list = bonsaDao.getAstList();
+			return list;
+		}
+		@Override
+		public List<DeptVo> getDeptList() {
+			
+			List<DeptVo> list = bonsaDao.getDeptList();
+			return list;
+		}
+		@Override
+		public SearchProductVo productView(String p_id) {
+			
+			SearchProductVo pVo = bonsaDao.productView(p_id);
+			
+			return pVo;
+		}
+		@Override
+		public void productUp(SearchProductVo pVo) {
+			
+			bonsaDao.productUp(pVo);
+			
+		}
+		@Override
+		public void productDel(String p_id) {
+			bonsaDao.productDel(p_id);
+		}
 }

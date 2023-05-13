@@ -360,6 +360,69 @@ public class BonsaWorkController {
 			List<SearchProductVo> list = bonsaService.searchProductList1(text);
 			return list;
 		}
+		// 신규상품 등록	
+		@RequestMapping(value= "/productAdd" , method= RequestMethod.POST)
+		public ModelAndView productAdd (
+				@RequestParam("d_id") String d_id,
+				@RequestParam("a_id") String a_id,
+				SearchProductVo pVo) {
+			
+			bonsaService.insertProduct(pVo);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/Productadd1");
+			
+			return mv;
+		}
+		// 상품 수정 
+		@RequestMapping("/productView")
+		public ModelAndView productView (String p_id ) {
+			
+			List<DeptVo> checkDeptlist = bonsaService.getDeptList();
+			List<AssortmentVo> checkAstlist = bonsaService.getAstList();
+			
+			SearchProductVo pVo = bonsaService.productView(p_id);
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/bonsa/productview");
+			mv.addObject("vo", pVo);
+			mv.addObject("checkDeptlist", checkDeptlist);
+			mv.addObject("checkAstlist", checkAstlist);
+			
+			return mv;
+		}
+		@RequestMapping("/productUpdate" )
+		public ResponseEntity<SearchProductVo> productUp(
+				@RequestParam("p_id") String p_id, 
+				@RequestParam("p_name") String p_name,
+				@RequestParam("p_iprice") String p_iprice,
+				@RequestParam("p_sprice") String p_sprice,
+				@RequestParam("d_id") String d_id,
+				@RequestParam("a_id") String a_id
+				) {
+			
+			SearchProductVo pVo = new SearchProductVo();
+			
+			pVo.setP_id(p_id);
+			pVo.setP_name(p_name);
+			pVo.setP_iprice(Integer.parseInt(p_iprice));
+			pVo.setP_sprice(Integer.parseInt(p_sprice));
+			pVo.setD_id(d_id);
+			pVo.setA_id(a_id);
+			
+			bonsaService.productUp(pVo);
+			
+			return ResponseEntity.ok(pVo) ;
+		}
+		@RequestMapping("productDelete")
+		public ResponseEntity<String> productDel(
+				@RequestParam("p_id") String p_id) {
+			
+			bonsaService.productDel(p_id);
+			
+			return ResponseEntity.ok("조회함") ;
+		}
+
+		
 		//------------------------------------------------
 		// 주문내역 조회
 		@RequestMapping("/SearchOrderList")

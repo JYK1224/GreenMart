@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.BonsaService;
+import com.green.mart.vo.AssortmentVo;
+import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 
 @Controller
 public class BonsaController {
 
 	@Autowired
-	private BonsaService bonsService;
+	private BonsaService bonsaService;
 	
 	@RequestMapping("/Deptlist1")
 	public  ModelAndView   deptlist1() {
@@ -93,14 +95,22 @@ public class BonsaController {
 	}
 	@RequestMapping("/Productadd1")
 	public  ModelAndView   productadd1() {
+		List<DeptVo> checkDeptlist = bonsaService.getDeptList();
+		List<AssortmentVo> checkAstlist = bonsaService.getAstList();
+		
+		
 		ModelAndView  mv  =  new ModelAndView(); 
-		mv.setViewName("bonsa/productadd"); 
+		mv.setViewName("bonsa/productadd");
+		mv.addObject("checkDeptlist", checkDeptlist);
+		mv.addObject("checkAstlist", checkAstlist);
+		
+		
 		return  mv;
 	}
 	@RequestMapping("/Userlist")
 	public  ModelAndView   userlist() {
 		
-		List<EmployeeVo> empList = bonsService.getEmpList(); 	
+		List<EmployeeVo> empList = bonsaService.getEmpList(); 	
 		ModelAndView  mv  =  new ModelAndView(); 
 		
 		mv.setViewName("bonsa/userlist"); 

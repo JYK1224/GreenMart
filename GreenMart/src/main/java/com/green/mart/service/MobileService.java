@@ -1,4 +1,4 @@
-package com.green.mart.service;
+/*package com.green.mart.service;
 
 import java.util.HashMap;
 
@@ -8,4 +8,4 @@ public interface MobileService {
 
 	CustomerVo getCustomer(HashMap<String, String> map);
 
-}
+}*/

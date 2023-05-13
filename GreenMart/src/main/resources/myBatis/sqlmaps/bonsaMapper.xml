@@ -360,6 +360,11 @@ AND TO_DATE(O_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
 ORDER BY D.D_NAME, O.O_DATE ASC
 </select>
 
+<select id="SearchJO"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+</select>
+
 <!-- 폐기내역 조회 -->
 <select id="SearchDis"
 resultType="com.green.mart.vo.JumpoVo">

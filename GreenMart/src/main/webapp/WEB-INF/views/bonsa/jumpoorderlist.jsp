@@ -77,14 +77,14 @@ function data_display(data) {
 	
 	data.forEach(function(data, index) { 	
 	html += '<tr>';
-	html += '<td>'+data.o_date+'</td>';
+	html += '<td>'+data.b_date+'</td>';
 	html += '<td>'+data.d_name+'</td>';
 	html += '<td>'+data.p_id+'</td>';
 	html += '<td>'+data.p_name+'</td>';
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
-	html += '<td>'+data.o_num+'</td>';
-	html += '<td>'+data.o_num*data.p_iprice+'</td>';
+	html += '<td>'+data.b_num+'</td>';
+	html += '<td>'+data.b_num*data.p_iprice+'</td>';
 	html += '<td>'+data.e_id+'</td>';
 	html += '<td></td>';
 	html += '</tr>';
@@ -101,11 +101,12 @@ function checkbox_display(data) {
 	html += '<select id="myCheckBox">';
 	html += '<option value= "" selected>선택</option>';
 	html += '<option value= "" >전체</option>';
+	html += '<option value= "" >부전점</option>';
 	
-	data.forEach(function(data, index) { 	
+	/* data.forEach(function(data, index) { 	
 	html += '<option value= "'+ data.j_name +'">'+data.j_name+'</option>';
 	num++;
-	})
+	}) */
 	
 	html += '</select>';
 	return html;
@@ -173,7 +174,7 @@ window.onload = function () {
 		                
 						data.forEach(function (item) {
 							
-							totalsPrice += parseFloat(item.p_iprice*item.o_num);
+							totalsPrice += parseFloat(item.p_iprice*item.b_num);
 			              
 						});
 						let html = data_display(data);

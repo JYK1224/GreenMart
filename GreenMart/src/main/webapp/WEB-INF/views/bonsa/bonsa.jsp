@@ -126,7 +126,7 @@ window.onload = function() {
 	  //    e.stopPropagation();
 		  let  html       = '/Deptadd1'  ;
 		  let  name       = 'Deptadd1';  // '' 값이 없으면 창이 여러번 뜬다
-		  let  features   = 'height=750, width=1050, top=200, left=300'; 
+		  let  features   = 'height=500, width=550, top=200, left=300'; 
 		  window.open(html, name, features);
 	  }); 
 	  let btnProductadd1El = document.getElementById('productadd1');

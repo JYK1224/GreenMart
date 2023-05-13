@@ -11,16 +11,72 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
 <style>
-	h2{text-align: center; margin: 20px; font-size: 30px; }
-	table {margin-left: auto; margin-right: auto;}
-	table, tr, td {border-collapse: collapse;}
-	tr,td{border: 1px solid black; }
-	td{ padding: 10px; margin: 30px; width: 200px;}
-	select { width: 175px;}
+	<style>
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5; 
+}
+
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 100%; height: 390px;}
+span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#date { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 30px;}
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
 </style>
 <script>
-
-// 엑셀로 저장
+//엑셀로 출력
 function saveExcel() {
 	
 	var table = document.getElementById("myTable");
@@ -49,7 +105,7 @@ function saveExcel() {
 	/* 배열을 워크북 객체로 변환 */
 	var wb = XLSX.utils.book_new();
 	var ws = XLSX.utils.aoa_to_sheet(rowValues);
-	XLSX.utils.book_append_sheet(wb, ws, 'Input');
+	XLSX.utils.book_append_sheet(wb, ws, 'Output');
 	
 	let today = new Date();
 	let day = today.getDate();
@@ -60,7 +116,7 @@ function saveExcel() {
 	let formattedDate = year + '-' + month + '-' + day;
 	
 	
-	XLSX.writeFile(wb, ('InputTable_'+formattedDate +'.xlsx'));
+	XLSX.writeFile(wb, ('OutputTable_'+formattedDate +'.xlsx'));
 }
 	// 출고수량 배열
 	function saveOutputNum(columnIndex) {
@@ -216,8 +272,8 @@ function data_display(data) {
 //===========================================================
 // body 생성되고
 window.onload = function() {
-	
 	let excelEl       = document.getElementById("excelsave")
+	
 	// 날짜 지정
 	const order1El = document.getElementById("order1")
 	const order2El = document.getElementById("order2");
@@ -303,8 +359,7 @@ window.onload = function() {
 			$('#totalOutputKum').val(acc);
 			
 		})
-		
-}
+	}
 	
 	// 출고 버튼 클릭시 출고
 	const outPutEl  = document.getElementById("outPut")
@@ -342,11 +397,12 @@ window.onload = function() {
 		}); 
 		
 	}
+	
+	
 	//excel로 표 저장
 	excelEl.onclick = function() {
 		saveExcel()
 	}
-	
 	
 }
 
@@ -357,23 +413,25 @@ window.onload = function() {
 <body>
 
 	<div id="gd">
-	 <h2>상품 출고 업무</h2>
+	 <span>상품 출고 업무</span>
 	<div id="date">
-	주문내역 조회: <input type="date" id="order1"/>  <br />
-	주문일자:      <input type="date" id="order2" readonly="readonly"/>  <br />
-	<span>점포 : &nbsp;&nbsp;&nbsp;&nbsp;</span>
+	주문내역 조회:&nbsp; <input type="date" id="order1"/>  <br />
+	주문일자:  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;     <input type="date" id="order2" readonly="readonly"/>  <br />
+	점포 : 
 	<select id="combobox" >
 	 <option value="none">=== 선택 ===</option>
 	 <option value="12020">부전점</option>
 	</select>
-	<input type="button" id="orderSearch" value="검색"/>
-	<input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
-	<input type="button" id= "outPut" style="float: right;" value= "출고"/>
+	<input type="button" id="orderSearch" value="검색" class="btn"/>
+	<input type="button" id="excelsave" value ="액셀로 저장" class="btn" style="width: 70px; margin: 0 0 0 10px;" />
+	<input type="button" id= "outPut" style="float: right;" value= "출고"  class="btn"/>
 	</div>
-	
+	<div id= "lay" >
 	<div id="table">
+
 	</div>
-	
+	</div>
+
     <%@ include file="/WEB-INF/include/bottom.jsp" %>
 	</div>
 </body>

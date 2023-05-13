@@ -177,7 +177,7 @@ window.onload = function () {
 	 <input type="radio" name="radio"  id="radio2" value="상품명">상품명 
 	 <input type="text" id="text" >
 	 <input type="button" id="productbutton" value="조회" name="pbutton" class="btn" >
-	 <input type="button" id="upbtn" value="수정" style="display: none"/>
+	 <input type="button" id="upbtn" value="수정" style="display: none" class="btn"/>
 	 </td>
 
 	 </tr>

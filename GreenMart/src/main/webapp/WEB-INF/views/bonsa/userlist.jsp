@@ -11,33 +11,6 @@
 </head>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
 
-<style>
-h2{
-	border-collapse: collapse;
-	text-align: center;
-}
-
-table {
-  width: 95%;
-  border-collapse: collapse;
-  margin : 0 0 0 30px;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-</style>
-
 
 
 <script>
@@ -133,7 +106,7 @@ window.onload = function() {
 		 let customer_id = this.parentNode.parentNode.querySelector('td:first-child').textContent;
 		  	let  html       = '/BWork/userAddForm' ;
 		  	let  name       = 'userAdd'; 
-			let  features   = 'height=700, width=700, top=200, left=600'; 
+			let  features   = 'height=700, width=550, top=200, left=600'; 
 			window.open(html, name, features);
 	 
 		 });
@@ -159,17 +132,82 @@ window.onload = function() {
 	  
 	 
 </script>
+<style>
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 95%; height: 390px;}
+span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#date { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 30px 15px; margin-top: 35px;}
+
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+</style>
 <body>
 <div id="gd">
- <div class="container">
-     <div class="content">
-        <h2>사원목록</h2> 
-        <div> 
+        <span>사원목록</span> 
+     <div id="date">
         	<input type="text" />
-        	<input type="button" id="find" name="find" value="조회"/>
-        	<input type="button" id="excelsave" value ="액셀로 저장" style="float: right; margin: 0 25px;"/>
-        	<input type="button" id="add" value ="등록" style="float: right; margin: 0 25px;"/>
+        	<input type="button" id="find" name="find" value="조회"class="btn"/>
+        	<input type="button" id="add" value ="등록" style=" margin: 0 0 0 25px;" class="btn"/>
+        	<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 25px; width:80px;" class="btn" />
         </div>
+        <div id="lay">
         <table id="table">
           <colgroup>
             <col width="11%">
@@ -198,11 +236,8 @@ window.onload = function() {
             </tr>          
           </c:forEach>
         </table>
-        <div id="table"></div>
      </div>  
-  </div>
-	
+	</div>
 <%@ include file="/WEB-INF/include/bottom.jsp" %>
-</div>
 </body>
 </html>

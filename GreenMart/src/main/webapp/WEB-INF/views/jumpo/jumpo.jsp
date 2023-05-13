@@ -137,7 +137,16 @@ window.onload = function() {
 		  let  name       = 'Bonsaorder';  // '' 값이 없으면 창이 여러번 뜬다
 		  let  features   = 'height=750, width=1050, top=200, left=300'; 
 		  window.open(html, name, features);
-	  });  
+	  });
+	  let btnFavoritesEl = document.getElementById('favorites');
+		btnFavoritesEl.addEventListener('click', function(e) {
+			e.preventDefault();
+			// e.stopPropagation();
+			let html = '/Favorites';
+			let name = 'Favorites'; // '' 값이 없으면 창이 여러번 뜬다
+			let features = 'height=750, width=1050, top=200, left=300';
+			window.open(html, name, features);
+		});
 }
 
 

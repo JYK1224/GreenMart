@@ -2,12 +2,16 @@ package com.green.mart;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.mart.service.FavoriteService;
 import com.green.menu3.service.Menu3Service;
 import com.green.menu3.vo.Menu3PagingVo;
 
@@ -16,6 +20,9 @@ public class HomeController {
 	
 	@Autowired
 	private Menu3Service menu3Service;
+	
+	@Autowired
+	private FavoriteService favoriteService;
 	
 	@RequestMapping("/")
 	public  ModelAndView  home() {
@@ -151,5 +158,34 @@ public class HomeController {
 			ModelAndView  mv  =  new ModelAndView(); 
 			mv.setViewName("mobile/mhome"); 
 			return  mv;
+		}
+		
+		@RequestMapping("/Favorites")
+		public ModelAndView favorites() {
+			ModelAndView  mv  =  new ModelAndView(); 
+			mv.setViewName("favorites");
+			return mv;
+		}
+		@RequestMapping("/SaveFavorites")
+		@ResponseBody
+		public int saveFavorites(@RequestParam(value="menus[]") String[] menus,
+								@RequestParam(value = "e_id") String e_id) {
+//			System.out.println("컨트롤러 메뉴들 : "+ Arrays.toString(menus));
+//			System.out.println(e_id);
+			
+			int aftcnt = 0 ;
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			int j = menus.length;
+			
+			aftcnt = favoriteService.deleteFavorite(e_id);	// e_id 의 기존 즐찾 모두삭제
+			for (int i = 0; i < j; i++) {
+				map.put("ft_id", menus[i]);
+				map.put("e_id",  e_id);
+				aftcnt += favoriteService.insertFavorite(map);	// 선택한 즐찾으로 추가
+				map.clear();
+			}
+			return aftcnt;
+			
 		}
 }

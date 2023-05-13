@@ -17,7 +17,7 @@
         	<li><a href="/Bonsa">본사화면</a></li>
         	<li><a href="/Menu3/Pds?nowpage=1&m_id=M01">커뮤니티</a></li>
         	<li><a href="/Customer">고객관리</a></li>
-        	<li><a href="">즐겨찾기</a></li>
+        	<li><a href="" id="favorites">즐겨찾기</a></li>
         </ul>
        </div>
        

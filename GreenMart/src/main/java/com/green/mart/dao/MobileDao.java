@@ -1,10 +1,10 @@
-package com.green.mart.service;
+package com.green.mart.dao;
 
 import java.util.HashMap;
 
 import com.green.mart.vo.CustomerVo;
 
-public interface MobileService {
+public interface MobileDao {
 
 	CustomerVo getCustomer(HashMap<String, String> map);
 

@@ -1,4 +1,4 @@
-/*package com.green.mart;
+package com.green.mart;
 
 import java.util.HashMap;
 
@@ -21,15 +21,20 @@ public class MobileController {
 	@RequestMapping("/Login_check")
 	public ModelAndView login_check(@RequestParam HashMap<String, String> map){
 		System.out.println(map);
+		ModelAndView mv = new ModelAndView();
 		
 		CustomerVo vo = new CustomerVo();
 		vo = mobileService.getCustomer(map);
-		ModelAndView mv = new ModelAndView();
+		
+		if(vo !=null) {
+			mv.addObject("vo",vo);
+			mv.setViewName("mobile/loginhome");
+		}else {
 		mv.addObject("message", "error");
 		mv.setViewName("mobile/mhome");
+		}
 		return mv;
 		
 	}
 
 }
-*/

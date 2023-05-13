@@ -261,7 +261,7 @@ tr:hover {
 #table {overflow: auto; width: 100%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
 #date { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
- box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 8px;}
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 30px;}
 
 
 .btn  {

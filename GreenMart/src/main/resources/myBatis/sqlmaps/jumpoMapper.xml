@@ -345,6 +345,10 @@ ORDER BY D.D_NAME, I.IN_DATE ASC
 </select>
 
 <!-- 폐기내역 조회 -->
+<select id="SearchJO"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+</select>
 <select id="SearchDisList"
 resultType="com.green.mart.vo.work.SearchDisuseListVo">
 SELECT TO_CHAR(DIS.DIS_DATE, 'YYYY-MM-DD')AS DIS_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 

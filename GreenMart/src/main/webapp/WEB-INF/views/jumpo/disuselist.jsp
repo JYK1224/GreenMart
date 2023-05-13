@@ -232,28 +232,74 @@ th {
 }
 
 tr:hover {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5; 
 }
+
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 165px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 100%; height: 390px;}
+#my {font-size: 40px; position: absolute; top: 19%; left:8% }
+#dislist { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 5px;}
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
 </style>
 </head>
 <body>
 	<div id="gd">
-	<table>
-	 <h2>폐기내역 조회</h2>
+	 <span id="my">폐기내역 조회</span>
 	<div id="dislist">
 	시작일자 지정 : <input type="date" id="startdate"><br>
 	종료일자 지정 : <input type="date" id="enddate"><br>
-	점포 : <div id="jumpo"></div><input type="button" id="search" value="검색"/>
-	<input type="button" id="excelsave" value ="엑셀로저장" style="float: right; margin: 0 25px;"/>
+	점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="jumpo"></span>
+	<input type="button" id="search" value="검색" style=" margin: 0 20px 0 50px;" class="btn"/>
+	<input type="button" id="excelsave" value ="엑셀로저장" style=" margin: 0 25px; width: 80px;"  class="btn"/>
 	</div>
+	<table style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 225px; width: 950px; left: 24px;" >
 		<tr>
 		<td>총 폐기금액 : </td><td id="total" ></td>
 		</tr>
 	</table>
+	<div id= "lay" >
 	<div id="table">
 	</div>
-    <%@ include file="/WEB-INF/include/bottom.jsp" %>
-
 	</div>
+	</div>
+    <%@ include file="/WEB-INF/include/bottom.jsp" %>
 </body>
 </html>

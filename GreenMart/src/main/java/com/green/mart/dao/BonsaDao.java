@@ -8,6 +8,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseListVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
@@ -87,4 +88,8 @@ public interface BonsaDao {
 	List<JumpoVo> getSearchJOrderJumpo();
 
 	List<SearchJOrderListVo> searchJOrderList(Map<String, Object> map);
+
+	List<JumpoVo> getSearchDisJumpo();
+
+	List<SearchDisuseListVo> searchDisList(Map<String, Object> map);
 }

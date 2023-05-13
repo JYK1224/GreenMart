@@ -20,6 +20,7 @@ import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
 import com.green.mart.vo.work.SearchDeptVo;
+import com.green.mart.vo.work.SearchDisuseListVo;
 import com.green.mart.vo.work.SearchDisuseVo;
 import com.green.mart.vo.work.SearchInputListVo;
 import com.green.mart.vo.work.SearchJOrderListVo;
@@ -464,4 +465,29 @@ public class BonsaWorkController {
 				List<SearchJOrderListVo> list = bonsaService.searchJOrderList(map);
 				return list;
 			}
+	// 폐기내역 조회1
+	@RequestMapping("/SearchDislistSelect")
+	@ResponseBody
+	public List<JumpoVo> returnSearchDislist() throws Exception {
+		
+		
+		List<JumpoVo> list = bonsaService.getSearchDisJumpo();
+		return list;
+	}
+	// 폐기내역 조회2
+@RequestMapping("/SearchDislist")
+@ResponseBody
+	public List<SearchDisuseListVo> returnDislistVO(String search, String startdate, String enddate) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		String j_name = search;
+	
+			map.put("j_name", j_name);
+			map.put("startdate", startdate);
+			map.put("enddate", enddate);
+			System.out.println("map =" + map);
+			List<SearchDisuseListVo> list = bonsaService.searchDisList(map);
+			return list;
+		}	
+
 }

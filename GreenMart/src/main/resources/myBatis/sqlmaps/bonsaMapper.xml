@@ -393,4 +393,44 @@ AND TO_DATE(DIS_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
 ORDER BY D.D_NAME, DIS.DIS_DATE ASC
 </select>
 
+<!-- 본사출고시 주문리스트 가져오기 -->
+<select id="SearchBonsaOrderList"
+        resultType="com.green.mart.vo.work.SearchBonsaOrderVo">
+	
+	SELECT J.J_NAME, TO_CHAR(B.B_DATE, 'YYYY-MM-DD') AS B_DATE, B.E_ID, P.P_ID, P.P_NAME, P.P_IPRICE, B.B_NUM, P.P_SEQ
+	  FROM JUMPO J, BONSAORDER B, PRODUCT P, EMPLOYEE E
+	 WHERE B.E_ID = E.E_ID
+	   AND E.J_ID = J.J_ID
+	   AND B.P_SEQ = P.P_SEQ
+	   AND B.B_DATE = #{ order2 }
+	   AND J.J_ID = #{ combobox }
+	
+</select>
+
+<insert id="InsertOutput"> 
+	INSERT INTO OUTPUT 
+		(OUT_ID,    OUT_DATE,    OUT_NUM,    E_ID,    P_SEQ) 
+		VALUES ( 
+        (SELECT NVL(MAX(OUT_ID),0)+1 FROM OUTPUT) ,
+        #{ out_date }, 
+        #{ out_num }, 
+        #{ e_id }, 
+        (SELECT P_SEQ 
+           FROM PRODUCT P
+          WHERE P.P_ID = #{ p_id } 
+            AND P.J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{ e_id })
+        ) )
+</insert>
+
+<update id="OutputUpdateStock">
+	UPDATE STOCK
+		SET
+		    ST_NUM = NVL(ST_NUM,0) - #{ out_num }
+		WHERE
+	        p_seq = (SELECT P_SEQ 
+	           FROM PRODUCT
+	          WHERE P_ID = #{ p_id }
+	            AND J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{ e_id }))
+</update>
+
 </mapper>

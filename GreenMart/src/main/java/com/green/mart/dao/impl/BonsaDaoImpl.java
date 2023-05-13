@@ -12,6 +12,7 @@ import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchBonsaOrderVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseListVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -281,5 +282,23 @@ public class BonsaDaoImpl implements BonsaDao {
 	    }
 
 	    return list;
+	}
+	// 본사출고시 주문리스트 가져오기
+	@Override
+	public List<SearchBonsaOrderVo> searchBonsaOrderList(Map<String, Object> map) {
+		List<SearchBonsaOrderVo> list = sqlSession.selectList("Bonsa.SearchBonsaOrderList",map);
+		return list;
+	}
+	// 본사출고시 출고DB 반영
+	@Override
+	public int insertOutput(Map<String, Object> map) {
+		int aftcnt = sqlSession.insert("Bonsa.InsertOutput",map);
+		return aftcnt;
+	}
+	// 본사출고시 재고DB 반영
+	@Override
+	public int outputUpdateStock(Map<String, Object> map) {
+		int aftcnt = sqlSession.update("Bonsa.OutputUpdateStock",map);
+		return aftcnt;
 	}
 }

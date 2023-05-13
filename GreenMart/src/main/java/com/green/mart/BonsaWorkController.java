@@ -19,6 +19,7 @@ import com.green.mart.vo.AssortmentVo;
 import com.green.mart.vo.DeptVo;
 import com.green.mart.vo.EmployeeVo;
 import com.green.mart.vo.JumpoVo;
+import com.green.mart.vo.work.SearchBonsaOrderVo;
 import com.green.mart.vo.work.SearchDeptVo;
 import com.green.mart.vo.work.SearchDisuseListVo;
 import com.green.mart.vo.work.SearchDisuseVo;
@@ -489,5 +490,57 @@ public class BonsaWorkController {
 			List<SearchDisuseListVo> list = bonsaService.searchDisList(map);
 			return list;
 		}	
+
+		//본사출고시 점포가 본사에 주문한 내역 조회
+		@RequestMapping("/SearchBonsaOrder")
+		@ResponseBody
+		public List<SearchBonsaOrderVo> searchBonsaOrderList(String combobox, String order2) throws Exception {
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("combobox", combobox);
+			map.put("order2", order2);
+			
+			List<SearchBonsaOrderVo> list = bonsaService.searchBonsaOrderList(map);
+			return list;
+			
+		}
+		
+		// 본사출고
+		@RequestMapping("/OutPut")
+		@ResponseBody
+		public int outPut(@RequestParam(value = "outputNum[]") String[] outputNum,
+				@RequestParam(value = "outputP_id[]") String[] outputP_id,
+				@RequestParam(value = "outputE_id[]") String[] outputE_id,
+				@RequestParam(value = "outputDate") String[] outputDate
+				) {
+
+			  System.out.println("outputNum[] :" + Arrays.toString(outputNum));
+			  System.out.println("outputP_id[] :" + Arrays.toString(outputP_id));
+			  System.out.println("outputE_id[] :" + Arrays.toString(outputE_id));
+			  System.out.println("outputDate :" + Arrays.toString(outputDate));
+			  
+			  int aftcnt = 0 ;
+			 
+			int j = outputNum.length;
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			for (int i = 0; i < j; i++) {
+				if(outputNum[i].equals("NaN")) {
+				}else {
+					if(outputNum[i].equals("0")) {
+					}else {
+						map.put("out_num",  outputNum[i]);
+						map.put("p_id", outputP_id[i]);
+						map.put("e_id", outputE_id[i]);
+						map.put("out_date", outputDate[0]);
+						aftcnt = bonsaService.insertOutput(map);
+						aftcnt = bonsaService.outputUpdateStock(map);
+						map.clear();
+					}
+				}
+			}
+			return aftcnt;
+
+		}
 
 }

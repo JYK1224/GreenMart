@@ -10,27 +10,6 @@
     <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
-<style>
-table {
-  width: 95%;
-  border-collapse: collapse;
-  margin : 0 0 0 30px;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-</style>
 
 
 <script>
@@ -272,16 +251,82 @@ window.onload = function () {
 
 
 </script>
+<style>
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
+}
 
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5; 
+}
+
+#lay {width: 90%; height: 380px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 170px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 100%; height: 380px;}
+#my {font-size: 40px; position: absolute; top: 20%; left:8% }
+#salelist { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 15px; margin-top: 8px;}
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+#myTable1 {border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 229px; width: 950px;; left: 24px;}
+
+</style>
 </head>
 <body>
-	<div id="gd">
-	 <h2>상품매출조회</h2>
+		<div id="gd">
+	 <span id="my">상품매출조회</span>
 	<div id="salelist">
 	일매출조회 : <input type="date" id="startdate"><br>
 	월매출조회 : <input type="date" id="enddate"><br>
-	점포 : <div id="bonsa"></div><input type="button" id="search" value="검색"/>
-	<input type="button" id="excelsave" value ="엑셀로저장" style="float: right; margin: 0 25px;"/>
+	점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="bonsa"></span>
+	<input type="button" id="search" value="검색" style=" margin: 0 20px 0 50px;" class="btn"/>
+	<input type="button" id="excelsave" value ="엑셀로저장"style=" margin: 0 20px; width:80px; " class="btn"/>
 	</div>
 	<table id ="myTable1">
 		<tr>
@@ -289,10 +334,11 @@ window.onload = function () {
 		<td>총 이익률 : </td><td id="x2"></td>
 		</tr>
 	</table>
+	<div id= "lay" >
 	<div id="table">
-	</div>
     <%@ include file="/WEB-INF/include/bottom.jsp" %>
-
+	</div>
+	</div>
 	</div>
 </body>
 </html>

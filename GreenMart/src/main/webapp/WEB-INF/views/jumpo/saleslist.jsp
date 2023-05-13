@@ -271,7 +271,7 @@ tr:hover {
   background-color: #f5f5f5; 
 }
 
-#lay {width: 90%; height: 380px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#lay {width: 90%; height: 380px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 170px; box-shadow: 3px 3px 3px 3px gray;}
 #table {overflow: auto; width: 100%; height: 380px;}
 #my {font-size: 40px; position: absolute; top: 20%; left:8% }
 #salelist { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
@@ -313,8 +313,7 @@ tr:hover {
     inset -4px -4px 6px 0 rgba(255,255,255,.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
-#myTable1 {border: 3px solid #666666; position: absolute; top: 30%; width:500px;
- box-shadow: 2px 2px 2px 2px gray;  margin-left: 53px;}
+#myTable1 {border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 229px; width: 950px;; left: 24px;}
 
 </style>
 </head>

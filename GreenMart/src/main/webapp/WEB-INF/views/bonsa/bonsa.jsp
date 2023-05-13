@@ -135,7 +135,7 @@ window.onload = function() {
 	  //    e.stopPropagation();
 		  let  html       = '/Productadd1'  ;
 		  let  name       = 'Productadd1';  // '' 값이 없으면 창이 여러번 뜬다
-		  let  features   = 'height=750, width=1050, top=200, left=300'; 
+		  let  features   = 'height=700, width=550, top=200, left=300'; 
 		  window.open(html, name, features);
 	  }); 
 	  let btnUseradd1El = document.getElementById('userlist');

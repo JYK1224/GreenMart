@@ -418,12 +418,12 @@ window.onload = function() {
 	주문내역 조회:&nbsp; <input type="date" id="order1"/>  <br />
 	주문일자:  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;     <input type="date" id="order2" readonly="readonly"/>  <br />
 	점포 : 
-	<select id="combobox" >
+	<select id="combobox" style="margin-left: 83px;">
 	 <option value="none">=== 선택 ===</option>
 	 <option value="12020">부전점</option>
 	</select>
 	<input type="button" id="orderSearch" value="검색" class="btn"/>
-	<input type="button" id="excelsave" value ="액셀로 저장" class="btn" style="width: 70px; margin: 0 0 0 10px;" />
+	<input type="button" id="excelsave" value ="액셀로 저장" class="btn" style="width: 80px; margin: 0 0 0 10px;" />
 	<input type="button" id= "outPut" style="float: right;" value= "출고"  class="btn"/>
 	</div>
 	<div id= "lay" >

@@ -9,33 +9,7 @@
 <link rel="stylesheet" href="/css/common.css"/>
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<style>
 
-h2{
-	border-collapse: collapse;
-	text-align: center;
-}
-
-table {
-  width: 95%;
-  border-collapse: collapse;
-  margin : 0 0 0 30px;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-</style>
 <script>
 
 	function oninputPhone(target) {
@@ -46,7 +20,51 @@ tr:hover {
 
 
 </script>
+<style>
+h2{text-align: center; margin: 20px; font-size: 30px; }
+table {margin-left: auto; margin-right: auto;}
+#lay {width: 90%; height: 200px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
+table, tr, td {border-collapse: collapse;}
+tr,td{border: 1px solid black; }
+td{ padding: 10px; margin: 30px; width: 200px;}
+#qq { background-color: #f2f2f2;}
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
 
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+</style>
 
 </head>
 <body>
@@ -55,31 +73,31 @@ tr:hover {
 		<div>
 			<h2> 회원 정보 </h2>
 			<!-- 입력받은 정보를 서버로 전송한다 -->
-			<table>
+			<table  id = lay>
 			  <tr>
-			  	<td class="center">회원번호</td>
+			  	<td class="center" id="qq">회원번호</td>
 			  	<td class="center"  >${vo.c_id } </td>
 			  </tr>
 			  <tr>
-			    <td class="center">회원이름</td>
+			    <td class="center" id="qq">회원이름</td>
 		    	<td class="center" >${vo.c_name }</td>
 			  </tr>
 			  <tr>
-			    <td>회원전화</td>
+			    <td id="qq">회원전화</td>
 			    <td class="center" >${vo.c_phone }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">마일리지</td>
+			    <td class="center" id="qq">마일리지</td>
 			    <td class="center">${vo.c_mile }</td>
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-				  <a href="/UpdateForm?c_id=${vo.c_id }" >[수정]</a>
-				  <a href="/Delete?c_id=${vo.c_id }" >[삭제]</a>
+				  <a href="/UpdateForm?c_id=${vo.c_id }" class="btn" style="margin: 0 0 0 182px; text-align: center;">수정</a>
+				  <a href="/Delete?c_id=${vo.c_id }" class="btn"  style="text-align: center;">삭제</a>
 			  	</td>
 			  </tr>
 			</table>
-			</form>
+			
 		</div>
 	</div>
 	 <%@ include file="/WEB-INF/include/bottom.jsp" %>

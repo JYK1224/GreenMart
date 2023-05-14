@@ -202,7 +202,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 <div id="gd">
         <span>사원목록</span> 
      <div id="date">
-        	<input type="text" />
+        	사원명 : <input type="text" />
         	<input type="button" id="find" name="find" value="조회"class="btn"/>
         	<input type="button" id="add" value ="등록" style=" margin: 0 0 0 25px;" class="btn"/>
         	<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 25px; width:80px;" class="btn" />

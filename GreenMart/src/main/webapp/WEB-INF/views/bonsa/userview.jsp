@@ -127,9 +127,9 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" class="btn" style="margin: 0 0 0  160px">수정</a>
+				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" class="btn" style="margin: 0 0 0  160px; text-align: center;">수정</a>
 				  <!--  <a href=""  onclick="delEmp(event)" >[삭제]</a> --> 
-				  <a href="#"  onclick="delEmp();" class="btn">삭제</a> 
+				  <a href="#"  onclick="delEmp();" class="btn" style="text-align: center;">삭제</a> 
 			  	</td>
 			  </tr>
 			  

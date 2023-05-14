@@ -12,7 +12,7 @@
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }
 table {margin-left: auto; margin-right: auto;}
-#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
+#lay {width: 90%; height: 200px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
 table, tr, td {border-collapse: collapse;}
 tr,td{border: 1px solid black; }
 td{ padding: 10px; margin: 30px; width: 200px;}
@@ -115,7 +115,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			<h2> 신규 거래처 등록 </h2>
 			<!-- 입력받은 정보를 서버로 전송한다 -->
 			<form name="form" action="/BWork/deptAdd" method="POST" onsubmit="return submitMessage()">
-			<table>
+			<table id="lay">
 			  <tr>
 			  	<td id="qq">거래처번호</td>
 			  	<td>
@@ -144,7 +144,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-			  	  <input  type="submit" value="등록" class="btn" style="margin: 0 0 0 157px;">
+			  	  <input  type="submit" value="등록" class="btn" style="margin: 0 0 0 182px;">
 			  	  <input  type="button" value="조회" id="btnList" class="btn">
 			  	</td>
 			  </tr>

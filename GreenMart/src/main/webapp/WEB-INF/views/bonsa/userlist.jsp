@@ -119,7 +119,7 @@ window.onload = function() {
 		      	let emp_id = this.parentNode.parentNode.querySelector('td:first-child').textContent;
 			  	let  html       = '/BWork/userView?e_id=' + emp_id ;
 			  	let  name       = 'userView'; 
-				let  features   = 'height=700, width=850, top=200, left=600'; 
+				let  features   = 'height=700, width=500, top=200, left=600'; 
 				window.open(html, name, features);
 			})
 		}); 

@@ -9,33 +9,7 @@
 <link rel="stylesheet" href="/css/common.css"/>
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<style>
 
-h2{
-	border-collapse: collapse;
-	text-align: center;
-}
-
-table {
-  width: 95%;
-  border-collapse: collapse;
-  margin : 0 0 0 30px;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-</style>
 <script>
 	
 
@@ -70,49 +44,92 @@ tr:hover {
 	
 
 </script>
+<style>
+h2{text-align: center; margin: 20px; font-size: 30px; }
+table {margin-left: auto; margin-right: auto;}
+table, tr, td {border-collapse: collapse;}
+tr,td{border: 1px solid black; }
+td{ padding: 10px; margin: 30px; width: 200px;}
+#qq { background-color: #f2f2f2;}
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
 
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
+</style>
 
 </head>
 <body>
 	<div id="gd">
 	<div id="main">
 		<div>
-			<h2> 사원정보 </h2>
+			<h2 > 사원 정보 </h2>
 			<!-- 입력받은 정보를 서버로 전송한다 -->
-			<table>
+			<table style="width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:28px;;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;">
 			  <tr>
-			  	<td class="center">사원번호</td>
+			  	<td  id="qq" class="center">사원번호</td>
 			  	<td class="center"  >${vo.e_id } </td>
 			  </tr>
 			  <tr>
-			    <td class="center">이름</td>
+			    <td  id="qq" class="center">이름</td>
 		    	<td class="center" >${vo.e_name }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">비밀번호</td>
+			    <td id="qq" class="center">비밀번호</td>
 			    <td class="center" >${vo.e_passwd }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">전화번호</td>
+			    <td id="qq" class="center">전화번호</td>
 			    <td class="center">${vo.e_phone }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">직급</td>
+			    <td id="qq" class="center">직급</td>
 			    <td class="center">${vo.e_intro }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">부서명</td>
+			    <td id="qq" class="center">부서명</td>
 			    <td class="center">${vo.j_name }</td>
 			  </tr>
 			  <tr>
-			    <td class="center">가입일</td>
+			    <td id="qq" class="center">가입일</td>
 			    <td class="center">${vo.e_indate }</td>
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" >[수정]</a>
+				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" class="btn" style="margin: 0 0 0  160px">수정</a>
 				  <!--  <a href=""  onclick="delEmp(event)" >[삭제]</a> --> 
-				  <a href="#"  onclick="delEmp();">[삭제]</a> 
+				  <a href="#"  onclick="delEmp();" class="btn">삭제</a> 
 			  	</td>
 			  </tr>
 			  

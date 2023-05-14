@@ -10,16 +10,7 @@
 <link rel="stylesheet" href="/css/common.css" />
 
 <%@ include file="/WEB-INF/include/subheader.jsp"%>
-<style>
-table {
-	border: 1px solid black;
-	text-align: center;
-}
-#table_foot { border : 1px solid black; }
-#right { text-align: right; }
-#finalPrice { color : red; }
 
-</style>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 
@@ -95,7 +86,7 @@ table {
 			tag += '<td><button id="btnDelItem' + num + '" type="button" >➖</button></td>';
 			tag += '<td><input type="text"   name="p_seq' + num + '" id="p_seq' + num + '" placeholder="상품코드입력"/></td>';
 			tag += '<td><input type="number" name="su' + num + '" /></td>';
-			tag += '<td><input type="button" value="조회" id="prodSearch' + num + '"/></td>';
+			tag += '<td><input type="button"  class="btn" value="조회" id="prodSearch' + num + '"/></td>';
 			tag += '<td><input type="text"   name="p_name' + num + '" readonly/></td>';
 			tag += '<td><input type="text"   name="p_sprice' + num + '" readonly/></td>';
 			tag += '<td><input type="number"   name="kum' + num + '" readonly/></td>';
@@ -248,15 +239,79 @@ table {
 
 	}
 </script>
+<style>
+table {
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5; 
+}
+
+#lay {width: 90%; height: 450px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray;}
+#table {overflow: auto; width: 100%; height: 390px;}
+span {font-size: 40px; position: absolute; top: 21%; left:8% }
+#table_foot { border: 3px solid #666666; position: absolute; left: 390px; width: 728px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 10px; margin-top: 0px;}
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+#table_body {width: 90%;}
+</style>
 </head>
 <body>
 	<div id="gd">
 		<div id="main">
 			<div>
-				<h2>POS 판매등록</h2>
+				<span>POS 판매등록</span>
 				
 				<!-- 오늘 날짜 현재시간 -->
-				<div id="today"></div>
+				<div id="today" style=" position: absolute; left: 70px; top:268px;"></div>
 				
 				<!-- 고객명 -->
 				<div id="customer"></div>
@@ -266,6 +321,38 @@ table {
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
 					<input type="hidden" name="e_id" id="e_id" value="0001"/>
 					<input type="hidden" name="c_phone" id="c_phone" />
+					<table>
+						<tfoot id="table_foot">
+						<tr id="right">
+							<td colspan="7">
+							합계금액 : <input type="text" id="totalPrice" readonly style="height: 30px; mar"/>
+							</td>
+						</tr>
+						<tr id="right">
+							<td colspan="3">
+							<input type="button" style ="width:90px"" value="마일리지 조회" id="mileage" class="btn"/>
+							</td>
+							<td colspan="2">
+							고객명 : &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="c_name" id="c_name" readonly/>
+							</td>
+							<td colspan="2">
+							사용마일리지 : <input type="text" name="milePay" id="milePay" value="0" readonly/>
+							</td>
+						</tr>
+						<tr id="right">
+							<td colspan="3">
+							<input type="submit" value="결제" id="pay" class="btn"/>
+							</td>
+							<td colspan="2">
+							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>
+							</td>
+							<td colspan="2">
+							적립마일리지 : <input type="text" id="earnMiles" name="earnMiles" readonly/>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+					<div id ="lay">
 					<table id="myTable">
 						<thead>
 						<tr>
@@ -282,42 +369,14 @@ table {
 							<td><button id="btnDelItem" type="button" >➖</button></td>
 							<td><input type="text"   name="p_seq1" id="p_seq1" placeholder="상품코드입력"/></td>
 							<td><input type="number" name="su1" id="su1" value="1"/></td>
-							<td><input type="button" value="조회" id="prodSearch" /></td>
+							<td><input type="button" value="조회" id="prodSearch" class="btn" /></td>
 							<td><input type="text"   name="p_name1" id="p_name1" readonly/></td>
 							<td><input type="text"   name="p_sprice1" id="p_sprice1" readonly/></td>
 							<td><input type="number"   name="kum1" id="kum1" readonly/></td>
 						</tr>
 						</tbody>
-						<tfoot id="table_foot">
-						<tr id="right">
-							<td colspan="7">
-							합계금액 : <input type="text" id="totalPrice" readonly/>
-							</td>
-						</tr>
-						<tr id="right">
-							<td colspan="3">
-							<input type="button" width="20px" value="마일리지 조회" id="mileage" />
-							</td>
-							<td colspan="2">
-							고객명 : <input type="text" name="c_name" id="c_name" readonly/>
-							</td>
-							<td colspan="2">
-							사용마일리지 : <input type="text" name="milePay" id="milePay" value="0" readonly/>
-							</td>
-						</tr>
-						<tr id="right">
-							<td colspan="3">
-							<input type="submit" value="결제" id="pay"/>
-							</td>
-							<td colspan="2">
-							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>
-							</td>
-							<td colspan="2">
-							적립마일리지 : <input type="text" id="earnMiles" name="earnMiles" readonly/>
-							</td>
-						</tr>
-						</tfoot>
-					</table>
+						</table>
+						</div>
 				</form>
 			</div>
 		</div>

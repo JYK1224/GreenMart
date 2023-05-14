@@ -106,7 +106,7 @@ window.onload = function() {
 	   //   e.stopPropagation();
 		  let  html       = '/Sales'  ;
 		  let  name       = 'Sales';  // '' 값이 없으면 창이 여러번 뜬다
-		  let  features   = 'height=750, width=1050, top=200, left=300'; 
+		  let  features   = 'height=850, width=1200, top=200, left=300'; 
 		  window.open(html, name, features);
 	  });
 

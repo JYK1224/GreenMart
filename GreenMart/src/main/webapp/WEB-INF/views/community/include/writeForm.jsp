@@ -10,13 +10,49 @@
 <link rel="stylesheet" href="/css/common.css" />
 <style>
 	input { height: 32px; }
-
-	#table th { width : 20%; }
-	#table td { width : 80%; }
+    #table { border: 3px solid #666666; width:70%;  position: absolute; left:-20%;  margin-top: 10px; box-shadow: 3px 3px 3px 3px gray;}
+	#table th { border:1px solid black; width : 30%; }
+	#table td { border:1px solid black; width : 100%; }
 	input[type=text]  { width : 100%; }
-	textarea  { width: 100%; height: 400px; padding: 10px;}
-	h2 { text-align: center;}
+	textarea  { width: 100%; height: 400px;}
+	h2 { margin: 20px 20px 20px 200px;; font-size: 30px;}
 	
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
 </style>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script>
@@ -75,6 +111,7 @@
 	<input type="hidden" name="nowpage" value="${ map.nowpage }" />
 	
 		<table id="table">
+
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" value="${ vo.title }"></td>
@@ -98,13 +135,13 @@
 				</td>
 			-->
 				<td id="tdfile">
-					<input type="button" id="btnAddFile" value="파일 추가(최대 100M byte)" /></br>
-					<input type="file" name="upfile" class="upfile"/></br>
+					<input type="button" id="btnAddFile" value="파일 추가(최대 100M byte)" class="btn" style="margin: 5px; 5px; 5px; 5px; width:200px;"/></br>
+					<input type="file" name="upfile" class="upfile" style="margin: 5px;"/></br>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2">
-				<input type="submit" value="작성" />
+				<input type="submit" value="작성" class="btn" style="margin: 10px;"/>
 				</td>
 			</tr>
 		</table>

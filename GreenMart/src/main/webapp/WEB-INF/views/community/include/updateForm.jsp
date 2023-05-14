@@ -131,20 +131,20 @@
 		<table id="table">
 			<tr>
 				<th>글번호</th>
-				<td>${ vo.idx }</td>
+				<td>&nbsp;&nbsp;${ vo.idx }</td>
 				<th>작성일</th>
-				<td>${ vo.regdate }</td>
+				<td>&nbsp;&nbsp;${ vo.regdate }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${ vo.e_id }</td>
+				<td>&nbsp;&nbsp;${ vo.e_id }</td>
 				<th>조회수</th>
-				<td>${ vo.readcount }</td>
+				<td>&nbsp;&nbsp;${ vo.readcount }</td>
 			</tr>
 			<tr>
 				<th>제목</th>
 				<td colspan="3">
-				<input type="text" name="title" value="${ vo.title }">
+				<input type="text" name="title" value="&nbsp;&nbsp;${ vo.title }">
 				</td>
 			</tr>
 			<tr>

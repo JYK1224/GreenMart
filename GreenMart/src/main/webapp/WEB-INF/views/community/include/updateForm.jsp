@@ -9,20 +9,7 @@
 <title>자료실 수정</title>
 <link rel="shortcut icon" href="/img/favicon.ico"	/>
 <link rel="stylesheet" href="/css/common.css" />
-<style>
-	input { height: 32px; }
-	
-	#table td:nth-of-type(1) { width: 150px; text-align: center; }
-	#table td:nth-of-type(2) { width: 400px;}
-	#table td:nth-of-type(3) { width: 150px; text-align: center; }
-	#table td:nth-of-type(4) { width: 400px;}
-	
-	input[type=text]  { width : 100%; }
-	textarea  { width: 100%; height: 400px; padding: 10px;}
-	
-	
-	
-</style>
+
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script>
 	$(function(){
@@ -78,6 +65,52 @@
 	}
 */
 </script>
+<style>
+	input { height: 32px; }
+    #table { border: 3px solid #666666; width:70%;  position: absolute; left:-20%;  margin-top: 10px; box-shadow: 3px 3px 3px 3px gray; padding: 10px 0;}
+	#table th { border:1px solid black; width : 20%; }
+	#table td { border:1px solid black; width : 50%; }
+	input[type=text]  { width : 100%; }
+	textarea  { width: 100%; height: 300px;}
+	h2 { margin: 20px 20px 20px 130px;; font-size: 30px;}
+	
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+</style>
 </head>
 <body>
 	<div id="main">
@@ -94,34 +127,34 @@
 	<input type="hidden" name="nowpage" value="${ map.nowpage }" />
 	
 	
+			<h2>${ m_name } 정보 수정</h2>
 		<table id="table">
-			<caption><h2>${ m_name } 정보 수정</h2></caption>
 			<tr>
-				<td>글번호</td>
+				<th>글번호</th>
 				<td>${ vo.idx }</td>
-				<td>작성일</td>
+				<th>작성일</th>
 				<td>${ vo.regdate }</td>
 			</tr>
 			<tr>
-				<td>작성자</td>
+				<th>작성자</th>
 				<td>${ vo.e_id }</td>
-				<td>조회수</td>
+				<th>조회수</th>
 				<td>${ vo.readcount }</td>
 			</tr>
 			<tr>
-				<td>제목</td>
+				<th>제목</th>
 				<td colspan="3">
 				<input type="text" name="title" value="${ vo.title }">
 				</td>
 			</tr>
 			<tr>
-				<td>내용</td>
+				<th>내용</th>
 				<td colspan="3">
 				<textarea name="cont" maxlength="1300">${ vo.cont }</textarea>
 				</td>
 			</tr>
 			<tr>
-				<td>파일</td>
+				<th>파일</th>
 				<td id="tdfile" colspan="3">
 					<!-- 기존 파일목록, 삭제버튼 -->
 					<c:forEach var="file" items="${ fileList }">
@@ -137,13 +170,13 @@
 					</c:forEach>
 					</br>
 					<!-- 새 파일 추가 -->
-					<input type="button" id="btnAddFile" value="파일 추가(최대 100M byte)" /></br>
-					<input type="file" name="upfile" class="upfile"/></br>
+					<input type="button" id="btnAddFile" value="파일 추가(최대 100M byte)"  class="btn" style="margin: 5px; 5px; 5px; 5px; width:200px;"/></br>
+					<input type="file" name="upfile" class="upfile" style="margin: 5px;"/></br>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="4">
-				<input type="submit" value="수정" />
+				<input type="submit" value="수정"  class="btn" style="margin: 10px;"/>
 				</td>
 			</tr>
 		</table>

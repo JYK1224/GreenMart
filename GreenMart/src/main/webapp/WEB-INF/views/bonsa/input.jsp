@@ -152,7 +152,9 @@ function data_display(data) {
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td>'+data.o_num+'</td>';
 	html += '<td><input id="inputnum" type="number" style="width: 70px;"/></td>';
-	html += '<td>'+data.e_id+'</td>';
+	html += '<td><c:if test="${sessionScope.login != null}">'
+		html +=   `${ sessionScope.login.e_id }`
+		html +=   '</c:if></td>';
 	html += '<td></td>';
 	html += '</tr>';
 	})

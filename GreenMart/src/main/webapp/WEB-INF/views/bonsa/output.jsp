@@ -260,7 +260,9 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.b_num+'</td>';
 	html += '<td><input id="out_num" type="number" style="width: 70px;"/></td>';
-	html += '<td>0001</td>';
+	html += '<td><c:if test="${sessionScope.login != null}">'
+		html +=   `${ sessionScope.login.e_id }`
+		html +=   '</c:if></td>';
 	html += '</tr>';
 	})
 	

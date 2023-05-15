@@ -123,7 +123,9 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td><input id="disusenum" type="number" style="width: 70px;"/></td>';
-	html += '<td></td>';
+	html += '<td><c:if test="${sessionScope.login != null}">'
+		html +=   `${ sessionScope.login.e_id }`
+		html +=   '</c:if></td>';
 	html += '</tr>';
 	})
 	

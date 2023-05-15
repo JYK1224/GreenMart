@@ -13,7 +13,28 @@ WHERE C_NAME  = #{Name}
 AND   C_PHONE = #{Phone}
 </select>
 
- 
+<select id="GetCustomer2"
+resultType="com.green.mart.vo.CustomerVo">
+SELECT * FROM CUSTOMER
+WHERE C_NAME  = #{c_name}
+AND   C_PHONE = #{c_phone}
+</select>
+
+<select id="selectList"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+ORDER BY J_ID ASC
+</select>
+
+<select id="searchProductList"
+resultType="com.green.mart.vo.work.SearchMobileProductVo">
+SELECT P.P_ID, P.P_NAME, P.P_SPRICE, S.ST_NUM
+FROM PRODUCT P , STOCK S
+WHERE P.P_SEQ = S.P_SEQ
+AND P.J_ID = (SELECT J_ID FROM JUMPO WHERE J_NAME = #{search})
+AND P.P_NAME like #{p_name}
+</select>
+
 </mapper>
 
 

@@ -12,7 +12,58 @@
 <%@ include file="/WEB-INF/include/subheader.jsp"%>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script lang="javascript" src="/js/qrcode.js"></script>
 <script>
+
+//상품 seq 배열
+function saveOrderP_seq(columnIndex) {
+    var table = document.getElementById("table_body");
+    var rows = table.getElementsByTagName("tr");
+    var columnValues = [];
+
+    for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].getElementsByTagName("td");
+
+        if (cells.length > columnIndex) {
+        	var input = cells[columnIndex].getElementsByTagName("input")[0];
+        	
+        	console.log(input)
+        	
+            var cellValue = input.value;
+            columnValues.push(cellValue);
+        }
+    }
+
+    return columnValues;
+}
+
+//상품수량 배열
+function saveOrderNum(columnIndex) {
+	
+    var table = document.getElementById("table_body");
+    var rows = table.getElementsByTagName("tr");
+    var columnValues = [];
+    
+    console.log(rows)
+
+    for (var i = 0; i < rows.length; i++) {
+        var cells = rows[i].getElementsByTagName("td");
+		
+        console.log(cells)
+        if (cells.length > columnIndex) {
+        	var input = cells[columnIndex].getElementsByTagName("input")[0];
+
+            console.log(input)
+            if (input && input.type == "number") {
+                var inputValue = input.valueAsNumber;
+                columnValues.push(inputValue);
+            }
+        }
+    }
+
+    
+    return columnValues;
+}
 
 	// 금액 배열(합계금액 계산용)
 	function getColumnValues(columnIndex) {
@@ -57,6 +108,33 @@
 	//======================================================
 	// body 켜지고 난 다음
 	window.onload = function() {
+		
+		
+		//qrcode
+		let qrcodeget = document.getElementById("qrget")
+		
+		qrcodeget.onclick = function() {
+			$("#qrcode").empty()
+			
+			let p_seqList  = saveOrderP_seq(1);
+			let su_List   = saveOrderNum(2);
+			let finalPrice  = document.getElementById('finalPrice');
+			let earnMiles  = document.getElementById('earnMiles');
+			let milePay  = document.getElementById('milePay');
+
+			
+			
+			var qr = new QRCode(document.getElementById("qrcode"), {
+			    text: JSON.stringify({address: "http://192.168.0.7:9090/M/Pay",p_seqList: p_seqList, 
+			    	su_List: su_List, finalPrice: finalPrice.value, earnMiles: earnMiles.value, milePay: milePay.value}),
+			    width: 128,
+			    height: 128,
+			    colorDark : "#000000",
+			    colorLight : "#ffffff",
+			    correctLevel : QRCode.CorrectLevel.H
+			});
+			
+		}
 		
 		// 오늘 날짜
 		let today = new Date(); 
@@ -385,6 +463,8 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tbody>
 						</table>
 				</form>
+				<input type="button" value="qr생성" id="qrget" />
+				<div id="qrcode"></div>
 			</div>
 		</div>
 

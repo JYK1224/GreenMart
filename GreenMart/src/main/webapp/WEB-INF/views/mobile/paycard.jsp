@@ -12,6 +12,7 @@
 <noscript><link rel="stylesheet" href="/mhome/assets/css/noscript.css" /></noscript>
 <script>
 window.onload = function() {
+		
 	
 	// 현금 입력을 눌렀을때
 	let cashPayEl = document.getElementById("cashPay");
@@ -29,39 +30,8 @@ window.onload = function() {
 		
 	}
 	
-	
-	// 카드결제 를 눌렀을때
-	let cardpayEl = document.getElementById("cardPay");
-	cardpayEl.onclick = function () {
-		
-		let cash    = parseInt( $('#cash').val() );
-		
-		let s_id = ${s_id};
-		
-		IMP.init("imp17803643");
-		IMP.request_pay({
-			pg : 'html5_inicis',
-		    pay_method : 'card',
-		    merchant_uid: s_id, // 상점에서 관리하는 주문 번호
-		    name : '주문명:결제테스트',
-		    amount : "${finalPrice}"-cash,
-		    buyer_email: 'customer@naver.com',
-		    buyer_name : "${c_name}",
-		    buyer_tel : "${c_phone}",
-		    m_redirect_url : 'http://192.168.0.7:9090/M/PayCard?c_name=${c_name}'
-		    		+'&c_phone="${c_phone}"&p_seqList=${p_seqList}'
-		    		+ '&su_List=${suList}&finalPrice=${finalPrice}&earnMiles=${earnMiles}&milePay=${milePay}'
-		    		+ '&cash=' + cash// 예: https://www.my-service.com/payments/complete
-		}, function(rsp) {
-		    if ( !rsp.success ) {
-		    	//결제 시작 페이지로 리디렉션되기 전에 오류가 난 경우
-		        var msg = '오류로 인하여 결제가 시작되지 못하였습니다.';
-		        msg += '에러내용 : ' + rsp.error_msg;
+	cashPayEl.click();
 
-		        alert(msg);
-		    }
-		}); 
-	}
 		
 }
 
@@ -107,13 +77,15 @@ window.onload = function() {
 						</tr>
 						<tr>
 							<td nowrap>현금:</td>
-							<td colspan="3"><input  type="text" name="cash" id="cash" value="0" placeholder = "현금 수령액"/></td>
+							<td colspan="3"><input  type="text" name="cash" id="cash" value="${cash }" placeholder = "현금 수령액"/></td>
 							<td><input type="button" value="입력" id="cashPay"/></td>
 						</tr>
 						<tr>
 							<td nowrap>카드:</td>
-							<td colspan="3"><input type="text" name="card" id="card" value="0" readonly/></td>
-							<td><input type="button" value="카드결제" id="cardPay"/></td>
+							<td colspan="4"><input type="text" name="card" id="card" value="${finalPrice-cash }" readonly/></td>
+						</tr>
+						<tr>
+							<td nowrap>결제완료</td>						
 						</tr>
 						<tr>
 							<td nowrap>받은금액:</td>

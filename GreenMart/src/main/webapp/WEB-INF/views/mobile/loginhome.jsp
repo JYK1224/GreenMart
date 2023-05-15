@@ -31,7 +31,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">GreenMart</a>
+						<a href="#" class="logo">GreenMart</a>
 					</header>
 
 				<!-- Main -->
@@ -49,23 +49,23 @@
 								<article>
 									<header>
 										<span class="date">April 24, 2017</span>
-										<h2><a href="greenmart://application?c_name=${c_name}&c_phone=${c_phone}">QRScan</a></h2>
+										<h2><a href="greenmart://application?c_name=${vo.c_name}&c_phone=${vo.c_phone}">QRScan</a></h2>
 									</header>
-									<a href="greenmart://application?c_name=${c_name}&c_phone=${c_phone}" class="image fit"><img src="/img/qrscan.jpg" alt="" /></a>
+									<a href="greenmart://application?c_name=${vo.c_name}&c_phone=${vo.c_phone}" class="image fit"><img src="/img/qrscan.jpg" alt="" /></a>
 									<h5>QR코드를 스캔하여 모바일에서 상품을 결제 합니다.</h5>
 									<ul class="actions special">
-										<li><a href="greenmart://application?c_name=${c_name}&c_phone=${c_phone}" class="button">QRScan</a></li>
+										<li><a href="greenmart://application?c_name=${vo.c_name}&c_phone=${vo.c_phone}" class="button">QRScan</a></li>
 									</ul>
 								</article>
 								<article>
 									<header>
 										<span class="date">April 22, 2017</span>
-										<h2><a href="#">상품조회</h2>
+										<h2><a href="/M/Product">상품조회</a></h2>
 									</header>
-									<a href="#" class="image fit"><img src="/img/query.jpg" alt="" /></a>
+									<a href="/M/Product" class="image fit"><img src="/img/query.jpg" alt="" /></a>
 									<h5>가게에 있는 상품의 재고를 조회합니다.</h5>
 									<ul class="actions special">
-										<li><a href="#" class="button">상품조회</a></li>
+										<li><a href="/M/Product" class="button">상품조회</a></li>
 									</ul>
 								</article>
 							</section>

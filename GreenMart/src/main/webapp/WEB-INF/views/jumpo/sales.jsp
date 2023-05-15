@@ -272,8 +272,8 @@ tr:hover {
  position: absolute; left:3%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray; max-height: 450px;} */
 #table {overflow: auto; width: 100%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
-#table_foot { border: 3px solid #666666; position: absolute; left: 390px; width: 728px;
- box-shadow: 2px 2px 2px 2px gray; padding: 10px; margin-top: 10px;}
+#table_foot { border: 3px solid #666666; position: absolute; left: 323px; width: 728px;
+ box-shadow: 2px 2px 2px 2px gray; padding: 10px; margin-top: -210px;}
 
 
 .btn  {
@@ -332,7 +332,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
 					<input type="hidden" name="e_id" id="e_id" value="0001"/>
 					<input type="hidden" name="c_phone" id="c_phone" />
-					<table>
+					<table id="myTable">
 						<tfoot id="table_foot">
 						<tr id="right">
 							<td colspan="7">
@@ -362,8 +362,6 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 							</td>
 						</tr>
 						</tfoot>
-					</table>
-					<table id="myTable">
 						<thead>
 						<tr>
 							<td><button id="btnAddItem" class="btnAddItem" type="button" >➕</button></td>

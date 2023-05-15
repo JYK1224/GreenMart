@@ -126,8 +126,8 @@ window.onload = function() {
 		        alert(msg);
 		    }
 		});
-	}
 	
+	}
 	
 }
 

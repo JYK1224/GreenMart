@@ -219,8 +219,10 @@ public class JumpoDaoImpl implements JumpoDao {
 
 	    if (j_name != "" && !j_name.isEmpty()) {
 	        list = sqlSession.selectList("Jumpo.SearchSalesList", map);
+	        System.out.println("DDD"+ list);
 	    } else {
 	        list = sqlSession.selectList("Jumpo.SearchSalesList1", map);
+	        System.out.println("yyy"+ list);
 	    }
 
 	    return list;

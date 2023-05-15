@@ -147,9 +147,11 @@ public class BonsaWorkController {
 		}
 		// 사원삭제
 		@RequestMapping("/empDelete")
-		public void delete(@RequestParam("e_id") String e_id) {
+		public ResponseEntity<String> empDel(@RequestParam("e_id") String e_id) {
 			
 			bonsaService.deleteEmp(e_id);
+			
+			return ResponseEntity.ok("삭제되었습니다.");
 			
 		}
 		// 사원수정 

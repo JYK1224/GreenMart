@@ -10,40 +10,6 @@
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
-	
-
-	function oninputPhone(target) {
-	    target.value = target.value
-	        .replace(/[^0-9]/g, '')
-	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-	}
-	function delEmp(){
-		 if(confirm('삭제하시겠습니까?')) {
-			 
-		 $.ajax({
-		        url: "/BWork/empDelete",
-		        type: "POST",
-		        data: { e_id:'${vo.e_id}' },
-		        success: function() {
-		        	console.log(data);
-		            alert('삭제되었습니다.');
-		            //location.href='/Userlist';
-					window.opener.location.reload();		
-		            window.close();
-		
-		        },
-		        error: function(xhr, status, error) {
-					console.error(error);
-		        	alert('삭제에 실패했습니다.');
-		        }
-		    });
-		 }
-	}
-	
-	
-
-</script>
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }
 table {margin-left: auto; margin-right: auto;}
@@ -88,6 +54,54 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 }
 
 </style>
+<script>
+	
+
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	}
+	function delDept(){
+		 if(confirm('삭제하시겠습니까?')) {
+			 
+		 $.ajax({
+		        url: "/BWork/empDelete",
+		        type: "POST",
+		        data: { e_id:'${vo.e_id}' },
+		        success: function(response) {
+		        	console.log(response);
+		            alert('삭제되었습니다.');
+		            if (window.opener) {
+		                window.opener.location.reload(); // 부모 페이지 새로고침
+		              }
+		              window.close(); 
+		        },
+		        error: function(xhr, status, error) {
+					console.error(error);
+		        	alert('삭제에 실패했습니다.');
+		        }
+		    });
+		 }
+	}
+	
+	window.onload = function() {
+		let btnDelEl = document.getElementById("btnDel");
+		btnDel.addEventListener('click', function(e) {
+			delDept(e);
+		});
+		
+		let btnUpEl = document.getElementById("btnUp");
+		btnUpEl.addEventListener("click", function(e) {
+			window.location.href = "/BWork/empUpdateForm?e_id="+ ${vo.e_id } ;
+		});
+		
+		
+	}
+	
+	
+
+</script>
 
 </head>
 <body>
@@ -127,9 +141,8 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-				  <a href="/BWork/empUpdateForm?e_id=${vo.e_id }" class="btn" style="margin: 0 0 0  160px; text-align: center;">수정</a>
-				  <!--  <a href=""  onclick="delEmp(event)" >[삭제]</a> --> 
-				  <a href="#"  onclick="delEmp();" class="btn" style="text-align: center;">삭제</a> 
+				  <input type="button" id="btnUp" value="수정" class="btn" style="margin: 0 0 0  160px; text-align: center;"/>
+				  <input type="button" id="btnDel" value="삭제" class="btn" style="text-align: center;">
 			  	</td>
 			  </tr>
 			  

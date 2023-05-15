@@ -60,6 +60,10 @@ function saveExcel() {
 
 
 window.onload = function() {
+	let refreshEl =document.getElementById("refresh");
+	refreshEl.addEventListener('click', function(e) {
+		window.location.reload();
+	});
 	
 		// 엔터키로 조회버튼 클릭
 	let inputEl = document.querySelector("input[type='text']");
@@ -153,7 +157,7 @@ tr:hover {
   background-color: #f5f5f5;
 }
 
-#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray; overflow-y: scroll;}
 #table {overflow: auto; width: 95%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
 #date { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
@@ -204,8 +208,9 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
      <div id="date">
         	사원명 : <input type="text" />
         	<input type="button" id="find" name="find" value="조회"class="btn"/>
-        	<input type="button" id="add" value ="등록" style=" margin: 0 0 0 25px;" class="btn"/>
-        	<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 25px; width:80px;" class="btn" />
+        	<input type="button" id="add" value ="등록" style=" margin: 0 0 0 15px;" class="btn"/>
+        	<input type="button" id="refresh" value ="새로고침" style=" margin: 0 0 0 15px; width: 55px;" class="btn"/>
+        	<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 15px; width:80px;" class="btn" />
         </div>
         <div id="lay">
         <table id="table">

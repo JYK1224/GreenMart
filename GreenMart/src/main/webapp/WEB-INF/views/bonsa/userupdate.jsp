@@ -33,26 +33,19 @@
 		  var name = document.getElementsByName('e_name')[0].value;
 		  var phone = document.getElementsByName('e_phone')[0].value;
 		  var intro = document.getElementsByName('e_intro')[0].value;
-
 		  // 체크박스가 체크되었는지 확인
-		  var isChecked = false;
-		  var checkBoxes = document.getElementsByName('j_id');
-		  for (var i = 0; i < checkBoxes.length; i++) {
-		    if (checkBoxes[i].checked) {
-		      isChecked = true;
-		      break;
-		    }
-		  }
-
+		 	let jid    = null;
+	  		document.getElementsByName("j_id").forEach((cb) =>   {
+	  		if (cb.checked){
+	  			jid = cb.value;
+	  		}
+	  	});
 		  // 필수 입력란 중 하나라도 비어있다면 알림창 띄우고 Submit 이벤트 막음
-		  if (name === '' || phone === '' || intro === '' || !isChecked) {
+		  if (name == "" || phone == "" || intro == "" || jid == null) {
 		    alert('모든 필수 입력란을 채워주세요.');
-		    //e.preventDefault();
-		    e.stopPropagation();
 		    return false;
-		    
 		  }
-	
+		return true;
 	}	
 
 </script>
@@ -110,7 +103,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 		<div>
 			<h2> 사원 수정 </h2>
 			<!-- 입력받은 정보를 서버로 전송한다 -->
-			<form onsubmit="checkForm();" action="/BWork/userUpdate" method="POST">
+			<form onsubmit="return checkForm();" action="/BWork/userUpdate" method="POST">
 			<table id="lay">
 			  <tr>
 			  	<td id="qq">사원 번호</td>
@@ -128,7 +121,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			  <tr>
 			    <td id="qq">비밀번호</td>
 			    <td>
-			    	<input type="password" name="e_passwd" value="${vo.e_passwd }"/>
+			    	<input type="text" name="e_passwd" value="${vo.e_passwd }"/>
 			    </td>
 			  </tr>
 			  <tr>

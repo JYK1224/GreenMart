@@ -76,7 +76,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 		}
 	
 	function submitMessage (e) {
-	 	let eid    = document.forms["form"]["e_id"].value;
+		let eid    = document.forms["form"]["e_id"].value;
 	 	let name   = document.forms["form"]["e_name"].value;
 	  	let phone  = document.forms["form"]["e_phone"].value;
 	  	let passwd = document.forms["form"]["e_passwd"].value;
@@ -87,31 +87,39 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 	  			jid = cb.value;
 	  		}
 	  	});
-		if(eid == "" ||name == "" || phone == ""|| passwd == ""|| intro == ""|| jid == ""){
+		if(eid == "" ||name == "" || phone == ""|| passwd == ""|| intro == ""|| jid == null){
 			alert("모든항목을 빈칸없이 입력해주세요.") 
 			e.preventDefault();
 		}else{
-		  	alert("회원등록에 성공했습니다.")
-		  	formEl.submit();
-		  	 window.location.href="/Useradd"
+			let confirmed = confirm('수정하시겠습니까?');
+	 		if(confirmed){
+				alert("회원등록에 성공했습니다.")
+	  			if (window.opener) {
+	        		window.opener.location.reload(); // 부모 페이지 새로고침
+					document.forms["form"].submit();
+	    		}	
+	 		} else {
+	 			e.preventDefault();
+	 		}
 		}
+	 	
 	}
 	
 	window.onload = function() {
-		let btnListEl = document.getElementById("btnlist");
+		let btnListEl = document.getElementById("btnList");
 		btnListEl.addEventListener('click' , function(e){
 			  e.preventDefault();
-		      //e.stopPropagation();
-			  let  html       = '/UserList'  ;
-			  let  name       = 'UserList'; 
-			  let  features   = 'height=700, width=1050, top=200, left=600'; 
-			  window.open(html, name, features);
+			  if (window.opener) {
+	                window.opener.location.reload(); // 부모 페이지 새로고침
+	              }
+			  window.close();
+		      
 		});
-		
 		let formEl = document.forms["form"];
-		  formEl.addEventListener('submit', submitMessage);
+		  formEl.addEventListener('submit', function(e){
+				  submitMessage (e);
+		  });
 		
-		  	
 	}
 	
 
@@ -167,8 +175,8 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			  </tr>
 			  <tr>
 			  	<td colspan="2">
-			  	  <input  type="submit" value="등록" class="btn" style="margin: 0 0 0 100px;">
-			  	  <input  type="button" value="조회" id="btnList" class="btn">
+			  	  <input id="addbtn" type="submit" value="등록" class="btn" style="margin: 0 0 0 100px;">
+			  	  <input type="button" value="조회" id="btnList" class="btn">
 			  	</td>
 			  </tr>
 			</table>

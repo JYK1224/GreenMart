@@ -26,6 +26,16 @@
 
 </insert>
 
+<select id="GetFavoriteList"
+        resultType="com.green.mart.vo.FavoriteVo">
+	
+	SELECT F2.FT_NAME as FT_NAME, F2.FT_ATAG
+	  FROM FAVORITESADD F1, FAVORITES F2
+	 WHERE F1.FT_ID = F2.FT_ID
+	   AND E_ID = #{ e_id }
+
+</select>
+
  
 </mapper>
 

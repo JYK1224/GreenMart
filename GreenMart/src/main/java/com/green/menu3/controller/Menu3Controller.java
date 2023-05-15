@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.mart.service.FavoriteService;
 import com.green.mart.vo.EmployeeVo;
+import com.green.mart.vo.FavoriteVo;
 import com.green.menu3.service.Menu3Service;
 import com.green.menu3.vo.FilesVo;
 import com.green.menu3.vo.Menu3PagingVo;
@@ -35,6 +37,9 @@ public class Menu3Controller {
 
 	@Autowired
 	private Menu3Service menu3Service;
+	
+	@Autowired
+	private FavoriteService favoriteService;
 
 	// 게시글 목록
 	@RequestMapping("/Pds")
@@ -72,6 +77,52 @@ public class Menu3Controller {
 		mv.addObject("map", map);
 		mv.addObject("list", list);
 		mv.addObject("pdsPagingVo", pdsPagingVo);
+
+		return mv;
+	}
+	
+	// 즐겨찾기 반영된 게시글 목록
+	@RequestMapping("/PdsWithFT")
+	public ModelAndView noticeWithFT( @RequestParam HashMap<String, Object> map) {
+
+		//-------------------------------------------
+		// 페이징 정보 준비
+		int         nowpage   = Integer.parseInt( (String) map.get("nowpage") ); 
+		int         pagecount = 5;		// 한페이지 당 출력할 row 수
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int         startnum  = ( nowpage - 1) * pagecount + 1;
+		int         endnum    = nowpage * pagecount;
+
+		map.put("nowpage", nowpage);
+		map.put("pagecount", pagecount);
+		map.put("startnum", startnum);		// 예를들어 한페이지당 5줄씩 찍을거니까 1, 6, 11, 16, ... 
+		map.put("endnum", endnum);			// 예를들어 한페이지당 5줄씩 찍을거니까 5, 10, 15, 20, ... 
+		// sql 에서 SELECT ~ BETWEEN startnum AND endnum 으로 출력할때 사용할 예정
+		//--------------------------------------------
+
+		// 게시판 이름을 가져온다
+		String m_id   = (String) map.get("m_id");
+		String m_name = menu3Service.getM_name( m_id );
+		map.put("m_name", m_name);
+		map.put("m_id", m_id);
+
+		// 게시판 글 목록
+		List<Menu3PagingVo> list = menu3Service.getMenu3PagingList( map );
+		Menu3PagingVo pdsPagingVo = (Menu3PagingVo) map.get("pdsPagingVo");
+
+		// 즐겨찾기 메뉴 가져오기 : map3
+		HashMap<String, Object> map3 = new HashMap<String, Object>();
+		map3.put("e_id", "0001"); // 로그인아이디를 e_id 로 map에 담는다.
+		List<FavoriteVo> favoriteList = favoriteService.getFavoriteList( map3 );
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("community/communityListWithFT");
+		mv.addObject("map", map);
+		mv.addObject("list", list);
+		mv.addObject("pdsPagingVo", pdsPagingVo);
+		mv.addObject("favoriteList", favoriteList);
 
 		return mv;
 	}

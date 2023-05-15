@@ -13,6 +13,7 @@
        
        <div class="gnb">
         <ul>
+     	    <li><a href="/">홈으로</a>
         	<li><a href="/Jumpo">점포화면</a></li>
         	<li><a href="/Bonsa">본사화면</a></li>
         	<li><a href="/Menu3/Pds?nowpage=1&m_id=M01">커뮤니티</a></li>

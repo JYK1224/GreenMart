@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -42,50 +43,66 @@
 <button onclick="clearRightZone()">즐겨찾기 ZONE 초기화</button>
 <button onclick="saveRightZoneMenus()">즐겨찾기 저장</button>
 <div id="gd">	
-  <div class="j-zone" ondragstart="drag(event)">
-<div class="menu" draggable="true" data-menu-id="1"><점포>상품주문업무</div>
-<div class="menu" draggable="true" data-menu-id="2"><점포>본사주문업무</div>
-<div class="menu" draggable="true" data-menu-id="3"><점포>상품입고업무</div>
-<div class="menu" draggable="true" data-menu-id="4"><점포>거래처조회</div>
-<div class="menu" draggable="true" data-menu-id="5"><점포>점포전체조회</div>
-<div class="menu" draggable="true" data-menu-id="6"><점포>상품상세조회</div>
-<div class="menu" draggable="true" data-menu-id="7"><점포>상품전체조회</div>
-<div class="menu" draggable="true" data-menu-id="8"><점포>주문내역조회</div>
-<div class="menu" draggable="true" data-menu-id="9"><점포>입고내역조회</div>
-<div class="menu" draggable="true" data-menu-id="10"><점포>상품매출조회</div>
-<div class="menu" draggable="true" data-menu-id="11"><점포>상품폐기업무</div>
-<div class="menu" draggable="true" data-menu-id="12"><점포>폐기내역조회</div>
-<div class="menu" draggable="true" data-menu-id="13"><점포>상풀매출입력</div>
-</div>
-  <div class="b-zone" ondragstart="drag(event)">
-<div class="menu" draggable="true" data-menu-id="14"><본사>상품주문업무</div>
-<div class="menu" draggable="true" data-menu-id="15"><본사>상품입고업무</div>
-<div class="menu" draggable="true" data-menu-id="16"><본사>신규거래처등록</div>
-<div class="menu" draggable="true" data-menu-id="17"><본사>신규상품등록</div>
-<div class="menu" draggable="true" data-menu-id="18"><본사>사용자관리</div>
-<div class="menu" draggable="true" data-menu-id="19"><본사>거래처조회</div>
-<div class="menu" draggable="true" data-menu-id="20"><본사>점포전체조회</div>
-<div class="menu" draggable="true" data-menu-id="21"><본사>상품상세조회</div>
-<div class="menu" draggable="true" data-menu-id="22"><본사>상품전체조회</div>
-<div class="menu" draggable="true" data-menu-id="23"><본사>주문내역조회</div>
-<div class="menu" draggable="true" data-menu-id="24"><본사>입고내역조회</div>
-<div class="menu" draggable="true" data-menu-id="25"><본사>상품매출조회</div>
-<div class="menu" draggable="true" data-menu-id="26"><본사>점포주문내역조회</div>
-<div class="menu" draggable="true" data-menu-id="27"><본사>상품출고업무</div>
-<div class="menu" draggable="true" data-menu-id="28"><본사>상품출고조회</div>
-<div class="menu" draggable="true" data-menu-id="29"><본사>상품폐기업무</div>
-<div class="menu" draggable="true" data-menu-id="30"><본사>폐기내역조회</div>
-  </div>
-  <div class="o-zone" ondragstart="drag(event)">
-<div class="menu" draggable="true" data-menu-id="31"><커뮤니티>공지사항</div>
-<div class="menu" draggable="true" data-menu-id="32"><커뮤니티>업무연락</div>
-<div class="menu" draggable="true" data-menu-id="33"><커뮤니티>경조사</div>
-<div class="menu" draggable="true" data-menu-id="34"><커뮤니티>자료실</div>
-<div class="menu" draggable="true" data-menu-id="35"><커뮤니티>사원조회</div>
-<div class="menu" draggable="true" data-menu-id="36"><고객관리>고객신규등록</div>
-<div class="menu" draggable="true" data-menu-id="37"><고객관리>고객정보조회</div>
-</div>
-  
+
+	<c:if test="${sessionScope.login.j_id == 12010}">
+		  <div class="b-zone" ondragstart="drag(event)">
+			<div class="menu" draggable="true" data-menu-id="14"><본사>상품주문업무</div>
+			<div class="menu" draggable="true" data-menu-id="15"><본사>상품입고업무</div>
+			<div class="menu" draggable="true" data-menu-id="16"><본사>신규거래처등록</div>
+			<div class="menu" draggable="true" data-menu-id="17"><본사>신규상품등록</div>
+			<div class="menu" draggable="true" data-menu-id="18"><본사>사용자관리</div>
+			<div class="menu" draggable="true" data-menu-id="19"><본사>거래처조회</div>
+			<div class="menu" draggable="true" data-menu-id="20"><본사>점포전체조회</div>
+			<div class="menu" draggable="true" data-menu-id="21"><본사>상품상세조회</div>
+			<div class="menu" draggable="true" data-menu-id="22"><본사>상품전체조회</div>
+			<div class="menu" draggable="true" data-menu-id="23"><본사>주문내역조회</div>
+			<div class="menu" draggable="true" data-menu-id="24"><본사>입고내역조회</div>
+			<div class="menu" draggable="true" data-menu-id="25"><본사>상품매출조회</div>
+			<div class="menu" draggable="true" data-menu-id="26"><본사>점포주문내역조회</div>
+			<div class="menu" draggable="true" data-menu-id="27"><본사>상품출고업무</div>
+			<div class="menu" draggable="true" data-menu-id="28"><본사>상품출고조회</div>
+			<div class="menu" draggable="true" data-menu-id="29"><본사>상품폐기업무</div>
+			<div class="menu" draggable="true" data-menu-id="30"><본사>폐기내역조회</div>
+  		</div>
+ 		<div class="o-zone" ondragstart="drag(event)">
+			<div class="menu" draggable="true" data-menu-id="31"><커뮤니티>공지사항</div>
+			<div class="menu" draggable="true" data-menu-id="32"><커뮤니티>업무연락</div>
+			<div class="menu" draggable="true" data-menu-id="33"><커뮤니티>경조사</div>
+			<div class="menu" draggable="true" data-menu-id="34"><커뮤니티>자료실</div>
+			<div class="menu" draggable="true" data-menu-id="35"><커뮤니티>사원조회</div>
+			<div class="menu" draggable="true" data-menu-id="36"><고객관리>고객신규등록</div>
+			<div class="menu" draggable="true" data-menu-id="37"><고객관리>고객정보조회</div>
+		</div>
+	</c:if>
+
+	<c:if test="${sessionScope.login.j_id != 12010}">
+	
+	<div class="j-zone" ondragstart="drag(event)">
+		<div class="menu" draggable="true" data-menu-id="1"><점포>상품주문업무</div>
+		<div class="menu" draggable="true" data-menu-id="2"><점포>본사주문업무</div>
+		<div class="menu" draggable="true" data-menu-id="3"><점포>상품입고업무</div>
+		<div class="menu" draggable="true" data-menu-id="4"><점포>거래처조회</div>
+		<div class="menu" draggable="true" data-menu-id="5"><점포>점포전체조회</div>
+		<div class="menu" draggable="true" data-menu-id="6"><점포>상품상세조회</div>
+		<div class="menu" draggable="true" data-menu-id="7"><점포>상품전체조회</div>
+		<div class="menu" draggable="true" data-menu-id="8"><점포>주문내역조회</div>
+		<div class="menu" draggable="true" data-menu-id="9"><점포>입고내역조회</div>
+		<div class="menu" draggable="true" data-menu-id="10"><점포>상품매출조회</div>
+		<div class="menu" draggable="true" data-menu-id="11"><점포>상품폐기업무</div>
+		<div class="menu" draggable="true" data-menu-id="12"><점포>폐기내역조회</div>
+		<div class="menu" draggable="true" data-menu-id="13"><점포>상풀매출입력</div>
+	</div>
+
+	<div class="o-zone" ondragstart="drag(event)">
+		<div class="menu" draggable="true" data-menu-id="31"><커뮤니티>공지사항</div>
+		<div class="menu" draggable="true" data-menu-id="32"><커뮤니티>업무연락</div>
+		<div class="menu" draggable="true" data-menu-id="33"><커뮤니티>경조사</div>
+		<div class="menu" draggable="true" data-menu-id="34"><커뮤니티>자료실</div>
+		<div class="menu" draggable="true" data-menu-id="35"><커뮤니티>사원조회</div>
+		<div class="menu" draggable="true" data-menu-id="36"><고객관리>고객신규등록</div>
+		<div class="menu" draggable="true" data-menu-id="37"><고객관리>고객정보조회</div>
+	</div>
+  </c:if>
 
 <div class="right-zone" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragstart="return false;">여기에 드래그앤드랍</div>
 

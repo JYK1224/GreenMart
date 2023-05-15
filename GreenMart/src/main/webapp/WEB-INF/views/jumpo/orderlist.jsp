@@ -67,7 +67,7 @@ function data_display(data) {
 	html += '<th>입고가격</th>';
 	html += '<th>현재재고</th>';
 	html += '<th>주문수량</th>';
-	html += '<th>총주문금액</th>';
+	html += '<th>총 주문금액</th>';
 	html += '<th>사원번호</th>';
 	html += '</tr>';
 	
@@ -169,6 +169,7 @@ window.onload = function() {
 	              
 				});
 				let html = data_display(data);
+				
 				allsalesEl.textContent = totalsPrice + '원';
 				$('#table').html(html); 
 				},
@@ -253,7 +254,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 </style>
 </head>
 <body>
-<div id="gd">
+	<div id="gd">
 	<span>주문내역 조회</span>
 <div id="date">
 시작일자 지정 : <input type="date" id="startdate" class="ee"/>  <br />
@@ -261,11 +262,15 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 거래처명 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="search"/> <input type="button" id="deptsearch" value="검색" style=" margin: 0 20px 0 10px;" class="btn"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px; " class="btn"/>
 </div>
-<div id= "lay" >
-<div id="table">
-
-</div>
-</div>
+	<table style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 225px; width: 950px; left: 24px;" >
+		<tr>
+		<td>총 주문금액 : </td><td id="total" ></td>
+		</tr>
+	</table>
+	<div id= "lay" >
+	<div id="table">
+	</div>
+	</div>
 	</div>
     <%@ include file="/WEB-INF/include/bottom.jsp" %>
 

@@ -180,7 +180,7 @@ window.onload = function() {
 			// e.stopPropagation();
 			let html = '/Favorites';
 			let name = 'Favorites'; // '' 값이 없으면 창이 여러번 뜬다
-			let features = 'height=750, width=1050, top=200, left=300';
+			let features = 'height=1050, width=600, top=200, left=300';
 			window.open(html, name, features);
 		});
 }

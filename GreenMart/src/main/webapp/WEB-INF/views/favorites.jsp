@@ -11,37 +11,70 @@
 <link rel="stylesheet" href="/css/common.css"/>
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
   <style>
+  	#gd { width: 90%; border: 3px solid #666666;box-shadow: 3px 3px 3px 3px gray; margin-left: 5%}
+  	h2{text-align: center; margin: 20px; font-size: 30px; }
     .menu {
       margin: 5px;
-      padding: 10px;
+      padding: 7px;
       background-color: #f2f2f2;
       cursor: move;
     }
-    .j-zone, .b-zone, .o-zone {
-      width: 250px;
-      height: 730px;
-      border: 1px solid black;
-      float: left;
+    .j-zone {
+      width: 250px; height: 685px;
+      border: 1px solid #666666;  margin:5px;
+      
     }
-    .j-zone div, .b-zone div, .o-zone div {
-    	height: 17px;
-    }
-    .right-zone {
-      width: 250px;
-      height: 730px;
-      border: 1px solid black;
-      float: right;
-    }
- button { 
-     align: right;
-    } 
+    .b-zone{ width: 250px; height: 685px; margin:5px;
+     border: 1px solid #666666;}
+   
+    .o-zone{ position: absolute; margin-left: 268px; margin-top: -692px;
+    width: 250px; height: 287px; border: 1px solid #666666;}
+    .right-zone {width: 250px; height: 287px; border: 1px solid #666666;
+   position: absolute; margin-left: 268px; margin-top: -394px;}
+    .btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+     
+
   </style>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<span>즐겨찾기 메뉴 관리</span>
-<button onclick="clearRightZone()">즐겨찾기 ZONE 초기화</button>
-<button onclick="saveRightZoneMenus()">즐겨찾기 저장</button>
+<h2>즐겨찾기 메뉴 관리</h2>
+<button onclick="clearRightZone()" class="btn" style="position: absolute; margin-left: 301px; margin-top: 655px; width: 250px; height:35px; " >즐겨찾기 ZONE 초기화</button>
+<button onclick="saveRightZoneMenus()"class="btn" style="position: absolute; margin-left: 301px; margin-top: 605px; width: 250px; height:35px; ">즐겨찾기 저장</button>
 <div id="gd">	
 
 	<c:if test="${sessionScope.login.j_id == 12010}">
@@ -104,8 +137,8 @@
 	</div>
   </c:if>
 
-<div class="right-zone" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragstart="return false;">여기에 드래그앤드랍</div>
-
+<div class="right-zone" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" ondragstart="return false;">&nbsp;&nbsp;&nbsp;- 필요한항목 끌어다주세요 -</div>
+</div>
 
 <script>
 function saveRightZoneMenus() {
@@ -198,7 +231,7 @@ function saveRightZoneMenus() {
   //--------------------------------------------------------------------------
 </script>
 
-</div>
+
     <%@ include file="/WEB-INF/include/bottom.jsp" %>
 </body>
 </html>

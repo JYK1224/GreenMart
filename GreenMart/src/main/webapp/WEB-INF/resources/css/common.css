@@ -41,8 +41,8 @@ div #gd {  width: 100%;
          footer { width: 100%; height: 20px; bottom: 0px;  position: fixed;;
      color:#fff; background:#666; text-align: center; padding : 20px 0; text-transform: uppercase; font-size:11px;
    }
-.dd {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 0; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555;}
-.aa {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 40px; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555;}
+.dd {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 0; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555; padding: 5px;}
+.aa {  border:2px solid #666; position: relative; left:20%;  display: inline-block; width: 400px; height: 150px; margin: 30px 40px; border-radius: 1em; box-shadow: 8px 8px 6px 2px #555555; padding: 5px;}
 
 div #calendar {position: relative; left:20%; width: 850px; height: 450px; margin: 10px 0px;}
 

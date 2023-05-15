@@ -70,7 +70,7 @@
 			// e.stopPropagation();
 			let html = '/Mileage';
 			let name = 'Mileage'; // '' 값이 없으면 창이 여러번 뜬다
-			let features = 'height=750, width=1050, top=200, left=300';
+			let features = 'height=580, width=500, top=200, left=300';
 			window.open(html, name, features);
 		});
 
@@ -317,7 +317,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 				<div id="customer"></div>
 				
 				<!-- 입력받은 정보를 서버로 전송한다 -->
-				<form action="/Pay" method="POST">
+				<form action="/Pay" method="POST" >
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
 					<input type="hidden" name="e_id" id="e_id" value="0001"/>
 					<input type="hidden" name="c_phone" id="c_phone" />
@@ -330,7 +330,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="button" style ="width:90px"" value="마일리지 조회" id="mileage" class="btn"/>
+							<input type="button" style ="width:90px" value="마일리지 조회" id="mileage" class="btn"/>
 							</td>
 							<td colspan="2">
 							고객명 : &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="c_name" id="c_name" readonly/>
@@ -341,7 +341,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="submit" value="결제" id="pay" class="btn"/>
+							<input type="submit" value="결제" id="pay" class="btn" />
 							</td>
 							<td colspan="2">
 							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>

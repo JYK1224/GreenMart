@@ -10,9 +10,53 @@
 
 <%@ include file="/WEB-INF/include/subheader.jsp"%>
 <style>
+h2{text-align: center; margin: 20px; font-size: 30px; }
 table {
-	border: 1px solid black;
+	border: 3px solid #666666;
+	box-shadow: 3px 3px 3px 3px gray;
 	text-align: center;
+	padding: 30px;
+	height: 300px;
+	width: 90%;
+	position: absolute;
+	left: 5%;
+}
+td{border: 1px solid black; }
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -104,26 +148,26 @@ table {
 						<tr>
 							<td>연락처</td>
 							<td><input type="text" name="c_phone" /></td>
-							<td><input type="button" id="custSearch" value="조회" /></td>
+							<td><input type="button" id="custSearch" value="조회" class="btn"/></td>
 						</tr>
 						<tr>
 							<td>고객명</td>
-							<td colspan="2"><input type="text" name="c_name" readonly/></td>
+							<td colspan="3"><input type="text" name="c_name" readonly style="margin-left: -65px;"/></td>
 						</tr>
 						<tr>
 							<td>고객번호</td>
-							<td colspan="2"><input type="text" name="c_id" readonly/></td>
+							<td colspan="3"><input type="text" name="c_id" readonly style="margin-left: -65px;"/></td>
 						</tr>
 						<tr>
 							<td>보유 마일리지</td>
-							<td colspan="2"><input type="text" name="c_mile" readonly/></td>
+							<td colspan="3"><input type="text" name="c_mile" readonly style="margin-left: -65px;"/></td>
 						</tr>
 						<tr>
 							<td>마일리지 사용:</td>
-							<td colspan="2"><input type="text" name="milePay" value="0"/></td>
+							<td colspan="3"><input type="text" name="milePay" value="0" style="margin-left: -65px;"/></td>
 						</tr>
 						<tr>
-							<td colspan="3"><input type="submit" value="마일리지 적용" /></td>
+							<td colspan="3"><input type="submit" value="마일리지 적용" class="btn" style="width: 100px;"/></td>
 						</tr>
 
 					</table>

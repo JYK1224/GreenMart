@@ -5,7 +5,7 @@
   <nav>
         <ul class="menu">
         <br>
-        <h3><즐겨찾기 메뉴></h3>
+        <li style="font-size: 20px; margin: 0px 0px 5px 0px;">&nbsp;즐겨찾기</li>
         <c:forEach var="favoriteList" items="${ favoriteList }" >
         	<li><a href="" id="${ favoriteList.ft_atag }">${ favoriteList.ft_name }</a></li>
         </c:forEach>

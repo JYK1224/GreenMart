@@ -227,10 +227,10 @@ form button:hover {
         <div class="container">
           <h1>GREEN MART</h1>
           
-          <form class="form">
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <button type="submit" id="login-button">Login</button>
+        <form action="/loginprocess" method="POST">
+            <input type="text" placeholder="Username" name="e_id" value="sky" />
+            <input type="password" placeholder="Password" name="e_passwd" value="1234" />
+            <input type="submit" id="login-button" value="로그인" />
           </form>
         </div>
         

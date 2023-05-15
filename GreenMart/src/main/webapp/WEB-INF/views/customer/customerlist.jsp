@@ -58,6 +58,11 @@ function saveExcel() {
 }
 
 	 window.onload = function() {
+		let refreshEl =document.getElementById("refresh");
+			refreshEl.addEventListener('click', function(e) {
+				window.location.reload();
+			});
+			 
 		// 회원 상세정보 
 		let viewEl = document.querySelectorAll('td a');
 		viewEl.forEach(viewEl => {    
@@ -186,6 +191,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
      <div id="date">
         	회원명 : <input type="text" />
         	<input type="button" id="find" name="find" value="조회"  style=" margin: 0 0 0 25px;" class="btn"/>
+        	<input type="button" id="refresh" value="새로고침" style=" margin: 0 0 0 25px; width: 55px;" class="btn"/>
         	<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 25px; width:80px;" class="btn"/>
         </div>
         <div id="lay">

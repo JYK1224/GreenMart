@@ -208,7 +208,7 @@ tr:hover {
   background-color: #f5f5f5; 
 }
 
-#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 150px; box-shadow: 3px 3px 3px 3px gray;}
+#lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 165px; box-shadow: 3px 3px 3px 3px gray;}
 #table {overflow: auto; width: 100%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
 #date { border: 3px solid #666666; position: absolute; left: 39%; width: 558px;
@@ -262,7 +262,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 거래처명 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="search"/> <input type="button" id="deptsearch" value="검색" style=" margin: 0 20px 0 10px;" class="btn"/>
 <input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px; " class="btn"/>
 </div>
-	<table style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 225px; width: 950px; left: 24px;" >
+	<table style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 229px; width: 950px; left: 24px;" >
 		<tr>
 		<td>총 주문금액 : </td><td id="total" ></td>
 		</tr>

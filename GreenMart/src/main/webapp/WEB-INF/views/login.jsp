@@ -228,7 +228,7 @@ form button:hover {
           <h1>GREEN MART</h1>
           
         <form action="/loginprocess" method="POST">
-            <input type="text" placeholder="Username" name="e_id" value="sky" />
+            <input type="text" placeholder="Username" name="e_id" value="0001" />
             <input type="password" placeholder="Password" name="e_passwd" value="1234" />
             <input type="submit" id="login-button" value="로그인" />
           </form>

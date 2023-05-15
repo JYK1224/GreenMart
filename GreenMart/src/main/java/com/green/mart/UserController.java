@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.green.mart.service.UserService;
 import com.green.mart.vo.EmployeeVo;
@@ -30,13 +31,16 @@ public class UserController {
 				return "/login";
 			}
 			
-			// 로그인체크
+			
+			
 			@RequestMapping("/loginprocess")
-			public String loginprocess(
+			public ModelAndView loginprocess(
 					HttpSession session,
 					@RequestParam HashMap<String, Object> map){
 				System.out.println("로그인"+map);
-				String returnURL = "";
+				// String returnURL = "";
+				
+				ModelAndView mv = new ModelAndView(); 
 				
 				if(session.getAttribute("login") != null) {
 					
@@ -49,11 +53,11 @@ public class UserController {
 				if (vo != null) {
 					session.setAttribute("login", vo);
 					System.out.println("vo"+vo);
-					returnURL = "/home";
+					mv.setViewName("redirect:/");
 				}else {
-					returnURL = "redirect:/login";
+					mv.setViewName("redirect:/login");
 				}
-				return returnURL;
+				return mv;
 			}
 			
 			// 로그아웃

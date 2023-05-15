@@ -378,12 +378,12 @@ public class BonsaWorkController {
 		}
 		// 상품 수정 
 		@RequestMapping("/productView")
-		public ModelAndView productView (String p_id ) {
+		public ModelAndView productView (String p_seq ) {
 			
 			List<DeptVo> checkDeptlist = bonsaService.getDeptList();
 			List<AssortmentVo> checkAstlist = bonsaService.getAstList();
 			
-			SearchProductVo pVo = bonsaService.productView(p_id);
+			SearchProductVo pVo = bonsaService.productView(p_seq);
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("/bonsa/productview");
 			mv.addObject("vo", pVo);

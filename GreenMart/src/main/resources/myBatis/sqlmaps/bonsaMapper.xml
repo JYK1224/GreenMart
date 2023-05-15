@@ -100,9 +100,9 @@ FROM assortment
 <!-- 상품 뷰 -->
 <select id="ProductView"
 resultType="com.green.mart.vo.work.SearchProductVo">
-SELECT p_id, p_name, p_iprice, p_sprice, d_id, a_id, j_id 
+SELECT p_id, p_name, p_iprice, p_sprice, d_id, a_id, j_id ,p_seq
 FROM product
-WHERE p_id=#{p_id}  
+WHERE p_seq=#{p_seq}  
 </select>
 <update id="ProductUp">
 UPDATE product
@@ -289,7 +289,7 @@ ORDER BY J_NAME ASC
 <select id="SearchProductList"
 resultType="com.green.mart.vo.work.SearchProductVo">
 SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME,
-NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID,P.P_SEQ
 FROM PRODUCT P , STOCK S, DEPT D, ASSORTMENT A, JUMPO J
 WHERE D.D_ID(+) = P.D_ID
 AND P.P_SEQ = S.P_SEQ(+)
@@ -301,7 +301,7 @@ AND P.P_ID = #{p_id}
  <select id="SearchProductList1"
 resultType="com.green.mart.vo.work.SearchProductVo">
 SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME,
-NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID,P.P_SEQ
 FROM PRODUCT P , STOCK S, DEPT D, ASSORTMENT A, JUMPO J
 WHERE D.D_ID(+) = P.D_ID
 AND P.P_SEQ = S.P_SEQ(+)

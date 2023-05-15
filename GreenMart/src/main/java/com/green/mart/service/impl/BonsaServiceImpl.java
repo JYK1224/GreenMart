@@ -293,9 +293,9 @@ public class BonsaServiceImpl implements BonsaService {
 			return list;
 		}
 		@Override
-		public SearchProductVo productView(String p_id) {
+		public SearchProductVo productView(String p_seq) {
 			
-			SearchProductVo pVo = bonsaDao.productView(p_id);
+			SearchProductVo pVo = bonsaDao.productView(p_seq);
 			
 			return pVo;
 		}

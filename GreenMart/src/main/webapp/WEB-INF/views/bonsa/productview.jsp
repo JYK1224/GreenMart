@@ -155,19 +155,19 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 						</td>
 					</tr>
 					<tr>
-						<td class="center">&nbsp;&nbsp;&nbsp;입고가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td class="center">&nbsp;&nbsp;&nbsp;입고가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="text" id="iprice" maxlength="10"
 						 class="center" value="${vo.p_iprice }" />
 						</td>
 					</tr>
 					<tr>
-						<td class="center">&nbsp;&nbsp;&nbsp;판매가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td class="center">&nbsp;&nbsp;&nbsp;판매가격  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="text" id="sprice" maxlength="10"
 						class="center" value="${vo.p_sprice }" />
 						</td>
 					</tr>
 					<tr>
-						<td class="center">&nbsp;&nbsp;&nbsp;거래처명  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td class="center">&nbsp;&nbsp;&nbsp;거래처명  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<select id="checkDept" name="d_id" >
 			    		<option value="${vo.d_id }" selected >${vo.d_id}</option>
 			    		<c:forEach var="dept"  items="${checkDeptlist }">
@@ -177,7 +177,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 						</td>
 					</tr>
 					<tr>
-						<td class="center">&nbsp;&nbsp;&nbsp;상품분류  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<td class="center">&nbsp;&nbsp;&nbsp;상품분류  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<select name="a_id" id="checkAst" >
 			    		<option value="${vo.a_id }" selected >${vo.a_id }</option>
 						<c:forEach var="ast"  items="${checkAstlist }">
@@ -194,7 +194,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 					</tr>
 					<tr>
 						<td colspan="2">
-						<input type="submit" class="btn" id="submitBtn" value="수정" style="margin: 0 0 0 150px"> 
+						<input type="submit" class="btn" id="submitBtn" value="수정" style="margin: 0 0 0 100px"> 
 						<input type="button" class="btn" id="delBtn" value="삭제" /> 
 						<input type="button" class="btn" id="backBtn" value="뒤로" /> 
 						</td>

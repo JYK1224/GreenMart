@@ -340,9 +340,9 @@ public class BonsaDaoImpl implements BonsaDao {
 		return list;
 	}
 	@Override
-	public SearchProductVo productView(String p_id) {
+	public SearchProductVo productView(String p_seq) {
 
-		SearchProductVo pVo = sqlSession.selectOne("Bonsa.ProductView", p_id);
+		SearchProductVo pVo = sqlSession.selectOne("Bonsa.ProductView", p_seq);
 		return pVo;
 	}
 	@Override

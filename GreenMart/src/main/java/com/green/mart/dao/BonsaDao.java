@@ -111,7 +111,7 @@ public interface BonsaDao {
 
 	List<DeptVo> getDeptList();
 	// 상품 뷰 
-	SearchProductVo productView(String p_id);
+	SearchProductVo productView(String p_seq);
 
 	void productUp(SearchProductVo pVo);
 

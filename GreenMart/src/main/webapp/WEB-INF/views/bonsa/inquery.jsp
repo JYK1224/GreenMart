@@ -78,10 +78,10 @@ window.onload = function () {
 	  const upbtnEl = document.getElementById("upbtn");
 	  
 	  upbtnEl.addEventListener("click", function (e) {
-		  let pid = document.getElementById("inquired1").textContent;
-		  let html = 'BWork/productView?p_id=' + pid;
+		  let pid = document.getElementById("inquired10").textContent;
+		  let html = 'BWork/productView?p_seq=' + pid;
 		  let name = 'productView';
-		  let  features   = 'height=700, width=1050, top=200, left=600'; 
+		  let  features   = 'height=700, width=450, top=200, left=600'; 
 		  window.open(html, name, features);
 		  window.close(); 
 	  });
@@ -130,7 +130,7 @@ window.onload = function () {
 	        $('#inquired7').text(data[0].d_name);
 	        $('#inquired8').text(data[0].st_num);
 	        $('#inquired9').text(data[0].a_name);
-	        //  $('#inquired10').text(data.j_name);
+	        $('#inquired10').text(data[0].p_seq);
 	      },
 	      error: function (xhr) {
 	        console.log(xhr);
@@ -159,6 +159,7 @@ window.onload = function () {
 	        $('#inquired7').text(data[0].d_name);
 	        $('#inquired8').text(data[0].st_num);
 	        $('#inquired9').text(data[0].a_name);
+	        $('#inquired10').text(data[0].p_seq);
 	      }
 	    });
 	  };
@@ -222,10 +223,9 @@ window.onload = function () {
 	 <td id="inquired9"></td>
 	 </tr>
 	 <tr>
-<%-- 	 <td>점포명</td>
-	 <td id="inquired10">${data.j_name}</td>
-	 </tr> --%>
+	 </tr> 
 	 </table>
+	 <input type="hidden" id="inquired10"  value="${data.p_seq}" />
 	
 
 	

@@ -111,7 +111,7 @@ public interface BonsaService {
 	
 	List<AssortmentVo> getAstList();
 	// 수정 (뷰)
-	SearchProductVo productView(String p_id);
+	SearchProductVo productView(String p_seq);
 
 	void productUp(SearchProductVo pVo);
 

@@ -5,17 +5,17 @@ public class SearchInputListVo {
 	private String startdate;
 	private String enddate;
 	private String d_name;
-	private int p_id;
+	private String p_id;
 	private String p_name;
 	private int p_iprice;
 	private int st_num;
 	private int in_num; 
-	private int e_id;
+	private String e_id;
 	
 	public SearchInputListVo() {}
 
-	public SearchInputListVo(String in_date, String startdate, String enddate, String d_name, int p_id, String p_name,
-			int p_iprice, int st_num, int in_num, int e_id) {
+	public SearchInputListVo(String in_date, String startdate, String enddate, String d_name, String p_id,
+			String p_name, int p_iprice, int st_num, int in_num, String e_id) {
 		this.in_date = in_date;
 		this.startdate = startdate;
 		this.enddate = enddate;
@@ -60,11 +60,11 @@ public class SearchInputListVo {
 		this.d_name = d_name;
 	}
 
-	public int getP_id() {
+	public String getP_id() {
 		return p_id;
 	}
 
-	public void setP_id(int p_id) {
+	public void setP_id(String p_id) {
 		this.p_id = p_id;
 	}
 
@@ -100,11 +100,11 @@ public class SearchInputListVo {
 		this.in_num = in_num;
 	}
 
-	public int getE_id() {
+	public String getE_id() {
 		return e_id;
 	}
 
-	public void setE_id(int e_id) {
+	public void setE_id(String e_id) {
 		this.e_id = e_id;
 	}
 
@@ -114,5 +114,7 @@ public class SearchInputListVo {
 				+ ", d_name=" + d_name + ", p_id=" + p_id + ", p_name=" + p_name + ", p_iprice=" + p_iprice
 				+ ", st_num=" + st_num + ", in_num=" + in_num + ", e_id=" + e_id + "]";
 	}
+
+	
 	
 }

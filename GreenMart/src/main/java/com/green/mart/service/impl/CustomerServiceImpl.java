@@ -56,9 +56,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 	@Override
-	public void deleteCus(CustomerVo vo) {
+	public void deleteCus(String c_id) {
 		
-		customerDao.delete(vo);
+		customerDao.delete(c_id);
 	}
 
 

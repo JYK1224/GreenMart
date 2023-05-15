@@ -18,7 +18,7 @@ public interface CustomerDao {
 	CustomerVo viewCustomer(String c_id);
 
 
-	void delete(CustomerVo vo);
+	void delete(String c_id);
 
 
 	void updateCustomer(CustomerVo vo);

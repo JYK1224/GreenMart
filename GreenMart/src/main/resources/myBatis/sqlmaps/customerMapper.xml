@@ -41,7 +41,7 @@
 		    c_phone, 
 		    c_mile
 		) VALUES (
-		    (SELECT NVL(max(c_id), 0  ) + 1 
+		    (SELECT NVL(max(to_number(c_id)), 0  ) + 1 
 		       FROM customer ),
 		    #{ c_name  },
 		    #{ c_phone  },

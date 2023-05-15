@@ -10,22 +10,6 @@
 <%@ include file="/WEB-INF/include/subheader.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
-
-	function oninputPhone(target) {
-	    target.value = target.value
-	        .replace(/[^0-9]/g, '')
-	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-	}
-	
-		/* let btnAddEl = document.querySelector("[type=submit]");
-		btnAddEl.addEventListener('click', function(e){
-			e.preventDefault();
-			alert('등록 성공');
-			
-		}) */
-
-</script>
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }
 table {margin-left: auto; margin-right: auto;}
@@ -71,6 +55,20 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 }
 
 </style>
+<script>
+
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	}
+	document.querySelector('form').addEventListener('submit', function() {
+		  window.parent.location.reload(); // 부모 페이지 새로고침
+		});
+	
+	
+	
+</script>
 
 </head>
 <body>

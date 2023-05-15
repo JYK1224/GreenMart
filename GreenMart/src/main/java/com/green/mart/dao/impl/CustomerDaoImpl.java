@@ -55,9 +55,9 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
 	@Override
-	public void delete(CustomerVo vo) {
+	public void delete(String c_id) {
 		
-		sqlSession.delete("Cus.DeleteCid", vo);
+		sqlSession.delete("Cus.DeleteCid", c_id);
 	
 	}
 

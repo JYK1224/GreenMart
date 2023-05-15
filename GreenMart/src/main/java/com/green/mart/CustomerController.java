@@ -3,9 +3,11 @@ package com.green.mart;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -69,18 +71,14 @@ public class CustomerController {
 		
 		return mv;
 	}
-	@RequestMapping("/Delete")
-	public ModelAndView delete(CustomerVo vo) {
+	@RequestMapping(value = "/Delete", method = RequestMethod.POST)
+	public ResponseEntity<String> deptDel(@RequestParam("c_id") String c_id) {
 		
-		customerService.deleteCus(vo);
+		customerService.deleteCus(c_id);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Customerlist");
+		return ResponseEntity.ok("삭제되었습니다.");
 		
-		
-		return mv;
 	}
-	
 	@RequestMapping("/UpdateForm")
 	public ModelAndView updateForm (CustomerVo vo) {
 		
@@ -99,7 +97,7 @@ public class CustomerController {
 		customerService.updateCustomer(vo);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Customerlist");
+		mv.setViewName("redirect:/CustomerView?c_id=" + vo.getC_id());
 		
 		System.out.println("업데이트 : " + vo);
 		

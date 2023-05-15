@@ -14,7 +14,7 @@ public interface CustomerService {
 
 	CustomerVo viewCustomer(String c_id);
 
-	void deleteCus(CustomerVo vo);
+	void deleteCus(String c_id);
 
 	void updateCustomer(CustomerVo vo);
 

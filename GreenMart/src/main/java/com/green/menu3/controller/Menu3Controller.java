@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.mart.vo.EmployeeVo;
 import com.green.menu3.service.Menu3Service;
 import com.green.menu3.vo.FilesVo;
 import com.green.menu3.vo.Menu3PagingVo;
@@ -75,6 +76,36 @@ public class Menu3Controller {
 		return mv;
 	}
 
+	// 사원 리스트 테이블
+		@RequestMapping("/empTable")
+		public ModelAndView empListTable (@RequestParam HashMap<String, Object> map) {
+			
+			int         nowpage   = Integer.parseInt( (String) map.get("nowpage") ); 
+			int         pagecount = 10;		// 한페이지 당 출력할 row 수
+			int         startnum  = ( nowpage - 1) * pagecount + 1;
+			int         endnum    = nowpage * pagecount;
+			
+			map.put("nowpage", nowpage);
+			map.put("pagecount", pagecount);
+			map.put("startnum", startnum);		// 예를들어 한페이지당 5줄씩 찍을거니까 1, 6, 11, 16, ... 
+			map.put("endnum", endnum);	
+			
+			String m_id   = (String) map.get("m_id");
+			String m_name = menu3Service.getM_name( m_id );
+			map.put("m_name", m_name);
+			map.put("m_id", m_id);
+			
+			List<EmployeeVo> empList = menu3Service.getEmpList(map); 	
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("community/communityemp");
+			mv.addObject("map", map);
+			mv.addObject("empList", empList);
+			
+			return mv;
+			
+		}
+	
+	
 	// 게시글 보기
 	@RequestMapping("/View")
 	public ModelAndView view(

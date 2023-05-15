@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.mart.vo.EmployeeVo;
 import com.green.menu3.dao.Menu3Dao;
 import com.green.menu3.service.Menu3Service;
 import com.green.menu3.vo.FilesVo;
@@ -140,7 +141,14 @@ public class Menu3ServiceImpl implements Menu3Service {
 		
 		return contactList;
 	}
-
+	// 사원조회 
+	@Override
+	public List<EmployeeVo> getEmpList(HashMap<String, Object> map) {
+		
+		List<EmployeeVo> empList = menu3Dao.getEmpList(map);
+		
+		return empList;
+	}
 
 
 }

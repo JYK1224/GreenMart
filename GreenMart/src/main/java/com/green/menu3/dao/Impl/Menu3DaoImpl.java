@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.mart.vo.EmployeeVo;
 import com.green.menu3.dao.Menu3Dao;
 import com.green.menu3.vo.FilesVo;
 import com.green.menu3.vo.Menu3PagingVo;
@@ -135,6 +136,12 @@ public class Menu3DaoImpl implements Menu3Dao {
 		
 		return contactList;
 	}
+	@Override
+	public List<EmployeeVo> getEmpList(HashMap<String, Object> map) {
 
-
+		List<EmployeeVo> empList = sqlSession.selectList("Pds.GetEmpList" , map);
+		
+		return empList;
+	}
+	
 }

@@ -9,7 +9,7 @@
         	<li><a href="/Menu3/Pds?nowpage=1&m_id=M02">&nbsp;업무연락</a></li>
         	<li><a href="/Menu3/Pds?nowpage=1&m_id=M03">&nbsp;경조사</a></li>
         	<li><a href="/Menu3/Pds?nowpage=1&m_id=M04">&nbsp;자료실</a></li>
-        	<li><a href="">&nbsp;사원조회</a></li>
+        	<li><a href="/Menu3/empTable?nowpage=1&m_id=M05">&nbsp;사원조회</a></li>
         </ul>
 </nav>    
        

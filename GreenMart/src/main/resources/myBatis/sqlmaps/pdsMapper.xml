@@ -361,7 +361,14 @@
            BETWEEN #{startnum2} AND #{endnum2}
    
    </select>
-   
+<select id="GetEmpList"
+    resultType="com.green.mart.vo.EmployeeVo">
+SELECT e_id, e_name, e_phone, e_intro, e_indate, j_name 
+FROM employee e join jumpo j 
+ON e.j_id = j.j_id 
+ORDER BY e_id asc 
+</select>
+    
     
 </mapper>
 

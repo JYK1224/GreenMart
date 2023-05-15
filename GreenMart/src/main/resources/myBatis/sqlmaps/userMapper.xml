@@ -5,38 +5,7 @@
 
 <mapper namespace="User">  
 
-<!--  
-  <select id="UserList"
-      resultType="com.green.user.vo.UserVo">
-      SELECT USERID, USERNAME, 
-             TO_CHAR(INDATE, 'YYYY-MM-DD HH24:MI:SS') INDATE 
-        FROM TUSER
-       ORDER BY INDATE ASC
-   </select>
-   
-   <insert id="UserInsert">
-   
-       INSERT INTO tuser (
-		    userid,
-		    passwd,
-		    username,
-		    indate
-		) VALUES (
-		    #{ userid  },
-		    #{ passwd  },
-		    #{ username  },
-		    SYSDATE
-		)       
-   
-   </insert>
-   
-   <delete id="UserDelete">
-   
-      DELETE  FROM   TUSER
-        WHERE  USERID = #{ userid }  
-           
-   </delete>
- -->
+
  
   <select id = "GetLogin"
    		resultType="com.green.mart.vo.EmployeeVo">
@@ -45,6 +14,7 @@
 				E_NAME,
 				E_INTRO,
 				E_PHONE,
+				J_ID,
 				TO_CHAR( E_INDATE, 'YYYY-MM-DD HH24:MI:SS') E_INDATE
    		FROM    EMPLOYEE
    		WHERE   E_ID = #{ e_id }

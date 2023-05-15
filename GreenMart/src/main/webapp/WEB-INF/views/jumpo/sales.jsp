@@ -259,7 +259,7 @@ tr:hover {
   background-color: #f5f5f5; 
 }
 
-#lay {width: 90%; height: 450px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray;}
+#myTable {width: 90%; height: 450px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray;}
 #table {overflow: auto; width: 100%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
 #table_foot { border: 3px solid #666666; position: absolute; left: 390px; width: 728px;
@@ -352,7 +352,6 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						</tfoot>
 					</table>
-					<div id ="lay">
 					<table id="myTable">
 						<thead>
 						<tr>
@@ -376,7 +375,6 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						</tbody>
 						</table>
-						</div>
 				</form>
 			</div>
 		</div>

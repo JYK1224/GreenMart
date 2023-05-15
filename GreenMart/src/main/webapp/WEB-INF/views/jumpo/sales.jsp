@@ -236,7 +236,14 @@
 				}
 			});
 		}
-
+		 let form = document.querySelector('form');
+		  form.addEventListener('submit', function(e) {
+		    e.preventDefault();
+		    let url = this.action;
+		    let features = 'height=580, width=860, top=200, left=300';
+		    window.open(url, 'popupWindow', features);
+		    form.submit(); // 폼 데이터 전송
+		  });
 	}
 </script>
 <style>
@@ -317,7 +324,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 				<div id="customer"></div>
 				
 				<!-- 입력받은 정보를 서버로 전송한다 -->
-				<form action="/Pay" method="POST" >
+				<form action="/Pay" method="POST" target="popupWindow" >
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
 					<input type="hidden" name="e_id" id="e_id" value="0001"/>
 					<input type="hidden" name="c_phone" id="c_phone" />

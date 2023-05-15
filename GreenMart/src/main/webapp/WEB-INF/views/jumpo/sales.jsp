@@ -244,6 +244,8 @@
 		    window.open(url, 'popupWindow', features);
 		    form.submit(); // 폼 데이터 전송
 		  });
+	
+		  
 	}
 </script>
 <style>
@@ -266,11 +268,12 @@ tr:hover {
   background-color: #f5f5f5; 
 }
 
-#myTable {width: 90%; height: 450px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray;}
+#myTable {width: 90%; border: 3px solid #666666; max-height:450px;
+ position: absolute; left:3%;  margin-top: 180px; box-shadow: 3px 3px 3px 3px gray; max-height: 450px;} */
 #table {overflow: auto; width: 100%; height: 390px;}
 span {font-size: 40px; position: absolute; top: 21%; left:8% }
 #table_foot { border: 3px solid #666666; position: absolute; left: 390px; width: 728px;
- box-shadow: 2px 2px 2px 2px gray; padding: 10px; margin-top: 0px;}
+ box-shadow: 2px 2px 2px 2px gray; padding: 10px; margin-top: 10px;}
 
 
 .btn  {
@@ -309,6 +312,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
     inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
 }
 #table_body {width: 90%;}
+
 </style>
 </head>
 <body>

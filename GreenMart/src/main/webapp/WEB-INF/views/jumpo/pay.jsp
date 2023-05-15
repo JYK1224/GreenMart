@@ -13,9 +13,66 @@
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <style>
 table {
-	border: 1px solid black;
-	text-align: center;
+  border-collapse: collapse;
+  margin : 0 0 0 30px;
 }
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f5f5f5; 
+}
+
+#my {width: 50%; border: 3px solid #666666; max-height:450px;
+ position: absolute; left:21%;  margin-top: 100px; box-shadow: 3px 3px 3px 3px gray; max-height: 450px;} */
+#table {overflow: auto; width: 100%; height: 390px;}
+h2 {font-size: 40px; position: absolute; top: 21%; left:35% }
+
+
+.btn  {
+  width: 50px;
+  height: 20px;
+  color: #fff;
+  font-weight:bold
+
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow: 1px 1px 1px 1px #666666,
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;	
+
+  border: none;
+  color: #000;
+}
+.btn {
+  background: rgb(96,9,240);
+  background: linear-gradient(0deg, #D4D3D3 0%, #F6F6F6 100%);
+  border: none;
+  
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:hover {
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .5), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
+}
+
 </style>
 <script>
 window.onload = function() {
@@ -93,30 +150,31 @@ window.onload = function() {
 					<input type="hidden" name="earnMiles"     value="${ map.earnMiles }" />
 					<input type="hidden" name="e_id"     value="${ map.e_id }" />
 				
-					<table>
+					<table id="my">
 						<tr>
-							<td colspan="3">받을금액:<input type="text" name="receive" id="finalPrice" value="${finalPrice}" readonly/></td>
+						<td>받을금액:</td>
+							<td colspan="2" ><input type="text" name="receive" id="finalPrice" value="${finalPrice}" readonly style="float: left;"/></td>
 						</tr>
 						<tr>
 							<td>현금:</td>
-							<td><input type="text" name="cash" id="cash" value="0" placeholder = "현금 수령액"/></td>
-							<td><input type="button" value="입력" id="cashPay"/></td>
+							<td><input type="text" name="cash" id="cash" value="0" placeholder = "현금 수령액" style="float: left;"/></td>
+							<td><input type="button" value="입력" id="cashPay" class="btn" style="width: 80px;"/></td>
 						</tr>
 						<tr>
 							<td>카드:</td>
-							<td><input type="text" name="card" id="card" value="0" readonly/></td>
-							<td><input type="button" value="카드결제" id="cardPay"/></td>
+							<td><input type="text" name="card" id="card" value="0" readonly style="float: left;"/></td>
+							<td><input type="button" value="카드결제" id="cardPay" class="btn"  style="width: 80px;"/></td>
 						</tr>
 						<tr>
 							<td>받은금액:</td>
-							<td colspan="2"><input type="text" name="received" id="recieved" value="0" readonly /></td>
+							<td colspan="2"><input type="text" name="received" id="recieved" value="0" readonly style="float: left;" /></td>
 						</tr>
 						<tr>
 							<td>거스름돈:</td>
-							<td colspan="2"><input type="text" name="change" id="change" value="0" readonly /></td>
+							<td colspan="2"><input type="text" name="change" id="change" value="0" readonly style="float: left;" /></td>
 						</tr>
 						<tr>
-							<td colspan="3"><input type="submit" value="계산완료"/></td>
+							<td colspan="3"><input type="submit" value="계산완료" class="btn"  style="width: 80px;"/></td>
 						</tr>
 					</table>
 				</form>

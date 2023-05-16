@@ -28,7 +28,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			// 로그인되어 있지 않다면 /login 으로 이동하시오
 			 String userAgent = request.getHeader("User-Agent");
 		        if (userAgent != null && userAgent.contains("Mobile")) {
-		            response.sendRedirect("/home"); // 홈 URL로 변경해야 함
+		            response.sendRedirect("/mobile/mhome"); // 홈 URL로 변경해야 함
 		            return false;
 		        }
 			

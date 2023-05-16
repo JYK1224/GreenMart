@@ -363,7 +363,21 @@ AND TO_DATE(IN_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
 AND P.J_ID = '12020'
 ORDER BY D.D_NAME, I.IN_DATE ASC
 </select>
-
+<!-- 본사상품 입고내역 조회 -->
+<select id="BonsaInputList"
+resultType="com.green.mart.vo.work.SearchInputListVo">
+SELECT TO_CHAR(I.IN_DATE, 'YYYY-MM-DD')AS IN_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(I.IN_NUM, 0) IN_NUM,  E.E_ID 
+FROM EMPLOYEE E, INPUT I, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND I.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND I.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(IN_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME, I.IN_DATE ASC
+</select>
 <!-- 폐기내역 조회 -->
 <select id="SearchJO"
 resultType="com.green.mart.vo.JumpoVo">

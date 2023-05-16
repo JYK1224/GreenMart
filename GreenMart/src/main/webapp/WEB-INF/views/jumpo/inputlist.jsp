@@ -90,7 +90,42 @@ function data_display(data) {
 	
 }
 
-
+// 본사상품 테이블 생성
+function bonsadata_display(data) {
+	
+	let html = '';
+	html += '<table id="myTable">';
+	html += '<tr>';
+	html += '<th>입고일자</th>';
+	html += '<th>거래처명</th>';
+	html += '<th>상품코드</th>';
+	html += '<th>상품명</th>';
+	html += '<th>입고가격</th>';
+	html += '<th>현재재고</th>';
+	html += '<th>입고수량</th>';
+	html += '<th>총입고금액</th>';
+	html += '<th>사원번호</th>';
+	html += '</tr>';
+	
+	data.forEach(function(data, index) { 	
+	html += '<tr>';
+	html += '<td>'+data.in_date+'</td>';
+	html += '<td>'+data.d_name+'</td>';
+	html += '<td>'+data.p_id+'</td>';
+	html += '<td>'+data.p_name+'</td>';
+	html += '<td>'+data.p_iprice+'</td>';
+	html += '<td>'+data.st_num+'</td>';
+	html += '<td>'+data.in_num+'</td>';
+	html += '<td>'+data.in_num*data.p_iprice+'</td>';
+	html += '<td>'+data.e_id+'</td>';
+	html += '<td></td>';
+	html += '</tr>';
+	})
+	
+	html += '</table>';
+	return html;
+	
+}
 
 //주문 거래처 배열
 function saveOrderD_name(columnIndex) {
@@ -178,6 +213,40 @@ window.onload = function() {
 			
 		}); 
 	}
+	let bonsaSearchEl = document.getElementById('bonsaSearch')
+	bonsaSearchEl.onclick = function(e) {
+		
+		let startdateEl = document.getElementById("startdate")
+		let enddateEl = document.getElementById("enddate")
+		
+		let startdate = new Date(startdateEl.value);
+		let enddate   = new Date(enddateEl.value);
+		
+		startdate = startdate.toISOString().slice(0, 10);
+		enddate   = enddate.toISOString().slice(0, 10);
+		
+		$.ajax({
+			url: "/JWork/BonsaSearchInput",
+			data : { search: $('#search').val(),
+					startdate: startdate,
+					enddate: enddate},
+			type: "POST", 
+					
+			success : function(data){
+				let tableEl = document.getElementById('table');
+				let html = bonsadata_display(data);
+				$('#table').html(html); 
+				},
+			error :function(xhr){
+				console.log(xhr);
+				alert('에러:' + xhr.status + '' + xhr.textStatus )
+				}
+			
+		}); 
+		
+	}
+
+
 }
 
 </script>
@@ -254,7 +323,8 @@ span {font-size: 40px; position: absolute; top: 19%; left:8% }
 시작일자 지정: <input type="date" id="startdate" class="ee"/>  <br />
 종료일자 지정: <input type="date" id="enddate" class="ee"/>  <br />
 거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색" class="btn" style="margin: 0 0 0 20px;""/>
-<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 25px; width: 80px;" class="btn"  />
+ <input type="button" id="bonsaSearch" value="본사상품검색" class="btn" style=" margin: 0 30px; width:90px; "/>
+<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 10px; width: 80px;" class="btn"  />
 </div>
 	<table  style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 225px; width: 950px; left: 24px; ">
          <tr>

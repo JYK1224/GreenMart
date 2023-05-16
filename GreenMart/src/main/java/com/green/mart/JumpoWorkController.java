@@ -482,6 +482,21 @@ public class JumpoWorkController {
 					List<SearchInputListVo> list = jumpoService.searchInputList(map);
 					return list;
 				}
+				// 본사 상품 입고 조회
+				@RequestMapping("/BonsaSearchInput")
+				@ResponseBody
+				public List<SearchInputListVo> returnBonsaInputList(String search, String startdate, String enddate) throws Exception {
+					
+					Map<String, Object> map = new HashMap<String, Object>();
+					String d_name = search.toUpperCase();
+					map.put("d_name", d_name);
+					map.put("startdate", startdate);
+					map.put("enddate", enddate);
+					
+					List<SearchInputListVo> list = jumpoService.returnBonsaInputList(map);
+					return list;
+					
+				}
 				
 				// 폐기내역 조회1
 				@RequestMapping("/SearchDislistSelect")

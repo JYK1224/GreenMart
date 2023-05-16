@@ -227,4 +227,10 @@ public class JumpoServiceImpl implements JumpoService {
 		return list;
 	}
 
+	@Override
+	public List<SearchInputListVo> returnBonsaInputList(Map<String, Object> map) {
+		List<SearchInputListVo> list = jumpoDao.returnBonsaInputList(map);
+		return list;
+	}
+
 }

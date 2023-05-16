@@ -48,7 +48,7 @@ window.onload = function() {
 		    buyer_email: 'customer@naver.com',
 		    buyer_name : "${c_name}",
 		    buyer_tel : "${c_phone}",
-		    m_redirect_url : 'http://192.168.0.7:9090/M/PayCard?c_name=${c_name}'
+		    m_redirect_url : 'http://192.168.0.210:9090/M/PayCard?c_name=${c_name}'
 		    		+'&c_phone="${c_phone}"&p_seqList=${p_seqList}'
 		    		+ '&su_List=${suList}&finalPrice=${finalPrice}&earnMiles=${earnMiles}&milePay=${milePay}'
 		    		+ '&cash=' + cash// 예: https://www.my-service.com/payments/complete

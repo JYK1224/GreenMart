@@ -9,6 +9,7 @@
 <script>
 window.onload = function() {
 	alert('DB에 저장되었습니다.')
+	opener.close();
 	window.close();
 }
 </script>

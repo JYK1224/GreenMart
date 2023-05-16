@@ -208,7 +208,12 @@ ORDER BY D.D_NAME ASC
 		 , P_NAME
 		 , P_SPRICE
 	  FROM PRODUCT
-	 WHERE P_SEQ = #{ p_seq }
+	 WHERE P_SEQ = ( 
+           SELECT P_SEQ 
+           FROM PRODUCT 
+           WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id}) 
+             AND P_ID = #{p_id}
+           )
 
 </select>
 
@@ -414,7 +419,11 @@ SELECT J_NAME FROM JUMPO
 	   SET
 	       ST_NUM = ST_NUM - #{ su }
 	 WHERE
-	       P_SEQ = #{ item }	
+	       P_SEQ = ( 
+           SELECT P_SEQ 
+           FROM PRODUCT 
+           WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id}) 
+             				AND P_ID = #{item}  )	
 
 </update>
 

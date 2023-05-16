@@ -6,5 +6,11 @@
    	<div class="ver">버전 : 1.0.0.1&nbsp;&nbsp;</div>
    	</h3>
      <h3 class="logo" >그린마트 업무시스템
-     <div class="logid"> 박지현(코드예정) </div>
+     <div class="logid"> 
+     사원번호 : 
+		<c:if test="${sessionScope.login != null}">
+			<div class="logid" id="eid">${ sessionScope.login.e_id }</div>
+		</c:if>
+		
+	 </div>
      </h3>

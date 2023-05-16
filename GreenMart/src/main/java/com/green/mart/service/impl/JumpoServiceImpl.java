@@ -112,8 +112,8 @@ public class JumpoServiceImpl implements JumpoService {
 	}
 	// 결제시 상품정보조회
 	@Override
-	public ProductVo prodSearch(String p_seq) {
-		ProductVo vo = jumpoDao.prodSearch( p_seq );
+	public ProductVo prodSearch(HashMap<String, Object> map) {
+		ProductVo vo = jumpoDao.prodSearch( map );
 		return vo;
 	}
 	// 마일리지 창에서 고객정보 조회

@@ -98,7 +98,7 @@ public class JumpoController {
 		int j= Integer.parseInt((String) map.get("rowCount"));
 		List<String> itemList = new ArrayList<String>();
 		for (int i = 0; i < j; i++) {
-			itemList.add((String) map.get("p_seq" + num));
+			itemList.add((String) map.get("p_id" + num));
 			num++;
 		}
 		

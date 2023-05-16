@@ -47,7 +47,7 @@ public interface JumpoService {
 	
 	List<DeptVo> searchAllDeptList(String search);
 	// 결제시 상품정보조회
-	ProductVo prodSearch(String p_seq);
+	ProductVo prodSearch(HashMap<String, Object> map);
 	// 적립시 고객정보조회
 	CustomerVo custSearch(String c_phone);
 	// 판매후 CUSTOMER 테이블에 마일리지 반영 

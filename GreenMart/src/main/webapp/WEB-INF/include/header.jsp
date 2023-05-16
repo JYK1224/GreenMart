@@ -7,7 +7,8 @@ $(function(){
 	// 로그인버튼 관련
 	if("${username}" != "") {
 		$("#login").attr("href", "/Login/Logout");
-		$("#login button").html("로그아웃");
+		let v = $("#login button").html("로그아웃");
+		window.close(v); 
 	}
 });
 </script>

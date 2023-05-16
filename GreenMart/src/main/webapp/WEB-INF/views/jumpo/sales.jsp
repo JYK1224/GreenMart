@@ -109,6 +109,54 @@ function saveOrderNum(columnIndex) {
 	// body 켜지고 난 다음
 	window.onload = function() {
 		
+	var wsUri = "ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/socket";
+		
+		var socket = new WebSocket(wsUri);
+		
+		console.log(socket)
+		
+		socket.onopen = function(event) {
+			  console.log('WebSocket connection established.');
+			};
+
+
+			socket.onerror = function(event) {
+			  console.error('WebSocket error:', event);
+			};
+
+			socket.onclose = function(event) {
+			  console.log('WebSocket connection closed.');
+			};
+
+			// In sales.jsp
+			socket.onopen = function(event) {
+			  console.log('WebSocket connection established.');
+			};
+
+			socket.onmessage = function(event) {
+			  var message = event.data;
+			  console.log('Received message:', message);
+			  // Process the received message as needed
+			};
+
+			socket.onerror = function(event) {
+			  console.error('WebSocket error:', event);
+			};
+
+			socket.onclose = function(event) {
+			  console.log('WebSocket connection closed.');
+			};
+        
+		socket.onmessage = function(event) {
+			  var message = event.data;
+			  console.log('Received message:', message);
+
+			  if (message === 'CloseSalesWindow') {
+				alert('결제가 완료되었습니다.')
+			    window.close();
+			  }
+			};
+		
 		
 		//qrcode
 		let qrcodeget = document.getElementById("qrget")

@@ -11,7 +11,53 @@
 <link rel="stylesheet" href="/mhome/assets/css/main.css" />
 <noscript><link rel="stylesheet" href="/mhome/assets/css/noscript.css" /></noscript>
 <script>
+var socket;
+
+function sendMessage() {
+	
+
+	socket.send('CloseSalesWindow');
+	
+	
+}
 window.onload = function() {
+	
+
+	var wsUri = "ws://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/socket";
+	
+	 socket = new WebSocket(wsUri);
+	 
+	 socket.onopen = function(event) {
+		  console.log('WebSocket connection established.');
+		};
+
+
+		socket.onerror = function(event) {
+		  console.error('WebSocket error:', event);
+		};
+
+		socket.onclose = function(event) {
+		  console.log('WebSocket connection closed.');
+		};
+
+		// In sales.jsp
+		socket.onopen = function(event) {
+		  console.log('WebSocket connection established.');
+		};
+
+		socket.onmessage = function(event) {
+		  var message = event.data;
+		  console.log('Received message:', message);
+		  // Process the received message as needed
+		};
+
+		socket.onerror = function(event) {
+		  console.error('WebSocket error:', event);
+		};
+
+		socket.onclose = function(event) {
+		  console.log('WebSocket connection closed.');
+		};
 		
 	
 	// 현금 입력을 눌렀을때

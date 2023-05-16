@@ -323,8 +323,8 @@ span {font-size: 40px; position: absolute; top: 19%; left:8% }
 시작일자 지정: <input type="date" id="startdate" class="ee"/>  <br />
 종료일자 지정: <input type="date" id="enddate" class="ee"/>  <br />
 거래처명:      <input type="text" id="search"/> <input type="button" id="deptsearch" value="검색" class="btn" style="margin: 0 0 0 20px;""/>
- <input type="button" id="bonsaSearch" value="본사상품검색" class="btn" style=" margin: 0 30px; width:90px; "/>
-<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 10px; width: 80px;" class="btn"  />
+ <input type="button" id="bonsaSearch" value="본사상품검색" class="btn" style=" margin: 0 10px 0 15px; width:90px; "/>
+<input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 5px; width: 80px;" class="btn"  />
 </div>
 	<table  style="border: 3px solid #666666; box-shadow: 2px 2px 2px 2px gray; position: absolute; top: 225px; width: 950px; left: 24px; ">
          <tr>

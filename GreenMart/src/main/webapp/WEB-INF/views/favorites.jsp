@@ -164,6 +164,7 @@ function saveRightZoneMenus() {
 	    success: function(response) {
 	    	if(response != 0){
 		    	alert('즐겨찾기 설정되었습니다!');
+		    	window.opener.location.replace('/');
 			}
 	      // 저장이 성공했을 경우 추가적인 작업 수행
 	    },

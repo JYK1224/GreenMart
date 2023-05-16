@@ -7,9 +7,9 @@
    	</h3>
      <h3 class="logo" >그린마트 업무시스템
      <div class="logid"> 
-     사원번호 : 
+     사원번호 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<c:if test="${sessionScope.login != null}">
-			<div class="logid" id="eid">${ sessionScope.login.e_id }</div>
+			<div class="logid" id="eid" style="margin-top: -16px;">${ sessionScope.login.e_id }</div>
 		</c:if>
 		
 	 </div>

@@ -32,7 +32,8 @@ window.onload = function() {
 	<%@ include file= "/WEB-INF/include/left3.jsp" %>
 	<%@ include file ="/WEB-INF/include/cal.jsp" %>
 	<div id="gd">
-	 
+                <a href="/logout.jsp" id="logout" onclick="handleLogout()" style="width: 90px; height:25px; position:absolute; margin-left: 1270px; margin-top: -61px;font-size: 17px; color: white; ">로그아웃</a>
+
 	<!-- 테이블 리스트 --> 
 	<%@ include file ="/WEB-INF/views/community/include/communityTable.jsp" %>
 	

@@ -248,18 +248,22 @@ public class BonsaWorkController {
 	public int order(@RequestParam(value = "ordernum[]") String[] ordernum,
 			@RequestParam(value = "orderdate[]") String[] orderdate,
 			@RequestParam(value = "orderdname[]") String[] orderdname,
-			@RequestParam(value = "orderpname[]") String[] orderpname) {
+			@RequestParam(value = "orderpname[]") String[] orderpname,
+			@RequestParam(value = "e_id") String e_id
+			) {
 
 		
-//		  System.out.println("ordernum[] :" + Arrays.toString(ordernum));
-//		  System.out.println("orderdate[] :" + Arrays.toString(orderdate));
-//		  System.out.println("orderdname[] :" + Arrays.toString(orderdname));
-//		  System.out.println("orderpname[] :" + Arrays.toString(orderpname));
-		 
+		  System.out.println("ordernum[] :" + Arrays.toString(ordernum));
+		  System.out.println("orderdate[] :" + Arrays.toString(orderdate));
+		  System.out.println("orderdname[] :" + Arrays.toString(orderdname));
+		  System.out.println("orderpname[] :" + Arrays.toString(orderpname));
+		  System.out.println("e_id : " + e_id);
 
 		int aftcnt = 0 ;
 		
 		int j = ordernum.length;
+		
+		System.out.println("ordernum 길이 : " + j);
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		for (int i = 0; i < j; i++) {
@@ -271,12 +275,12 @@ public class BonsaWorkController {
 					map.put("o_date", orderdate[i]);
 					map.put("d_name", orderdname[i]);
 					map.put("p_name",  orderpname[i]);					
+					map.put("e_id",  e_id);					
 					aftcnt = bonsaService.insertOrder(map);
 					map.clear();
 				}
 			}
 		}
-				
 				
 
 		return aftcnt;

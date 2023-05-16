@@ -153,7 +153,7 @@ function data_display(data) {
 	html += '<td>'+data.o_num+'</td>';
 	html += '<td><input id="inputnum" type="number" style="width: 70px;"/></td>';
 	html += '<td>'+data.e_id+'</td>';
-	html += '<td><c:if test="${sessionScope.login != null}">';
+	html += '<td id="eid"><c:if test="${sessionScope.login != null}">';
 	html +=	`${ sessionScope.login.e_id }`;
 	html +=	'</c:if></td>';
 	html += '</tr>';
@@ -272,6 +272,7 @@ window.onload = function() {
 		let inputnum   = saveInputNum(7);
 		let inputdate  = saveInputDate(2);
 		let inputpname = saveInputP_name(4);
+		let e_id = document.getElementById("eid").textContent;
 		
 		console.log(inputnum)
 		console.log(inputdate)
@@ -282,6 +283,7 @@ window.onload = function() {
 			data : { inputnum  : inputnum,
 				     inputdate  : inputdate,
 				     inputpname : inputpname,
+				     e_id : e_id
 				     },
 			type: "POST", 
 					

@@ -54,7 +54,8 @@ public class JumpoWorkController {
 	public int order(@RequestParam(value = "ordernum[]") String[] ordernum,
 			@RequestParam(value = "orderdate[]") String[] orderdate,
 			@RequestParam(value = "orderdname[]") String[] orderdname,
-			@RequestParam(value = "orderpname[]") String[] orderpname) {
+			@RequestParam(value = "orderpname[]") String[] orderpname,
+			@RequestParam(value = "e_id") String e_id) {
 
 		
 //		  System.out.println("ordernum[] :" + Arrays.toString(ordernum));
@@ -76,7 +77,8 @@ public class JumpoWorkController {
 					map.put("o_num",  ordernum[i]);
 					map.put("o_date", orderdate[i]);
 					map.put("d_name", orderdname[i]);
-					map.put("p_name",  orderpname[i]);					
+					map.put("p_name",  orderpname[i]);	
+					map.put("e_id",  e_id);
 					aftcnt = jumpoService.insertOrder(map);
 					map.clear();
 				}
@@ -91,7 +93,8 @@ public class JumpoWorkController {
 	@ResponseBody
 	public int bonsaorder(@RequestParam(value = "ordernum[]") String[] ordernum,
 			@RequestParam(value = "orderdate[]") String[] orderdate,
-			@RequestParam(value = "orderpname[]") String[] orderpname) {
+			@RequestParam(value = "orderpname[]") String[] orderpname,
+			@RequestParam(value = "e_id") String e_id) {
 		
 		
 		  System.out.println("ordernum[] :" + Arrays.toString(ordernum));
@@ -111,7 +114,8 @@ public class JumpoWorkController {
 				}else {
 					map.put("o_num",  ordernum[i]);
 					map.put("o_date", orderdate[i]);
-					map.put("p_name",  orderpname[i]);					
+					map.put("p_name",  orderpname[i]);	
+					map.put("e_id",  e_id);
 					aftcnt = jumpoService.insertBonsaOrder(map);
 					map.clear();
 				}
@@ -128,7 +132,8 @@ public class JumpoWorkController {
 	@ResponseBody
 	public int input(@RequestParam(value = "inputnum[]") String[] inputnum,
 			@RequestParam(value = "inputdate[]") String[] inputdate,
-			@RequestParam(value = "inputpname[]") String[] inputpname) {
+			@RequestParam(value = "inputpname[]") String[] inputpname,
+			@RequestParam(value = "e_id") String e_id) {
 		
 		
 		  System.out.println("ordernum[] :" + Arrays.toString(inputnum));
@@ -148,7 +153,8 @@ public class JumpoWorkController {
 				}else {
 					map.put("in_num",  Integer.parseInt(inputnum[i]));
 					map.put("in_date", inputdate[i]);
-					map.put("p_name",  inputpname[i]);					
+					map.put("p_name",  inputpname[i]);	
+					map.put("e_id",  e_id);
 					aftcnt = jumpoService.insertInput(map);
 					aftcnt = jumpoService.updateStock(map);
 					map.clear();
@@ -213,7 +219,8 @@ public class JumpoWorkController {
 	@RequestMapping("/Disuse")
 	@ResponseBody
 	public int disuse(@RequestParam(value = "disusenum[]") String[] disusenum,
-			@RequestParam(value = "disusepname[]") String[] disusepname) {
+			@RequestParam(value = "disusepname[]") String[] disusepname,
+			@RequestParam(value = "e_id") String e_id) {
 		
 		
 		  System.out.println("disusenum[] :" + Arrays.toString(disusenum));
@@ -232,6 +239,7 @@ public class JumpoWorkController {
 				}else {
 					map.put("dis_num",  Integer.parseInt(disusenum[i]));
 					map.put("p_name", disusepname[i]);
+					map.put("e_id",  e_id);
 					aftcnt = jumpoService.insertDisuse(map);
 					aftcnt = jumpoService.updateStockMinus(map);
 					map.clear();

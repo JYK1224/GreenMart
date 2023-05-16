@@ -77,7 +77,7 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td><input id="ordernum" type="number" style="width: 70px;"/></td>';
-	html += '<td><c:if test="${sessionScope.login != null}">';
+	html += '<td id="eid"><c:if test="${sessionScope.login != null}">';
 	html +=	`${ sessionScope.login.e_id }`;
 	html +=	'</c:if></td>';
 	html += '</tr>';
@@ -255,6 +255,7 @@ window.onload = function() {
 		let orderdate  = saveOrderDate();
 		let orderdname = saveOrderD_name(0);
 		let orderpname = saveOrderP_name(2);
+		let e_id = document.getElementById("eid").textContent;
 		console.log(ordernum)
 		console.log(orderdate)
 		console.log(orderdname)
@@ -265,7 +266,8 @@ window.onload = function() {
 			data : { ordernum  : ordernum,
 			     	orderdate  : orderdate,
 			     	orderdname : orderdname,
-			     	orderpname : orderpname
+			     	orderpname : orderpname,
+			     	e_id : e_id
 				     },
 			type: "POST", 
 					

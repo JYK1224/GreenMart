@@ -123,7 +123,7 @@ function data_display(data) {
 	html += '<td>'+data.p_iprice+'</td>';
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td><input id="disusenum" type="number" style="width: 70px;"/></td>';
-	html += '<td><c:if test="${sessionScope.login != null}">';
+	html += '<td id="eid"><c:if test="${sessionScope.login != null}">';
 	html +=	`${ sessionScope.login.e_id }`;
 	html +=	'</c:if></td>';
 	html += '</tr>';
@@ -211,13 +211,15 @@ window.onload = function() {
 	disuseEl.onclick = function(e) {
 		let disusenum   = saveDisusNum(5);
 		let disusepname = saveDisuseP_name(2);
+		let e_id = document.getElementById("eid").textContent;
 		console.log(disusenum)
 		console.log(disusepname)
 		
 		$.ajax({
 			url: "/JWork/Disuse",
 			data : { disusenum  : disusenum,
-				disusepname : disusepname
+				disusepname : disusepname,
+				e_id : e_id
 				     },
 			type: "POST", 
 					

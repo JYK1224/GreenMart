@@ -101,7 +101,7 @@ INSERT INTO ordering (
 (SELECT NVL(MAX(O_ID), 0) + 1 FROM ordering),
 #{o_num} ,
 TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
-'0002',
+#{e_id},
 (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020),
 (SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
 )
@@ -119,7 +119,7 @@ e_id
    sysdate,
     #{in_num},
    (SELECT P_SEQ FROM PRODUCT WHERE P_NAME = #{p_name} and j_id = 12020  ),
-   '0002'  
+   #{e_id}  
 )
 </insert>
 
@@ -136,7 +136,7 @@ INSERT INTO BONSAORDER (
 (SELECT NVL(MAX(B_ID), 0) + 1 FROM BONSAORDER),
 #{o_num} ,
 TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
-'0002',
+#{e_id},
 (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12020)
 )
 </insert>
@@ -147,7 +147,7 @@ VALUES ( (SELECT NVL(MAX(dis_id), 0) + 1 FROM disuse),
 sysdate,
  #{dis_num} ,
  (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12020),
-'0002')
+#{e_id})
 </insert>
 
 

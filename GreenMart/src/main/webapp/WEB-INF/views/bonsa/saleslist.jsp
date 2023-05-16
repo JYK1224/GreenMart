@@ -11,7 +11,6 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script lang="javascript" src="/js/xlsx.full.min.js"></script>
 
-
 <script>
 
 
@@ -69,14 +68,27 @@ function saveExcel() {
 
 
 
-
+function data_display(data) {
+    let mergedData = [];
+    let mergedIndex = [];
+    
+    // Merge rows with duplicate p_id values
+    data.forEach(function (row, index) {
+        let existingIndex = mergedIndex.indexOf(row.p_id);
+        if (existingIndex === -1) {
+            mergedIndex.push(row.p_id);
+            mergedData.push(row);
+        } else {
+            mergedData[existingIndex].s_num += row.s_num;
+        }
+    });
 
 
 
 
 //테이블 생성
-function data_display(data) {
-	 var mergedData = mergeAndSumData(data);
+
+	
 	let html = '';
 	html += '<table id="myTable">';
 	html += '<tr>';
@@ -89,15 +101,15 @@ function data_display(data) {
 	html += '<th>거래처명</th>';
 	html += '</tr>';
 	
-	mergedData.forEach(function(item) { 	
+	mergedData.forEach(function(data, index) { 	
 	html += '<tr>';
-	html += '<td>'+item.p_id+'</td>';
-	html += '<td>'+item.p_name+'</td>';
-	html += '<td>'+item.p_sprice+'</td>';
-	html += '<td>'+item.s_num+'</td>';
-	html += '<td>'+item.s_num*item.p_sprice+'</td>';
-	html += '<td>'+(100 - (item.p_iprice * 1.1 / item.p_sprice * 100)).toFixed(2) +'%'+'</td>';
-	html += '<td>'+item.d_name+'</td>';
+	html += '<td>'+data.p_id+'</td>';
+	html += '<td>'+data.p_name+'</td>';
+	html += '<td>'+data.p_sprice+'</td>';
+	html += '<td>'+data.s_num+'</td>';
+	html += '<td>'+data.s_num*data.p_sprice+'</td>';
+	html += '<td>'+(100 - (data.p_iprice * 1.1 / data.p_sprice * 100)).toFixed(2) +'%'+'</td>';
+	html += '<td>'+data.d_name+'</td>';
 	html += '<td></td>';
 	html += '</tr>';
 	})
@@ -124,23 +136,6 @@ function checkbox_display(data) {
 	
 }
 
-function mergeAndSumData(data) {
-	  var mergedData = [];
-
-	  data.forEach(function (item) {
-	    var existingItem = mergedData.find(function (mergedItem) {
-	      return mergedItem.p_id === item.p_id;
-	    });
-
-	    if (existingItem) {
-	      existingItem.s_num += item.s_num;
-	    } else {
-	      mergedData.push(item);
-	    }
-	  });
-
-	  return mergedData;
-	}
 
 
 window.onload = function () {
@@ -149,7 +144,7 @@ window.onload = function () {
 	const excelEl  = document.getElementById("excelsave");
 	const startdateEl = document.getElementById("startdate");
 	const enddateEl = document.getElementById("enddate");
-	const bonsaEl   = document.getElementById("bonsa");
+	const jumpoEl   = document.getElementById("jumpo");
     
 	searchEl.disabled = true;
 	
@@ -157,12 +152,12 @@ window.onload = function () {
 
 		let stday = new Date(startdateEl.value);
 		startdate = stday.toISOString().slice(0,10);
-		
+	};
 	enddateEl.onchange = function () {
 		let enday = new Date(enddateEl.value);
 		enddate = enday.toISOString().slice(0,10);
-	}
-	}
+	};
+	
 	
 	
 	$.ajax({
@@ -173,9 +168,9 @@ window.onload = function () {
 		success : function(data){
 			console.log(data);
 			//alert(data);
-			let tableEl = document.getElementById('bonsa');
+			let tableEl = document.getElementById('jumpo');
 			let html = checkbox_display(data);
-			$('#bonsa').html(html);
+			$('#jumpo').html(html);
 
 			let selectedOption;
 
@@ -184,60 +179,26 @@ window.onload = function () {
 				searchEl.disabled = false;
 				selectedOption = e.target.value;
 			    console.log(selectedOption)
-			    			searchEl.onclick = function(e) {
-				$.ajax({
-					url: "/BWork/SearchSaleslist",
-					data : { search: selectedOption, 
-							startdate : startdate,
-							enddate : enddate
-					},
-					type: "POST", 
-							
-					success : function(data){
-						console.log(data);
-						//alert(data);
-						let tableEl = document.getElementById('table');
-						const allsalesEl = document.getElementById('x1');
-						const alliicEl = document.getElementById('x2');
-		                var totalsPrice = 0;
-		                var iic1=0;
-		                var iic2=0;
-		                var mergedData = mergeAndSumData(data);
-		             
-		                mergedData.forEach(function (item) {
-							
-							totalsPrice += parseFloat(item.p_sprice*item.s_num);
-			                 iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
-			                 iic2 += parseFloat(item.p_sprice*item.s_num);
-						});
-						let html = data_display(data);
-							
-						let totaliic1 = (100-(iic1/iic2)*100);
-						
-						allsalesEl.textContent = totalsPrice + '원';
-						alliicEl.textContent = totaliic1.toFixed(2) + '%';
-
-						$('#table').html(html); 
-		
-						},
-					error :function(xhr){
-						console.log(xhr);
-						alert('에러:' + xhr.status + '' + xhr.textStatus )
-						}
-					
-				}); 
-			}
 			});
-		
-			},
-		error :function(xhr){
-			console.log(xhr);
-			alert('에러:' + xhr.status + '' + xhr.textStatus )
-			}
-		
+			
+			    			searchEl.onclick = function(e) {
+			    				   if (startdate && enddate) {
+			    				        if (startdate <= enddate) {
+			    				            performQuery(selectedOption, startdate, enddate);
+			    				        } else {
+			    				            alert("Start date cannot be greater than end date.");
+			    				        }
+			    				    } else {
+			    				        alert("Please select both start date and end date.");
+			    				    }
+		            };
+		        },
+		        error: function (xhr) {
+		            console.log(xhr);
+		            alert('에러:' + xhr.status + '' + xhr.textStatus);
+		        }
+		    
 	});
-	
-
 	
 	
 	
@@ -246,10 +207,51 @@ window.onload = function () {
 	}
 	
 	
+
+	function performQuery(selectedOption, startdate, enddate) {
+	$.ajax({
+		url: "/BWork/SearchSaleslist",
+		data : { search: selectedOption, 
+				startdate : startdate,
+				enddate : enddate
+		},
+		type: "POST", 
+				
+		success : function(data){
+			console.log(data);
+			//alert(data);
+			let tableEl = document.getElementById('table');
+			const allsalesEl = document.getElementById('x1');
+			const alliicEl = document.getElementById('x2');
+            var totalsPrice = 0;
+            var iic1=0;
+            var iic2=0;
+            
+			
+			  data.forEach(function (item) {
+					
+					totalsPrice += parseFloat(item.p_sprice*item.s_num);
+	                 iic1 += parseFloat(item.p_iprice*1.1*item.s_num);
+	                 iic2 += parseFloat(item.p_sprice*item.s_num);
+				});	
+			  let html = data_display(data);
+			let totaliic1 = (100-(iic1/iic2)*100);
+			
+			allsalesEl.textContent = totalsPrice + '원';
+			alliicEl.textContent = totaliic1.toFixed(2) + '%'; 
+
+			$('#table').html(html); 
+
+			},
+		error :function(xhr){
+			console.log(xhr);
+			alert('에러:' + xhr.status + '' + xhr.textStatus )
+			}
+		
+	}); 
+
 }
-
-
-
+}
 </script>
 <style>
 table {
@@ -319,12 +321,12 @@ tr:hover {
 </style>
 </head>
 <body>
-		<div id="gd">
+	<div id="gd">
 	 <span id="my">상품매출조회</span>
 	<div id="salelist">
-	일매출조회 : <input type="date" id="startdate"><br>
-	월매출조회 : <input type="date" id="enddate"><br>
-	점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="bonsa"></span>
+	매출시작일 : <input type="date" id="startdate"><br>
+	매출종료일 : <input type="date" id="enddate"><br>
+	점포 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="jumpo"></span>
 	<input type="button" id="search" value="검색" style=" margin: 0 20px 0 50px;" class="btn"/>
 	<input type="button" id="excelsave" value ="엑셀로저장"style=" margin: 0 20px; width:80px; " class="btn"/>
 	</div>

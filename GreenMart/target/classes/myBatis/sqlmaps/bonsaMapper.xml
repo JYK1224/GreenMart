@@ -135,7 +135,8 @@ WHERE D.D_ID = T.D_ID
 AND T.P_SEQ  = P.P_SEQ
 AND P.P_SEQ  = S.P_SEQ
 AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
-AND S_DATE BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate}) 
+<!-- AND S.S_DATE BETWEEN TO_TIMESTAMP(#{startdate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS') AND TO_TIMESTAMP(#{enddate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); -->
+AND S.S_DATE BETWEEN  TO_DATE(#{startdate}, 'YYYY-MM-DD HH24:MI:SS') AND TO_DATE(#{enddate},'YYYY-MM-DD HH24:MI:SS')
 </select>
 <select id="SearchSalesList1"
 resultType="com.green.mart.vo.work.SearchProductVo">
@@ -146,7 +147,8 @@ WHERE D.D_ID = T.D_ID
 AND T.P_SEQ  = P.P_SEQ
 AND P.P_SEQ  = S.P_SEQ
 AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
-AND S_DATE BETWEEN TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+AND S.S_DATE BETWEEN  TO_DATE(#{startdate}, 'YYYY-MM-DD HH24:MI:SS') AND TO_DATE(#{enddate},'YYYY-MM-DD HH24:MI:SS')
+<!-- AND S.S_DATE BETWEEN TO_TIMESTAMP(#{startdate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS') AND TO_TIMESTAMP(#{enddate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); -->
 </select>
  <!-- 상품 전체조회 -->
  <select id="FullProductList3"

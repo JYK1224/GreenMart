@@ -259,4 +259,10 @@ public class JumpoDaoImpl implements JumpoDao {
 		List<JumpoVo> list = sqlSession.selectList("Jumpo.SearchDis");
 		return list;
 	}
+	// 점포 입고시 본사 출고리스트 검색(본사상품검색)
+	@Override
+	public List<SearchOrderVo> returnBonsaList(Map<String, Object> map) {
+		List<SearchOrderVo> list = sqlSession.selectList("Jumpo.ReturnBonsaList", map);
+		return list;
+	}
 }

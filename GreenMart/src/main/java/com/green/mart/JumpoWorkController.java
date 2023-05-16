@@ -161,7 +161,7 @@ public class JumpoWorkController {
 		return aftcnt;
 	}
 	
-	//거래처로 주문일 조회
+	// 점포 입고시 거래처로 주문일 조회
 	@RequestMapping("/SearchOrder")
 	@ResponseBody
 	public List<SearchOrderVo> returnOrderListVO(String search, String orderdate) throws Exception {
@@ -173,6 +173,21 @@ public class JumpoWorkController {
 		
 		List<SearchOrderVo> list = jumpoService.searchOrderDeptList(map);
 		return list;
+	}
+	
+	// 점포 입고시 본사 출고리스트 검색(본사상품검색)
+	@RequestMapping("/BonsaSearchOrder")
+	@ResponseBody
+	public List<SearchOrderVo> returnBonsaList(String search, String outdate) throws Exception {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		String d_name = search.toUpperCase();
+		map.put("d_name", d_name);
+		map.put("outdate", outdate);
+		
+		List<SearchOrderVo> list = jumpoService.returnBonsaList(map);
+		return list;
+		
 	}
 	
 	//폐기 checkbox 리스트 조회

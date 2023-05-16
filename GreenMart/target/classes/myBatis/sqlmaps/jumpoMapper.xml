@@ -54,6 +54,19 @@ AND P.J_ID = '12020'
 ORDER BY D.D_NAME, O.O_DATE ASC
 </select>
 
+<select id="ReturnBonsaList"
+        resultType="com.green.mart.vo.work.SearchOrderVo">
+        
+	SELECT D.D_NAME, TO_CHAR(O.OUT_DATE, 'YYYY-MM-DD') OUT_DATE, TO_CHAR(O.OUT_DATE+1, 'YYYY-MM-DD')AS IN_DATE, P.P_ID, P.P_NAME, O.OUT_NUM, ST.ST_NUM, O.E_ID
+	  FROM OUTPUT O, DEPT D, PRODUCT P, STOCK ST
+	 WHERE O.P_SEQ = P.P_SEQ
+	   AND P.D_ID = D.D_ID
+	   AND P.P_SEQ = ST.P_SEQ
+	   AND O.OUT_DATE = #{outdate}
+	   AND D.D_NAME LIKE '%'||#{d_name}||'%'
+        
+</select>
+
 <select id="SearchBonsaDeptList"
 resultType="com.green.mart.vo.work.SearchDeptVo">
 SELECT D.D_NAME ,  P.P_SEQ, P.P_ID, P.P_NAME, P.P_IPRICE , NVL(S.ST_NUM, 0) ST_NUM 

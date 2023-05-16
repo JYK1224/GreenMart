@@ -164,6 +164,45 @@ function data_display(data) {
 	
 }
 
+//from 본사 테이블 생성
+function bonsadata_display(data) {
+	
+	let html = '';
+	html += '<table id="myTable">';
+	html += '<tr>';
+	html += '<th>거래처명</th>';
+	html += '<th>본사출고일</th>';
+	html += '<th>입고일</th>';
+	html += '<th>상품코드</th>';
+	html += '<th>상품명</th>';
+	html += '<th>현재재고</th>';
+	html += '<th>본사출고량</th>';
+	html += '<th>입고수량</th>';
+	html += '<th>사원번호</th>';
+	html += '</tr>';
+	
+	data.forEach(function(data, index) {
+	html += '<tr>';
+	html += '<td>'+data.d_name+'</td>';
+	html += '<td>'+data.out_date+'</td>';
+	html += '<td>'+data.in_date+'</td>';
+	html += '<td>'+data.p_id+'</td>';
+	html += '<td>'+data.p_name+'</td>';
+	html += '<td>'+data.st_num+'</td>';
+	html += '<td>'+data.out_num+'</td>';
+	html += '<td><input id="inputnum" type="number" style="width: 70px;"/></td>';
+	html += '<td>'+data.e_id+'</td>';
+	html += '<td><c:if test="${sessionScope.login != null}">';
+	html +=	`${ sessionScope.login.e_id }`;
+	html +=	'</c:if></td>';
+	html += '</tr>';
+	})
+	
+	html += '</table>';
+	return html;
+	
+}
+
 //body 생성되고
 window.onload = function() {
 	
@@ -199,6 +238,33 @@ window.onload = function() {
 				}
 			
 		}); 
+	}
+	
+	// 본사가 점포에 출고한 상품들 검색(본사상품검색)
+	let bonsaSearchEl = document.getElementById('bonsaSearch')
+	bonsaSearchEl.onclick = function(e) {
+		
+		let date = new Date(input1El.value);
+		date = date.toISOString().slice(0, 10);
+		
+		$.ajax({
+			url: "/JWork/BonsaSearchOrder",
+			data : { search: $('#search').val(),
+				     outdate: date},
+			type: "POST", 
+					
+			success : function(data){
+				let tableEl = document.getElementById('table');
+				let html = bonsadata_display(data);
+				$('#table').html(html); 
+				},
+			error :function(xhr){
+				console.log(xhr);
+				alert('에러:' + xhr.status + '' + xhr.textStatus )
+				}
+			
+		}); 
+		
 	}
 	
 	//주문 버튼 클릭시 주문
@@ -311,7 +377,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 입고날짜 지정: &nbsp;<input type="date" id="input1" style="margin: 15px 0 0 0;"/>  <input type="button" id= "input"  value= "입고확정" class="btn" style=" margin: 0 0 0 84px; width:60px; "/>
 <input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px; " class="btn"/><br>
 거래처명: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="search" style="margin: 10px 0 0 0;"/> <input type="button" id="deptsearch" value="검색" class="btn" style="margin:10px 0 0 20px ;"/>
- <input type="button" id="deptsearch" value="본사상품검색" class="btn" style=" margin: 0 30px; width:90px; "/><br></br>
+ <input type="button" id="bonsaSearch" value="본사상품검색" class="btn" style=" margin: 0 30px; width:90px; "/><br></br>
 
 </div>
 <div id= "lay" >

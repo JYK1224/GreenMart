@@ -220,5 +220,11 @@ public class JumpoServiceImpl implements JumpoService {
 		jumpoDao.saleUpdateStock( map3 );
 		
 	}
+	// 점포 입고시 본사 출고리스트 검색(본사상품검색)
+	@Override
+	public List<SearchOrderVo> returnBonsaList(Map<String, Object> map) {
+		List<SearchOrderVo> list = jumpoDao.returnBonsaList(map);
+		return list;
+	}
 
 }

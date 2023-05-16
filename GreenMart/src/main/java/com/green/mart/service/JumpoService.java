@@ -84,6 +84,7 @@ public interface JumpoService {
 	List<JumpoVo> getSearchDisJumpo();
 
 	List<SearchDisuseListVo> searchDisList(Map<String, Object> map);
-
+	// 점포 입고시 본사 출고리스트 검색(본사상품검색)
+	List<SearchOrderVo> returnBonsaList(Map<String, Object> map);
 
 }

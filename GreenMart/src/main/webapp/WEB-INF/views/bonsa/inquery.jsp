@@ -83,7 +83,6 @@ window.onload = function () {
 		  let name = 'productView';
 		  let  features   = 'height=700, width=450, top=200, left=600'; 
 		  window.open(html, name, features);
-		  window.close(); 
 	  });
 	
 	  

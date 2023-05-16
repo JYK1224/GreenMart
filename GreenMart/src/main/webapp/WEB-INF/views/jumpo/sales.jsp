@@ -125,7 +125,7 @@ function saveOrderNum(columnIndex) {
 			
 			
 			var qr = new QRCode(document.getElementById("qrcode"), {
-			    text: JSON.stringify({address: "http://192.168.0.210:9090/M/Pay",p_seqList: p_seqList, 
+			    text: JSON.stringify({address: "http://192.168.0.7:9090/M/Pay",p_seqList: p_seqList, 
 			    	su_List: su_List, finalPrice: finalPrice.value, earnMiles: earnMiles.value, milePay: milePay.value}),
 			    width: 128,
 			    height: 128,
@@ -323,7 +323,11 @@ function saveOrderNum(columnIndex) {
 		    form.submit(); // 폼 데이터 전송
 		  });
 	
-		  
+		  $(document).ready(function() {
+			  $("#qrget").click(function() {
+			    $("#qrcode").css("z-index", "1");
+			  });
+			}); 
 	}
 </script>
 <style>
@@ -419,7 +423,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="button" style ="width:90px" value="마일리지 조회" id="mileage" class="btn"/>
+							<input type="button" style ="width:120px" value="마일리지 조회" id="mileage" class="btn"/>
 							</td>
 							<td colspan="2">
 							고객명 : &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="c_name" id="c_name" readonly/>
@@ -430,7 +434,8 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="submit" value="결제" id="pay" class="btn" />
+							<input type="submit" value="결제" id="pay" class="btn" /><input type="button" value="QR결제" id="qrget"  class="btn" style="width: 70px; margin: 0 0 0 5px;
+							  position: relative;  z-index: 1;"/>
 							</td>
 							<td colspan="2">
 							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>
@@ -463,8 +468,8 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tbody>
 						</table>
 				</form>
-				<input type="button" value="qr생성" id="qrget" />
-				<div id="qrcode"></div>
+				
+				<div id="qrcode" style="width: 130px; height: 130px; background-color: white; position: absolute; margin-left: 410px; margin-top: 28px; z-index:-1; ;"></div>
 			</div>
 		</div>
 

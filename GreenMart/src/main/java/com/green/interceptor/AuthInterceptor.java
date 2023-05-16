@@ -25,10 +25,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		//--------------------------------
 		Object obj = session.getAttribute("login");
 		if(obj == null) {
-			// 로그인되어 있지 않다면 /login 으로 이동하시오
-			response.sendRedirect("/M");
-			return false;
-		}
+		    // 모바일에서 로그인 페이지로 이동하지 않고 바로 홈으로 이동하도록 처리
+	        String userAgent = request.getHeader("User-Agent");
+	        if (userAgent != null && userAgent.contains("Mobile")) {
+	            response.sendRedirect("mobile"); // 홈 URL로 변경해야 함
+	            return false;
+	        }
+
+	        response.sendRedirect("/login");
+	        return false;
+	    }
 		
 		//preHandle 의 return 은 컨트롤러 요청 url로 가도 되나 안되나를 허가하는 의미
 		//true : 컨트롤러 url로 가게됨

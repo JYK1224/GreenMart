@@ -408,7 +408,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 				<!-- 입력받은 정보를 서버로 전송한다 -->
 				<form action="/Pay" method="POST" target="popupWindow" >
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
-					<input type="hidden" name="e_id" id="e_id" value="0001"/>
+					<input type="hidden" name="e_id" id="e_id" value="${ sessionScope.login.e_id }"/>
 					<input type="hidden" name="c_phone" id="c_phone" />
 					<table id="myTable">
 						<tfoot id="table_foot">

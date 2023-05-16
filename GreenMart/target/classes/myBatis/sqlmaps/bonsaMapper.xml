@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bonsa">
+
+<!-- 거래처 조회 -->
+<select id="SearchAllDeptList"
+resultType="com.green.mart.vo.DeptVo">
+SELECT D.D_ID, D.D_NAME , D.D_DAM, D.D_PHONE 
+FROM DEPT D 
+WHERE D.D_NAME LIKE '%'||#{d_name}||'%'
+ORDER BY D.D_NAME ASC
+</select>
+<select id="DeptView" 
+resultType = "com.green.mart.vo.DeptVo">
+SELECT d_id, d_name, d_dam, d_phone
+FROM dept
+WHERE d_id = #{d_id}
+</select>
+<insert id="DeptInset">
+INSERT INTO dept
+( d_id, d_name, d_dam,d_phone )
+VALUES
+( #{d_id}, #{d_name}, #{d_dam}, #{d_phone} )
+</insert>
+<delete id="DeptDel">
+DELETE FROM dept
+WHERE d_id = #{d_id}
+</delete>
+
+<update id="DeptUp">
+UPDATE dept
+SET d_name  = #{d_name},
+    d_dam   = #{d_dam},
+    d_phone = #{d_phone}
+WHERE d_id = #{d_id}
+</update>
+
+<!-- ================================================================= -->
+<!-- 사용자관리 --> 
+<select id="EmpList"
+    resultType="com.green.mart.vo.EmployeeVo">
+SELECT e_id, e_name, e_phone, e_intro, e_indate, j_name 
+FROM employee e join jumpo j 
+ON e.j_id = j.j_id 
+ORDER BY e_id asc 
+</select>
+
+<select id="EmpView"
+	resultType="com.green.mart.vo.EmployeeVo">
+SELECT e_id, e_name, e_passwd, e_phone, e_intro, j_name, e_indate
+FROM employee e join jumpo j 
+on e.j_id = j.j_id
+WHERE e_id = #{e_id}
+</select>
+
+<insert id="EmpInsert">
+INSERT INTO employee
+(e_id, e_name, e_passwd, e_intro,e_phone, j_id)
+VALUES
+(#{e_id},#{e_name},#{e_passwd},#{e_intro},#{e_phone},#{j_id})
+</insert>  
+
+<delete id="EmpDelete">
+	DELETE FROM employee
+	WHERE e_id = #{e_id}
+</delete>   
+
+<update id="EmpUpdate">
+	UPDATE employee
+	   SET e_name=#{e_name},
+	       e_passwd= #{e_passwd},
+	       e_intro = #{e_intro},
+	       e_phone = #{e_phone},
+	       j_id = #{j_id}
+	 WHERE e_id = #{e_id} 
+
+</update>
+ <!-- ============================================ -->
+<!-- 신규상품 등록 -->
+<insert id="InsertProduct">
+INSERT INTO product
+( p_seq, p_id, p_name, p_iprice, p_sprice, p_del, d_id, a_id, j_id)
+VALUES
+( (select max(p_seq) +1 from product) , 
+#{p_id}, #{p_name}, #{p_iprice}, #{p_sprice}, 0 , #{d_id}, #{a_id}, #{j_id})
+</insert>
+<select id="GetDeptList"
+resultType="com.green.mart.vo.DeptVo">
+SELECT d_id, d_name 
+FROM dept
+</select>
+<select id="getAstList"
+resultType="com.green.mart.vo.AssortmentVo">
+SELECT a_id, a_name
+FROM assortment
+</select>
+<!-- 상품 뷰 -->
+<select id="ProductView"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT p_id, p_name, p_iprice, p_sprice, d_id, a_id, j_id ,p_seq
+FROM product
+WHERE p_seq=#{p_seq}  
+</select>
+<update id="ProductUp">
+UPDATE product
+SET p_name=#{p_name},
+	p_iprice=#{p_iprice},
+	p_sprice=#{p_sprice},
+	d_id=#{d_id},
+	a_id=#{a_id}
+WHERE p_id = #{p_id}	
+</update>
+<update id="ProductDel">
+UPDATE product
+SET p_del=1
+WHERE p_id=#{p_id}
+</update>
+
+<!-- ===================================================================== -->
+ <select id="SearchSale"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+
+</select>
+<!-- 상품매출조회 -->
+<select id="SearchSalesList"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, P.A_ID, S.S_DATE , (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME , (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME
+FROM PRODUCT P , STOCK T, DEPT D, SALE S
+WHERE D.D_ID = T.D_ID
+AND T.P_SEQ  = P.P_SEQ
+AND P.P_SEQ  = S.P_SEQ
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+<!-- AND S.S_DATE BETWEEN TO_TIMESTAMP(#{startdate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS') AND TO_TIMESTAMP(#{enddate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); -->
+AND S.S_DATE BETWEEN  TO_DATE(#{startdate}, 'YYYY-MM-DD HH24:MI:SS') AND TO_DATE(#{enddate},'YYYY-MM-DD HH24:MI:SS')
+</select>
+<select id="SearchSalesList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, P.A_ID, S.S_DATE , (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME , (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME
+FROM PRODUCT P , STOCK T, DEPT D, SALE S
+WHERE D.D_ID = T.D_ID
+AND T.P_SEQ  = P.P_SEQ
+AND P.P_SEQ  = S.P_SEQ
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND S.S_DATE BETWEEN  TO_DATE(#{startdate}, 'YYYY-MM-DD HH24:MI:SS') AND TO_DATE(#{enddate},'YYYY-MM-DD HH24:MI:SS')
+<!-- AND S.S_DATE BETWEEN TO_TIMESTAMP(#{startdate} || ' 00:00:00', 'YYYY-MM-DD HH24:MI:SS') AND TO_TIMESTAMP(#{enddate} || ' 23:59:59', 'YYYY-MM-DD HH24:MI:SS'); -->
+</select>
+ <!-- 상품 전체조회 -->
+ <select id="FullProductList3"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME ,
+NVL(T.ST_NUM, 0) ST_NUM, (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME, P.A_ID
+FROM PRODUCT P , STOCK T, DEPT D
+WHERE D.D_ID   = T.D_ID
+AND   T.P_SEQ  = P.P_SEQ
+AND (SELECT J_ID FROM JUMPO WHERE J_ID = P.J_ID) = 12010
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+ <select id="FullProductList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME ,
+NVL(T.ST_NUM, 0) ST_NUM, (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME, P.A_ID
+FROM PRODUCT P , STOCK T, DEPT D
+WHERE D.D_ID   = T.D_ID
+AND   T.P_SEQ  = P.P_SEQ
+
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+  <select id="FullProductList5"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME ,
+NVL(T.ST_NUM, 0) ST_NUM, (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME, P.A_ID
+FROM PRODUCT P , STOCK T, DEPT D
+WHERE D.D_ID   = T.D_ID
+AND   T.P_SEQ  = P.P_SEQ
+AND (SELECT J_ID FROM JUMPO WHERE J_ID = P.J_ID) = 12020
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+ </select>
+  <select id="FullProductList2"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME ,
+NVL(T.ST_NUM, 0) ST_NUM, (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME, P.A_ID
+FROM PRODUCT P , STOCK T, DEPT D
+WHERE D.D_ID   = T.D_ID
+AND   T.P_SEQ  = P.P_SEQ
+AND (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) = #{a_name}
+
+ </select>
+  <select id="FullProductList4"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) J_NAME ,
+NVL(T.ST_NUM, 0) ST_NUM, (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) A_NAME, P.A_ID
+FROM PRODUCT P , STOCK T, DEPT D
+WHERE D.D_ID   = T.D_ID
+AND   T.P_SEQ  = P.P_SEQ
+AND (SELECT J_ID FROM JUMPO WHERE J_ID = P.J_ID) = 12010
+AND (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) = #{a_name}
+ </select>
+  <select id="FullProductList6"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME, NVL(S.S_NUM,0) S_NUM,
+NVL(T.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID
+FROM PRODUCT P , STOCK T, DEPT D, ASSORTMENT A, JUMPO J, SALE S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = T.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND P.P_SEQ = S.S_ID(+)
+AND (SELECT J_ID FROM JUMPO WHERE J_ID = P.J_ID) = 12020
+AND (SELECT A_NAME FROM ASSORTMENT WHERE A_ID = P.A_ID) = #{a_name}
+ </select>
+ <!-- 주문 -->
+ 
+ <select id="SearchDeptList"
+resultType="com.green.mart.vo.work.SearchDeptVo">
+SELECT D.D_NAME ,  P.P_SEQ, P.P_ID, P.P_NAME, P.P_IPRICE , NVL(S.ST_NUM, 0) ST_NUM 
+FROM DEPT D , PRODUCT P , STOCK S
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME ASC
+</select>
+ <insert id="InsertOrder">
+INSERT INTO ordering (
+        O_ID,
+        O_NUM,
+        O_DATE,
+        E_ID,
+        P_SEQ,
+        D_ID
+) VALUES (
+(SELECT NVL(MAX(O_ID), 0) + 1 FROM ordering),
+#{o_num} ,
+TO_DATE( #{o_date} , 'YYYY-MM-DD' ) ,
+#{e_id},
+(SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} AND J_ID =12010),
+(SELECT D_ID FROM DEPT WHERE D_NAME =  #{d_name} )
+)
+</insert>
+ <!-- 입고 -->
+ <select id="searchOrderDeptList"
+resultType="com.green.mart.vo.work.SearchOrderVo">
+SELECT D.D_NAME, TO_CHAR(O.O_DATE, 'YYYY-MM-DD')AS O_DATE,TO_CHAR(O.O_DATE+1, 'YYYY-MM-DD')AS IN_DATE ,P.P_ID, P.P_NAME, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.O_NUM, 0) O_NUM,  E.E_ID 
+FROM EMPLOYEE E, ORDERING O, PRODUCT  P, STOCK S, DEPT D 
+WHERE O.D_ID = D.D_ID (+)
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(O_DATE) BETWEEN  TO_DATE(#{orderdate})-1 AND TO_DATE(#{orderdate})
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME, O.O_DATE ASC
+</select>
+ <insert id="InsertInput">
+INSERT INTO input (
+in_id,
+in_date,
+in_num,
+p_seq,
+e_id
+) VALUES (
+   (SELECT NVL(MAX(in_id), 0) + 1 FROM input),
+   sysdate,
+    #{in_num},
+   (SELECT P_SEQ FROM PRODUCT WHERE P_NAME = #{p_name} and j_id = 12010  ),
+   #{e_id}  
+)
+</insert>
+<update id="UpdateInputStock">
+UPDATE STOCK 
+SET ST_NUM = NVL(ST_NUM , 0) + #{in_num} 
+WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010 )
+
+</update>
+<!-- 점포 조회 -->
+<select id="SearchJumpoList"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_ID, J_NAME
+FROM JUMPO
+WHERE J_NAME LIKE '%'||#{j_name}||'%'
+ORDER BY J_NAME ASC
+</select>
+<!-- 상품상세조회 -->
+<select id="SearchProductList"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME,
+NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID,P.P_SEQ
+FROM PRODUCT P , STOCK S, DEPT D, ASSORTMENT A, JUMPO J
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND J.J_ID = '12010'
+AND P.P_ID = #{p_id}
+</select>
+ <select id="SearchProductList1"
+resultType="com.green.mart.vo.work.SearchProductVo">
+SELECT D.D_NAME, P.P_ID, P.P_NAME, P.P_IPRICE, P.P_SPRICE, D.D_ID, D.D_NAME, J_NAME,
+NVL(S.ST_NUM, 0) ST_NUM, A.A_NAME, A.A_ID,P.P_SEQ
+FROM PRODUCT P , STOCK S, DEPT D, ASSORTMENT A, JUMPO J
+WHERE D.D_ID(+) = P.D_ID
+AND P.P_SEQ = S.P_SEQ(+)
+AND A.A_ID(+) = P.A_ID
+AND J.J_ID = P.J_ID(+)
+AND J.J_ID = '12010'
+AND P.P_NAME like '%'||#{p_name}||'%'
+</select>
+
+<!-- 주문내역 조회 -->
+<select id="SearchOrderList"
+resultType="com.green.mart.vo.work.SearchOrderListVo">
+SELECT TO_CHAR(O.O_DATE, 'YYYY-MM-DD')AS O_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.O_NUM, 0) O_NUM,  E.E_ID 
+FROM EMPLOYEE E, ORDERING O, PRODUCT  P, STOCK S, DEPT D 
+WHERE O.D_ID = D.D_ID (+)
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(O_DATE) BETWEEN  TO_DATE(#{startdate},'YYYY-MM-DD') AND TO_DATE(#{enddate},'YYYY-MM-DD')
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME, O.O_DATE ASC
+</select>
+
+<!-- 입고내역 조회 -->
+<select id="SearchInputList"
+resultType="com.green.mart.vo.work.SearchInputListVo">
+SELECT TO_CHAR(I.IN_DATE, 'YYYY-MM-DD')AS IN_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(I.IN_NUM, 0) IN_NUM,  E.E_ID 
+FROM EMPLOYEE E, INPUT I, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND I.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND I.E_ID = E.E_ID (+)
+AND D.D_NAME LIKE '%'||#{d_name}||'%'
+AND TO_DATE(IN_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+AND P.J_ID = '12010'
+ORDER BY D.D_NAME, I.IN_DATE ASC
+</select>
+
+<!-- 폐기업무 -->
+<select id="GetDisuseSelect"
+resultType="com.green.mart.vo.AssortmentVo">
+SELECT A_NAME FROM ASSORTMENT
+ORDER BY A_ID ASC
+</select>
+<select id="SearchDisUseList" resultType="com.green.mart.vo.work.SearchDisuseVo">
+SELECT A.A_NAME,(select d_name from dept where d_id = p.d_id) as d_name, P.P_ID, P.P_NAME, NVL(P.P_IPRICE, 0) P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM
+FROM  ASSORTMENT A, PRODUCT P, STOCK S , JUMPO J
+WHERE S.P_SEQ = P.P_SEQ (+)
+AND P.A_ID = A.A_ID (+)
+AND J.J_ID = P.J_ID (+)
+AND ST_NUM != 0
+AND J.J_ID = '12010'
+AND A.A_NAME LIKE '%'||#{search}||'%'
+</select>
+<insert id="InsertDisuse">
+INSERT INTO DISUSE (  dis_id,    dis_date,    dis_num,   p_seq,   e_id  ) 
+VALUES ( (SELECT NVL(MAX(dis_id), 0) + 1 FROM disuse),
+sysdate,
+ #{dis_num} ,
+ (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010),
+#{e_id})
+</insert>
+<update id="UpdateStockMinus">
+ UPDATE STOCK 
+ SET ST_NUM =  NVL(ST_NUM,0) - #{dis_num} 
+ WHERE P_SEQ = (SELECT P_SEQ FROM PRODUCT WHERE P_NAME =  #{p_name} and J_ID = 12010)
+</update>
+<!-- 점포주문내역 조회 -->
+<select id="SearchJumpoOrderList"
+resultType="com.green.mart.vo.work.SearchJOrderListVo">
+SELECT TO_CHAR(B.B_DATE, 'YYYY-MM-DD')AS B_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(B.B_NUM, 0) B_NUM,  E.E_ID 
+FROM EMPLOYEE E, BONSAORDER B, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID (+)
+AND B.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND B.E_ID = E.E_ID (+)
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND TO_DATE(B_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, B.B_DATE ASC 
+</select>
+<select id="SearchJumpoOrderList1"
+resultType="com.green.mart.vo.work.SearchJOrderListVo">
+SELECT TO_CHAR(B.B_DATE, 'YYYY-MM-DD')AS B_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(B.B_NUM, 0) B_NUM,  E.E_ID 
+FROM EMPLOYEE E, BONSAORDER B, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID (+)
+AND B.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND B.E_ID = E.E_ID (+)
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND TO_DATE(B_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, B.B_DATE ASC
+</select>
+
+<select id="SearchJO"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+</select>
+
+<!-- 폐기내역 조회 -->
+<select id="SearchDis"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+
+</select>
+<select id="SearchDisList"
+resultType="com.green.mart.vo.work.SearchDisuseListVo">
+SELECT TO_CHAR(DIS.DIS_DATE, 'YYYY-MM-DD')AS DIS_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(DIS.DIS_NUM, 0) DIS_NUM,  E.E_ID 
+FROM EMPLOYEE E, DISUSE DIS, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND DIS.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND DIS.E_ID = E.E_ID (+)
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND TO_DATE(DIS_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, DIS.DIS_DATE ASC 
+</select>
+<select id="SearchDisList1"
+resultType="com.green.mart.vo.work.SearchDisuseListVo">
+SELECT TO_CHAR(DIS.DIS_DATE, 'YYYY-MM-DD')AS DIS_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_SPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(DIS.DIS_NUM, 0) DIS_NUM,  E.E_ID 
+FROM EMPLOYEE E, DISUSE DIS, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND DIS.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND DIS.E_ID = E.E_ID (+)
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND TO_DATE(DIS_DATE) BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, DIS.DIS_DATE ASC
+</select>
+
+<!-- 본사출고시 주문리스트 가져오기 -->
+<select id="SearchBonsaOrderList"
+        resultType="com.green.mart.vo.work.SearchBonsaOrderVo">
+	
+	SELECT J.J_NAME, TO_CHAR(B.B_DATE, 'YYYY-MM-DD') AS B_DATE, B.E_ID, P.P_ID, P.P_NAME, P.P_IPRICE, B.B_NUM, P.P_SEQ
+	  FROM JUMPO J, BONSAORDER B, PRODUCT P, EMPLOYEE E
+	 WHERE B.E_ID = E.E_ID
+	   AND E.J_ID = J.J_ID
+	   AND B.P_SEQ = P.P_SEQ
+	   AND B.B_DATE = #{ order2 }
+	   AND J.J_ID = #{ combobox }
+	
+</select>
+
+<insert id="InsertOutput"> 
+	INSERT INTO OUTPUT 
+		(OUT_ID,    OUT_DATE,    OUT_NUM,    E_ID,    P_SEQ) 
+		VALUES ( 
+        (SELECT NVL(MAX(OUT_ID),0)+1 FROM OUTPUT) ,
+        #{ out_date }, 
+        #{ out_num }, 
+        #{ e_id }, 
+        (SELECT P_SEQ 
+           FROM PRODUCT P
+          WHERE P.P_ID = #{ p_id } 
+            AND P.J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{ e_id })
+        ) )
+</insert>
+
+<update id="OutputUpdateStock">
+	UPDATE STOCK
+		SET
+		    ST_NUM = NVL(ST_NUM,0) - #{ out_num }
+		WHERE
+	        p_seq = (SELECT P_SEQ 
+	           FROM PRODUCT
+	          WHERE P_ID = #{ p_id }
+	            AND J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{ e_id }))
+</update>
+<!-- 출고내역 조회 -->
+<select id="SearchOutput"
+resultType="com.green.mart.vo.JumpoVo">
+SELECT J_NAME FROM JUMPO
+
+</select>
+<select id="SearchOutList"
+resultType="com.green.mart.vo.work.SearchOutputListVo">
+SELECT TO_CHAR(O.OUT_DATE,'YYYY-MM-DD') OUT_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.OUT_NUM, 0) OUT_NUM,  E.E_ID 
+FROM EMPLOYEE E, OUTPUT O, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = #{j_name}
+AND O.OUT_DATE BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, O.OUT_DATE ASC 
+</select>
+<select id="SearchOutList1"
+resultType="com.green.mart.vo.work.SearchOutputListVo">
+SELECT TO_CHAR(O.OUT_DATE,'YYYY-MM-DD') OUT_DATE, D.D_NAME ,P.P_ID, P.P_NAME, P.P_IPRICE, NVL(S.ST_NUM, 0) ST_NUM , 
+NVL(O.OUT_NUM, 0) OUT_NUM,  E.E_ID 
+FROM EMPLOYEE E, OUTPUT O, PRODUCT  P, STOCK S, DEPT D 
+WHERE P.D_ID = D.D_ID(+) 
+AND O.P_SEQ = P.P_SEQ (+)
+AND P.P_SEQ = S.P_SEQ (+)
+AND O.E_ID = E.E_ID (+)
+AND ((#{j_name} = '' AND (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) IN ('본사', '부전점')) OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '본사' OR (SELECT J_NAME FROM JUMPO WHERE J_ID = P.J_ID) = '부전점')
+AND O.OUT_DATE BETWEEN  TO_DATE(#{startdate}) AND TO_DATE(#{enddate})
+ORDER BY D.D_NAME, O.OUT_DATE ASC
+</select>
+</mapper>

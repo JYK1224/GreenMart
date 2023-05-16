@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cus">  
+
+ 
+  <select id="CustomerList"
+      resultType="com.green.mart.vo.CustomerVo">
+      SELECT c_id, c_name, c_phone, c_mile
+        FROM customer
+       ORDER BY c_id ASC
+   </select>
+   
+   <select id="GetCid"
+   		resultType="com.green.mart.vo.CustomerVo">
+   		SELECT nvl(count(c_id),0) +1
+   		  FROM customer
+   		
+   		
+   </select>
+   
+   <select id="ViewCid"
+   		resultType="com.green.mart.vo.CustomerVo">
+   		
+   		SELECT c_id, c_name, c_phone, c_mile
+   		  FROM customer
+   		 WHERE c_id= #{c_id} 
+   
+   
+   </select>
+   
+   
+    
+  <insert id="CustomerInsert">
+   
+       INSERT INTO customer (
+		    c_id,
+		    c_name,
+		    c_phone, 
+		    c_mile
+		) VALUES (
+		    (SELECT NVL(max(to_number(c_id)), 0  ) + 1 
+		       FROM customer ),
+		    #{ c_name  },
+		    #{ c_phone  },
+		    #{ c_mile  }
+		)       
+   
+   </insert> 
+ 
+ 	
+ 	<delete id="DeleteCid">
+ 		
+ 		DELETE FROM customer
+ 		WHERE c_id = #{c_id}
+ 	
+ 	
+ 	</delete>
+ 	
+ 	<update id="UpdateCid">
+ 		
+ 		UPDATE customer
+ 		   SET c_name  = #{c_name},
+ 		       c_phone = #{c_phone},
+ 		       c_mile  = #{c_mile}
+ 		 WHERE c_id = #{c_id}      
+ 		   
+ 		
+ 	
+ 	</update>
+ 	
+ 
+ 
+</mapper>
+
+
+
+
+
+   

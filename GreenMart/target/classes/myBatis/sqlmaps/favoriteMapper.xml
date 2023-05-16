@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Favorite">  
+
+
+<delete id="DeleteFavorite">
+
+	DELETE FROM FAVORITESADD
+		WHERE
+		        E_ID = #{ e_id }
+
+</delete>
+
+<insert id="InsertFavorite">
+	
+	INSERT INTO FAVORITESADD  (
+		    E_ID,
+		    FT_ID
+		) VALUES (
+			#{ e_id },
+			#{ ft_id }
+		)
+
+</insert>
+
+<select id="GetFavoriteList"
+        resultType="com.green.mart.vo.FavoriteVo">
+	
+	SELECT F2.FT_NAME as FT_NAME, F2.FT_ATAG
+	  FROM FAVORITESADD F1, FAVORITES F2
+	 WHERE F1.FT_ID = F2.FT_ID
+	   AND E_ID = #{ e_id }
+
+</select>
+
+ 
+</mapper>
+
+
+
+
+
+   

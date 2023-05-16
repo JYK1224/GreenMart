@@ -84,7 +84,7 @@ VALUES
 INSERT INTO product
 ( p_seq, p_id, p_name, p_iprice, p_sprice, p_del, d_id, a_id, j_id)
 VALUES
-( (select count(p_seq) +1 from product) , 
+( (select max(p_seq) +1 from product) , 
 #{p_id}, #{p_name}, #{p_iprice}, #{p_sprice}, 0 , #{d_id}, #{a_id}, #{j_id})
 </insert>
 <select id="GetDeptList"

@@ -233,4 +233,10 @@ public class JumpoServiceImpl implements JumpoService {
 		return list;
 	}
 
+	@Override
+	public List<SearchOrderListVo> returnBonsaOrderList(Map<String, Object> map) {
+		List<SearchOrderListVo> list = jumpoDao.returnBonsaOrderList(map);
+		return list;
+	}
+
 }

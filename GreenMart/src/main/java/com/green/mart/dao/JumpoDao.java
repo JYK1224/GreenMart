@@ -88,4 +88,6 @@ public interface JumpoDao {
 	List<SearchOrderVo> returnBonsaList(Map<String, Object> map);
 
 	List<SearchInputListVo> returnBonsaInputList(Map<String, Object> map);
+
+	List<SearchOrderListVo> returnBonsaOrderList(Map<String, Object> map);
 }

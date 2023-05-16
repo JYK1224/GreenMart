@@ -89,4 +89,6 @@ public interface JumpoService {
 
 	List<SearchInputListVo> returnBonsaInputList(Map<String, Object> map);
 
+	List<SearchOrderListVo> returnBonsaOrderList(Map<String, Object> map);
+
 }

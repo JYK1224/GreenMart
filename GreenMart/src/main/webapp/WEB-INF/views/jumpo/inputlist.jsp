@@ -245,7 +245,10 @@ window.onload = function() {
 		}); 
 		
 	}
-
+	//excel로 표 저장
+	excelEl.onclick = function() {
+		saveExcel()
+	}
 
 }
 

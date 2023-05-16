@@ -91,7 +91,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			alert("모든항목을 빈칸없이 입력해주세요.") 
 			e.preventDefault();
 		}else{
-			let confirmed = confirm('수정하시겠습니까?');
+			let confirmed = confirm('등록하시겠습니까?');
 	 		if(confirmed){
 				alert("회원등록에 성공했습니다.")
 	  			if (window.opener) {

@@ -86,7 +86,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			alert("이름과 전화번호를 모두 입력해주세요.") 
 			return false;
 		}else{
-		  	alert("회원등록에 성공했습니다.")
+		  	alert("거래처 등록에 성공했습니다.")
 		}
 	
 	}

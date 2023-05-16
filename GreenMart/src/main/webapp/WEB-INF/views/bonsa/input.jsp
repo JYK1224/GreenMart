@@ -152,9 +152,9 @@ function data_display(data) {
 	html += '<td>'+data.st_num+'</td>';
 	html += '<td>'+data.o_num+'</td>';
 	html += '<td><input id="inputnum" type="number" style="width: 70px;"/></td>';
-	html += '<td><c:if test="${sessionScope.login != null}">'
-		html +=   `${ sessionScope.login.e_id }`
-		html +=   '</c:if></td>';
+	html += '<td id="eid"><c:if test="${sessionScope.login != null}">'
+	html +=   `${ sessionScope.login.e_id }`
+	html +=   '</c:if></td>';
 	html += '<td></td>';
 	html += '</tr>';
 	})
@@ -201,11 +201,12 @@ window.onload = function() {
 		}); 
 	}
 	
-	//주문 버튼 클릭시 주문
+	// 입고 버튼 클릭시 입고
 	orderEl.onclick = function(e) {
 		let inputnum   = saveInputNum(7);
 		let inputdate  = saveInputDate(2);
 		let inputpname = saveInputP_name(4);
+		let e_id = document.getElementById("eid").textContent;
 		
 		console.log(inputnum)
 		console.log(inputdate)
@@ -216,6 +217,7 @@ window.onload = function() {
 			data : { inputnum  : inputnum,
 				     inputdate  : inputdate,
 				     inputpname : inputpname,
+				     e_id : e_id
 				     },
 			type: "POST", 
 					

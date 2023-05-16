@@ -311,7 +311,8 @@ public class BonsaWorkController {
 		@ResponseBody
 		public int input(@RequestParam(value = "inputnum[]") String[] inputnum,
 				@RequestParam(value = "inputdate[]") String[] inputdate,
-				@RequestParam(value = "inputpname[]") String[] inputpname) {
+				@RequestParam(value = "inputpname[]") String[] inputpname,
+				@RequestParam(value = "e_id") String e_id) {
 			
 			
 			  System.out.println("ordernum[] :" + Arrays.toString(inputnum));
@@ -331,7 +332,9 @@ public class BonsaWorkController {
 					}else {
 						map.put("in_num",  Integer.parseInt(inputnum[i]));
 						map.put("in_date", inputdate[i]);
-						map.put("p_name",  inputpname[i]);					
+						map.put("p_name",  inputpname[i]);
+						map.put("e_id",  e_id);
+
 						aftcnt = bonsaService.insertInput(map);
 						aftcnt = bonsaService.updateStock(map);
 						map.clear();
@@ -481,7 +484,8 @@ public class BonsaWorkController {
 		@RequestMapping("/Disuse")
 		@ResponseBody
 		public int disuse(@RequestParam(value = "disusenum[]") String[] disusenum,
-				@RequestParam(value = "disusepname[]") String[] disusepname) {
+						@RequestParam(value = "disusepname[]") String[] disusepname,
+						@RequestParam(value = "e_id") String e_id) {
 			
 			
 			  System.out.println("disusenum[] :" + Arrays.toString(disusenum));
@@ -500,6 +504,8 @@ public class BonsaWorkController {
 					}else {
 						map.put("dis_num",  Integer.parseInt(disusenum[i]));
 						map.put("p_name", disusepname[i]);
+						map.put("e_id",  e_id);
+
 						aftcnt = bonsaService.insertDisuse(map);
 						aftcnt = bonsaService.updateStockMinus(map);
 						map.clear();

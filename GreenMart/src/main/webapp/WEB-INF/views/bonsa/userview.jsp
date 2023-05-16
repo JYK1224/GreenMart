@@ -93,7 +93,8 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 		
 		let btnUpEl = document.getElementById("btnUp");
 		btnUpEl.addEventListener("click", function(e) {
-			window.location.href = "/BWork/empUpdateForm?e_id="+ ${vo.e_id } ;
+			let eidEl = document.getElementById("eid").textContent;
+			window.location.href = "/BWork/empUpdateForm?e_id="+ eidEl ;
 		});
 		
 		
@@ -113,7 +114,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 			<table style="width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:28px;;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;">
 			  <tr>
 			  	<td  id="qq" class="center">사원번호</td>
-			  	<td class="center"  >${vo.e_id } </td>
+			  	<td id="eid" class="center"  >${vo.e_id } </td>
 			  </tr>
 			  <tr>
 			    <td  id="qq" class="center">이름</td>

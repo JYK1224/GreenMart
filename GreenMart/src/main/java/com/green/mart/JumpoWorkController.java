@@ -420,6 +420,11 @@ public class JumpoWorkController {
 	@ResponseBody
 		public List<SearchProductVo> returnSalesListVO(String search, String startdate, String enddate) throws Exception {
 
+			
+			startdate = startdate + " 00:00:00";
+			enddate = enddate + " 23:59:59";
+			System.out.println("startdate=" +startdate);
+			System.out.println("enddate=" +enddate);
 			Map<String, Object> map = new HashMap<String, Object>();
 			String j_name = search;
 		

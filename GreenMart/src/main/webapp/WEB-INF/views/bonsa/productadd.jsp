@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
 h2{text-align: center; margin: 20px; font-size: 30px; }
-table {margin-left: auto; margin-right: auto;}
+table {margin-left: auto; margin-right: auto; border: 3px solid #666666;  box-shadow: 3px 3px 3px 3px gray; }
 #lay {width: 90%; height: 400px; border: 3px solid #666666; position: absolute; left:5%;  margin-top: -5px; box-shadow: 3px 3px 3px 3px gray;}
 table, tr, td {border-collapse: collapse;}
 tr,td{border: 1px solid black; }
@@ -156,8 +156,8 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 </script>
 </head>
 <body>
-	<div id="gd">
 			<h2> 상품등록 </h2>
+	<div id="gd">
 			<!-- 입력받은 정보를 서버로 전송한다 -->
 			<form name="form" action="/BWork/productAdd" method="POST"
 			  >

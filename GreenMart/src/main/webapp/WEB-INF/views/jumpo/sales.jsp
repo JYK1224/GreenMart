@@ -15,8 +15,8 @@
 <script lang="javascript" src="/js/qrcode.js"></script>
 <script>
 
-//상품 pid 배열
-function saveOrderP_id(columnIndex) {
+//상품 seq 배열
+function saveOrderP_seq(columnIndex) {
     var table = document.getElementById("table_body");
     var rows = table.getElementsByTagName("tr");
     var columnValues = [];
@@ -116,7 +116,7 @@ function saveOrderNum(columnIndex) {
 		qrcodeget.onclick = function() {
 			$("#qrcode").empty()
 			
-			let p_idList  = saveOrderP_id(1);
+			let p_seqList  = saveOrderP_seq(1);
 			let su_List   = saveOrderNum(2);
 			let finalPrice  = document.getElementById('finalPrice');
 			let earnMiles  = document.getElementById('earnMiles');
@@ -125,7 +125,7 @@ function saveOrderNum(columnIndex) {
 			
 			
 			var qr = new QRCode(document.getElementById("qrcode"), {
-			    text: JSON.stringify({address: "http://192.168.0.7:9090/M/Pay",p_idList: p_idList, 
+			    text: JSON.stringify({address: "http://192.168.0.7:9090/M/Pay",p_seqList: p_seqList, 
 			    	su_List: su_List, finalPrice: finalPrice.value, earnMiles: earnMiles.value, milePay: milePay.value}),
 			    width: 128,
 			    height: 128,
@@ -162,7 +162,7 @@ function saveOrderNum(columnIndex) {
 			let tag = '';
 			tag += '<tr>'
 			tag += '<td><button id="btnDelItem' + num + '" type="button" >➖</button></td>';
-			tag += '<td><input type="text"   name="p_id' + num + '" id="p_id' + num + '" placeholder="상품코드입력"/></td>';
+			tag += '<td><input type="text"   name="p_seq' + num + '" id="p_seq' + num + '" placeholder="상품코드입력"/></td>';
 			tag += '<td><input type="number" name="su' + num + '" /></td>';
 			tag += '<td><input type="button"  class="btn" value="조회" id="prodSearch' + num + '"/></td>';
 			tag += '<td><input type="text"   name="p_name' + num + '" readonly/></td>';
@@ -175,7 +175,7 @@ function saveOrderNum(columnIndex) {
 			
 			let totKum = parseInt( $('#totalPrice').val() ); // 합계금액 초기화
 			// (+) 안의 조회를 눌렀을때
-				var pid    = 'input[name=p_id' + num + ']';
+				var seq    = 'input[name=p_seq' + num + ']';
 				var name   = 'input[name=p_name' + num + ']';
 				var sprice = 'input[name=p_sprice' + num + ']';
 				var kum    = 'input[name=kum' + num + ']';
@@ -184,13 +184,12 @@ function saveOrderNum(columnIndex) {
 				$('#table_body').on('click', '#prodSearch' + num, function() {
 				
 // 				alert('ㅋㅋㅋ');
-// 				alert($(pid).val())
-			const e_id = document.getElementById("eid").textContent;
+// 				alert(seq)
+// 				alert($(seq).val())
 			$.ajax({
 				url : "/JWork/ProdSearch",
 				data : {
-					p_id : $(pid).val(),  // p_id 를 컨트롤러 보내서 필요값 가져옴
-					e_id : e_id
+					p_seq : $(seq).val()	// p_seq 를 컨트롤러 보내서 필요값 가져옴
 				},
 				type : "POST",
 
@@ -233,7 +232,7 @@ function saveOrderNum(columnIndex) {
 //	 			e.preventDefault();		// 페이지 이동 막음
 //	 			e.stopPropagation();
 				
-				alert('1줄 삭제되었습니다.');
+				alert('btnDelItem click');
 // 				console.log($(this).parent().parent());
 				
 				let btnDelItem = this;		// 아래 function에서 .remove() 하려면 이거 해줘야됨. 익명클래스 안에서는 this를 모름
@@ -280,14 +279,12 @@ function saveOrderNum(columnIndex) {
 
 		// 상품코드 입력후 조회 prodSearch 눌렀을때
 		let prodSearchEl = document.getElementById('prodSearch')
-		const e_id = document.getElementById("eid").textContent;
 		prodSearchEl.onclick = function(e) {
 			
 			$.ajax({
 				url : "/JWork/ProdSearch",
 				data : {
-					p_id : $('#p_id1').val(),
-					e_id : e_id
+					p_seq : $('#p_seq1').val()
 				},
 				type : "POST",
 
@@ -326,11 +323,7 @@ function saveOrderNum(columnIndex) {
 		    form.submit(); // 폼 데이터 전송
 		  });
 	
-		  $(document).ready(function() {
-			  $("#qrget").click(function() {
-			    $("#qrcode").css("z-index", "1");
-			  });
-			}); 
+		  
 	}
 </script>
 <style>
@@ -415,7 +408,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 				<!-- 입력받은 정보를 서버로 전송한다 -->
 				<form action="/Pay" method="POST" target="popupWindow" >
 					<input type="hidden" name="rowCount" id="rowCount" value="1" />
-					<input type="hidden" name="e_id" id="e_id" value="${ sessionScope.login.e_id }"/>
+					<input type="hidden" name="e_id" id="e_id" value="0001"/>
 					<input type="hidden" name="c_phone" id="c_phone" />
 					<table id="myTable">
 						<tfoot id="table_foot">
@@ -426,7 +419,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="button" style ="width:120px" value="마일리지 조회" id="mileage" class="btn"/>
+							<input type="button" style ="width:90px" value="마일리지 조회" id="mileage" class="btn"/>
 							</td>
 							<td colspan="2">
 							고객명 : &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="c_name" id="c_name" readonly/>
@@ -437,8 +430,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tr>
 						<tr id="right">
 							<td colspan="3">
-							<input type="submit" value="결제" id="pay" class="btn" /><input type="button" value="QR결제" id="qrget"  class="btn" style="width: 70px; margin: 0 0 0 5px;
-							  position: relative;  z-index: 1;"/>
+							<input type="submit" value="결제" id="pay" class="btn" />
 							</td>
 							<td colspan="2">
 							결제할금액 : <input type="text" id="finalPrice" name="finalPrice" readonly/>
@@ -461,7 +453,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						<tbody id="table_body">
 						<tr>
 							<td><button id="btnDelItem" type="button" >➖</button></td>
-							<td><input type="text"   name="p_id1" id="p_id1" placeholder="상품코드입력"/></td>
+							<td><input type="text"   name="p_seq1" id="p_seq1" placeholder="상품코드입력"/></td>
 							<td><input type="number" name="su1" id="su1" value="1"/></td>
 							<td><input type="button" value="조회" id="prodSearch" class="btn" /></td>
 							<td><input type="text"   name="p_name1" id="p_name1" readonly/></td>
@@ -471,8 +463,8 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 						</tbody>
 						</table>
 				</form>
-				
-				<div id="qrcode" style="width: 130px; height: 130px; background-color: white; position: absolute; margin-left: 410px; margin-top: 28px; z-index:-1; ;"></div>
+				<input type="button" value="qr생성" id="qrget" />
+				<div id="qrcode"></div>
 			</div>
 		</div>
 

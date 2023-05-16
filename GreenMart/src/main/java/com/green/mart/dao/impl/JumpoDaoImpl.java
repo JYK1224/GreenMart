@@ -118,9 +118,8 @@ public class JumpoDaoImpl implements JumpoDao {
 	}
 	// 결제시 상품정보조회
 	@Override
-	public ProductVo prodSearch(HashMap<String, Object> map) {
-		
-		ProductVo vo = sqlSession.selectOne("Jumpo.ProdSearch", map);
+	public ProductVo prodSearch(String p_seq) {
+		ProductVo vo = sqlSession.selectOne("Jumpo.ProdSearch", p_seq);
 		return vo;
 	}
 

@@ -280,20 +280,16 @@ public class JumpoWorkController {
 			return list;
 		}
 		
-	// 결제시 상품정보조회
-	@RequestMapping("/ProdSearch")
-	@ResponseBody
-	public ProductVo prodSearch(String p_id, String e_id ) {
-
-		HashMap<String, Object> map = new HashMap<String, Object>(); 
-		map.put("p_id", p_id);
-		map.put("e_id", e_id);
-		
-		ProductVo vo = jumpoService.prodSearch( map );
-		
-		return vo;
-		
-	}
+		// 결제시 상품정보조회
+		@RequestMapping("/ProdSearch")
+		@ResponseBody
+		public ProductVo prodSearch( String p_seq ) {
+			
+			ProductVo vo = jumpoService.prodSearch( p_seq );
+			
+			return vo;
+			
+		}
 	
 	// 마일리지 창에서 고객정보 조회
 	@RequestMapping("/CustSearch")
@@ -328,10 +324,6 @@ public class JumpoWorkController {
 		    
 		}
 		
-//		System.out.println("itemList.get(0)" + itemList.get(0));
-//		System.out.println("itemList.get(1)" + itemList.get(1));
-//		System.out.println("itemList.get(2)" + itemList.get(2));
-		
 		// 판매수량 List
 		Object suListobj = map.get("suList");
 		if (suListobj instanceof String) {
@@ -348,7 +340,7 @@ public class JumpoWorkController {
 		// 새로운 map 생성하여 SALE 테이블에 반영
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		for (int i = 0; i < j; i++) {
-			map2.put("item", String.valueOf(itemList.get(i))  );
+			map2.put("item", Integer.parseInt(itemList.get(i))  );
 			map2.put("su", Integer.parseInt(suList.get(i)));
 			map2.put("c_name",String.valueOf( map.get("c_name")));
 			map2.put("e_id", String.valueOf( map.get("e_id") ));			
@@ -364,9 +356,8 @@ public class JumpoWorkController {
 		Map<String, Object> map3 = new HashMap<String, Object>();
 		
 		for (int i = 0; i < j; i++) {
-			map3.put("item", String.valueOf(itemList.get(i))  );
+			map3.put("item", Integer.parseInt(itemList.get(i))  );
 			map3.put("su", Integer.parseInt(suList.get(i)));
-			map3.put("e_id", String.valueOf( map.get("e_id") ));			
 			jumpoService.saleUpdateStock(map3);
 			map3.clear();
 		}

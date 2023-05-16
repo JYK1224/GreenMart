@@ -26,15 +26,9 @@ FROM SALE
 
 <insert id="InsertSale">
 INSERT INTO sale (
-    s_id,    s_date,    s_num,    c_id,   e_id,   p_seq
+    s_id,    s_date,    s_num,    c_id,   e_id,    p_seq
 ) VALUES (
-    (select nvl(max(s_id)+1,0) from sale),    sysdate,   #{su},    (select c_id from customer where c_name = #{c_name} ),    #{e_id},    
-    (
-    SELECT P_SEQ
-      FROM PRODUCT
-     WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id} )
-       AND P_ID = #{item}
-    )
+    (select nvl(max(s_id)+1,0) from sale),    sysdate,   #{su},    (select c_id from customer where c_name = #{c_name} ),    #{e_id},    #{item}
 )
 
 </insert>
@@ -214,12 +208,7 @@ ORDER BY D.D_NAME ASC
 		 , P_NAME
 		 , P_SPRICE
 	  FROM PRODUCT
-	 WHERE P_SEQ = ( 
-           SELECT P_SEQ 
-           FROM PRODUCT 
-           WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id}) 
-             AND P_ID = #{p_id}
-           )
+	 WHERE P_SEQ = #{ p_seq }
 
 </select>
 
@@ -455,11 +444,7 @@ SELECT J_NAME FROM JUMPO
 	   SET
 	       ST_NUM = ST_NUM - #{ su }
 	 WHERE
-	       P_SEQ = ( 
-           SELECT P_SEQ 
-           FROM PRODUCT 
-           WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id}) 
-             				AND P_ID = #{item}  )	
+	       P_SEQ = #{ item }
 
 </update>
 

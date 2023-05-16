@@ -221,7 +221,7 @@ public class MobileController {
 				    	p_seqListStr = p_seqListStr.substring(1, p_seqListStr.length() - 1);
 				    }
 				    
-				    p_seqList = Arrays.asList(p_seqListStr.split(",  "));
+				    p_seqList = Arrays.asList(p_seqListStr.split(","));
 				   				   				    
 				}
 		// su_List
@@ -232,7 +232,7 @@ public class MobileController {
 						suListStr = suListStr.substring(1, suListStr.length() - 1);
 					}
 
-					suList = Arrays.asList(suListStr.split(",  "));
+					suList = Arrays.asList(suListStr.split(","));
 				}
 				
 		int j = p_seqList.size();
@@ -240,9 +240,9 @@ public class MobileController {
 		// 새로운 map 생성하여 SALE 테이블에 반영
 				Map<String, Object> map2 = new HashMap<String, Object>();
 				for (int i = 0; i < j; i++) {
-					map2.put("item", Integer.parseInt(p_seqList.get(i))  );
-					map2.put("su", Integer.parseInt(suList.get(i)));
-					map2.put("c_name",String.valueOf( map.get("c_name")));
+					map2.put("item", Integer.parseInt(p_seqList.get(i).trim())  );
+					map2.put("su", Integer.parseInt(suList.get(i).trim()));
+					map2.put("c_name",String.valueOf(map.get("c_name")));
 					map2.put("e_id", String.valueOf( map.get("e_id") ));			
 					jumpoService.insertSale(map2);
 					map2.clear();		
@@ -256,8 +256,8 @@ public class MobileController {
 				Map<String, Object> map3 = new HashMap<String, Object>();
 				
 				for (int i = 0; i < j; i++) {
-					map3.put("item", Integer.parseInt(p_seqList.get(i))  );
-					map3.put("su", Integer.parseInt(suList.get(i)));
+					map3.put("item", Integer.parseInt(p_seqList.get(i).trim())  );
+					map3.put("su", Integer.parseInt(suList.get(i).trim()));
 					jumpoService.saleUpdateStock(map3);
 					map3.clear();
 				}

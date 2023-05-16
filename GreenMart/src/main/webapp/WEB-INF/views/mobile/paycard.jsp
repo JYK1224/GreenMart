@@ -107,7 +107,7 @@ window.onload = function() {
 
 				<!-- Main -->
 					<div id="main">
-					<form action="/M/PayMent" method="POST">
+					<form action="/M/PayMent" method="POST" onclick="sendMessage();">
 					<input type="hidden" name="c_phone"     value="${c_phone}" />
 					<input type="hidden" name="c_name"     value="${ c_name }" />
 					<input type="hidden" name="p_seqList"     value="${ p_seqList }" />

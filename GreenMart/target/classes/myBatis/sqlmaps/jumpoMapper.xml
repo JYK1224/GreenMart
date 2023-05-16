@@ -26,9 +26,15 @@ FROM SALE
 
 <insert id="InsertSale">
 INSERT INTO sale (
-    s_id,    s_date,    s_num,    c_id,   e_id,    p_seq
+    s_id,    s_date,    s_num,    c_id,   e_id,   p_seq
 ) VALUES (
-    (select nvl(max(s_id)+1,0) from sale),    sysdate,   #{su},    (select c_id from customer where c_name = #{c_name} ),    #{e_id},    #{item}
+    (select nvl(max(s_id)+1,0) from sale),    sysdate,   #{su},    (select c_id from customer where c_name = #{c_name} ),    #{e_id},    
+    (
+    SELECT P_SEQ
+      FROM PRODUCT
+     WHERE J_ID = ( SELECT J_ID FROM EMPLOYEE WHERE E_ID = #{e_id} )
+       AND P_ID = #{item}
+    )
 )
 
 </insert>

@@ -85,7 +85,7 @@
 
 <!--  공통 Interceptor -->
     
-  <mvc:interceptors>       
+<!--   <mvc:interceptors>       
        <mvc:interceptor>
          <mvc:mapping path="/**"/>
          <mvc:exclude-mapping path="/resources/**"/>
@@ -94,6 +94,6 @@
             class="com.green.interceptor.AuthInterceptor">
          </bean>       
        </mvc:interceptor>    
-    </mvc:interceptors> 
+    </mvc:interceptors>  -->
     
 </beans>

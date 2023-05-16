@@ -94,6 +94,6 @@
             class="com.green.interceptor.AuthInterceptor">
          </bean>       
        </mvc:interceptor>    
-    </mvc:interceptors>
+  </mvc:interceptors> 
     
 </beans>

@@ -370,7 +370,11 @@ function saveOrderNum(columnIndex) {
 		    window.open(url, 'popupWindow', features);
 		    form.submit(); // 폼 데이터 전송
 		  });
-	
+		  $(document).ready(function() {
+			  $("#qrget").click(function() {
+			    $("#qrcode").css("z-index", "1");
+			  });
+			}); 
 		  
 	}
 </script>

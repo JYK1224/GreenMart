@@ -173,7 +173,7 @@ function saveOrderNum(columnIndex) {
 			
 			
 			var qr = new QRCode(document.getElementById("qrcode"), {
-			    text: JSON.stringify({address: "http://192.168.0.7:9090/M/Pay",p_seqList: p_seqList, 
+			    text: JSON.stringify({address: "http://192.168.0.210:9090/M/Pay",p_seqList: p_seqList, 
 			    	su_List: su_List, finalPrice: finalPrice.value, earnMiles: earnMiles.value, milePay: milePay.value}),
 			    width: 128,
 			    height: 128,

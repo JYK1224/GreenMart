@@ -380,6 +380,7 @@ span {font-size: 40px; position: absolute; top: 21%; left:8% }
 <input type="button" id="excelsave" value ="액셀로 저장" style=" margin: 0 20px; width:80px; " class="btn"/><br>
 거래처명: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="search" style="margin: 10px 0 0 0;"/> <input type="button" id="deptsearch" value="검색" class="btn" style="margin:10px 0 0 20px ;"/>
  <input type="button" id="bonsaSearch" value="본사상품검색" class="btn" style=" margin: 0 30px; width:90px; "/><br></br>
+ <p style="font-size: 8px;">※ 본사상품은 주문일로 입력해주세요 ※</p>
 
 </div>
 <div id= "lay" >

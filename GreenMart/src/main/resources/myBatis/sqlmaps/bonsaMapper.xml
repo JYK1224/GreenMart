@@ -267,7 +267,7 @@ p_seq,
 e_id
 ) VALUES (
    (SELECT NVL(MAX(in_id), 0) + 1 FROM input),
-   sysdate,
+   #{in_date},
     #{in_num},
    (SELECT P_SEQ FROM PRODUCT WHERE P_NAME = #{p_name} and j_id = 12010  ),
    #{e_id}  

@@ -143,7 +143,7 @@ window.onload = function() {
 					<input type="hidden" name="suList"     value="${ suList }" />
 					<input type="hidden" name="milePay"     value="${ milePay }" />
 					<input type="hidden" name="earnMiles"     value="${ earnMiles }" />
-					<input type="hidden" name="e_id"     value="0001" />
+					<input type="hidden" name="e_id"     value="${sessionScope.login.e_id }" />
 				
 					<table>
 						<tr>

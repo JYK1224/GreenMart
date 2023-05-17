@@ -178,7 +178,7 @@ function saveRightZoneMenus() {
 	// 사용자 아이디를 가져옴
 	function getE_Id() {
 		
-	  return '0001';
+	  return `${ sessionScope.login.e_id }`;
 	}
 
 // ----------------------드래그앤드랍 기능-----------------------

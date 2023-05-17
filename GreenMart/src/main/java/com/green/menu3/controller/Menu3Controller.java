@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,7 +84,8 @@ public class Menu3Controller {
 	
 	// 즐겨찾기 반영된 게시글 목록
 	@RequestMapping("/PdsWithFT")
-	public ModelAndView noticeWithFT( @RequestParam HashMap<String, Object> map) {
+	public ModelAndView noticeWithFT( @RequestParam HashMap<String, Object> map,
+			HttpSession session) {
 
 		//-------------------------------------------
 		// 페이징 정보 준비
@@ -100,7 +102,7 @@ public class Menu3Controller {
 		map.put("endnum", endnum);			// 예를들어 한페이지당 5줄씩 찍을거니까 5, 10, 15, 20, ... 
 		// sql 에서 SELECT ~ BETWEEN startnum AND endnum 으로 출력할때 사용할 예정
 		//--------------------------------------------
-
+		
 		// 게시판 이름을 가져온다
 		String m_id   = (String) map.get("m_id");
 		String m_name = menu3Service.getM_name( m_id );
@@ -110,10 +112,13 @@ public class Menu3Controller {
 		// 게시판 글 목록
 		List<Menu3PagingVo> list = menu3Service.getMenu3PagingList( map );
 		Menu3PagingVo pdsPagingVo = (Menu3PagingVo) map.get("pdsPagingVo");
+		 EmployeeVo vo = (EmployeeVo) session.getAttribute("login");
 
+		
+		String e_id = vo.getE_id();
 		// 즐겨찾기 메뉴 가져오기 : map3
 		HashMap<String, Object> map3 = new HashMap<String, Object>();
-		map3.put("e_id", "0001"); // 로그인아이디를 e_id 로 map에 담는다.
+		map3.put("e_id", e_id); // 로그인아이디를 e_id 로 map에 담는다.
 		List<FavoriteVo> favoriteList = favoriteService.getFavoriteList( map3 );
 		
 		

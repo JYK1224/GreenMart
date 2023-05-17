@@ -62,7 +62,7 @@ td{ padding: 10px; margin: 30px; width: 200px;}
 <table id="PdsList">
 	<tr>
 		<td colspan="6" class="right">
-			<a href="/Menu3/WriteForm?m_id=${ map.m_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=${ map.nowpage }" class="btn" style="width: 80px; height: 25px; text-align: center;">새글쓰기</a>
+			<a href="/Menu3/WriteForm?m_id=${ map.m_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=${ map.nowpage }&e_id=${ sessionScope.login.e_id } " class="btn" style="width: 80px; height: 25px; text-align: center;">새글쓰기</a>
 		</td>
 	</tr>
 	<colgroup>

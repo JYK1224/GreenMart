@@ -118,7 +118,7 @@
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td><input type="text" name="e_id" value="${ vo.e_id }"></td>
+				<td><input type="text" name="e_id" value="${ sessionScope.login.e_id }" readonly></td>
 			</tr>
 			<tr>
 				<th>내용</th>

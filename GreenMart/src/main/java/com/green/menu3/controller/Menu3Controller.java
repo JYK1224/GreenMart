@@ -198,6 +198,8 @@ public class Menu3Controller {
 	public ModelAndView writeForm(
 			@RequestParam HashMap<String, Object> map
 			) {
+		
+		System.out.println("작성전 map " +  map);
 
 		int     idx   = 0;
 		PdsVo   pdsVo = null;

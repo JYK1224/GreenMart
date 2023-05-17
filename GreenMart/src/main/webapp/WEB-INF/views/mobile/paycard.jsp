@@ -27,6 +27,10 @@ window.onload = function() {
 	
 	 socket = new WebSocket(wsUri);
 	 
+	
+	 
+	 let e_id;
+	 
 	 socket.onopen = function(event) {
 		  console.log('WebSocket connection established.');
 		};
@@ -43,12 +47,16 @@ window.onload = function() {
 		// In sales.jsp
 		socket.onopen = function(event) {
 		  console.log('WebSocket connection established.');
+		  socket.send("getE_id")
 		};
 
 		socket.onmessage = function(event) {
-		  var message = event.data;
-		  console.log('Received message:', message);
-		  // Process the received message as needed
+			  var message = event.data;
+			  e_id = message;
+			  console.log(e_id)
+			  let eidEl = document.getElementById("e_id")
+			  eidEl.value = e_id
+			  console.log(eidEl.value);
 		};
 
 		socket.onerror = function(event) {
@@ -114,7 +122,7 @@ window.onload = function() {
 					<input type="hidden" name="suList"     value="${ suList }" />
 					<input type="hidden" name="milePay"     value="${ milePay }" />
 					<input type="hidden" name="earnMiles"     value="${ earnMiles }" />
-					<input type="hidden" name="e_id"     value="${sessionScope.login.e_id }" />
+					<input type="hidden" name="e_id" id="e_id" value="${ sessionScope.login.e_id }"/>
 				
 					<table>
 						<tr>

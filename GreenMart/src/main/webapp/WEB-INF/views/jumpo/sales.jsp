@@ -150,6 +150,10 @@ function saveOrderNum(columnIndex) {
 		socket.onmessage = function(event) {
 			  var message = event.data;
 			  console.log('Received message:', message);
+			  
+			  if(message === 'getE_id') {
+				  socket.send('${sessionScope.login.e_id}')
+			  }
 
 			  if (message === 'CloseSalesWindow') {
 				alert('결제가 완료되었습니다.')
@@ -162,6 +166,7 @@ function saveOrderNum(columnIndex) {
 		let qrcodeget = document.getElementById("qrget")
 		
 		qrcodeget.onclick = function() {
+			
 			$("#qrcode").empty()
 			
 			let p_seqList  = saveOrderP_seq(1);

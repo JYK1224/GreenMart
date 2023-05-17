@@ -90,7 +90,7 @@ public class MobileController {
 		}
 		
 		System.out.println(p_seqList);
-		System.out.println(p_seqList.get(1));
+		System.out.println(p_seqList.get(0));
 		
 		// suList
 				Object su_Listobj = map.get("su_List");
@@ -106,7 +106,7 @@ public class MobileController {
 				}
 				
 		System.out.println(suList);
-		System.out.println(suList.get(1));
+		System.out.println(suList.get(0));
 		
 		int merchant_uid = jumpoService.getSaleId();
 		
@@ -168,7 +168,7 @@ public class MobileController {
 		}
 		
 		System.out.println(p_seqList);
-		System.out.println(p_seqList.get(1));
+		System.out.println(p_seqList.get(0));
 		
 		// suList
 		Object su_Listobj = map.get("su_List");
@@ -184,7 +184,7 @@ public class MobileController {
 		}
 		
 		System.out.println(suList);
-		System.out.println(suList.get(1));
+		System.out.println(suList.get(0));
 		
 		int merchant_uid = jumpoService.getSaleId();
 		

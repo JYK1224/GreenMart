@@ -10,6 +10,205 @@
 <title>그린마트</title>
 <link rel="stylesheet" href="css/common.css"/>
 </head>
+<style>
+	#gion{
+		margin-top: 5px; margin-left: 5px;
+		
+	} 
+	
+	#gisang{
+		position: absolute; left: 1240px; top: 475px;;
+		
+	}
+
+    img {
+      width: 25px;
+      height: 25px;
+      margin-right: 5px;
+    }
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+function data_kangsu(data){
+	let body = data.response.body;
+	let arr = body.items.item;
+	let html = ''; 
+	
+	//이미지
+	const images = {
+			'맑음'           : 'https://cdn-icons-png.flaticon.com/128/3262/3262946.png',
+			'흐림'           : 'https://cdn-icons-png.flaticon.com/128/2722/2722859.png',
+			'구름많음'       : 'https://cdn-icons-png.flaticon.com/128/2722/2722836.png',
+			'구름많고 비'    : 'https://cdn-icons-png.flaticon.com/128/2722/2722809.png',
+			'구름많고 눈'    : 'https://cdn-icons-png.flaticon.com/128/2722/2722873.png',
+			'구름많고 비/눈' : 'https://cdn-icons-png.flaticon.com/128/2722/2722873.png',
+			'구름많고 소나기': 'https://cdn-icons-png.flaticon.com/128/2840/2840777.png',
+			'흐리고 비'      : 'https://cdn-icons-png.flaticon.com/128/2722/2722809.png',
+			'흐리고 눈'      : 'https://cdn-icons-png.flaticon.com/128/2722/2722873.png',
+			'흐리고비/눈'    : 'https://cdn-icons-png.flaticon.com/128/2722/2722873.png',
+			'흐리고 소나기'  : 'https://cdn-icons-png.flaticon.com/128/2841/2841125.png',
+			'온도': 'https://cdn-icons-png.flaticon.com/128/3052/3052776.png'
+	};
+	
+	arr.forEach(function (kos, index) {
+		
+		let currentDate = new Date(); // 현재 시간을 가져옵니다.
+
+		let targetDates = []; // 3일 후부터 7일 후까지의 날짜를 담을 배열
+		let days = ['일', '월', '화', '수', '목', '금', '토'];
+
+		for (let i = 3; i <= 7; i++) {
+		  let targetDate = new Date(currentDate);
+		  targetDate.setDate(targetDate.getDate() + i); // i일 후의 날짜를 설정합니다.
+
+		  let targetMonth = targetDate.getMonth() + 1;
+		  let targetDay = targetDate.getDate();
+		  let targetDayOfWeek = days[targetDate.getDay()];
+
+		  targetDates.push({
+		    date: `${targetMonth}-${targetDay}`,
+		    dayOfWeek: targetDayOfWeek
+		  }); // 3일 후의 요일을 가져옵니다.
+		}
+	    html += '<div id="gisang">';
+		html += '<ul>';
+		html += '<li>        </li>'
+		html += '<li> 오전 오후 </li>'
+		if (kos.wf3Am in images){
+			let imagesSrc = images[kos.wf3Am]
+			html += '<li>'+targetDates[0].date+'<img src="'+imagesSrc+'">' ; 
+		}
+		if(kos.wf3Pm in images){
+			let imagesSrc = images[kos.wf3Pm]
+			html += '<img src="'+imagesSrc+'"</li>';
+		}
+		if (kos.wf4Am in images){
+			let imagesSrc = images[kos.wf4Am]
+			html += '<li>'+targetDates[1].date+'<img src="'+imagesSrc+'">' ; 
+		}
+		if(kos.wf4Pm in images){
+			let imagesSrc = images[kos.wf4Pm]
+			html += '<img src="'+imagesSrc+'"</li>';
+		}
+		if (kos.wf5Am in images){
+			let imagesSrc = images[kos.wf5Pm]
+			html += '<li>'+targetDates[2].date+'<img src="'+imagesSrc+'">' ; 
+		}
+		if(kos.wf5Pm in images){
+			let imagesSrc = images[kos.wf5Pm]
+			html += '<img src="'+imagesSrc+'"</li>';
+		}
+		if (kos.wf6Am in images){
+			let imagesSrc = images[kos.wf6Am]
+			html += '<li>'+targetDates[3].date+'<img src="'+imagesSrc+'">' ; 
+		}
+		if(kos.wf6Pm in images){
+			let imagesSrc = images[kos.wf6Pm]
+			html += '<img src="'+imagesSrc+'"</li>';
+		}
+		if (kos.wf7Am in images){
+			let imagesSrc = images[kos.wf7Am]
+			html += '<li>'+targetDates[4].date+'<img src="'+imagesSrc+'">' ; 
+		}
+		if(kos.wf7Pm in images){
+			let imagesSrc = images[kos.wf7Pm]
+			html += '<img src="'+imagesSrc+'"</li>';
+		}
+					
+		html += '</ul>';
+		html += '</div>';
+	});
+	
+	return html;
+}  
+	   function data_gion(data){
+	let body = data.response.body;
+	let arr = body.items.item;
+	let html = ''; 
+	arr.forEach(function (kos, index) {
+		let currentDate = new Date(); // 현재 시간을 가져옵니다.
+
+		let targetDates = []; // 3일 후부터 7일 후까지의 날짜를 담을 배열
+		let days = ['일', '월', '화', '수', '목', '금', '토'];
+
+		for (let i = 3; i <= 7; i++) {
+		  let targetDate = new Date(currentDate);
+		  targetDate.setDate(targetDate.getDate() + i); // i일 후의 날짜를 설정합니다.
+
+		  let targetMonth = targetDate.getMonth() + 1;
+		  let targetDay = targetDate.getDate();
+		  let targetDayOfWeek = days[targetDate.getDay()];
+
+		  targetDates.push({
+		    date: `${targetMonth}-${targetDay}`,
+		    dayOfWeek: targetDayOfWeek
+		  }); // 3일 후의 요일을 가져옵니다.
+		}
+		
+		html += '<div id="gion">';
+		html += '<ul>';
+		html += '<li>부전날씨</li>';
+
+		html += '<li>&nbsp;&nbsp;&nbsp;&nbsp;최저 최고</li>'
+		
+		html += '<li style="margin: 0 0 8.5px 0;">('+targetDates[0].dayOfWeek+')' ;
+		html += ''+kos.taMin3+'℃/' ;
+		html += ''+kos.taMax3+'℃</li>';
+		html += '<li style="margin: 0 0 8.5px 0;">('+targetDates[1].dayOfWeek+')' ;
+		html += ''+kos.taMin4+'℃/' ;
+		html += ''+kos.taMax4+'℃</li>';
+		html += '<li style="margin: 0 0 8.5px 0;">('+targetDates[2].dayOfWeek+')' ;
+		html += ''+kos.taMin5+'℃/'; 
+		html += ''+kos.taMax5+'℃</li>';
+		html += '<li style="margin: 0 0 8.5px 0;">('+targetDates[3].dayOfWeek+')' ;
+		html += ''+kos.taMin6+'℃/' ;
+		html += ''+kos.taMax6+'℃</li>';
+		html += '<li>('+targetDates[4].dayOfWeek+')' ;
+		html += ''+kos.taMin7+'℃/' ;
+		html += ''+kos.taMax7+'℃</li>';
+		
+					
+		html += '</ul>';
+		html += '</div>';
+	});
+	return html;
+}  
+  
+	  $(document).ready(function() {
+		  let url1 = 'http://localhost:9090/gisang?keyword=';
+		  let url2 = 'http://localhost:9090/gion?keyword=';
+
+		  let ajax1 = $.ajax({
+		    url: url1,
+		    data: {
+		      keyword: $('#search').val()
+		    }
+		  });
+
+		  let ajax2 = $.ajax({
+		    url: url2,
+		    dataType: 'JSON',
+		    data: {
+		      keyword: $('#search').val()
+		    }
+		  });
+		  $.when(ajax1, ajax2).done(function(data1, data2) {
+			console.log(data1[0].response.body.items.item)
+			console.log(data2[0])
+		    let html1 = data_kangsu(data1[0]);
+		    let html2 = data_gion(data2[0]);
+		    $('#div1').html(html1 + html2);
+		  }).fail(function(xhr) {
+		    console.log(xhr);
+		    alert(xhr.status + ':' + xhr.textStatus);
+		  });
+		});
+	
+ 	
+</script>
 <script>
 window.onload = function() {
 	
@@ -525,6 +724,10 @@ btnLogoutEl.addEventListener('click', function(e) {
 	<!-- 공지사항, 업무연락 -->
     <%@ include file="/WEB-INF/include/homeBoard.jsp" %>
 	<div id="calendar"></div>
+	<div id="main">
+	<div id= "div1" style="width:190px; height:195px; margin-left:83%; margin-top:-29%; border: 1px solid black; box-shadow: 3px 3px 3px 3px gray;">
+	</div>
+	</div>
 	
     <%@ include file="/WEB-INF/include/bottom.jsp" %>
 
